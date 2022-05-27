@@ -1,6 +1,7 @@
 # README
 
 TODO: Checkout svelte-kit: https://kit.svelte.dev/
+TODO: Read faq @ https://svelte.dev/faq
 
 Create this project by
 
