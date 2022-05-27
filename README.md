@@ -1,5 +1,7 @@
 # README
 
+TODO: Checkout svelte-kit: https://kit.svelte.dev/
+
 Create this project by
 
 src: https://svelte.dev/
