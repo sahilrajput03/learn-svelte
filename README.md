@@ -1,5 +1,10 @@
 # README
 
+Read docs @ https://svelte.dev/
+
+Github: https://github.com/sveltejs/svelte
+
+
 TODO: Checkout svelte-kit: https://kit.svelte.dev/
 TODO: Read faq @ https://svelte.dev/faq
 
