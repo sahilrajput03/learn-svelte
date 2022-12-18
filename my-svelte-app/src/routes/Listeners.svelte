@@ -7,6 +7,10 @@
 		m.y = event.clientY;
 	}
 	let m2 = { x: 0, y: 0 };
+
+	function handleClick() {
+		alert('no more alerts');
+	}
 </script>
 
 <div
@@ -27,4 +31,8 @@
 </div>
 
 <h3>Event Modiier Chapter</h3>
-<img src="/event-modifier-chapter.png" alt="Lovely chapter">
+<img src="/event-modifier-chapter.png" alt="Lovely chapter" />
+
+<h2>Modifiers</h2>
+<!-- DOM event handlers can have modifiers that alter their behaviour. For example, a handler with a once modifier will only run a single time: -->
+<button on:click|once={handleClick}>Click me (attached handler is executed only once) </button>
