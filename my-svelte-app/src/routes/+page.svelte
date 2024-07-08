@@ -4,14 +4,14 @@
 	import LogicalMarkup from './LogicalMarkup.svelte';
 	import MagicalAwait from './MagicalAwait.svelte';
 
-	let name = 'world';
+	let name = 'WORLD';
 	let src = 'pika.gif';
 	let pokemon_name = 'pikachu';
 
 	import Nested from './Nested.svelte';
 	import Reactiveness from './Reactiveness.svelte';
 
-	let string = `This string contains some <strong>HTML!!!</strong>`; // Svelte doesn't perform any sanitization of the expression inside {@html ...} before it gets inserted into the DOM. In other words, if you use this feature it's critical that you manually escape HTML that comes from sources you don't trust, otherwise you risk exposing your users to XSS attacks.
+	let myHtmlString = `<div>This string contains some <strong>HTML!!!</strong></div>`; // Svelte doesn't perform any sanitization of the expression inside {@html ...} before it gets inserted into the DOM. In other words, if you use this feature it's critical that you manually escape HTML that comes from sources you don't trust, otherwise you risk exposing your users to XSS attacks.
 
 	let count = 0;
 	function incrementCount() {
@@ -41,8 +41,8 @@
 		skyColor: 'orange',
 		customMessage: ['Hello', 'world!']
 	};
-
 	import Thing from './Thing.svelte';
+
 	let things = [
 		{ id: 1, name: 'apple' },
 		{ id: 2, name: 'banana' },
@@ -55,29 +55,42 @@
 	}
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-<p>Hello {name.toUpperCase()}!</p>
+<h1>Learn SvelteKit</h1>
 
-<img {src} alt={pokemon_name} />
+Quick Links:
+<ul>
+	<li>
+		Svelte Kit Docs: <a href="https://kit.svelte.dev">kit.svelte.dev</a>
+	</li>
+	<li>
+		Client-side component API: <a
+			target="_blank"
+			rel="noreferrer"
+			href="https://svelte.dev/docs#run-time-client-side-component-api">Click here</a
+		>
+	</li>
+</ul>
 
-<br />
+<section>
+	<p>Hello {name.toLowerCase()}!</p>
 
-<!-- HTLM tags -->
-<p>{@html string}</p>
+	<img {src} alt={pokemon_name} width="300px" />
+</section>
 
-<!-- Component api: https://svelte.dev/docs#run-time-client-side-component-api -->
+<p>This is a paragraph.</p>
 
-<!-- Calling event handler on button click -->
-Try to increment count value to 5
+<h1>Displaying a string variable as html (<i>myHtmlString</i>)</h1>
+<section>{@html myHtmlString}</section>
+
+<h1>Button Click Handler</h1>
+Click to increment count (upto 5)
 <button on:click={incrementCount}>
-	Clicked {count}
+	{count}
 	{count === 1 ? 'time' : 'times'}
 </button>
 
-<!-- Demonstrating Reactive Values -->
 <div>
-	Doubled value is {doubled}
+	<i>doubled</i> (reactive value): {doubled}
 </div>
 
 <!-- LEARN: Notice that even though Nested.svelte has a <p> element, the styles from App.svelte don't leak in. -->
@@ -120,7 +133,5 @@ Try to increment count value to 5
 	/* Importantly, these rules are scoped to the component. You won't accidentally change the style of <p> elements elsewhere in your app, as we'll see in the next step. */
 	p {
 		color: purple;
-		font-family: 'Comic Sans MS', cursive;
-		font-size: 2em;
 	}
 </style>
