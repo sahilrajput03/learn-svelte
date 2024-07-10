@@ -1,5 +1,5 @@
 <script>
-	import Dynamic from './Dynamic.svelte';
+	import ComponentB from './ComponentB.svelte';
 	import Listeners from './Listeners.svelte';
 	import LogicalMarkup from './LogicalMarkup.svelte';
 	import MagicalAwait from './MagicalAwait.svelte';
@@ -36,10 +36,10 @@
 	}
 
 	// Using spread props to pass all props as single object
-	let myProps = {
-		answer: 42,
-		skyColor: 'orange',
-		customMessage: ['Hello', 'world!']
+	let user1 = {
+		name: 'Radha',
+		age: 21,
+		friends: ['Arjun', 'Akshay']
 	};
 	import Thing from './Thing.svelte';
 
@@ -103,16 +103,16 @@ Click to increment count (upto 5)
 <!-- Reactiveness -->
 <Reactiveness />
 
-<!-- Passing props to a component: Dynamic Component -->
-<Dynamic answer={42} />
+<section>
+	<h1>Passing props to a component & using default props</h1>
+	<ComponentB name={'Alice'} />
+	<ComponentB name={'Bob'} age={21} />
+	<!-- Using spread props -->
+	<ComponentB {...user1} />
 
-<!-- Passing no value to `answer` prop will be `undefined` but since we're using typescript it shows us erron in the vscode atleast. -->
-<!-- <Dynamic /> -->
-
-<Dynamic answer={42} skyColor="orange" />
-
-<!-- Using spread props -->
-<Dynamic {...myProps} />
+	<!-- Passing no value to `name` prop would act as `undefined` but since we're using typescript it shows us error in the vscode atleast, that's awesome!. -->
+	<!-- <ComponentB /> -->
+</section>
 
 <!-- Using if/else logics in Markup -->
 <LogicalMarkup />
