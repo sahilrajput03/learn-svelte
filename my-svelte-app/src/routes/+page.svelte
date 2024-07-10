@@ -1,7 +1,7 @@
 <script>
 	import ComponentB from './ComponentB.svelte';
 	import Listeners from './Listeners.svelte';
-	import LogicalMarkup from './LogicalMarkup.svelte';
+	import ComponentWithIfElseEach from './ComponentWithIfElseEach.svelte';
 	import MagicalAwait from './MagicalAwait.svelte';
 
 	let name = 'WORLD';
@@ -115,7 +115,7 @@ Click to increment count (upto 5)
 </section>
 
 <!-- Using if/else logics in Markup -->
-<LogicalMarkup />
+<ComponentWithIfElseEach />
 
 <!-- Keyed each blocks -->
 <h1>Learn keys (similar to react)</h1>
