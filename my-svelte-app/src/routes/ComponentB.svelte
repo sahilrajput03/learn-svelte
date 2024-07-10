@@ -12,6 +12,7 @@
 	let background = 'lightgrey';
 </script>
 
+<h1>Component B</h1>
 <section>
 	<div>Name: {name}</div>
 
