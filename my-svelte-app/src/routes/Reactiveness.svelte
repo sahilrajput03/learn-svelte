@@ -1,24 +1,19 @@
 <script>
 	let numbers = [1, 2, 3, 4];
 
-	// Updating Arrays and Objects
-	// ===========================
-
-	// LEARN: Svelte's reactivity is triggered by assignments. Methods that mutate arrays or objects will not trigger updates by themselves. So you *must* have below statement i.e, `numbers = numbers` to trigger DOM update.
-	// NOTE: The same rule applies to array methods such as pop, shift, and splice and to objects methods such as Map.set, Set.add, etc.
-	// way 1 - Assign numbers to itself to tell the compiler it has changed:
-	function addNumber() {
+	// way 1
+	function addByPushMethod() {
 		numbers.push(numbers.length + 1);
-		numbers = numbers;
+		numbers = numbers; // necessary to trigger reactivity
 	}
 
-	// way 2 - ES6 spread syntax:
-	function addNumber2() {
+	// way 2
+	function addBySpreadOperator() {
 		numbers = [...numbers, numbers.length + 1];
 	}
 
-	// way 3 - Assignments to properties of arrays and objects:
-	function addNumber3() {
+	// way 3:
+	function addByPropertyAssignment() {
 		numbers[numbers.length] = numbers.length + 1;
 	}
 
@@ -34,16 +29,69 @@
 	// }
 	// quox(obj);
 
-	// Calculating SUM:
-	$: sum = numbers.reduce((t, n) => t + n, 0);
+	// let sum; // This is *optional*.
+	// *FROM SVELTE DOCS*:
+	// 		If a reactive statement consists entirely of an
+	// 		assignment to an undeclared variable, Svelte will
+	// 		inject a let declaration on your behalf.
+	$: sum = numbers.reduce((t, n) => t + n, 0); // when numbers are updated sum is updated automatically.
 </script>
 
 <h1>Learn Reactiveness</h1>
 
-<p>{numbers.join(' + ')} = {sum}</p>
+<u><b>Updating arrays and objects:</b></u>
+<div>
+	Learn: Svelte's reactivity is triggered by assignments. Methods that mutate arrays or objects will
+	not trigger updates by themselves. So you *must* have below statement i.e, `numbers = numbers` to
+	trigger DOM update.
+</div>
+<div>
+	Note: The same rule applies to array methods such as pop, shift, and splice and to objects methods
+	such as Map.set, Set.add, etc.
+</div>
 
-<button on:click={addNumber}> Add a number </button>
-<button on:click={addNumber2}> Add a number with ES6 spread syntax </button>
-<button on:click={addNumber3}>
-	Add a number (Assignments to properties of arrays and objects)
-</button>
+<p>
+	numbers: [{numbers.join(', ')}]
+</p>
+
+<p>
+	Sum of {numbers.join(' + ')} is {sum}.
+</p>
+
+Add new via:
+<br />
+
+<div>
+	<button on:click={addByPushMethod}>
+		<div>way1:</div>
+		<code>numbers.push(numbers.length + 1) </code>
+		<div>
+			Requires explicit reassigning of `numbers` variable to
+			<div />
+			<div>itself becoz of svelte's reactivity works only via assignments.</div>
+		</div>
+	</button>
+	<span />
+</div>
+
+<div>
+	<button on:click={addBySpreadOperator}>
+		<div>way2</div>
+		<code>numbers = [...numbers, numbers.length + 1]</code>
+		<div>Using ES6 Spread Syntax</div>
+	</button>
+</div>
+
+<div>
+	<button on:click={addByPropertyAssignment}>
+		<div>way3:</div>
+		<code>numbers[numbers.length] = numbers.length + 1</code>
+		<div>Add new by assigning directly to properties of arrays and objects.</div>
+	</button>
+</div>
+
+<style>
+	button {
+		margin: 1rem;
+	}
+</style>

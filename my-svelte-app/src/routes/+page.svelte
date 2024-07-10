@@ -8,7 +8,7 @@
 	let src = 'pika.gif';
 	let pokemon_name = 'pikachu';
 
-	import Nested from './Nested.svelte';
+	import ComponentA from './ComponentA.svelte';
 	import Reactiveness from './Reactiveness.svelte';
 
 	let myHtmlString = `<div>This string contains some <strong>HTML!!!</strong></div>`; // Svelte doesn't perform any sanitization of the expression inside {@html ...} before it gets inserted into the DOM. In other words, if you use this feature it's critical that you manually escape HTML that comes from sources you don't trust, otherwise you risk exposing your users to XSS attacks.
@@ -93,8 +93,12 @@ Click to increment count (upto 5)
 	<i>doubled</i> (reactive value): {doubled}
 </div>
 
-<!-- LEARN: Notice that even though Nested.svelte has a <p> element, the styles from App.svelte don't leak in. -->
-<Nested />
+<h1>Text with class names</h1>
+
+<p class="warning">This text has class "warning"</p>
+
+<!-- LEARN: Notice that even though Nested.svelte has a <p> element and div with class "warning", the styles from App.svelte don't leak in which is so cool! -->
+<ComponentA />
 
 <!-- Reactiveness -->
 <Reactiveness />
@@ -133,5 +137,8 @@ Click to increment count (upto 5)
 	/* Importantly, these rules are scoped to the component. You won't accidentally change the style of <p> elements elsewhere in your app, as we'll see in the next step. */
 	p {
 		color: purple;
+	}
+	.warning {
+		color: red;
 	}
 </style>
