@@ -7,10 +7,12 @@
 		egg: '🥚'
 	};
 
-	// the name is updated whenever the prop value changes...
+	// `name` is updated whenever the prop value changes...
 	export let name = '<no_name>';
 
-	// ...but the "emoji" variable is fixed upon initialisation of the component
+	// and if you don't set id to #each argument then you'll
+	// notice emoji varialbe is not getting updated properly
+	// similar to id mismatch issue in react.
 	const emoji = emojis[name];
 </script>
 

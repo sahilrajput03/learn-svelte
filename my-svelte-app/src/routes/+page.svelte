@@ -2,7 +2,7 @@
 	import ComponentB from './ComponentB.svelte';
 	import Listeners from './Listeners.svelte';
 	import ComponentWithIfElseEach from './ComponentWithIfElseEach.svelte';
-	import MagicalAwait from './MagicalAwait.svelte';
+	import AwaitInMarkup from './AwaitInMarkup.svelte';
 
 	let name = 'WORLD';
 	let src = 'pika.gif';
@@ -41,17 +41,17 @@
 		age: 21,
 		friends: ['Arjun', 'Akshay']
 	};
-	import Thing from './Thing.svelte';
+	import FoodCard from './FoodCard.svelte';
 
-	let things = [
+	let foodItems = [
 		{ id: 1, name: 'apple' },
 		{ id: 2, name: 'banana' },
 		{ id: 3, name: 'carrot' },
 		{ id: 4, name: 'doughnut' },
 		{ id: 5, name: 'egg' }
 	];
-	function handleClick() {
-		things = things.slice(1);
+	function handleRemoveFirstItemUsingSlice() {
+		foodItems = foodItems.slice(1);
 	}
 </script>
 
@@ -114,22 +114,19 @@ Click to increment count (upto 5)
 	<!-- <ComponentB /> -->
 </section>
 
-<!-- Using if/else logics in Markup -->
 <ComponentWithIfElseEach />
 
 <!-- Keyed each blocks -->
-<h1>Learn keys (similar to react)</h1>
-<button on:click={handleClick}>Remove first thing </button>
-<!-- Here, (thing.id) is the key, which tells Svelte how to figure out which DOM node to change when the component updates. -->
-<!-- *WARNING*:: If you remve the `key` i.e., `(thing.id)` then svelte does *not* remove the first <Thing> component, but rather the last DOM node. Then it updates the name value in the remaining DOM nodes, but not the emoji. -->
-{#each things as thing (thing.id)}
-	<Thing name={thing.name} />
+<h1>Learn keys for #each similar to id concept of react</h1>
+<button on:click={handleRemoveFirstItemUsingSlice}> Remove first thing </button>
+<!-- * Here, (foodItem.id) is the key, which tells Svelte how to figure out which DOM node to change when the component updates. -->
+<!-- *WARNING*:: If you remove the `key` i.e., `(foodItem.id)` then svelte does *not* remove the first <Thing> component, but rather the last DOM node. Then it updates the name value in the remaining DOM nodes, but not the emoji. -->
+{#each foodItems as foodItem (foodItem.id)}
+	<FoodCard name={foodItem.name} />
 {/each}
 
-<!-- MAGICAL AWAIT in Markup -->
-<MagicalAwait />
+<AwaitInMarkup />
 
-<!-- Listeners Usage -->
 <Listeners />
 
 <!-- Styles are placed at the bottom of the component(Formatter do this by default). -->

@@ -8,31 +8,52 @@
 	}
 	let m2 = { x: 0, y: 0 };
 
-	function handleClick() {
-		alert('no more alerts');
+	function greet() {
+		alert('Hello Pikachu.');
 	}
 </script>
 
-<div
-	on:mousemove={handleMousemove}
-	style="background: deeppink; padding: 3rem 5rem; display: inline-block; width: 40vw"
->
-	Hover in this region to get mouse position is {m.x} x {m.y}
+<h1>Listeners Handling</h1>
+
+<div class="mouse-area" on:mousemove={handleMousemove} style="background: deeppink">
+	Mouse Position: {m.x} x {m.y}
 </div>
 
-<!-- **INLINE EVENT HANDLERS** -->
-<!-- UPDATE -- I think right statement from Svelte is outdated as it seems to syntax highlight without any quote at all (amazing Svelte). =>  ALSO: The quote marks are optional, but they're helpful for syntax highlighting in some environments. -->
-<!-- BONUS(Svelte is *better* than react): In some frameworks you may see recommendations to avoid inline event handlers for performance reasons, particularly inside loops. That advice doesn't apply to Svelte — the compiler will always do the right thing, whichever form you choose. -->
+<!--
+	* INLINE EVENT HANDLERS *
+	Update: I think right statement from Svelte is outdated as it seems to syntax highlight without
+						any quote at all (amazing Svelte). =>  ALSO: The quote marks are optional, but they're
+						helpful for syntax highlighting in some environments
+						 
+	Edge over react for inline functions. In svelte there is no need to avoid
+					inline event handlers for performance reasons, particularly inside loops.
+					In Svelte — the compiler will always do the right thing, whichever form
+					you choose i.e., inline or full function definition. -->
 <div
-	style="background: aquamarine; padding: 3rem 5rem; display: inline-block; width: 40vw"
+	class="mouse-area"
+	style="background: aquamarine"
 	on:mousemove={(e) => (m2 = { x: e.clientX, y: e.clientY })}
 >
-	The mouse position is {m2.x} x {m2.y} (using inline event handler)
+	Mouse Position: {m2.x} x {m2.y} (using inline event handler)
 </div>
 
-<h3>Event Modiier Chapter</h3>
-<img src="/event-modifier-chapter.png" alt="Lovely chapter" />
+<h3>Event Modifier Chapter</h3>
+<div>Keeping it here for easy reference later on.</div>
+<img src="/event-modifier-chapter.png" width="400" alt="Lovely chapter" />
 
-<h2>Modifiers</h2>
-<!-- DOM event handlers can have modifiers that alter their behaviour. For example, a handler with a once modifier will only run a single time: -->
-<button on:click|once={handleClick}>Click me (attached handler is executed only once) </button>
+<h3>Modifiers</h3>
+DOM event handlers can have modifiers that alter their behaviour. For example, a handler with a
+<code>once</code>
+modifier will only run once irrespective of number of times it is clicked:
+<button on:click|once={greet}>Click me</button>
+
+<style>
+	.mouse-area {
+		padding: 1.5rem 2rem;
+		display: inline-block;
+	}
+	code {
+		color: darkgreen;
+		font-weight: bolder;
+	}
+</style>
