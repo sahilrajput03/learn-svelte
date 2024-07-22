@@ -3,13 +3,14 @@
 	import Listeners from './Listeners.svelte';
 	import ComponentWithIfElseEach from './ComponentWithIfElseEach.svelte';
 	import AwaitInMarkup from './AwaitInMarkup.svelte';
+	import FoodCard from './FoodCard.svelte';
+	import ComponentA from './ComponentA.svelte';
+	import Reactiveness from './Reactiveness.svelte';
 
 	let name = 'WORLD';
 	let src = 'pika.gif';
 	let pokemon_name = 'pikachu';
 
-	import ComponentA from './ComponentA.svelte';
-	import Reactiveness from './Reactiveness.svelte';
 
 	let myHtmlString = `<div>This string contains some <strong>HTML!!!</strong></div>`; // Svelte doesn't perform any sanitization of the expression inside {@html ...} before it gets inserted into the DOM. In other words, if you use this feature it's critical that you manually escape HTML that comes from sources you don't trust, otherwise you risk exposing your users to XSS attacks.
 
@@ -41,7 +42,6 @@
 		age: 21,
 		friends: ['Arjun', 'Akshay']
 	};
-	import FoodCard from './FoodCard.svelte';
 
 	let foodItems = [
 		{ id: 1, name: 'apple' },
@@ -121,6 +121,7 @@ Click to increment count (upto 5)
 <button on:click={handleRemoveFirstItemUsingSlice}> Remove first thing </button>
 <!-- * Here, (foodItem.id) is the key, which tells Svelte how to figure out which DOM node to change when the component updates. -->
 <!-- *WARNING*:: If you remove the `key` i.e., `(foodItem.id)` then svelte does *not* remove the first <Thing> component, but rather the last DOM node. Then it updates the name value in the remaining DOM nodes, but not the emoji. -->
+ <h1>Boom?</h1>
 {#each foodItems as foodItem (foodItem.id)}
 	<FoodCard name={foodItem.name} />
 {/each}
