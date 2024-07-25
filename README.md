@@ -3,6 +3,8 @@
 - **Todo:** Learn testing for svelte: [Click here](https://svelte.dev/docs/faq#how-do-i-test-svelte-apps)
 - **Todo:** Move content of this page to a doc.
 
+**Article:** [Click here](https://www.okupter.com/blog/companies-using-svelte)
+
 **+ves:**
 - Linkedin Post: [Click here](https://www.linkedin.com/pulse/from-react-svelte-frontend-future-work-damon-vestervand-3hjsf/)
 - **HackMd - SvelteJS: My ecosystem is bigger than yours: [Click here](https://hackmd.io/@roguegpu) ([Article reading by Primegan](https://www.youtube.com/watch?v=bh-e700IlmQ))**
