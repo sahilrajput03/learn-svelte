@@ -1,6 +1,7 @@
 # Learn Svelte
 
 **Todo:** Learn testing for svelte: [Click here](https://svelte.dev/docs/faq#how-do-i-test-svelte-apps)
+**Todo:** Move content of this page to a doc.
 
 **+ves:**
 - Linkedin Post: [Click here](https://www.linkedin.com/pulse/from-react-svelte-frontend-future-work-damon-vestervand-3hjsf/)
