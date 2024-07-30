@@ -1,9 +1,10 @@
 # Learn Svelte
 
+- **Doc: Learn Svelte:** [Click here](https://docs.google.com/document/d/1-SJ9T92-cCDqM9SLnRg0U_R7NICabi2KXLYduUfvt4E/edit)
 - **Todo:** Learn testing for svelte: [Click here](https://svelte.dev/docs/faq#how-do-i-test-svelte-apps)
 - **Todo:** Move content of this page to a doc.
 
-**Article:** [Click here](https://www.okupter.com/blog/companies-using-svelte)
+**Article - Companies Using Svelte:** [Click here](https://www.okupter.com/blog/companies-using-svelte)
 
 **+ves:**
 - Linkedin Post: [Click here](https://www.linkedin.com/pulse/from-react-svelte-frontend-future-work-damon-vestervand-3hjsf/)
