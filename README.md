@@ -3,8 +3,18 @@
 - **Doc: Learn Svelte:** [Click here](https://docs.google.com/document/d/1-SJ9T92-cCDqM9SLnRg0U_R7NICabi2KXLYduUfvt4E/edit)
 - **Todo:** Learn testing for svelte: [Click here](https://svelte.dev/docs/faq#how-do-i-test-svelte-apps)
 - **Todo:** Move content of this page to a doc.
+- **Svelte 5 is not yet released** (I checked this last on 15 Octboer, 2024)
+    - Check the latest stable version here - [https://www.npmjs.com/package/svelte](https://www.npmjs.com/package/svelte)
+    - Related Information:
+        - Is svelte 5 ready yet: [Click here](https://svelte-5-preview.vercel.app/status)
+            - Coverage Report: [Click here](https://svelte-5-preview.vercel.app/coverage/index.html)
+        - https://svelte.dev/blog/svelte-5-release-candidate
+        - https://frontendmasters.com/blog/introducing-svelte-5/
+- **Todo:** Introducing runes: [Click here](https://svelte.dev/blog/runes) (20 Sep, 2023)
+    - Runes Docs: [Click here](https://svelte-5-preview.vercel.app/docs/runes)
 
 **Article - Companies Using Svelte:** [Click here](https://www.okupter.com/blog/companies-using-svelte)
+- Stackoveflow: [src](https://the-stack-overflow-podcast.simplecast.com/episodes/why-stack-overflow-is-embracing-svelte/transcript)
 
 **+ves:**
 - Linkedin Post: [Click here](https://www.linkedin.com/pulse/from-react-svelte-frontend-future-work-damon-vestervand-3hjsf/)
