@@ -11,7 +11,6 @@
 	let src = 'pika.gif';
 	let pokemon_name = 'pikachu';
 
-
 	let myHtmlString = `<div>This string contains some <strong>HTML!!!</strong></div>`; // Svelte doesn't perform any sanitization of the expression inside {@html ...} before it gets inserted into the DOM. In other words, if you use this feature it's critical that you manually escape HTML that comes from sources you don't trust, otherwise you risk exposing your users to XSS attacks.
 
 	let count = 0;
@@ -106,9 +105,23 @@ Click to increment count (upto 5)
 <section>
 	<h1>Passing props to a component & using default props</h1>
 	<ComponentB name={'Alice'} />
-	<ComponentB name={'Bob'} age={21} />
+	<ComponentB
+		name={'Bob'}
+		age={21}
+		comments={{
+			// Comment 1
+			/* Comment 2 */
+		}}
+		{...{
+			// Comment 3
+		}}
+		{...{
+			/* Comment 4 */
+		}}
+	/>
 	<!-- Using spread props -->
 	<ComponentB {...user1} />
+	<!-- ! hello -->
 
 	<!-- Passing no value to `name` prop would act as `undefined` but since we're using typescript it shows us error in the vscode atleast, that's awesome!. -->
 	<!-- <ComponentB /> -->
@@ -121,7 +134,7 @@ Click to increment count (upto 5)
 <button on:click={handleRemoveFirstItemUsingSlice}> Remove first thing </button>
 <!-- * Here, (foodItem.id) is the key, which tells Svelte how to figure out which DOM node to change when the component updates. -->
 <!-- *WARNING*:: If you remove the `key` i.e., `(foodItem.id)` then svelte does *not* remove the first <Thing> component, but rather the last DOM node. Then it updates the name value in the remaining DOM nodes, but not the emoji. -->
- <h1>Boom?</h1>
+<h1>Boom?</h1>
 {#each foodItems as foodItem (foodItem.id)}
 	<FoodCard name={foodItem.name} />
 {/each}

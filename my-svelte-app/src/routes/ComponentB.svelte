@@ -1,7 +1,8 @@
 <script lang="ts">
 	// Learn: We use `export` keyword in front of let declarations
 	// 				to mark it as component prop. It enables us to get props
-	// 				type-checking via typescript in vscode.
+	// 				type-checking via typescript in vscode otherwise type is
+	// 				detected implicity from the value assigned in the props.
 	export let name: string;
 
 	// Learn: By assigning a initial value to a component prop it is
