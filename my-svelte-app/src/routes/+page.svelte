@@ -145,7 +145,4 @@ Click to increment count (upto 5)
 	.warning {
 		color: red;
 	}
-	.center {
-		text-align: center;
-	}
 </style>

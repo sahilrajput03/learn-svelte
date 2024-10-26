@@ -1,7 +1,6 @@
 <script lang="ts">
 	// Learn: We use `export` keyword in front of let declarations
-	// 				to mark it prop. It enables typescript type-checking
-	// 				for that prop.
+	// 				to declare props. Giving it type enables typechecking.
 	export let name: string;
 
 	// Learn: Assigning an default value to a prop makes it an optional.
