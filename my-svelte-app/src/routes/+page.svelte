@@ -104,24 +104,17 @@ Click to increment count (upto 5)
 
 <section>
 	<h1>Passing props to a component & using default props</h1>
-	<ComponentB name={'Alice'} />
 	<ComponentB
 		name={'Bob'}
 		age={21}
-		comments={{
+		{...{
 			// Comment 1
 			/* Comment 2 */
 		}}
-		{...{
-			// Comment 3
-		}}
-		{...{
-			/* Comment 4 */
-		}}
 	/>
-	<!-- Using spread props -->
+
+	<h1>Using spread props</h1>
 	<ComponentB {...user1} />
-	<!-- ! hello -->
 
 	<!-- Passing no value to `name` prop would act as `undefined` but since we're using typescript it shows us error in the vscode atleast, that's awesome!. -->
 	<!-- <ComponentB /> -->
@@ -151,5 +144,8 @@ Click to increment count (upto 5)
 	}
 	.warning {
 		color: red;
+	}
+	.center {
+		text-align: center;
 	}
 </style>
