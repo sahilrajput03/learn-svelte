@@ -16,6 +16,10 @@
 	import Group15 from './Group15.svelte';
 	import Group16 from './Group16.svelte';
 	import Group17 from './Group17.svelte';
+	import Group18 from './Group18.svelte';
+	import Group19 from './Group19.svelte';
+	import Group20 from './Group20.svelte';
+	import Group21 from './Group21.svelte';
 </script>
 
 <!-- <Group1 /> -->
@@ -34,4 +38,8 @@
 <!-- <Group14 /> -->
 <!-- <Group15 /> -->
 <!-- <Group16 /> -->
-<Group17 />
+<!-- <Group17 /> -->
+<!-- <Group18 /> -->
+<!-- <Group19 /> -->
+<!-- <Group20 /> -->
+<Group21 />

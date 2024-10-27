@@ -3,6 +3,7 @@
 
 <script>
 	import BigRedButton from './BigRedButton.svelte';
+
 	const greet = () => {
 		alert('Hi!');
 	};
