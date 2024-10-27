@@ -1,4 +1,5 @@
 <!-- File consumed in file `Group6.svelte` -->
+<!-- ! Note the `lang="ts"` in the script tag.  -->
 <script lang="ts">
 	type Props = { name: string; version: number; description: string; website: string };
 	let { name, version, description, website }: Props = $props();

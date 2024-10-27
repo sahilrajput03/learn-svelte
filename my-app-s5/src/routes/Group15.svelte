@@ -2,25 +2,23 @@
 <!-- https://svelte.dev/tutorial/svelte/capturing -->
 
 <div>
-	Bubbling (default) - the `input` handler runs first, as the event ‘bubbles’ from the target up to
-	the document, followed by the outer handler.
+	Bubbling (default) - the `input` handler (`onkeydown`) runs first, as the event ‘bubbles’ from the
+	target up to the document, followed by the outer handler.
 </div>
 <div onkeydown={(e) => alert(`<div> ${e.key}`)} role="presentation">
 	<input onkeydown={(e) => alert(`<input> ${e.key}`)} />
 </div>
 
-<br />
 <hr />
-<br />
 
-<div>Capturing - Now, the relative order is reversed.</div>
+<div>
+	Capturing - We assign capture handlers using `onkeydowncapture`. Now, the call order is reversed.
+</div>
 <div onkeydowncapture={(e) => alert(`<div> ${e.key}`)} role="presentation">
 	<input onkeydowncapture={(e) => alert(`<input> ${e.key}`)} />
 </div>
 
-<br />
 <hr />
-<br />
 
 <div>
 	Bubbling + Capturing - If both capturing and non-capturing handlers exist for a given event, the
@@ -37,8 +35,27 @@
 	/>
 </div>
 
+<div class="from-chatgpt">
+	<div>Bubbling and Capturing Phases Explanation by ChatGPT:</div>
+	<img class="bubble-capture-img" src="bubbling-capturing.jpeg" alt="bubbling-capturing" />
+</div>
+
 <style>
+	:root {
+		margin: 20px;
+	}
 	input {
 		border: 2px solid black;
+	}
+	hr {
+		margin: 40px 0px;
+	}
+
+	.from-chatgpt {
+		margin-top: 50px;
+		font-weight: bold;
+	}
+	.bubble-capture-img {
+		width: 700px;
 	}
 </style>
