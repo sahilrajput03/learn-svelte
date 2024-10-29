@@ -10,8 +10,9 @@ initialised, selected remains undefined, so we can’t blindly
 reference e.g. selected.id in the template.
 -->
 
-<script>
-	let questions = $state([
+<script lang="ts">
+	type QuestionType = { id: number; text: string };
+	let questions: QuestionType[] = $state([
 		{
 			id: 1,
 			text: `Where did you go to school?`
@@ -26,7 +27,8 @@ reference e.g. selected.id in the template.
 		}
 	]);
 
-	let selected = $state();
+	let selected = $state() as QuestionType;
+	$inspect('selected?', selected);
 
 	let answer = $state('');
 
@@ -39,13 +41,19 @@ reference e.g. selected.id in the template.
 </script>
 
 <u>
-	<b> Insecurity questions </b>
+	<b>Insecurity questions</b>
 </u>
 
 <form onsubmit={handleSubmit}>
-	<select bind:value={selected} onchange={() => (answer = '')}>
+	<select
+		bind:value={selected}
+		onchange={(e: any) => {
+			answer = ''; // to clear answer when we change the question
+			console.log('onchange? - e.target.value?', e.target?.value); // `question.id`
+		}}
+	>
 		{#each questions as question}
-			<option value={question}>
+			<option value={question.id}>
 				{question.text}
 			</option>
 		{/each}
