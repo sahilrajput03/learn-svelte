@@ -61,7 +61,8 @@ reference e.g. selected.id in the template.
 
 	<br />
 	<br />
-	selected question
+	selected question:
+	<!-- Note: Using `?.` here important otherwise we get can't error cannot access property of undefined. -->
 	{selected?.text}
 </p>
 
