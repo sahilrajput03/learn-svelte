@@ -1,10 +1,9 @@
 <!-- 36/45 -->
 <!-- https://svelte.dev/tutorial/svelte/actions -->
-<!--/ //& 37th tutorial is also on `actions` topic i.e., Adding parameters to actions. -->
+
+<!--/ //* PLEASE READ THE TUTORIAL FULLY TO UNDERSTAND ALL OF IT -->
 
 <!-- Last 8 tutorials (38 to 45) are on `Transitions` topic. -->
-
-<!-- / //* Sahil: I can probably look details of this tutorial when I need to. -->
 
 <script>
 	import Canvas from './Canvas.svelte';
@@ -17,7 +16,8 @@
 	let showMenu = $state(true);
 </script>
 
-<div class="container">
+<!-- Sahil: I changed `container` to `my-container` because tailwind's `container` class's media-query inflicts here and thus mouse cursor is positioned while painting has an offset towards right.-->
+<div class="my-container">
 	<Canvas color={selected} {size} />
 
 	{#if showMenu}
@@ -35,6 +35,7 @@
 				}
 			}}
 		>
+			<!-- / //* We add action function the menu element with the `use:` directive: -->
 			<div class="menu" use:trapFocus>
 				<div class="colors">
 					{#each colors as color}
@@ -51,7 +52,7 @@
 				</div>
 
 				<label>
-					small
+					Brush Radius: small
 					<input type="range" bind:value={size} min="1" max="50" />
 					large
 				</label>
@@ -67,7 +68,7 @@
 </div>
 
 <style>
-	.container {
+	.my-container {
 		position: fixed;
 		left: 0;
 		top: 0;

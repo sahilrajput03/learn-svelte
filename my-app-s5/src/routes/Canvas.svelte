@@ -6,6 +6,7 @@
 	let context = $state<any>();
 	let coords = $state<any>();
 
+	// TESTED: Effect is run once only at page load
 	$effect(() => {
 		context = canvas.getContext('2d');
 
@@ -69,6 +70,7 @@
 		top: 0;
 		width: 100%;
 		height: 100%;
+		outline: 1px solid red;
 	}
 
 	.preview {
