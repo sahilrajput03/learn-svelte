@@ -33,7 +33,10 @@
 	import Group31 from './Group31.svelte';
 	import Group32 from './Group32.svelte';
 	import Group33 from './Group33.svelte';
+	import Group34 from './Group34.svelte';
 </script>
+
+<!-- `<Group38/>` is paint brush with canvas. -->
 
 <!-- <Group1 /> -->
 <!-- <Group2 /> -->
@@ -68,4 +71,5 @@
 <!-- <Group30 /> -->
 <!-- <Group31 /> -->
 <!-- <Group32 /> -->
-<Group33 />
+<!-- <Group33 /> -->
+<Group34 />
