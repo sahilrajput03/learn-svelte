@@ -30,6 +30,9 @@
 	import Group28 from './Group28.svelte';
 	import Group29 from './Group29.svelte';
 	import Group30 from './Group30.svelte';
+	import Group31 from './Group31.svelte';
+	import Group32 from './Group32.svelte';
+	import Group33 from './Group33.svelte';
 </script>
 
 <!-- <Group1 /> -->
@@ -62,4 +65,7 @@
 <!-- <Group27b /> -->
 <!-- <Group28 /> -->
 <!-- <Group29 /> -->
-<Group30 />
+<!-- <Group30 /> -->
+<!-- <Group31 /> -->
+<!-- <Group32 /> -->
+<Group33 />
