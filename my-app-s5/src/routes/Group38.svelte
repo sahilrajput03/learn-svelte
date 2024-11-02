@@ -1,3 +1,6 @@
+<!-- 46/75 -->
+<!-- https://svelte.dev/tutorial/svelte/raw-state -->
+
 <script>
 	import { scale } from './utils';
 	import { poll } from './data';
@@ -10,6 +13,9 @@
 	// few milliseconds later. Instead, use $state.raw(..). Mutating raw state will
 	// have no direct effect. In general, mutating non-reactive state is strongly discouraged.
 	let data = $state.raw(poll());
+
+	// Tutorial: Mutating raw state will have no direct effect. In general, mutating non-reactive state is strongly discouraged.
+	// From Sahil: In above line it means that directly assigning is good/expected but mutating it i.e, pushing elements to array or updating any property of the state is an anti pattern.
 
 	let w = $state(1);
 	let h = $state(1);

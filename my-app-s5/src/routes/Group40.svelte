@@ -1,22 +1,33 @@
-<!-- 47/75 -->
-<!-- https://svelte.dev/tutorial/svelte/reactive-classes -->
+<!-- 48/75 -->
+<!-- https://svelte.dev/tutorial/svelte/getters-and-setters -->
 
 <script lang="ts">
 	const MAX_SIZE = 200;
 
-	// Tutorial: In addition to $state and $derived, you can use $state.raw and
-	// $derived.by to define reactive fields.
-
 	class Box {
-		// Tutorial: It’s not just variables that can be made reactive — in Svelte,
-		// we can also make properties of classes reactive.
-		width = $state(0);
-		height = $state(0);
-		area = $derived(this.width * this.height);
+		#width = $state(0);
+		#height = $state(0);
+		area = $derived(this.#width * this.#height);
 
 		constructor(width: number, height: number) {
-			this.width = width;
-			this.height = height;
+			this.#width = width;
+			this.#height = height;
+		}
+
+		get width() {
+			return this.#width;
+		}
+
+		get height() {
+			return this.#height;
+		}
+
+		set width(value) {
+			this.#width = Math.max(0, Math.min(MAX_SIZE, value));
+		}
+
+		set height(value) {
+			this.#height = Math.max(0, Math.min(MAX_SIZE, value));
 		}
 
 		embiggen(amount: number) {
