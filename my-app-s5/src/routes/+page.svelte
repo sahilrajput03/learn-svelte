@@ -41,6 +41,7 @@
 	import Group40 from './Group40.svelte';
 	import Group41 from './Group41.svelte';
 	import Group42 from './Group42.svelte';
+	import Group43 from './Group43.svelte';
 </script>
 
 <!-- `<Group38/>` is paint brush with canvas. -->
@@ -88,4 +89,5 @@
 <!-- <Group40 /> -->
 <!-- <Group41 /> -->
 <!-- <Group41 /> -->
-<Group42 />
+<!-- <Group42 /> -->
+<Group43 />
