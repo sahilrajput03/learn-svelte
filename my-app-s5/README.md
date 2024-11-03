@@ -1,5 +1,8 @@
 # create-svelte
 
+- Deployed at - https://sveltev5.vercel.app/
+  - On vercel using preset SvelteKit (v1)
+
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
 ## Creating a project
