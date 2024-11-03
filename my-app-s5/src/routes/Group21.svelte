@@ -36,7 +36,7 @@ reference e.g. selected.id in the template.
 	function handleSubmit(e) {
 		e.preventDefault();
 
-		alert(`answered question ${selected.id} (${selected.text}) with "${answer}"`);
+		alert(`QUESTION=${selected.id}: ${selected.text} ANSWER=${answer}`);
 	}
 </script>
 
@@ -53,7 +53,7 @@ reference e.g. selected.id in the template.
 		}}
 	>
 		{#each questions as question}
-			<option value={question.id}>
+			<option value={question}>
 				{question.text}
 			</option>
 		{/each}
@@ -64,15 +64,10 @@ reference e.g. selected.id in the template.
 	<button class="btn-primary" disabled={!answer} type="submit"> Submit </button>
 </form>
 
-<p>
-	selected question {selected ? selected.id : '[waiting...]'}
+<br />
 
-	<br />
-	<br />
-	selected question:
-	<!-- Note: Using `?.` here important otherwise we get can't error cannot access property of undefined. -->
-	{selected?.text}
-</p>
+<b>Debugging</b>
+<pre>{JSON.stringify({ selected, answer })}</pre>
 
 <style>
 	input,
@@ -83,5 +78,9 @@ reference e.g. selected.id in the template.
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
+	}
+
+	button {
+		background: orange;
 	}
 </style>

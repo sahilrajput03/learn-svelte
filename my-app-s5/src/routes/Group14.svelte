@@ -17,8 +17,8 @@
 <style>
 	div {
 		position: fixed;
-		left: 0;
-		top: 0;
+		left: 50px;
+		top: 50px;
 		width: 100%;
 		height: 100%;
 		padding: 1rem;
