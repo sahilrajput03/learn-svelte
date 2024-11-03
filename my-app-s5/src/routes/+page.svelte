@@ -95,6 +95,9 @@
 
 	let selected = $state<ComponentsItemType>();
 
+	// ❤️ Lifecycle Hooks in svelte `onMount`:
+	// https://svelte.dev/docs/svelte/lifecycle-hooks
+	// https://svelte.dev/playground/onmount?version=5.1.9
 	onMount(async () => {
 		const initialComponentItem = () =>
 			ComponentItems?.find((c) => c?.name === window.localStorage.getItem('component-name'));
