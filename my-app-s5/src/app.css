@@ -1,9 +1,9 @@
+/* This file is consumed in file://./routes/+layout.svelte */
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
 /* * Sahil: This is to have a common button styles. */
-button {
-    border: 1px solid black;
-    padding: 2px 5px;
+.btn-primary {
+    @apply border px-[5px] py-0.5 border-solid border-[black];
 }

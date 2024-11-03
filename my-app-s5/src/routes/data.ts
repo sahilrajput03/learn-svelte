@@ -1,3 +1,4 @@
+/* This file is consumed in file://./Group38.svelte */
 let previous = 50;
 let data: number[] = [];
 

@@ -1,3 +1,4 @@
+<!-- This file is consumed in file://./Group16.svelte -->
 <!-- ! Note the `lang="ts"` in the script tag.  -->
 <script lang="ts">
 	import type { MouseEventHandler } from '../types';

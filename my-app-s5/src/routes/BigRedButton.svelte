@@ -3,7 +3,9 @@
 	let props = $props();
 </script>
 
-<button {...props}> Click to greet. </button>
+<button {...props} class="border border-solid border-[black] px-[5px] py-0.5">
+	Click to greet.
+</button>
 
 <style>
 	button {

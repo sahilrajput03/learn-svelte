@@ -1,3 +1,4 @@
+<!-- This file is consumed in file://./Group27b.svelte -->
 <div class="box"></div>
 
 <style>

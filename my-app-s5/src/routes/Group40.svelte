@@ -22,6 +22,9 @@
 			return this.#height;
 		}
 
+		// Tutorial: It’s now impossible to increase the box size past safe limits,
+		// whether through the bind:value on the range inputs, or the embiggen
+		// method, no matter how hard you press the button.
 		set width(value) {
 			this.#width = Math.max(0, Math.min(MAX_SIZE, value));
 		}

@@ -1,4 +1,4 @@
-<!-- File cosumed in Group28.svelte -->
+<!-- This file is consumed in file://./Group28.svelte -->
 <script lang="ts">
 	let { color, size }: any = $props();
 

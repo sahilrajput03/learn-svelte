@@ -1,4 +1,4 @@
-// File cosumed in Group28.svelte
+// This file is consumed in file://./Group28.svelte
 //& This function is executed whenever the menu is mounted on the dom i.e, whenever you open the menu.
 export function trapFocus(node: any) {
     //^ Here `node` is the html element on which this action is used.

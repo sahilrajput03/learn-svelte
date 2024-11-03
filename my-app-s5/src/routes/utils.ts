@@ -1,3 +1,4 @@
+// This file is consumed in file://./Group12.svelte
 export async function roll() {
     // Fetch a random number between 0 and 6
     // (with a delay, so that we can see it)
