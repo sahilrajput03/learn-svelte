@@ -5,5 +5,5 @@
 
 /* * Sahil: This is to have a common button styles. */
 .btn-primary {
-    @apply border px-[5px] py-0.5 border-solid border-[black];
+    @apply border border-solid border-[black] px-[5px] py-0.5;
 }
