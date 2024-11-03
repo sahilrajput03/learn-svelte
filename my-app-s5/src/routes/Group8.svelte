@@ -7,7 +7,7 @@
 	}
 </script>
 
-<button onclick={increment}>
+<button class="btn-primary" onclick={increment}>
 	Clicked {count}
 	{count === 1 ? 'time' : 'times'}
 </button>

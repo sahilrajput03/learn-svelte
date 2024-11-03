@@ -7,7 +7,7 @@
 	let promise = $state(roll());
 </script>
 
-<button onclick={() => (promise = roll())}> roll the dice </button>
+<button class="btn-primary" onclick={() => (promise = roll())}> roll the dice </button>
 
 {#await promise}
 	<p>...rolling</p>

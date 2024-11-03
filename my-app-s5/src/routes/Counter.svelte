@@ -3,6 +3,6 @@
 	import { counter } from './shared.svelte';
 </script>
 
-<button onclick={() => (counter.count += 1)}>
+<button class="btn-primary" onclick={() => (counter.count += 1)}>
 	clicks: {counter.count}
 </button>

@@ -7,12 +7,5 @@
 	let { increment, decrement }: Props = $props();
 </script>
 
-<button onclick={decrement}>-1</button>
-<button onclick={increment}>+1</button>
-
-<style>
-	button {
-		border: 1px solid black;
-		padding: 10px 50px;
-	}
-</style>
+<button class="btn-primary" onclick={decrement}>-1</button>
+<button class="btn-primary" onclick={increment}>+1</button>

@@ -38,7 +38,7 @@
 	{box.height}
 </label>
 
-<button onclick={() => box.embiggen(10)}>embiggen</button>
+<button class="btn-primary" onclick={() => box.embiggen(10)}>embiggen</button>
 
 <hr />
 

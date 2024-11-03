@@ -61,7 +61,7 @@ reference e.g. selected.id in the template.
 
 	<input bind:value={answer} />
 
-	<button disabled={!answer} type="submit"> Submit </button>
+	<button class="btn-primary" disabled={!answer} type="submit"> Submit </button>
 </form>
 
 <p>
@@ -76,8 +76,7 @@ reference e.g. selected.id in the template.
 
 <style>
 	input,
-	select,
-	button {
+	select {
 		border: 1px solid black;
 	}
 	form {

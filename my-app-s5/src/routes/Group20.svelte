@@ -16,7 +16,7 @@
 	<p>You must opt in to continue. If you're not paying, you're the product.</p>
 {/if}
 
-<button disabled={!yes}>Subscribe</button>
+<button class="btn-primary" disabled={!yes}>Subscribe</button>
 
 <style>
 	button {

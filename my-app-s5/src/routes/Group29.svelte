@@ -19,7 +19,7 @@
 <input bind:value={content} />
 
 <!-- / //& We’re passing in a function, rather than the options themselves, because the tooltip function does not re-run when the options change. -->
-<button use:tooltip={() => ({ content })}> Hover me </button>
+<button class="btn-primary" use:tooltip={() => ({ content })}> Hover me </button>
 
 <style>
 	input {

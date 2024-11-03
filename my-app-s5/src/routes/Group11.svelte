@@ -14,7 +14,7 @@
 	]);
 </script>
 
-<button onclick={() => things.shift()}> Remove first thing </button>
+<button class="btn-primary" onclick={() => things.shift()}> Remove first thing </button>
 
 <!-- For source explanation, check source - https://svelte.dev/tutorial/svelte/keyed-each-blocks --->
 

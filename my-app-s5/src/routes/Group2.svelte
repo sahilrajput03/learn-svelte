@@ -36,7 +36,7 @@
 	// });
 </script>
 
-<button onclick={increment}>
+<button class="btn-primary" onclick={increment}>
 	Clicked {count}
 	{count === 1 ? 'time' : 'times'}
 </button>
@@ -45,7 +45,7 @@
 
 <p>{numbers.join(' + ')} = {total}</p>
 
-<button onclick={addNumber}> Add a number & increase click count </button>
+<button class="btn-primary" onclick={addNumber}> Add a number & increase click count </button>
 
 <style>
 	hr {
