@@ -46,7 +46,7 @@ export function trapFocus(node: any) {
         return () => {
             node.removeEventListener('keydown', handleKeydown);
             previous?.focus();
-            alert('cleanup of effect and action function...') // this is executed whenerver the menu is closed
+            console.log('cleanup of effect and action function...') // this is executed whenerver the menu is closed
         };
     });
 }

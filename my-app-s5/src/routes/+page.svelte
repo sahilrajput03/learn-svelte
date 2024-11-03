@@ -1,4 +1,6 @@
-<script>
+<script lang="ts">
+	import { onMount, type Component } from 'svelte';
+
 	import Group1 from './Group1.svelte';
 	import Group2 from './Group2.svelte';
 	import Group3 from './Group3.svelte';
@@ -34,6 +36,7 @@
 	import Group32 from './Group32.svelte';
 	import Group33 from './Group33.svelte';
 	import Group34 from './Group34.svelte';
+	import Group35 from './Group35.svelte';
 	import Group36 from './Group36.svelte';
 	import Group37 from './Group37.svelte';
 	import Group38 from './Group38.svelte';
@@ -42,9 +45,88 @@
 	import Group41 from './Group41.svelte';
 	import Group42 from './Group42.svelte';
 	import Group43 from './Group43.svelte';
+
+	type ComponentsItemType = { name: number | string; component: Component };
+	let ComponentItems: ComponentsItemType[] = $state([
+		{ name: 'Group1', component: Group1 },
+		{ name: 'Group2', component: Group2 },
+		{ name: 'Group3', component: Group3 },
+		{ name: 'Group4', component: Group4 },
+		{ name: 'Group5', component: Group5 },
+		{ name: 'Group6', component: Group6 },
+		{ name: 'Group7', component: Group7 },
+		{ name: 'Group8', component: Group8 },
+		{ name: 'Group9', component: Group9 },
+		{ name: 'Group10', component: Group10 },
+		{ name: 'Group11', component: Group11 },
+		{ name: 'Group12', component: Group12 },
+		{ name: 'Group13', component: Group13 },
+		{ name: 'Group14', component: Group14 },
+		{ name: 'Group15', component: Group15 },
+		{ name: 'Group16', component: Group16 },
+		{ name: 'Group17', component: Group17 },
+		{ name: 'Group18', component: Group18 },
+		{ name: 'Group19', component: Group19 },
+		{ name: 'Group20', component: Group20 },
+		{ name: 'Group21', component: Group21 },
+		{ name: 'Group22', component: Group22 },
+		{ name: 'Group23', component: Group23 },
+		{ name: 'Group24', component: Group24 },
+		{ name: 'Group25', component: Group25 },
+		{ name: 'Group26', component: Group26 },
+		{ name: 'Group27', component: Group27 },
+		{ name: 'Group28 - Painting', component: Group28 },
+		{ name: 'Group29', component: Group29 },
+		{ name: 'Group30', component: Group30 },
+		{ name: 'Group31', component: Group31 },
+		{ name: 'Group32', component: Group32 },
+		{ name: 'Group33', component: Group33 },
+		{ name: 'Group34', component: Group34 },
+		{ name: 'Group35', component: Group35 },
+		{ name: 'Group36', component: Group36 },
+		{ name: 'Group37', component: Group37 },
+		{ name: 'Group38 - Stock Price Chart	', component: Group38 },
+		{ name: 'Group39', component: Group39 },
+		{ name: 'Group40', component: Group40 },
+		{ name: 'Group41', component: Group41 },
+		{ name: 'Group42', component: Group42 },
+		{ name: 'Group43', component: Group43 }
+	]);
+
+	let selected = $state<ComponentsItemType>();
+
+	onMount(async () => {
+		const initialComponentItem = () =>
+			ComponentItems?.find((c) => c?.name === window.localStorage.getItem('component-name'));
+
+		selected = initialComponentItem() || (ComponentItems[0] as any);
+	});
+
+	// $inspect('selected?', selected); // For debugging
 </script>
 
-<!-- `<Group38/>` is paint brush with canvas. -->
+{#if selected}
+	<select
+		class="border border-solid border-[black]"
+		bind:value={selected}
+		onchange={(e: any) => {
+			// Since value of `e.target.value` is "[object Object]" thus we use `e.target.__value`
+			localStorage.setItem('component-name', e.target.__value.name);
+		}}
+	>
+		{#each ComponentItems as ComponentItem}
+			<option value={ComponentItem}>
+				{ComponentItem.name}
+			</option>
+		{/each}
+	</select>
+
+	<br />
+
+	<selected.component />
+{/if}
+
+<!-- `<Group28/>` is paint brush with canvas. -->
 
 <!-- <Group1 /> -->
 <!-- <Group2 /> -->
@@ -62,7 +144,7 @@
 <!-- <Group14 /> -->
 <!-- <Group15 /> -->
 <!-- <Group16 /> -->
-<Group17 />
+<!-- <Group17 /> -->
 <!-- <Group18 /> -->
 <!-- <Group19 /> -->
 <!-- <Group20 /> -->
