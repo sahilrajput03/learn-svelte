@@ -118,29 +118,49 @@
 		saveToLocalStorage(selected.name);
 	};
 
+	const goToFirst = () => {
+		selected = ComponentItems[0];
+		saveToLocalStorage(selected.name);
+	};
+	const goToLast = () => {
+		selected = ComponentItems[ComponentItems.length - 1];
+		saveToLocalStorage(selected.name);
+	};
+
 	// $inspect('selected?', selected); // For debugging
 </script>
 
 {#if selected}
-	<button class="btn-primary" disabled={currentIndex === 0} onclick={prev}>prev</button>
-
-	<select
-		class="border border-solid border-[black]"
-		bind:value={selected}
-		onchange={(e: any) => {
-			// Since value of `e.target.value` is "[object Object]" thus we use `e.target.__value`
-			saveToLocalStorage(e.target.__value.name);
-		}}
-	>
-		{#each ComponentItems as ComponentItem}
-			<option value={ComponentItem}>
-				{ComponentItem.name}
-			</option>
-		{/each}
-	</select>
-	<button class="btn-primary" disabled={currentIndex === ComponentItems.length - 1} onclick={next}
-		>next</button
-	>
+	<div>
+		<button class="btn-primary text-xs" disabled={currentIndex === 0} onclick={prev}>prev</button>
+		<select
+			class="border border-solid border-[black]"
+			bind:value={selected}
+			onchange={(e: any) => {
+				// Since value of `e.target.value` is "[object Object]" thus we use `e.target.__value`
+				saveToLocalStorage(e.target.__value.name);
+			}}
+		>
+			{#each ComponentItems as ComponentItem}
+				<option value={ComponentItem}>
+					{ComponentItem.name}
+				</option>
+			{/each}
+		</select>
+		<button
+			class="btn-primary text-xs"
+			disabled={currentIndex === ComponentItems.length - 1}
+			onclick={next}>next</button
+		>
+	</div>
+	<div class="mt-3 text-xs">
+		<button class="btn-primary" disabled={currentIndex === 0} onclick={goToFirst}>First</button>
+		<button
+			class="btn-primary"
+			disabled={currentIndex === ComponentItems.length - 1}
+			onclick={goToLast}>Last</button
+		>
+	</div>
 
 	<hr class="divider" />
 
