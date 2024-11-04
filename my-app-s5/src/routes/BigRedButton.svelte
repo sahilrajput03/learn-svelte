@@ -1,5 +1,5 @@
 <!-- This file is consumed in file://./Group17.svelte -->
-<script>
+<script lang="ts">
 	let props = $props();
 </script>
 

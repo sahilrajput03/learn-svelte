@@ -1,9 +1,10 @@
 <!-- 46/75 -->
 <!-- https://svelte.dev/tutorial/svelte/raw-state -->
 
-<script>
+<script lang="ts">
 	import { scale } from './utils';
 	import { poll } from './data';
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 
 	// Please see code and comments of `poll()` function first
 
@@ -62,6 +63,8 @@
 		<text x={10} y={10} font-size={36}>$SVLT</text>
 	</svg>
 </div>
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	.outer {

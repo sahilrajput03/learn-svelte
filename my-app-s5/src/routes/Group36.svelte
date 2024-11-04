@@ -1,8 +1,9 @@
 <!-- 44/45 -->
 <!-- https://svelte.dev/tutorial/svelte/global-transitions -->
 
-<script>
+<script lang="ts">
 	import { slide } from 'svelte/transition';
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 
 	let items = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
 
@@ -30,6 +31,8 @@
 		</div>
 	{/each}
 {/if}
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	div {

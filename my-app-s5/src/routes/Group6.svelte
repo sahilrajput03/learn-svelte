@@ -1,5 +1,6 @@
 <!-- 13/45 -->
-<script>
+<script lang="ts">
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 	import PackageInfo from './PackageInfo.svelte';
 
 	const pkg = {
@@ -12,3 +13,5 @@
 
 <!-- Awesome - Typescript does validation of types of passed value to the props type of the `PackageInfo` compoent. -->
 <PackageInfo {...pkg} />
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />

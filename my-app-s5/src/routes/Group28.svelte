@@ -5,8 +5,9 @@
 
 <!-- Last 8 tutorials (38 to 45) are on `Transitions` topic. -->
 
-<script>
+<script lang="ts">
 	import Canvas from './Canvas.svelte';
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 	import { trapFocus } from './actions.svelte';
 
 	const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'white', 'black'];
@@ -66,6 +67,8 @@
 		</button>
 	</div>
 </div>
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	.my-container {

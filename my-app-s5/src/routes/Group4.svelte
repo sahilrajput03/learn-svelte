@@ -1,6 +1,7 @@
 <!-- 11/45 -->
-<script>
+<script lang="ts">
 	import Counter from './Counter.svelte';
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 </script>
 
 <!-- State is shared among all of these since they all
@@ -15,3 +16,5 @@
 <Counter />
 <Counter />
 <Counter />
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />

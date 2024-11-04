@@ -1,5 +1,5 @@
 <!-- This file is consumed in file://./Group5.svelte -->
-<script>
+<script lang="ts">
 	let { answer = 'a mystery' } = $props();
 </script>
 

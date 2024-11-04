@@ -1,8 +1,9 @@
 <!-- 38/45 -->
 <!-- https://svelte.dev/tutorial/svelte/transition -->
 
-<script>
+<script lang="ts">
 	import { fade } from 'svelte/transition';
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 	let visible = $state(true);
 </script>
 
@@ -22,3 +23,5 @@
 		though. ~ Naval (Ranveer's Show)
 	</p>
 {/if}
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />

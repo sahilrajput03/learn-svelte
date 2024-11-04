@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	//* Read this carefully.
 	let keySyntax = '{#each things as thing (thing.id)}';
 	let indexSyntax = '{#each things as thing, index}';

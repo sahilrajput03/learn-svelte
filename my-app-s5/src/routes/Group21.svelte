@@ -11,6 +11,8 @@ reference e.g. selected.id in the template.
 -->
 
 <script lang="ts">
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
+
 	type QuestionType = { id: number; text: string };
 	let questions: QuestionType[] = $state([
 		{
@@ -68,6 +70,8 @@ reference e.g. selected.id in the template.
 
 <b>Debugging</b>
 <pre>{JSON.stringify({ selected, answer })}</pre>
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	input,

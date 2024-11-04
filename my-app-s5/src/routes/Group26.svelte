@@ -1,7 +1,9 @@
 <!-- 34/45 -->
 <!-- https://svelte.dev/tutorial/svelte/styles -->
 
-<script>
+<script lang="ts">
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
+
 	let flipped = $state(false);
 </script>
 
@@ -29,6 +31,8 @@
 		</div>
 	</button>
 </div>
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	:root {

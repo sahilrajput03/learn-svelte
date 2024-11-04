@@ -2,6 +2,8 @@
 <!-- https://svelte.dev/tutorial/svelte/group-inputs -->
 
 <script lang="ts">
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
+
 	let scoops = $state(1);
 	$inspect('scoops?', scoops);
 
@@ -46,3 +48,5 @@
 		of {formatter.format(flavours)}
 	</p>
 {/if}
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />

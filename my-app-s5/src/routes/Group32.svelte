@@ -1,8 +1,9 @@
 <!-- 40/45 -->
 <!-- https://svelte.dev/tutorial/svelte/in-and-out -->
 
-<script>
+<script lang="ts">
 	import { fade, fly } from 'svelte/transition';
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 
 	let visible = $state(true);
 </script>
@@ -16,3 +17,5 @@
 	<!-- Instead of the transition directive, an element can have an in or an out directive, or both together. -->
 	<p in:fly={{ y: 200, duration: 2000 }} out:fade>Flies in, fades out</p>
 {/if}
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />

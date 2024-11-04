@@ -2,6 +2,7 @@
 <!-- https://svelte.dev/tutorial/svelte/snippets-and-render-tags -->
 
 <script lang="ts">
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 </script>
 
 <table>
@@ -29,6 +30,8 @@
 		{@render monkey('🙊', 'speak no evil')}
 	</tbody>
 </table>
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	th,

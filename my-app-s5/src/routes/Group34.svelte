@@ -2,6 +2,8 @@
 <!-- https://svelte.dev/tutorial/svelte/custom-js-transitions -->
 
 <script lang="ts">
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
+
 	let visible = $state(false);
 
 	type Options = { speed?: number };
@@ -37,3 +39,5 @@
 {#if visible}
 	<p transition:typewriter>The quick brown fox jumps over the lazy dog</p>
 {/if}
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />

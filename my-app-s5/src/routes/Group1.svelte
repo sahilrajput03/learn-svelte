@@ -1,6 +1,7 @@
 <!-- 1-5/45 -->
-<script>
+<script lang="ts">
 	import Nested from './Nested.svelte';
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 
 	let name = 'svelte';
 	let src = '/image.gif';
@@ -17,6 +18,8 @@
 
 <p>{string}</p>
 <p>{@html string}</p>
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	p {

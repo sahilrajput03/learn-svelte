@@ -1,8 +1,9 @@
 <!-- 35-a/45 -->
 <!-- https://svelte.dev/tutorial/svelte/component-styles -->
 
-<script>
+<script lang="ts">
 	import Box1 from './Box1.svelte';
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 </script>
 
 <div class="boxes">
@@ -10,6 +11,8 @@
 	<Box1 />
 	<Box1 />
 </div>
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	/* //& Influence the styles inside a child component */

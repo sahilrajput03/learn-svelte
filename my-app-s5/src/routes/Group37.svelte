@@ -1,9 +1,10 @@
 <!-- 45/45 -->
 <!-- https://svelte.dev/tutorial/svelte/key-blocks -->
 
-<script>
+<script lang="ts">
 	import { typewriter } from './transition';
 	import { messages } from './loading-messages';
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 
 	let i = $state(-1);
 
@@ -34,3 +35,5 @@
 		{messages[i] || ''}
 	</p>
 {/key}
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />

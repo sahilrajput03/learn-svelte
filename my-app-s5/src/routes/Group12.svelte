@@ -1,7 +1,8 @@
 <!-- 19/45 -->
 <!-- https://svelte.dev/tutorial/svelte/await-blocks -->
 
-<script>
+<script lang="ts">
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 	import { roll } from './utils';
 
 	let promise = $state(roll());
@@ -27,3 +28,5 @@ Without using a catch block in markup -
 {#await promise then number}
 	<p>you rolled a {number}!</p>
 {/await}
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />

@@ -3,8 +3,9 @@
 
 <!-- <textarea> element behaves similarly to a text <input> -->
 
-<script>
+<script lang="ts">
 	import { marked } from 'marked';
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 
 	let value = $state(`Some words are *italic*, some are **bold**\n\n- lists\n- are\n- cool`);
 </script>
@@ -17,6 +18,8 @@
 	output
 	<div>{@html marked(value)}</div>
 </div>
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	.grid {

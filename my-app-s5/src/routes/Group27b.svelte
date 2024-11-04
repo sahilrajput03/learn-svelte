@@ -1,8 +1,9 @@
 <!-- 35-b/45 -->
 <!-- https://svelte.dev/tutorial/svelte/component-styles -->
 
-<script>
+<script lang="ts">
 	import Box2 from './Box2.svelte';
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 </script>
 
 <!-- / //* Any parent element (such as <div class="boxes">) can set the value of --color, but we can also set it on individual components: -->
@@ -13,3 +14,5 @@
 	<Box2 --color="green" />
 	<Box2 --color="blue" />
 </div>
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />

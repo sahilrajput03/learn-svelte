@@ -1,5 +1,5 @@
 <!-- This file is consumed in file://./Group4.svelte -->
-<script>
+<script lang="ts">
 	import { counter } from './shared.svelte';
 </script>
 

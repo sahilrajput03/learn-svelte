@@ -1,3 +1,7 @@
+<script lang="ts">
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
+</script>
+
 <!-- 22/45 -->
 <!-- https://svelte.dev/tutorial/svelte/capturing -->
 
@@ -39,6 +43,8 @@
 	<div>Bubbling and Capturing Phases Explanation by ChatGPT:</div>
 	<img class="bubble-capture-img" src="bubbling-capturing.jpeg" alt="bubbling-capturing" />
 </div>
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	:root {

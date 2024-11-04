@@ -1,7 +1,9 @@
 <!-- 26/45 -->
 <!-- https://svelte.dev/tutorial/svelte/numeric-inputs -->
 
-<script>
+<script lang="ts">
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
+
 	let a = $state(1);
 	let b = $state(2);
 </script>
@@ -19,6 +21,8 @@
 </label>
 
 <p>{a} + {b} = {a + b}</p>
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	h1 {

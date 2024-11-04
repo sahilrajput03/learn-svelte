@@ -45,7 +45,6 @@
 	import Group41 from './Group41.svelte';
 	import Group42 from './Group42.svelte';
 	import Group43 from './Group43.svelte';
-	import { browser } from '$app/environment';
 
 	type ComponentsItemType = { name: string; component: Component };
 	let ComponentItems: ComponentsItemType[] = $state([
@@ -65,9 +64,15 @@
 		{ name: 'Group8 - {#if exp} ... {:else} ...{/if}', component: Group8 },
 		{ name: 'Group9 - {#if exp} ... {:else if exp} ... {:else} ...{/if}', component: Group9 },
 		{ name: 'Group10 - {#each iterable as item, i} ... {/each} ', component: Group10 },
-		{ name: 'Group11 - {#each iterable as item (key)} ... {/each}', component: Group11 },
-		{ name: 'Group12', component: Group12 },
-		{ name: 'Group13', component: Group13 },
+		{
+			name: 'Group11 - {#each iterable as item (key)} ... {/each}',
+			component: Group11
+		},
+		{
+			name: 'Group12 - {#await promise then number} ... {/await} AND {#await promise} ... {:then number} ... {:catch error} ... {/await}',
+			component: Group12
+		},
+		{ name: 'Group13 - ', component: Group13 },
 		{ name: 'Group14', component: Group14 },
 		{ name: 'Group15', component: Group15 },
 		{ name: 'Group16', component: Group16 },

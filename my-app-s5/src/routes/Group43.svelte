@@ -1,3 +1,7 @@
+<script lang="ts">
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
+</script>
+
 <!-- 51/75 -->
 <!-- https://svelte.dev/tutorial/svelte/passing-snippets -->
 
@@ -8,3 +12,5 @@
 <br />
 
 <p>Todo:</p>
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />

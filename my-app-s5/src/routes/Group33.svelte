@@ -4,6 +4,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { elasticOut } from 'svelte/easing';
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 
 	let visible = $state(true);
 
@@ -43,6 +44,8 @@
 		<span>transitions!</span>
 	</div>
 {/if}
+
+<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	.centered {
