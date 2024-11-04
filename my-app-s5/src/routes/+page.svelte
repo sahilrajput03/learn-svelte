@@ -89,8 +89,8 @@
 		{ name: 'Group39', component: Group39 },
 		{ name: 'Group40', component: Group40 },
 		{ name: 'Group41', component: Group41 },
-		{ name: 'Group42', component: Group42 },
-		{ name: 'Group43', component: Group43 }
+		{ name: 'Group42 - Snippet', component: Group42 },
+		{ name: 'Group43 - Passing snippets to components', component: Group43 }
 	]);
 
 	let selected = $state<ComponentsItemType>();
@@ -142,7 +142,7 @@
 		>next</button
 	>
 
-	<br />
+	<hr class="divider" />
 
 	<selected.component />
 {/if}
@@ -194,3 +194,9 @@
 <!-- <Group41 /> -->
 <!-- <Group42 /> -->
 <!-- <Group43 /> -->
+
+<style>
+	.divider {
+		margin: 20px 0;
+	}
+</style>
