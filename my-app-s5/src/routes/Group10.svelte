@@ -1,5 +1,7 @@
 <!-- 17/45 -->
 <script>
+	import NotesEach from './NotesEach.svelte';
+
 	const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 	let selected = $state(colors[0]);
 </script>
@@ -22,6 +24,8 @@
 		</button>
 	{/each}
 </div>
+
+<NotesEach />
 
 <style>
 	h1 {

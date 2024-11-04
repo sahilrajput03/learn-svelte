@@ -3,6 +3,7 @@
 <!-- ❤️ ❤️ Truly tremendous example  -->
 
 <script>
+	import NotesEach from './NotesEach.svelte';
 	import Thing from './Thing.svelte';
 
 	let things = $state([
@@ -12,11 +13,6 @@
 		{ id: 4, name: 'doughnut' },
 		{ id: 5, name: 'egg' }
 	]);
-
-	//* Read this carefully.
-	let keySyntax = '{#each things as thing (thing.id)}';
-	let indexSyntax = '{#each things as thing, index}';
-	let keyWithIndexSyntax = '{#each things as thing, index (thing.id)}';
 </script>
 
 <button class="btn-primary" onclick={() => things.shift()}> Remove first thing </button>
@@ -32,10 +28,4 @@
 	<Thing name={thing.name} />
 {/each}
 
-<hr class="my-10" />
-
-<div>
-	<p><span class="text-purple-600">key syntax: </span> {keySyntax}</p>
-	<p><span class="text-purple-600">index syntax: </span>{indexSyntax}</p>
-	<p><span class="text-purple-600">key with index syntax: </span>{keyWithIndexSyntax}</p>
-</div>
+<NotesEach />
