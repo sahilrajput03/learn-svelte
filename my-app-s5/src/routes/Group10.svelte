@@ -7,7 +7,8 @@
 <h1 style="color: {selected}">Pick a colour</h1>
 
 <div>
-	{#each colors as color, i}
+	<!-- Note: `i` is an index -->
+	{#each colors as color, index}
 		<button
 			style="background: {color}"
 			aria-label={color}
@@ -15,8 +16,10 @@
 				/* `aria-current` by MDN: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-current */
 			}}
 			aria-current={selected === color}
-			onclick={() => (selected = color)}>{i + 1}</button
+			onclick={() => (selected = color)}
 		>
+			{index + 1}
+		</button>
 	{/each}
 </div>
 

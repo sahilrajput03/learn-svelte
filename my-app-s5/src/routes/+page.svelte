@@ -49,17 +49,23 @@
 
 	type ComponentsItemType = { name: string; component: Component };
 	let ComponentItems: ComponentsItemType[] = $state([
-		{ name: 'Group1', component: Group1 },
-		{ name: 'Group2', component: Group2 },
-		{ name: 'Group3', component: Group3 },
-		{ name: 'Group4', component: Group4 },
-		{ name: 'Group5', component: Group5 },
-		{ name: 'Group6', component: Group6 },
-		{ name: 'Group7', component: Group7 },
-		{ name: 'Group8', component: Group8 },
-		{ name: 'Group9', component: Group9 },
-		{ name: 'Group10', component: Group10 },
-		{ name: 'Group11', component: Group11 },
+		{
+			name: 'Group1 - Using Component, Rendering string as html and vice-versa',
+			component: Group1
+		},
+		{ name: 'Group2 - $state() and $derived()', component: Group2 },
+		{ name: 'Group3 - $effect and its cleanup function', component: Group3 },
+		{ name: 'Group4 - Shared state among components', component: Group4 },
+		{ name: 'Group5 - Component Props and defautl prop values', component: Group5 },
+		{
+			name: 'Group6 - Passing all props in a single object via destructuring syntax',
+			component: Group6
+		},
+		{ name: 'Group7 - {#if exp} .. {/if}', component: Group7 },
+		{ name: 'Group8 - {#if exp} .. {:else} ...{/if}', component: Group8 },
+		{ name: 'Group9 - {#if exp} .. {:else if exp} .. {:else} ...{/if}', component: Group9 },
+		{ name: 'Group10 - {#each iterable as item, i} .. {/each} ', component: Group10 },
+		{ name: 'Group11 - {#each iterable as item (key)} .. {/each}', component: Group11 },
 		{ name: 'Group12', component: Group12 },
 		{ name: 'Group13', component: Group13 },
 		{ name: 'Group14', component: Group14 },
@@ -145,7 +151,7 @@
 {#if selected}
 	<div>
 		<select
-			class="border border-solid border-[black]"
+			class="max-w-full border border-solid border-[black]"
 			bind:value={selected}
 			onchange={(e: any) => {
 				// Since value of `e.target.value` is "[object Object]" thus we use `e.target.__value`
@@ -175,7 +181,14 @@
 			disabled={currentIndex === ComponentItems.length - 1}
 			onclick={goToLast}>Last</button
 		>
+		<a
+			class="text-blue block text-right text-xs text-blue-600"
+			target="_blank"
+			href="https://github.com/sahilrajput03/learn-svelte/tree/main/my-app-s5/src/routes"
+			>Source code (Github)</a
+		>
 	</div>
+	<div></div>
 
 	<hr class="divider" />
 
