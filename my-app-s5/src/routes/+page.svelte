@@ -45,6 +45,7 @@
 	import Group41 from './Group41.svelte';
 	import Group42 from './Group42.svelte';
 	import Group43 from './Group43.svelte';
+	import { browser } from '$app/environment';
 
 	type ComponentsItemType = { name: string; component: Component };
 	let ComponentItems: ComponentsItemType[] = $state([
@@ -93,6 +94,17 @@
 		{ name: 'Group43 - Passing snippets to components', component: Group43 }
 	]);
 
+	// console.log('here??', Math.random()); // This log (random number) is different on server log and client side log.
+
+	// Since I am using name as to detect individual component while traversing using next and prev button I need to check for duplicate check for duplicate component names
+	const componentItems = ComponentItems.map((ci) => ci.name);
+	const duplicateNames = componentItems.filter((ci, index) => componentItems.indexOf(ci) !== index);
+	if (duplicateNames.length > 0) {
+		throw new Error(
+			`Error from Sahil: Duplicate component names found: ${[...new Set(duplicateNames)].join(', ')}`
+		);
+	}
+
 	let selected = $state<ComponentsItemType>();
 
 	// ❤️ Lifecycle Hooks in svelte `onMount`:
@@ -132,7 +144,6 @@
 
 {#if selected}
 	<div>
-		<button class="btn-primary text-xs" disabled={currentIndex === 0} onclick={prev}>prev</button>
 		<select
 			class="border border-solid border-[black]"
 			bind:value={selected}
@@ -147,16 +158,20 @@
 				</option>
 			{/each}
 		</select>
+		<button class="btn-primary text-xs" disabled={currentIndex === 0} onclick={goToFirst}
+			>First</button
+		>
+		<button class="btn-primary ms-5 text-xs" disabled={currentIndex === 0} onclick={prev}
+			>prev</button
+		>
+
 		<button
 			class="btn-primary text-xs"
 			disabled={currentIndex === ComponentItems.length - 1}
 			onclick={next}>next</button
 		>
-	</div>
-	<div class="mt-3 text-xs">
-		<button class="btn-primary" disabled={currentIndex === 0} onclick={goToFirst}>First</button>
 		<button
-			class="btn-primary"
+			class="btn-primary ms-5 text-xs"
 			disabled={currentIndex === ComponentItems.length - 1}
 			onclick={goToLast}>Last</button
 		>
