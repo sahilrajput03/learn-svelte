@@ -73,12 +73,18 @@
 			name: 'Group12 - {#await promise then number} ... {/await} AND {#await promise} ... {:then number} ... {:catch error} ... {/await}',
 			component: Group12
 		},
-		{ name: 'Group13 - ', component: Group13 },
-		{ name: 'Group14', component: Group14 },
-		{ name: 'Group15', component: Group15 },
-		{ name: 'Group16', component: Group16 },
-		{ name: 'Group17', component: Group17 },
-		{ name: 'Group18', component: Group18 },
+		{ name: 'Group13 - onpointermove (DOM Event handler)', component: Group13 },
+		{ name: 'Group14 - onpointermove (Inline DOM Event handler)', component: Group14 },
+		{ name: 'Group15 - Event Bubbling and Event Capture ', component: Group15 },
+		{
+			name: 'Group16 - Passing event handler functions as props to components',
+			component: Group16
+		},
+		{
+			name: 'Group17 - Spread event handlers directly onto elements using {...props}',
+			component: Group17
+		},
+		{ name: 'Group18 - `bind:value={..} usage in <input />`', component: Group18 },
 		{ name: 'Group19', component: Group19 },
 		{ name: 'Group20', component: Group20 },
 		{ name: 'Group21', component: Group21 },
