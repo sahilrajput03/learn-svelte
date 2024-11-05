@@ -15,6 +15,8 @@
 	let selected = $state(colors[0]);
 	let size = $state(10);
 	let showMenu = $state(true);
+
+	let offsetFromTop = '120px'; // this it to distance component's ui from overlapping the global `component-selector` select menu in `+page.svelte` file
 </script>
 
 <!-- Sahil: I changed `container` to `my-container` because tailwind's `container` class's media-query inflicts here and thus mouse cursor is positioned while painting has an offset towards right.-->
@@ -72,9 +74,10 @@
 	.my-container {
 		position: fixed;
 		left: 0;
-		top: 50px;
+		top: offsetFromTop;
 		width: 100%;
 		height: 100%;
+		/* outline: 2px solid greenyellow; */
 	}
 
 	.controls {
@@ -94,10 +97,11 @@
 		justify-content: center;
 		align-items: center;
 		left: 0;
-		top: 0;
+		top: offsetFromTop;
 		width: 100%;
 		height: 100%;
 		backdrop-filter: blur(20px);
+		/* outline: 2px solid blue; */
 	}
 
 	.menu {

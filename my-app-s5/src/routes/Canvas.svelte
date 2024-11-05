@@ -1,6 +1,8 @@
 <!-- This file is consumed in file://./Group28.svelte -->
+<!-- File cosumed in Group28.svelte -->
 <script lang="ts">
-	let { color, size }: any = $props();
+	type PropsType = { color: string; size: number };
+	let { color, size }: PropsType = $props();
 
 	let canvas = $state<any>();
 	let context = $state<any>();
@@ -70,7 +72,7 @@
 		top: 0;
 		width: 100%;
 		height: 100%;
-		outline: 1px solid red;
+		/* outline: 2px solid red; */
 	}
 
 	.preview {
