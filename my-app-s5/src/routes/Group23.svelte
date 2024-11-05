@@ -29,7 +29,10 @@
 
 <u><h2>Flavours</h2></u>
 
-<i class="text-sm text-gray-600"> You can select one or more items from below. </i>
+<i class="text-sm text-gray-600">
+	You can select one or more items from below. You can click and drag to select multiple or use
+	shift/cmd key.
+</i>
 
 <br />
 

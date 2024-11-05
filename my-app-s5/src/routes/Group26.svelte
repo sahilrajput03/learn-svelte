@@ -9,6 +9,7 @@
 	Flip the card
 	<button
 		class="card"
+		style:top="200px"
 		{...{
 			//* As with class, you can write your inline style attributes literally, because Svelte is really just HTML with fancy bits:
 			// style="transform: {flipped ? 'rotateY(0)' : ''}; --bg-1: palegoldenrod; --bg-2: black; --bg-3: goldenrod"

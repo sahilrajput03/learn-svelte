@@ -95,12 +95,18 @@
 			component: Group21
 		},
 		{ name: 'Group22 - Group inputs: checkbox and radio buttons', component: Group22 },
-		{ name: 'Group23', component: Group23 },
-		{ name: 'Group24', component: Group24 },
-		{ name: 'Group25', component: Group25 },
-		{ name: 'Group26', component: Group26 },
-		{ name: 'Group27', component: Group27 },
-		{ name: 'Group28 - Painting', component: Group28 },
+		{ name: 'Group23 - Multiple-select-bindings', component: Group23 },
+		{ name: 'Group24 - <textarea bind:value></textarea>', component: Group24 },
+		{ name: 'Group25 - Class-shorthand e.g, class:flipped', component: Group25 },
+		{
+			name: 'Group26 - Inline style attributes. Example: style:top="200px" and style:--bg-1="palegoldenrod"',
+			component: Group26
+		},
+		{
+			name: 'Group27 - Influence the styles inside a child component via escape hatch — a last resort using `:global` CSS modifier',
+			component: Group27
+		},
+		{ name: 'Group28 - Using action functions - Painting', component: Group28 },
 		{ name: 'Group29', component: Group29 },
 		{ name: 'Group30', component: Group30 },
 		{ name: 'Group31', component: Group31 },
@@ -110,7 +116,7 @@
 		{ name: 'Group35', component: Group35 },
 		{ name: 'Group36', component: Group36 },
 		{ name: 'Group37', component: Group37 },
-		{ name: 'Group38 - Stock Price Chart	', component: Group38 },
+		{ name: 'Group38 - Stock Price Chart', component: Group38 },
 		{ name: 'Group39', component: Group39 },
 		{ name: 'Group40', component: Group40 },
 		{ name: 'Group41', component: Group41 },

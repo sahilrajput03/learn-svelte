@@ -38,7 +38,7 @@
 				}
 			}}
 		>
-			<!-- / //* We add action function the menu element with the `use:` directive: -->
+			<!-- / //* We add action function to the menu HTML element with the `use:` directive: -->
 			<div class="menu" use:trapFocus>
 				<div class="colors">
 					{#each colors as color}
