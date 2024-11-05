@@ -85,10 +85,16 @@
 			component: Group17
 		},
 		{ name: 'Group18 - `bind:value={..} usage in <input />`', component: Group18 },
-		{ name: 'Group19', component: Group19 },
-		{ name: 'Group20', component: Group20 },
-		{ name: 'Group21', component: Group21 },
-		{ name: 'Group22', component: Group22 },
+		{
+			name: 'Group19 - Automatically coercion of `value` in <input type="number" bind:value />',
+			component: Group19
+		},
+		{ name: 'Group20 - <input type="checkbox" bind:checked={yes} />', component: Group20 },
+		{
+			name: 'Group21 - <select bind:value={selected}> <option value={...}> ... </option> </select>',
+			component: Group21
+		},
+		{ name: 'Group22 - Group inputs: checkbox and radio buttons', component: Group22 },
 		{ name: 'Group23', component: Group23 },
 		{ name: 'Group24', component: Group24 },
 		{ name: 'Group25', component: Group25 },
