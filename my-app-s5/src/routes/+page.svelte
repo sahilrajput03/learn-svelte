@@ -107,14 +107,29 @@
 			component: Group27
 		},
 		{ name: 'Group28 - Using action functions - Painting', component: Group28 },
-		{ name: 'Group29', component: Group29 },
-		{ name: 'Group30', component: Group30 },
-		{ name: 'Group31', component: Group31 },
-		{ name: 'Group32', component: Group32 },
-		{ name: 'Group33', component: Group33 },
-		{ name: 'Group34', component: Group34 },
-		{ name: 'Group35', component: Group35 },
-		{ name: 'Group36', component: Group36 },
+		{
+			name: 'Group29 - Passing arguments to action function',
+			component: Group29
+		},
+		{ name: 'Group30 - <p transition:fade> Fades in and out </p>', component: Group30 },
+		{
+			name: 'Group31 - <p transition:fly={{ y: 100, duration: 2000 }}> Fly in and out </p>',
+			component: Group31
+		},
+		{
+			name: 'Group32 - <p in:fly={{ y: 200, duration: 2000 }} out:fade> Flies in, fades out </p>',
+			component: Group32
+		},
+		{ name: 'Group33 - custom-css-transitions - Spin effect', component: Group33 },
+		{ name: 'Group34 - custom-css-transitions - Typewriter effect', component: Group34 },
+		{
+			name: 'Group35 - transition-events: onintrostart, onoutrostart, onintroend & onoutroend',
+			component: Group35
+		},
+		{
+			name: 'Group36 - Using `|global` modifier the transition plays also when any non-direct element is added or removed',
+			component: Group36
+		},
 		{ name: 'Group37', component: Group37 },
 		{ name: 'Group38 - Stock Price Chart', component: Group38 },
 		{ name: 'Group39', component: Group39 },

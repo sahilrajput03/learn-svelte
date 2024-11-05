@@ -15,5 +15,5 @@
 {#if visible}
 	<!-- / //* Transition functions can accept parameters. -->
 	<!-- / //& Note: Autocomplete works inside the configuration object, amazing! -->
-	<p transition:fly={{ y: 100, duration: 2000 }}>Fades in and out</p>
+	<p transition:fly={{ y: 100, duration: 2000 }}>Fly in and out</p>
 {/if}
