@@ -199,14 +199,19 @@
 			disabled={currentIndex === ComponentItems.length - 1}
 			onclick={goToLast}>Last</button
 		>
-		<a
-			class="text-blue block text-right text-xs text-blue-600"
-			target="_blank"
-			href="https://github.com/sahilrajput03/learn-svelte/tree/main/my-app-s5/src/routes"
-			>Source code (Github)</a
-		>
 	</div>
-	<div></div>
+
+	<div class="mt-1 flex justify-end">
+		<a
+			class="text-blue text-right text-xs text-blue-600"
+			target="_blank"
+			href="https://github.com/sahilrajput03/learn-svelte/blob/main/my-app-s5/src/routes/{selected.name.split(
+				' '
+			)[0]}.svelte">See {selected.name.split(' ')[0]}.svelte on Github</a
+		>
+		<!-- href="https://github.com/sahilrajput03/learn-svelte/tree/main/my-app-s5/src/routes" -->
+		<!-- href="https://github.com/sahilrajput03/learn-svelte/blob/main/my-app-s5/src/routes/Group12.svelte" -->
+	</div>
 
 	<hr class="divider" />
 
