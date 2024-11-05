@@ -3,7 +3,6 @@
 
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	import OpenFileInVscode from './OpenFileInVscode.svelte';
 
 	let visible = $state(true);
 	let status = $state('waiting...');
@@ -29,5 +28,3 @@
 		Flies in and out
 	</p>
 {/if}
-
-<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />

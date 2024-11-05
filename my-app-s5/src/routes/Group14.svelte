@@ -2,8 +2,6 @@
 <!-- https://svelte.dev/tutorial/svelte/inline-handlers -->
 
 <script lang="ts">
-	import OpenFileInVscode from './OpenFileInVscode.svelte';
-
 	let m = $state({ x: 0, y: 0 });
 </script>
 
@@ -15,8 +13,6 @@
 >
 	The pointer is at {Math.round(m.x)} x {Math.round(m.y)}
 </div>
-
-<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	div {

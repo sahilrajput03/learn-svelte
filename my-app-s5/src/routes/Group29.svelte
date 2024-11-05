@@ -2,7 +2,6 @@
 <!-- https://svelte.dev/tutorial/svelte/adding-parameters-to-actions -->
 <script lang="ts">
 	import tippy from 'tippy.js';
-	import OpenFileInVscode from './OpenFileInVscode.svelte';
 
 	let content = $state('Hello!');
 
@@ -21,8 +20,6 @@
 
 <!-- / //& We’re passing in a function, rather than the options themselves, because the tooltip function does not re-run when the options change. -->
 <button class="btn-primary" use:tooltip={() => ({ content })}> Hover me </button>
-
-<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	input {

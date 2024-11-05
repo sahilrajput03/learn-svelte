@@ -45,6 +45,7 @@
 	import Group41 from './Group41.svelte';
 	import Group42 from './Group42.svelte';
 	import Group43 from './Group43.svelte';
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 
 	type ComponentsItemType = { name: string; component: Component };
 	let ComponentItems: ComponentsItemType[] = $state([
@@ -198,6 +199,10 @@
 	<hr class="divider" />
 
 	<selected.component />
+
+	<OpenFileInVscode relativeFilePath={`/src/routes/${selected.name.split(' ')[0]}.svelte`} />
+	<!-- Earlier I was using below code in each component file which was polluting each file. Thus I now have common component for this. -->
+	<!-- <OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} /> -->
 {/if}
 
 <!-- `<Group28/>` is paint brush with canvas. -->

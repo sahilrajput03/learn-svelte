@@ -1,7 +1,5 @@
 <!-- 16/45 -->
 <script lang="ts">
-	import OpenFileInVscode from './OpenFileInVscode.svelte';
-
 	let count = $state(0);
 
 	function increment() {
@@ -21,5 +19,3 @@
 {:else}
 	<p>{count} is between 5 and 10</p>
 {/if}
-
-<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />

@@ -3,7 +3,6 @@
 
 <script lang="ts">
 	import { SvelteDate } from 'svelte/reactivity';
-	import OpenFileInVscode from './OpenFileInVscode.svelte';
 
 	let date = new SvelteDate();
 
@@ -21,5 +20,3 @@
 </script>
 
 <p>The time is {date.getHours()}:{pad(date.getMinutes())}:{pad(date.getSeconds())}</p>
-
-<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />

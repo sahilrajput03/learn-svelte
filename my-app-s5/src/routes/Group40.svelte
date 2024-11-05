@@ -2,8 +2,6 @@
 <!-- https://svelte.dev/tutorial/svelte/getters-and-setters -->
 
 <script lang="ts">
-	import OpenFileInVscode from './OpenFileInVscode.svelte';
-
 	const MAX_SIZE = 200;
 
 	class Box {
@@ -61,8 +59,6 @@
 <div class="box" style:width="{box.width}px" style:height="{box.height}px">
 	{box.area}
 </div>
-
-<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	label {

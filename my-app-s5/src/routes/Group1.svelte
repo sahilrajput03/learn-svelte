@@ -1,11 +1,11 @@
 <!-- 1-5/45 -->
 <script lang="ts">
 	import Nested from './Nested.svelte';
-	import OpenFileInVscode from './OpenFileInVscode.svelte';
 
 	let name = 'svelte';
 	let src = '/image.gif';
 	let string = `this string contains some <strong>HTML!!!</strong>`;
+	console.log('(import.meta.hot as any)?.ownerPath?', (import.meta.hot as any)?.ownerPath);
 </script>
 
 <h1>Hello {name.toUpperCase()}!</h1>
@@ -18,8 +18,6 @@
 
 <p>{string}</p>
 <p>{@html string}</p>
-
-<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	p {

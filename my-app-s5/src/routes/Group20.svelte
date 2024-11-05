@@ -2,8 +2,6 @@
 <!-- https://svelte.dev/tutorial/svelte/checkbox-inputs -->
 
 <script lang="ts">
-	import OpenFileInVscode from './OpenFileInVscode.svelte';
-
 	let yes = $state(false);
 </script>
 
@@ -19,8 +17,6 @@
 {/if}
 
 <button class="btn-primary" disabled={!yes}>Subscribe</button>
-
-<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	button {

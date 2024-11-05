@@ -1,7 +1,6 @@
 <!-- 17/45 -->
 <script lang="ts">
 	import NotesEach from './NotesEach.svelte';
-	import OpenFileInVscode from './OpenFileInVscode.svelte';
 
 	const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 	let selected = $state(colors[0]);
@@ -27,8 +26,6 @@
 </div>
 
 <NotesEach />
-
-<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	h1 {

@@ -2,8 +2,6 @@
 <!-- https://svelte.dev/tutorial/svelte/reactive-classes -->
 
 <script lang="ts">
-	import OpenFileInVscode from './OpenFileInVscode.svelte';
-
 	const MAX_SIZE = 200;
 
 	// Tutorial: In addition to $state and $derived, you can use $state.raw and
@@ -47,8 +45,6 @@
 <div class="box" style:width="{box.width}px" style:height="{box.height}px">
 	{box.area}
 </div>
-
-<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	label {

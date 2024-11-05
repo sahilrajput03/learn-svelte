@@ -4,7 +4,7 @@
 
 <script lang="ts">
 	import NotesEach from './NotesEach.svelte';
-	import OpenFileInVscode from './OpenFileInVscode.svelte';
+
 	import Thing from './Thing.svelte';
 
 	let things = $state([
@@ -30,5 +30,3 @@
 {/each}
 
 <NotesEach />
-
-<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />

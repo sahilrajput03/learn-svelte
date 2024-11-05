@@ -1,7 +1,5 @@
 <!-- 6-9/45 -->
 <script lang="ts">
-	import OpenFileInVscode from './OpenFileInVscode.svelte';
-
 	// Rune
 	let count = $state(0);
 	function increment() {
@@ -48,8 +46,6 @@
 <p>{numbers.join(' + ')} = {total}</p>
 
 <button class="btn-primary" onclick={addNumber}> Add a number & increase click count </button>
-
-<OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} />
 
 <style>
 	hr {
