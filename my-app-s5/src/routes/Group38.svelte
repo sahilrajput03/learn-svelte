@@ -5,6 +5,9 @@
 	import { scale } from './utils';
 	import { poll } from './data';
 
+	// ! TODO: set size of chart
+	// ! TODO: rename the component selector
+
 	// Please see code and comments of `poll()` function first
 
 	// Tutorial:: If you’re not changing individual properties, or if it’s important to main referential equality, then you can use raw state instead.
@@ -66,7 +69,8 @@
 <style>
 	.outer {
 		width: 100%;
-		height: 100%;
+		/* height: 100%; */
+		height: 400px;
 		padding: 2em;
 		box-sizing: border-box;
 	}
@@ -94,7 +98,8 @@
 
 		text {
 			text-anchor: end;
-			dominant-baseline: middle;
+			/* Note to Sahil: Below rule is not recogniezed by vscode (throws yello warning) and it seems reduntant to me so and I commented it. */
+			/* dominant-baseline: middle; */
 		}
 	}
 </style>

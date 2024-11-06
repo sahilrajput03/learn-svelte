@@ -17,6 +17,7 @@
 <Nested />
 
 <p>{string}</p>
+<!-- Docs of {@html ...} https://svelte.dev/docs/svelte/@html -->
 <p>{@html string}</p>
 
 <style>

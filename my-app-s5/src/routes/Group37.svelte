@@ -19,18 +19,23 @@
 	});
 </script>
 
+<p class="text-green-500">
+	Key blocks destroy and recreate their contents when the value of an expression changes. This is
+	useful if you want an element to play its transition whenever a value changes instead of only when
+	the element enters or leaves the DOM.
+</p>
+
+<p class="mb-10 text-purple-500">
+	We’d like to play the typewriter transition from transition.js whenever the loading message, i.e.
+	i changes. Wrap the {'<p></p>'} element in a key block:
+</p>
+
 <h1>loading...</h1>
 
-<!-- / //* Key blocks destroy and recreate their contents when the value of an
- / //* expression changes. This is useful if you want an element to play its
- / //* transition whenever a value changes instead of only when the element
- / //* enters or leaves the DOM. -->
-
-<!-- /  //& We’d like to play the typewriter transition from transition.js
-/       //& whenever the loading message, i.e. i changes. Wrap the <p> element in
-/       //& a key block: -->
 {#key i}
 	<p in:typewriter={{ speed: 10 }}>
 		{messages[i] || ''}
 	</p>
 {/key}
+
+Value of i: {i}

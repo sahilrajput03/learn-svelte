@@ -50,7 +50,7 @@
 	type ComponentsItemType = { name: string; component: Component };
 	let ComponentItems: ComponentsItemType[] = $state([
 		{
-			name: 'Group1 - Using Component, Rendering string as html and vice-versa',
+			name: 'Group1 - Using Component, Renderig strings and string as html via {@html ...} tag',
 			component: Group1
 		},
 		{ name: 'Group2 - $state() and $derived()', component: Group2 },
@@ -130,9 +130,12 @@
 			name: 'Group36 - Using `|global` modifier the transition plays also when any non-direct element is added or removed',
 			component: Group36
 		},
-		{ name: 'Group37', component: Group37 },
+		{
+			name: 'Group37 - {#key i} ... {/key} - Play transitions on expression change instead of only when the element enters or leaves the DOM',
+			component: Group37
+		},
 		{ name: 'Group38 - Stock Price Chart', component: Group38 },
-		{ name: 'Group39', component: Group39 },
+		{ name: 'Group39 - ', component: Group39 },
 		{ name: 'Group40', component: Group40 },
 		{ name: 'Group41', component: Group41 },
 		{ name: 'Group42 - Snippet', component: Group42 },
