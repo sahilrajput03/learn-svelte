@@ -134,10 +134,16 @@
 			name: 'Group37 - {#key i} ... {/key} - Play transitions on expression change instead of only when the element enters or leaves the DOM',
 			component: Group37
 		},
-		{ name: 'Group38 - Stock Price Chart', component: Group38 },
-		{ name: 'Group39 - ', component: Group39 },
-		{ name: 'Group40', component: Group40 },
-		{ name: 'Group41', component: Group41 },
+		{
+			name: 'Group38 - Use `$state.raw(..)` when there’s no need for state to be deeply reactive as it will be discarded a few milliseconds later - Stock Price Chart',
+			component: Group38
+		},
+		{ name: 'Group39 - Make properties of classes reactive', component: Group39 },
+		{
+			name: 'Group40 - Make private properties of class reactive; getters and setters',
+			component: Group40
+		},
+		{ name: 'Group41 - `new SvelteDate()` - Reactive builtins', component: Group41 },
 		{ name: 'Group42 - Snippet', component: Group42 },
 		{ name: 'Group43 - Passing snippets to components', component: Group43 }
 	]);
