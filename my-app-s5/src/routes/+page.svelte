@@ -48,6 +48,7 @@
 	import OpenFileInVscode from './OpenFileInVscode.svelte';
 	import Group61 from './Group61.svelte';
 	import Group61b from './Group61b.svelte';
+	import Group49 from './Group49.svelte';
 
 	type ComponentsItemType = { name: string; component: Component; svelteTutorialLink?: string };
 
@@ -266,6 +267,11 @@
 			name: 'Group43 - Passing snippets to components',
 			component: Group43,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/passing-snippets'
+		},
+		{
+			name: 'Group49 - Store',
+			component: Group49,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/introducing-stores'
 		},
 		{
 			name: 'Group61 - setContext and getContext (Context API )',
