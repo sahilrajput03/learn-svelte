@@ -1,5 +1,9 @@
 import adapter from '@sveltejs/adapter-auto';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'; // from `npx sv create`
+
+// Note: I tried to use non-type typescript features by tying the method in docs but that doesn't seem tot work at the moment. Source: https://svelte.dev/docs/svelte/typescript#Preprocessor-setup
+// To use non-type-only TypeScript features within Svelte components, you need to add a preprocessor that will turn TypeScript into JavaScript.
+// import { vitePreprocess } from '@sveltejs/kit/vite';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
