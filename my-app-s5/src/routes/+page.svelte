@@ -273,7 +273,7 @@
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/context-api'
 		},
 		{
-			name: 'Group62 - setContext and getContext with reactive state (Context API)',
+			name: 'Group61b - setContext and getContext with reactive state (Context API)',
 			component: Group61b,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/context-api'
 		}
