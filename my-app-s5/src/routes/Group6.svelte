@@ -1,4 +1,5 @@
 <!-- 13/45 -->
+<!-- https://svelte.dev/tutorial/svelte/spread-props -->
 <script lang="ts">
 	import PackageInfo from './PackageInfo.svelte';
 

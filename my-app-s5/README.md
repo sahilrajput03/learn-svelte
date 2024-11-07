@@ -9,6 +9,8 @@ Everything you need to build a Svelte project, powered by [`create-svelte`](http
 
 **Date: 2:33PM, 7 November, 2024**
 
+_TLDR: Always use `$state<type>` syntax to define types._
+
 Note: This issues happens only with `Array<T1>` or `T1[]` but working with simple types like string, number works fine e.g., `let name1: string = $state(1) // Type 'number' is not assignable to type 'string'`.
 
 ```ts

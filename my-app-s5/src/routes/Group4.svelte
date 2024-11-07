@@ -1,4 +1,6 @@
 <!-- 11/45 -->
+<!-- https://svelte.dev/tutorial/svelte/universal-reactivity -->
+
 <script lang="ts">
 	import Counter from './Counter.svelte';
 </script>

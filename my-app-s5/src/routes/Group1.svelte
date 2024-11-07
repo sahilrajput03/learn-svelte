@@ -1,4 +1,5 @@
 <!-- 1-5/45 -->
+<!-- https://svelte.dev/tutorial/svelte/your-first-component -->
 <script lang="ts">
 	import Nested from './Nested.svelte';
 

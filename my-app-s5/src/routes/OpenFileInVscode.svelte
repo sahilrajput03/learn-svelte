@@ -8,9 +8,8 @@
 
 <!-- Show only in development mode. -->
 {#if dev}
-	<a
-		class="fixed bottom-0 mb-5 block text-blue-400"
-		href={`vscode://file${projectPath.concat(relativeFilePath)}:1`}>Open file in VS Code</a
+	<a class="text-xs text-orange-400" href={`vscode://file${projectPath.concat(relativeFilePath)}:1`}
+		>Open file in VS Code</a
 	>
 {/if}
 

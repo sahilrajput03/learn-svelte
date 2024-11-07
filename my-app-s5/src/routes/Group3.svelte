@@ -1,4 +1,5 @@
 <!-- 10/45 -->
+<!-- https://svelte.dev/tutorial/svelte/effects -->
 
 <!-- Sahil: This is goona be quite a useful example for my future things. -->
 <!-- Learning - We have to clear the interval id in cleanup function otherwise older intervals would keep on accumulating.. -->

@@ -1,4 +1,5 @@
 <!-- 12/45 -->
+<!-- https://svelte.dev/tutorial/svelte/declaring-props -->
 
 <script lang="ts">
 	import Nested2 from './Nested2.svelte';

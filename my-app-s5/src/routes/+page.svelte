@@ -47,105 +47,224 @@
 	import Group43 from './Group43.svelte';
 	import OpenFileInVscode from './OpenFileInVscode.svelte';
 
-	type ComponentsItemType = { name: string; component: Component };
-	let ComponentItems: ComponentsItemType[] = $state([
+	type ComponentsItemType = { name: string; component: Component; svelteTutorialLink?: string };
+
+	let ComponentItems = $state<Array<ComponentsItemType>>([
 		{
 			name: 'Group1 - Using Component, Renderig strings and string as html via {@html ...} tag',
-			component: Group1
+			component: Group1,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/your-first-component'
 		},
-		{ name: 'Group2 - $state() and $derived()', component: Group2 },
-		{ name: 'Group3 - $effect and its cleanup function', component: Group3 },
-		{ name: 'Group4 - Shared state among components', component: Group4 },
-		{ name: 'Group5 - Component Props and defautl prop values', component: Group5 },
+		{
+			name: 'Group2 - $state() and $derived()',
+			component: Group2,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/state'
+		},
+		{
+			name: 'Group3 - $effect and its cleanup function',
+			component: Group3,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/effects'
+		},
+		{
+			name: 'Group4 - Shared state among components',
+			component: Group4,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/universal-reactivity'
+		},
+		{
+			name: 'Group5 - Component Props and defautl prop values',
+			component: Group5,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/declaring-props'
+		},
 		{
 			name: 'Group6 - Passing all props in a single object via destructuring syntax',
-			component: Group6
+			component: Group6,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/spread-props'
 		},
-		{ name: 'Group7 - {#if exp} ... {/if}', component: Group7 },
-		{ name: 'Group8 - {#if exp} ... {:else} ...{/if}', component: Group8 },
-		{ name: 'Group9 - {#if exp} ... {:else if exp} ... {:else} ...{/if}', component: Group9 },
-		{ name: 'Group10 - {#each iterable as item, i} ... {/each} ', component: Group10 },
+		{
+			name: 'Group7 - {#if exp} ... {/if}',
+			component: Group7,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/if-blocks'
+		},
+		{
+			name: 'Group8 - {#if exp} ... {:else} ...{/if}',
+			component: Group8,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/else-blocks'
+		},
+		{
+			name: 'Group9 - {#if exp} ... {:else if exp} ... {:else} ...{/if}',
+			component: Group9,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/else-if-blocks'
+		},
+		{
+			name: 'Group10 - {#each iterable as item, i} ... {/each} ',
+			component: Group10,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/each-blocks'
+		},
 		{
 			name: 'Group11 - {#each iterable as item (key)} ... {/each}',
-			component: Group11
+			component: Group11,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/keyed-each-blocks'
 		},
 		{
 			name: 'Group12 - {#await promise then number} ... {/await} AND {#await promise} ... {:then number} ... {:catch error} ... {/await}',
-			component: Group12
+			component: Group12,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/await-blocks'
 		},
-		{ name: 'Group13 - onpointermove (DOM Event handler)', component: Group13 },
-		{ name: 'Group14 - onpointermove (Inline DOM Event handler)', component: Group14 },
-		{ name: 'Group15 - Event Bubbling and Event Capture ', component: Group15 },
+		{
+			name: 'Group13 - onpointermove (DOM Event handler)',
+			component: Group13,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/dom-events'
+		},
+		{
+			name: 'Group14 - onpointermove (Inline DOM Event handler)',
+			component: Group14,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/inline-handlers'
+		},
+		{
+			name: 'Group15 - Event Bubbling and Event Capture ',
+			component: Group15,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/capturing'
+		},
 		{
 			name: 'Group16 - Passing event handler functions as props to components',
-			component: Group16
+			component: Group16,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-events'
 		},
 		{
 			name: 'Group17 - Spread event handlers directly onto elements using {...props}',
-			component: Group17
+			component: Group17,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/spreading-events'
 		},
-		{ name: 'Group18 - `bind:value={..} usage in <input />`', component: Group18 },
+		{
+			name: 'Group18 - `bind:value={..} usage in <input />`',
+			component: Group18,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/text-inputs'
+		},
 		{
 			name: 'Group19 - Automatically coercion of `value` in <input type="number" bind:value />',
-			component: Group19
+			component: Group19,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/numeric-inputs'
 		},
-		{ name: 'Group20 - <input type="checkbox" bind:checked={yes} />', component: Group20 },
+		{
+			name: 'Group20 - <input type="checkbox" bind:checked={yes} />',
+			component: Group20,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/checkbox-inputs'
+		},
 		{
 			name: 'Group21 - <select bind:value={selected}> <option value={...}> ... </option> </select>',
-			component: Group21
+			component: Group21,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/select-bindings'
 		},
-		{ name: 'Group22 - Group inputs: checkbox and radio buttons', component: Group22 },
-		{ name: 'Group23 - Multiple-select-bindings', component: Group23 },
-		{ name: 'Group24 - <textarea bind:value></textarea>', component: Group24 },
-		{ name: 'Group25 - Class-shorthand e.g, class:flipped', component: Group25 },
+		{
+			name: 'Group22 - Group inputs: checkbox and radio buttons',
+			component: Group22,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/group-inputs'
+		},
+		{
+			name: 'Group23 - Multiple-select-bindings',
+			component: Group23,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/multiple-select-bindings'
+		},
+		{
+			name: 'Group24 - <textarea bind:value></textarea>',
+			component: Group24,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/textarea-inputs'
+		},
+		{
+			name: 'Group25 - Class-shorthand e.g, class:flipped',
+			component: Group25,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/classes'
+		},
 		{
 			name: 'Group26 - Inline style attributes. Example: style:top="200px" and style:--bg-1="palegoldenrod"',
-			component: Group26
+			component: Group26,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/styles'
 		},
 		{
 			name: 'Group27 - Influence the styles inside a child component via escape hatch — a last resort using `:global` CSS modifier',
-			component: Group27
+			component: Group27,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-styles'
 		},
-		{ name: 'Group28 - Using action functions - Painting', component: Group28 },
+		{
+			name: 'Group28 - Using action functions - Painting',
+			component: Group28,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/actions'
+		},
 		{
 			name: 'Group29 - Passing arguments to action function',
-			component: Group29
+			component: Group29,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/adding-parameters-to-actions'
 		},
-		{ name: 'Group30 - <p transition:fade> Fades in and out </p>', component: Group30 },
+		{
+			name: 'Group30 - <p transition:fade> Fades in and out </p>',
+			component: Group30,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/transition'
+		},
 		{
 			name: 'Group31 - <p transition:fly={{ y: 100, duration: 2000 }}> Fly in and out </p>',
-			component: Group31
+			component: Group31,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/adding-parameters-to-transitions'
 		},
 		{
 			name: 'Group32 - <p in:fly={{ y: 200, duration: 2000 }} out:fade> Flies in, fades out </p>',
-			component: Group32
+			component: Group32,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/in-and-out'
 		},
-		{ name: 'Group33 - custom-css-transitions - Spin effect', component: Group33 },
-		{ name: 'Group34 - custom-css-transitions - Typewriter effect', component: Group34 },
+		{
+			name: 'Group33 - custom-css-transitions - Spin effect',
+			component: Group33,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/custom-css-transitions'
+		},
+		{
+			name: 'Group34 - custom-css-transitions - Typewriter effect',
+			component: Group34,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/custom-js-transitions'
+		},
 		{
 			name: 'Group35 - transition-events: onintrostart, onoutrostart, onintroend & onoutroend',
-			component: Group35
+			component: Group35,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/transition-events'
 		},
 		{
 			name: 'Group36 - Using `|global` modifier the transition plays also when any non-direct element is added or removed',
-			component: Group36
+			component: Group36,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/global-transitions'
 		},
 		{
 			name: 'Group37 - {#key i} ... {/key} - Play transitions on expression change instead of only when the element enters or leaves the DOM',
-			component: Group37
+			component: Group37,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/key-blocks'
 		},
 		{
 			name: 'Group38 - Use `$state.raw(..)` when there’s no need for state to be deeply reactive as it will be discarded a few milliseconds later - Stock Price Chart',
-			component: Group38
+			component: Group38,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/raw-state'
 		},
-		{ name: 'Group39 - Make properties of classes reactive', component: Group39 },
+		{
+			name: 'Group39 - Make properties of classes reactive',
+			component: Group39,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/reactive-classes'
+		},
 		{
 			name: 'Group40 - Make private properties of class reactive; getters and setters',
-			component: Group40
+			component: Group40,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/getters-and-setters'
 		},
-		{ name: 'Group41 - `new SvelteDate()` - Reactive builtins', component: Group41 },
-		{ name: 'Group42 - Snippet', component: Group42 },
-		{ name: 'Group43 - Passing snippets to components', component: Group43 }
+		{
+			name: 'Group41 - `new SvelteDate()` - Reactive builtins',
+			component: Group41,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/reactive-builtins'
+		},
+		{
+			name: 'Group42 - Snippet',
+			component: Group42,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/snippets-and-render-tags'
+		},
+		{
+			name: 'Group43 - Passing snippets to components',
+			component: Group43,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/passing-snippets'
+		}
 	]);
 
 	// console.log('here??', Math.random()); // This log (random number) is different on server log and client side log.
@@ -230,10 +349,9 @@
 			onclick={goToLast}>Last</button
 		>
 	</div>
-
-	<div class="mt-1 flex justify-end">
+	<div class="mt-3 flex justify-end">
 		<a
-			class="text-blue text-right text-xs text-blue-600"
+			class="text-right text-xs text-blue-600"
 			target="_blank"
 			href="https://github.com/sahilrajput03/learn-svelte/blob/main/my-app-s5/src/routes/{selected.name.split(
 				' '
@@ -242,12 +360,20 @@
 		<!-- href="https://github.com/sahilrajput03/learn-svelte/tree/main/my-app-s5/src/routes" -->
 		<!-- href="https://github.com/sahilrajput03/learn-svelte/blob/main/my-app-s5/src/routes/Group12.svelte" -->
 	</div>
+	<!-- / //* Svelte Tutorial Link -->
+	<div class="mt-1 flex justify-end">
+		<a target="_blank" class="text-right text-xs text-blue-600" href={selected?.svelteTutorialLink}
+			>See tutorial on svelte.dev</a
+		>
+	</div>
+	<div class="mt-1 flex justify-end">
+		<OpenFileInVscode relativeFilePath={`/src/routes/${selected.name.split(' ')[0]}.svelte`} />
+	</div>
 
 	<hr class="divider" />
 
 	<selected.component />
 
-	<OpenFileInVscode relativeFilePath={`/src/routes/${selected.name.split(' ')[0]}.svelte`} />
 	<!-- Earlier I was using below code in each component file which was polluting each file. Thus I now have common component for this. -->
 	<!-- <OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} /> -->
 {/if}

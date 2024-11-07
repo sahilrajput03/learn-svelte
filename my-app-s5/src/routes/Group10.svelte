@@ -1,4 +1,6 @@
 <!-- 17/45 -->
+<!-- https://svelte.dev/tutorial/svelte/each-blocks  -->
+
 <script lang="ts">
 	import NotesEach from './NotesEach.svelte';
 

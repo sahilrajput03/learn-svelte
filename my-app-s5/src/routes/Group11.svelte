@@ -1,4 +1,5 @@
 <!-- 18/45 -->
+<!-- https://svelte.dev/tutorial/svelte/keyed-each-blocks -->
 
 <!-- ❤️ ❤️ Truly tremendous example  -->
 

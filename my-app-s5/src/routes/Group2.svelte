@@ -1,4 +1,6 @@
 <!-- 6-9/45 -->
+<!-- https://svelte.dev/tutorial/svelte/state -->
+
 <script lang="ts">
 	// Rune
 	let count = $state(0);
