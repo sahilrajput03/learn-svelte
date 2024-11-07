@@ -11,6 +11,11 @@
 	let numbers = $state([1, 2, 3, 4]);
 	let total = $derived(numbers.reduce((t, n) => t + n, 0));
 
+	let users = $state([
+		{ name: 'Alice', age: '27' },
+		{ name: 'Bob', age: '33' }
+	]);
+
 	function addNumber() {
 		// numbers[numbers.length] = numbers.length + 1; // state reacts to `reassignments`
 		count++; // to test multiple state printing with `$state.snapshot(...)`
@@ -22,7 +27,11 @@
 		// ^ Will log `[ ... ]` rather than `Proxy [ ... ]`
 		//! Note: `$state.snapshot()` requires exactly one argument.
 		// console.log('numbers?', $state.snapshot(numbers)); //& snapshot is awesome but `$inspect` is love.
-		console.log('numbers,total,count?', $state.snapshot({ numbers, total, count })); //~ also works with multiple states
+		// console.log('numbers,total,count?', $state.snapshot({ count, numbers, total })); //~ also works with multiple states
+
+		// console.log('numbers[0]?', numbers[0]); // primitive, thus it is is okay and svelte doesn't throw any warning in console
+		// console.log('users[0]?', users[0]); // proxy, thus svelte throws warning to either use `$inspect()` or `$state.snapshot(..)` inside console.log
+		console.log('users[0]?', $state.snapshot(users[0])); // * pefectly fine
 	}
 
 	//* Docs - https://svelte.dev/docs/svelte/$inspect
@@ -48,6 +57,10 @@
 <p>{numbers.join(' + ')} = {total}</p>
 
 <button class="btn-primary" onclick={addNumber}> Add a number & increase click count </button>
+
+<pre>
+{JSON.stringify(numbers, null, 2)}
+</pre>
 
 <style>
 	hr {
