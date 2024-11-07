@@ -46,6 +46,8 @@
 	import Group42 from './Group42.svelte';
 	import Group43 from './Group43.svelte';
 	import OpenFileInVscode from './OpenFileInVscode.svelte';
+	import Group61 from './Group61.svelte';
+	import Group61b from './Group61b.svelte';
 
 	type ComponentsItemType = { name: string; component: Component; svelteTutorialLink?: string };
 
@@ -264,6 +266,16 @@
 			name: 'Group43 - Passing snippets to components',
 			component: Group43,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/passing-snippets'
+		},
+		{
+			name: 'Group61 - setContext and getContext (Context API )',
+			component: Group61,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/context-api'
+		},
+		{
+			name: 'Group62 - setContext and getContext with reactive state (Context API)',
+			component: Group61b,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/context-api'
 		}
 	]);
 
@@ -363,7 +375,7 @@
 	<!-- / //* Svelte Tutorial Link -->
 	<div class="mt-1 flex justify-end">
 		<a target="_blank" class="text-right text-xs text-blue-600" href={selected?.svelteTutorialLink}
-			>See tutorial on svelte.dev</a
+			>See this tutorial on svelte.dev</a
 		>
 	</div>
 	<div class="mt-1 flex justify-end">

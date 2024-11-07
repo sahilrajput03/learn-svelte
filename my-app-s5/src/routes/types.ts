@@ -1,0 +1,1 @@
+export type UserContextType = { name: string, age: number }
