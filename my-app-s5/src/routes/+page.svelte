@@ -265,7 +265,7 @@
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/reactive-builtins'
 		},
 		{
-			name: 'Group42 - Snippet',
+			name: 'Group42 - Snippet: Encapsulate markup in a reusable block',
 			component: Group42,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/snippets-and-render-tags'
 		},
@@ -339,7 +339,7 @@
 	// https://svelte.dev/playground/onmount?version=5.1.9
 	onMount(async () => {
 		const initialComponentItem = () =>
-			ComponentItems?.find((c) => c?.name === window.localStorage.getItem('component-name'));
+			ComponentItems?.find((c) => c?.name === localStorage.getItem('component-name'));
 
 		selected = initialComponentItem() || (ComponentItems[0] as any);
 	});
