@@ -371,6 +371,20 @@
 	$inspect('selected?', selected); // For debugging
 </script>
 
+<!-- ! Also add the reference of below message to Group21.svelte as well. -->
+<!--
+I am *not* using:
+- name of the component `componentItems[n].name`
+- index of the array (shoudl never be used because then I would need to sync the index value
+	to localStorage for the purpose of preserving the component on page refresh. Storing the 
+	index value to localStorage is bad because value '0' isn't optimal to as we would need to
+	typecast it to number type every time we fetch it AND '0' behaves as falsy value which
+	is another disadvantage as when we need to see if there is already a stored value we 
+	would need to check explicity via `typeof storedVariable !== 'undefined'` everywhere.
+
+//* Solution: Use `id` (hash) to sync with localStorage.
+-->
+
 <!-- Debug only -->
 <!-- {selected?.name} -->
 
