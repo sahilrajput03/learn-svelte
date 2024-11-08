@@ -49,6 +49,12 @@
 	import Group61 from './Group61.svelte';
 	import Group61b from './Group61b.svelte';
 	import Group49 from './Group49.svelte';
+	import Group62 from './Group62.svelte';
+	import Group63 from './Group63.svelte';
+	import Group64 from './Group64.svelte';
+	import Group65 from './Group65.svelte';
+	import Group66 from './Group66.svelte';
+	import Group67 from './Group67.svelte';
 
 	type ComponentsItemType = { name: string; component: Component; svelteTutorialLink?: string };
 
@@ -282,6 +288,36 @@
 			name: 'Group61b - setContext and getContext with reactive state (Context API)',
 			component: Group61b,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/context-api'
+		},
+		{
+			name: 'Group62 - <svelte:window {onkeydown} />',
+			component: Group62,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-window'
+		},
+		{
+			name: 'Group63 - <svelte:window bind:scrollY={y} />',
+			component: Group63,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-window'
+		},
+		{
+			name: 'Group64 - <svelte:document {onselectionchange} /> ',
+			component: Group64,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-document'
+		},
+		{
+			name: 'Group65 - <svelte:body onmouseenter={..} onmouseleave={...} /> ',
+			component: Group65,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-body'
+		},
+		{
+			name: 'Group66 - <svelte:head> <link rel="stylesheet" href="MyStyle.css" /> </svelte:head>',
+			component: Group66,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-head'
+		},
+		{
+			name: 'Group67 - <svelte:element this={"h1"}> ... </svelte:element>',
+			component: Group67,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-element'
 		}
 	]);
 
@@ -349,20 +385,20 @@
 				</option>
 			{/each}
 		</select>
-		<button class="btn-primary text-xs" disabled={currentIndex === 0} onclick={goToFirst}
+		<button class="btn-primary bg-white text-xs" disabled={currentIndex === 0} onclick={goToFirst}
 			>First</button
 		>
-		<button class="btn-primary ms-5 text-xs" disabled={currentIndex === 0} onclick={prev}
+		<button class="btn-primary ms-5 bg-white text-xs" disabled={currentIndex === 0} onclick={prev}
 			>prev</button
 		>
 
 		<button
-			class="btn-primary text-xs"
+			class="btn-primary bg-white text-xs"
 			disabled={currentIndex === ComponentItems.length - 1}
 			onclick={next}>next</button
 		>
 		<button
-			class="btn-primary ms-5 text-xs"
+			class="btn-primary ms-5 bg-white text-xs"
 			disabled={currentIndex === ComponentItems.length - 1}
 			onclick={goToLast}>Last</button
 		>

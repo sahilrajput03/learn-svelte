@@ -25,9 +25,9 @@
 
 		//* Docs - https://svelte.dev/docs/svelte/$state#$state.snapshot
 		// ^ Will log `[ ... ]` rather than `Proxy [ ... ]`
-		//! Note: `$state.snapshot()` requires exactly one argument.
 		// console.log('numbers?', $state.snapshot(numbers)); //& snapshot is awesome but `$inspect` is love.
-		// console.log('numbers,total,count?', $state.snapshot({ count, numbers, total })); //~ also works with multiple states
+		//~ Note: `$state.snapshot()` requires exactly one argument but we can pass multiple states in a single object like that
+		// console.log('numbers,total,count?', $state.snapshot({ count, numbers, total }));
 
 		// console.log('numbers[0]?', numbers[0]); // primitive, thus it is is okay and svelte doesn't throw any warning in console
 		// console.log('users[0]?', users[0]); // proxy, thus svelte throws warning to either use `$inspect()` or `$state.snapshot(..)` inside console.log
