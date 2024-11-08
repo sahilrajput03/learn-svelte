@@ -44,6 +44,12 @@ reference e.g. selected.id in the template.
 	<b>Insecurity questions</b>
 </u>
 
+<div class="text-orange-700">
+	From Sahil: Always prefer using `id` (uuid) to sync the selected value of &lt;select&gt; element
+	with localStorage instead of using array indexes like 0,1,2.. values. Please refer `+page.svelte`
+	of this file to know the reason.
+</div>
+
 <form onsubmit={handleSubmit}>
 	<select
 		bind:value={selected}
