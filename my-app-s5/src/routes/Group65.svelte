@@ -13,12 +13,12 @@
 
 		// Set the properties
 		element.style.height = '50vh';
-		element.style.border = '2px solid orange';
+		element.style.outline = '1px solid orange';
 
 		return () => {
 			// Settign properties of body to their initial values i.e., before setting it in the first place, in Chrome (MacOS)
 			element.style.height = '';
-			element.style.border = '';
+			element.style.outline = '';
 		};
 	});
 </script>

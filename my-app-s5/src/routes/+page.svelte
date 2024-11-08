@@ -484,4 +484,12 @@
 	.divider {
 		margin: 20px 0;
 	}
+
+	/* Group66.svelte's style tries to change the display:flex for the body and thus
+	changes the position of the component-selector and the its related buttons, so
+	I am overwriting that style by writging global style here. */
+	:global(body) {
+		display: block !important;
+		margin: 20px;
+	}
 </style>

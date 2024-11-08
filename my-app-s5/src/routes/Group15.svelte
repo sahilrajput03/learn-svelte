@@ -44,9 +44,6 @@
 </div>
 
 <style>
-	:root {
-		margin: 20px;
-	}
 	input {
 		border: 2px solid black;
 	}
