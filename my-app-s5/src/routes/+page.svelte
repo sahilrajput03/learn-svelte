@@ -58,7 +58,7 @@
 
 	type ComponentsItemType = { name: string; component: Component; svelteTutorialLink?: string };
 
-	let ComponentItems = $state<Array<ComponentsItemType>>([
+	let componentItems = $state<Array<ComponentsItemType>>([
 		{
 			name: 'Group1 - Using Component, Renderig strings and string as html via {@html ...} tag',
 			component: Group1,
@@ -324,8 +324,8 @@
 	// console.log('here??', Math.random()); // This log (random number) is different on server log and client side log.
 
 	// Since I am using name as to detect individual component while traversing using next and prev button I need to check for duplicate check for duplicate component names
-	const componentItems = ComponentItems.map((ci) => ci.name);
-	const duplicateNames = componentItems.filter((ci, index) => componentItems.indexOf(ci) !== index);
+	const componentNames = componentItems.map((ci) => ci.name);
+	const duplicateNames = componentNames.filter((ci, index) => componentNames.indexOf(ci) !== index);
 	if (duplicateNames.length > 0) {
 		throw new Error(
 			`Error from Sahil: Duplicate component names found: ${[...new Set(duplicateNames)].join(', ')}`
@@ -337,49 +337,47 @@
 	// ❤️ Lifecycle Hooks in svelte `onMount`:
 	// https://svelte.dev/docs/svelte/lifecycle-hooks
 	// https://svelte.dev/playground/onmount?version=5.1.9
-	onMount(async () => {
+	onMount(() => {
 		const initialComponentItem = () =>
-			ComponentItems?.find((c) => c?.name === localStorage.getItem('component-name'));
+			componentItems?.find((c) => c?.name === localStorage.getItem('component-name'));
 
-		selected = initialComponentItem() || (ComponentItems[0] as any);
+		selected = initialComponentItem() || (componentItems[0] as any);
 	});
 
-	const currentIndex = $derived(ComponentItems.findIndex((ci) => ci.name === selected?.name));
+	const currentIndex = $derived(componentItems.findIndex((ci) => ci.name === selected?.name));
 
 	const saveToLocalStorage = (name: string) => localStorage.setItem('component-name', name);
 
+	$effect(() => {
+		if (selected) {
+			saveToLocalStorage(selected.name);
+		}
+	});
+
 	const prev = () => {
-		selected = ComponentItems[currentIndex - 1];
-		saveToLocalStorage(selected.name);
+		selected = componentItems[currentIndex - 1];
 	};
 	const next = () => {
-		selected = ComponentItems[currentIndex + 1];
-		saveToLocalStorage(selected.name);
+		selected = componentItems[currentIndex + 1];
 	};
 
 	const goToFirst = () => {
-		selected = ComponentItems[0];
-		saveToLocalStorage(selected.name);
+		selected = componentItems[0];
 	};
 	const goToLast = () => {
-		selected = ComponentItems[ComponentItems.length - 1];
-		saveToLocalStorage(selected.name);
+		selected = componentItems[componentItems.length - 1];
 	};
 
-	// $inspect('selected?', selected); // For debugging
+	$inspect('selected?', selected); // For debugging
 </script>
+
+<!-- Debug only -->
+<!-- {selected?.name} -->
 
 {#if selected}
 	<div>
-		<select
-			class="max-w-full border border-solid border-[black]"
-			bind:value={selected}
-			onchange={(e: any) => {
-				// Since value of `e.target.value` is "[object Object]" thus we use `e.target.__value`
-				saveToLocalStorage(e.target.__value.name);
-			}}
-		>
-			{#each ComponentItems as ComponentItem}
+		<select class="max-w-full border border-solid border-[black]" bind:value={selected}>
+			{#each componentItems as ComponentItem}
 				<option value={ComponentItem}>
 					{ComponentItem.name}
 				</option>
@@ -394,12 +392,12 @@
 
 		<button
 			class="btn-primary bg-white text-xs"
-			disabled={currentIndex === ComponentItems.length - 1}
+			disabled={currentIndex === componentItems.length - 1}
 			onclick={next}>next</button
 		>
 		<button
 			class="btn-primary ms-5 bg-white text-xs"
-			disabled={currentIndex === ComponentItems.length - 1}
+			disabled={currentIndex === componentItems.length - 1}
 			onclick={goToLast}>Last</button
 		>
 	</div>
