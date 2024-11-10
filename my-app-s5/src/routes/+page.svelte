@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount, type Component } from 'svelte';
 
+	import OpenFileInVscode from './OpenFileInVscode.svelte';
 	import Group1 from './Group1.svelte';
 	import Group2 from './Group2.svelte';
 	import Group3 from './Group3.svelte';
@@ -45,7 +46,13 @@
 	import Group41 from './Group41.svelte';
 	import Group42 from './Group42.svelte';
 	import Group43 from './Group43.svelte';
-	import OpenFileInVscode from './OpenFileInVscode.svelte';
+	import Group44 from './Group44.svelte';
+	import Group45 from './Group45.svelte';
+	import Group46 from './Group46.svelte';
+	import Group47 from './Group47.svelte';
+	import Group48 from './Group48.svelte';
+	import Group49 from './Group49.svelte';
+	import Group50 from './Group50.svelte';
 	import Group61 from './Group61.svelte';
 	import Group61b from './Group61b.svelte';
 	import Group62 from './Group62.svelte';
@@ -54,13 +61,6 @@
 	import Group65 from './Group65.svelte';
 	import Group66 from './Group66.svelte';
 	import Group67 from './Group67.svelte';
-	import Group44 from './Group44.svelte';
-	import Group45 from './Group45.svelte';
-	import Group46 from './Group46.svelte';
-	import Group47 from './Group47.svelte';
-	import Group48 from './Group48.svelte';
-	import Group49 from './Group49.svelte';
-	import Group50 from './Group50.svelte';
 
 	type ComponentsItemType = {
 		id: string;
