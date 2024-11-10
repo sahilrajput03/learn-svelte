@@ -468,13 +468,30 @@
 	const next = () => {
 		idOfComponentToShow = componentItems[indexOfComponentToShow + 1].id;
 	};
-
 	const goToFirst = () => {
 		idOfComponentToShow = componentItems[0].id;
 	};
 	const goToLast = () => {
 		idOfComponentToShow = componentItems[componentItems.length - 1].id;
 	};
+
+	let interval = $state(1000);
+	let enableSlideshow = $state(false);
+	$effect(() => {
+		if (!enableSlideshow) return;
+
+		const id = setInterval(() => {
+			let isLastComponent = indexOfComponentToShow === componentItems.length - 1;
+			if (isLastComponent) {
+				clearInterval(id);
+				enableSlideshow = false;
+			} else {
+				next();
+			}
+		}, interval);
+
+		return () => clearInterval(id);
+	});
 
 	import { v4 as uuidv4 } from 'uuid';
 
@@ -570,6 +587,15 @@ Why?
 		<div class="text-xs">
 			{uuid}
 		</div>
+	</div>
+
+	<div class="mt-1 flex justify-end">
+		<button
+			class="btn-primary text-xs"
+			onclick={() => {
+				enableSlideshow = !enableSlideshow;
+			}}>{enableSlideshow ? 'Stop' : 'Start'} slideshow</button
+		>
 	</div>
 
 	<hr class="divider" />
