@@ -361,7 +361,7 @@
 		},
 		{
 			id: '1a7fa115-e209-42ad-bafd-8290a0ed4712',
-			name: 'Group49 - Each block bindings',
+			name: 'Group49 - ❤️ Each block bindings',
 			component: Group49,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/each-block-bindings'
 		},

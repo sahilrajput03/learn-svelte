@@ -28,6 +28,7 @@
 	<ul class="todos">
 		{#each todos as todo}
 			<li class:done={todo.done}>
+				<!-- Sahil: This is so much love to see binding it directly. Svelte is bloody awesome! ❤️ -->
 				<input type="checkbox" bind:checked={todo.done} />
 
 				<input type="text" placeholder="What needs to be done?" bind:value={todo.text} />
