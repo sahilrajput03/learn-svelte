@@ -1,9 +1,17 @@
-<script lang="ts">
-	type PropsType = {
-		src: string;
-		title: string;
-		artist: string;
-	};
+<!-- This file is consumed in file://./Group68.svelte -->
+<!-- This file is consumed in file://./Group69.svelte -->
+
+<script lang="ts" module>
+	let current: any;
+
+	export function stopAll() {
+		current?.pause();
+	}
+</script>
+
+<script>
+	// ! todo: add proper props type here..
+	type PropsType = any;
 	let { src, title, artist }: PropsType = $props();
 
 	let time = $state(0);
@@ -26,6 +34,14 @@
 		bind:currentTime={time}
 		bind:duration
 		bind:paused
+		onplay={(e) => {
+			const audio = e.currentTarget;
+
+			if (audio !== current) {
+				current?.pause();
+				current = audio;
+			}
+		}}
 		onended={() => {
 			time = 0;
 		}}
@@ -54,7 +70,6 @@
 						if (p < 0) p = 0;
 						if (p > 1) p = 1;
 
-						// update the time
 						time = p * duration;
 					}
 

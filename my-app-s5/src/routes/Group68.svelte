@@ -2,7 +2,7 @@
 <!-- https://svelte.dev/tutorial/svelte/module-exports -->
 
 <script>
-	import AudioPlayer from './AudioPlayer.svelte';
+	import AudioPlayer from './AudioPlayer2.svelte';
 	import { tracks } from './tracks';
 </script>
 

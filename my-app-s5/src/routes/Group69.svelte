@@ -2,7 +2,7 @@
 <!-- https://svelte.dev/tutorial/svelte/sharing-code -->
 
 <script>
-	import AudioPlayer, { stopAll } from './AudioPlayer.svelte';
+	import AudioPlayer, { stopAll } from './AudioPlayer2.svelte';
 	import { tracks } from './tracks';
 </script>
 

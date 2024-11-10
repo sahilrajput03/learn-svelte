@@ -355,20 +355,26 @@
 		// },
 		{
 			id: 'f596a478-a3d9-488f-8581-1c861f23885a',
-			name: 'Group48 - Contenteditable bindings',
+			name: 'Group48 - Contenteditable bindings (Advanced bindings)',
 			component: Group48,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/contenteditable-bindings'
 		},
 		{
 			id: '1a7fa115-e209-42ad-bafd-8290a0ed4712',
-			name: 'Group49 - ❤️ Each block bindings',
+			name: 'Group49 - ❤️ Each block bindings (Advanced bindings)',
 			component: Group49,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/each-block-bindings'
 		},
 		{
 			id: '26e9cb93-82c3-457d-8fb8-830812ba0085',
-			name: 'Group50 - Media elements',
+			name: 'Group50 - Media elements (Advanced bindings)',
 			component: Group50,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/media-elements'
+		},
+		{
+			id: '521f598a-586d-49a8-beae-21bc7b474d10',
+			name: 'Group51 - Dimensions (Advanced bindings)',
+			component: Group51,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/media-elements'
 		}
 		// {
@@ -507,6 +513,7 @@
 	import { v4 as uuidv4 } from 'uuid';
 	import Group68 from './Group68.svelte';
 	import Group69 from './Group69.svelte';
+	import Group51 from './Group51.svelte';
 
 	let uuid = $state();
 	const generateUuidAndCopytoClipboard = () => {
