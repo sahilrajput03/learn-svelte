@@ -1,15 +1,17 @@
-<!-- 51/75 -->
-<!-- https://svelte.dev/tutorial/svelte/passing-snippets -->
+<!-- 52/75 -->
+<!-- https://svelte.dev/tutorial/svelte/implicit-snippet-props -->
 
 <script lang="ts">
-	import FilteredList from './FilteredList.svelte';
-	import { colors, type ColorType } from './data2';
+	import FilteredList from './FilteredList2.svelte';
+	import { colors } from './data2';
 </script>
 
-<!-- Tip: you can get type of `header` and `row` by hovering over them: -->
-<FilteredList data={colors} field="name" {header} {row}></FilteredList>
-
-{#snippet header()}
+<FilteredList data={colors} field="name">
+	<!-- Any content inside a component that is not part of a
+	declared snippet becomes a special children snippet. Since
+	header has no parameters, we can turn it into children by
+	removing the block tags...
+	...and renaming the header prop to children on the component side too: -->
 	<header>
 		<span class="color"></span>
 		<span class="name">name</span>
@@ -17,17 +19,17 @@
 		<span class="rgb">rgb</span>
 		<span class="hsl">hsl</span>
 	</header>
-{/snippet}
 
-{#snippet row(d: ColorType)}
-	<div class="row">
-		<span class="color" style="background-color: {d.hex}"></span>
-		<span class="name">{d.name}</span>
-		<span class="hex">{d.hex}</span>
-		<span class="rgb">{d.rgb}</span>
-		<span class="hsl">{d.hsl}</span>
-	</div>
-{/snippet}
+	{#snippet row(d)}
+		<div class="row">
+			<span class="color" style="background-color: {d.hex}"></span>
+			<span class="name">{d.name}</span>
+			<span class="hex">{d.hex}</span>
+			<span class="rgb">{d.rgb}</span>
+			<span class="hsl">{d.hsl}</span>
+		</div>
+	{/snippet}
+</FilteredList>
 
 <style>
 	header,

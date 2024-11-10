@@ -1,4 +1,4 @@
-<!-- 49/75 -->
+<!-- 53/75 -->
 <!-- https://svelte.dev/tutorial/svelte/introducing-stores -->
 
 <script lang="ts">

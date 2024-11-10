@@ -5,7 +5,6 @@
 	import { scale } from './utils';
 	import { poll } from './data';
 
-	// ! TODO: set size of chart
 	// ! TODO: rename the component selector
 
 	// Please see code and comments of `poll()` function first
