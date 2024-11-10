@@ -594,7 +594,7 @@ Why?
 			class="btn-primary text-xs"
 			onclick={() => {
 				enableSlideshow = !enableSlideshow;
-			}}>{enableSlideshow ? 'Stop' : 'Start'} slideshow</button
+			}}>{enableSlideshow ? 'Pause' : 'Start'} slideshow</button
 		>
 	</div>
 
