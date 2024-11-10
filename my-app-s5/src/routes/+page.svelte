@@ -57,6 +57,10 @@
 	import Group44 from './Group44.svelte';
 	import Group45 from './Group45.svelte';
 	import Group46 from './Group46.svelte';
+	import Group47 from './Group47.svelte';
+	import Group48 from './Group48.svelte';
+	import Group49 from './Group49.svelte';
+	import Group50 from './Group50.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -339,10 +343,35 @@
 		},
 		{
 			id: '60e223b4-be6e-401a-b9af-b0d5cd31414d',
-			name: 'Group46 - Tweened values',
+			name: 'Group46 - STORE: Tweened values',
 			component: Group46,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/tweens'
+		},
+		{
+			id: '7c80d947-8de0-479e-8f75-1ad46539c85b',
+			name: 'Group47 - STORE: Springs',
+			component: Group47,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/springs'
+		},
+		{
+			id: 'f596a478-a3d9-488f-8581-1c861f23885a',
+			name: 'Group48 - Contenteditable bindings',
+			component: Group48,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/contenteditable-bindings'
+		},
+		{
+			id: '1a7fa115-e209-42ad-bafd-8290a0ed4712',
+			name: 'Group49 - Each block bindings',
+			component: Group49,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/each-block-bindings'
+		},
+		{
+			id: '26e9cb93-82c3-457d-8fb8-830812ba0085',
+			name: 'Group50 - Media elements',
+			component: Group50,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/media-elements'
 		}
+
 		// {
 		// 	id: '0d9b50a7-30b1-41eb-9fc4-c7ded7cf2a5c',
 		// 	name: 'Group61 - setContext and getContext (Context API )',
@@ -447,6 +476,15 @@
 		idOfComponentToShow = componentItems[componentItems.length - 1].id;
 	};
 
+	import { v4 as uuidv4 } from 'uuid';
+
+	let uuid = $state();
+	const generateUuidAndCopytoClipboard = () => {
+		const newUuid = uuidv4();
+		uuid = newUuid;
+		navigator.clipboard.writeText(newUuid);
+	};
+
 	$inspect('selected?', componentToShow); // For debugging
 </script>
 
@@ -521,6 +559,17 @@ Why?
 		<OpenFileInVscode
 			relativeFilePath={`/src/routes/${componentToShow.name.split(' ')[0]}.svelte`}
 		/>
+	</div>
+	<div class="mt-1 flex justify-end">
+		<button class="btn-primary text-xs" onclick={generateUuidAndCopytoClipboard}>
+			{uuid ? 'COPIED!  Click again for new' : 'Create and copy uuidv4'}
+		</button>
+	</div>
+
+	<div class="mt-1 flex justify-end">
+		<div class="text-xs">
+			{uuid}
+		</div>
 	</div>
 
 	<hr class="divider" />
