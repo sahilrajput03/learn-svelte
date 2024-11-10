@@ -335,24 +335,24 @@
 		// 	component: Group44,
 		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/implicit-snippet-props'
 		// },
-		{
-			id: 'eb51009a-752d-4add-863e-acdd4b8a1a7a',
-			name: 'Group45 - STORE: `const countStore = writable(0)` AND `countStore.update((n) => n - 1)`',
-			component: Group45,
-			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/introducing-stores'
-		},
-		{
-			id: '60e223b4-be6e-401a-b9af-b0d5cd31414d',
-			name: 'Group46 - STORE: Tweened values',
-			component: Group46,
-			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/tweens'
-		},
-		{
-			id: '7c80d947-8de0-479e-8f75-1ad46539c85b',
-			name: 'Group47 - STORE: Springs',
-			component: Group47,
-			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/springs'
-		},
+		// {
+		// 	id: 'eb51009a-752d-4add-863e-acdd4b8a1a7a',
+		// 	name: 'Group45 - STORE: `const countStore = writable(0)` AND `countStore.update((n) => n - 1)`',
+		// 	component: Group45,
+		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/introducing-stores'
+		// },
+		// {
+		// 	id: '60e223b4-be6e-401a-b9af-b0d5cd31414d',
+		// 	name: 'Group46 - STORE: Tweened values',
+		// 	component: Group46,
+		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/tweens'
+		// },
+		// {
+		// 	id: '7c80d947-8de0-479e-8f75-1ad46539c85b',
+		// 	name: 'Group47 - STORE: Springs',
+		// 	component: Group47,
+		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/springs'
+		// },
 		{
 			id: 'f596a478-a3d9-488f-8581-1c861f23885a',
 			name: 'Group48 - Contenteditable bindings',
@@ -371,7 +371,6 @@
 			component: Group50,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/media-elements'
 		}
-
 		// {
 		// 	id: '0d9b50a7-30b1-41eb-9fc4-c7ded7cf2a5c',
 		// 	name: 'Group61 - setContext and getContext (Context API )',
@@ -419,6 +418,18 @@
 		// 	name: 'Group67 - <svelte:element this={"h1"}> ... </svelte:element>',
 		// 	component: Group67,
 		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-element'
+		// },
+		// {
+		// 	id: 'bde71dd3-ca74-4b47-b9b6-f7633b86ca56',
+		// 	name: 'Group68 - <script module> - Sharing code',
+		// 	component: Group68,
+		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/sharing-code'
+		// },
+		// {
+		// 	id: '1732aaa7-18bf-4647-8b32-a4917f08725f',
+		// 	name: 'Group69 - <script module> - Exports',
+		// 	component: Group69,
+		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/module-exports'
 		// }
 	]);
 
@@ -494,6 +505,8 @@
 	});
 
 	import { v4 as uuidv4 } from 'uuid';
+	import Group68 from './Group68.svelte';
+	import Group69 from './Group69.svelte';
 
 	let uuid = $state();
 	const generateUuidAndCopytoClipboard = () => {
