@@ -14,19 +14,12 @@
 </li>
 <li>For desktop: `onmousedown` and `onmouseup` only fires on desktop</li>
 
-<!-- Note: I added `role="presentation"` to fix some warning made by svelte for ARIA required. -->
-<div
-	class="btn-primary mt-2"
-	role="presentation"
+<button
+	class="btn-primary mt-2 w-full"
 	onmousedown={() => (isTouch = true)}
 	onmouseup={() => (isTouch = false)}
-	ontouchstart={(event) => {
-		isTouch = true;
-	}}
-	ontouchend={(event) => {
-		console.log('boom?');
-		isTouch = false;
-	}}
+	ontouchstart={(event) => (isTouch = true)}
+	ontouchend={(event) => (isTouch = false)}
 >
 	{isTouch ? 'touched' : 'Please touch me and hold'}
-</div>
+</button>

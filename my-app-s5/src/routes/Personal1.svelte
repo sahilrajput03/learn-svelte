@@ -38,7 +38,17 @@
 		transcribedText = transcription.text;
 	};
 
-	navigator.mediaDevices.getUserMedia({ audio: true }).then(handlerFunction);
+	// Why check `navigator.mediaDevices` is defined or not? (src: https://stackoverflow.com/questions/67663961/cannot-read-property-getusermedia-of-undefined-over-https)
+	if (navigator.mediaDevices) {
+		// ? Please never remove above check because sometimes `mediaDevices` can be undefined and we must catch this error via our `alert('navigator.mediaDevices is undefined!');`
+		navigator.mediaDevices?.getUserMedia({ audio: true }).then((stream) => {
+			handlerFunction(stream);
+		});
+	} else {
+		// NOTE: For running on mobile in development server please make sure you run server via command - `nr deve -- --host`
+		// This alert is very very helpful in testing on development server on mobile phone as it can easily detect if you still haven't added your origin (http://192.168.10.209:5173 <from your svelte dev server>) in the "Insecure origins treated as secure" list on `chrome://flags` on your mobile
+		alert('navigator.mediaDevices is undefined!');
+	}
 
 	function handlerFunction(stream: MediaStream) {
 		rec = new MediaRecorder(stream);
