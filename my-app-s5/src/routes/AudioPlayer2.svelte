@@ -9,9 +9,13 @@
 	}
 </script>
 
-<script>
-	// ! todo: add proper props type here..
-	type PropsType = any;
+<script lang="ts">
+	type PropsType = {
+		src: string;
+		title: string;
+		artist: string;
+	};
+
 	let { src, title, artist }: PropsType = $props();
 
 	let time = $state(0);

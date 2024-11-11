@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount, type Component } from 'svelte';
+	import { v4 as uuidv4 } from 'uuid';
 
 	import OpenFileInVscode from './OpenFileInVscode.svelte';
 	import Group1 from './Group1.svelte';
@@ -61,6 +62,11 @@
 	import Group65 from './Group65.svelte';
 	import Group66 from './Group66.svelte';
 	import Group67 from './Group67.svelte';
+	import Group68 from './Group68.svelte';
+	import Group69 from './Group69.svelte';
+	import Group51 from './Group51.svelte';
+	import Personal1 from './Personal1.svelte';
+	import Personal2 from './Personal2.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -376,7 +382,7 @@
 			name: 'Group51 - Dimensions (Advanced bindings)',
 			component: Group51,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/media-elements'
-		}
+		},
 		// {
 		// 	id: '0d9b50a7-30b1-41eb-9fc4-c7ded7cf2a5c',
 		// 	name: 'Group61 - setContext and getContext (Context API )',
@@ -437,6 +443,18 @@
 		// 	component: Group69,
 		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/module-exports'
 		// }
+		{
+			id: '15f7992e-886b-4bbb-af20-2ff0a3d41831',
+			name: 'Personal1 - Record and then transcribe with OpenAI',
+			component: Personal1,
+			svelteTutorialLink: ''
+		},
+		{
+			id: '068d3ce6-7ab2-42d6-bbc1-d8b4c5ecafa7',
+			name: 'Personal2 - Touch and Hold for Mobile and Desktop',
+			component: Personal2,
+			svelteTutorialLink: ''
+		}
 	]);
 
 	// console.log('here??', Math.random()); // This log (random number) is different on server log and client side log.
@@ -509,11 +527,6 @@
 
 		return () => clearInterval(id);
 	});
-
-	import { v4 as uuidv4 } from 'uuid';
-	import Group68 from './Group68.svelte';
-	import Group69 from './Group69.svelte';
-	import Group51 from './Group51.svelte';
 
 	let uuid = $state();
 	const generateUuidAndCopytoClipboard = () => {
