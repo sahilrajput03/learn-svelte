@@ -193,5 +193,3 @@ export const colors = data.map(({ hex, name }) => {
 });
 
 export type ColorType = (typeof colors)[0];
-
-console.log('colors?', colors);
