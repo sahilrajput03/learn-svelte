@@ -68,6 +68,9 @@
 	import Personal1 from './Personal1.svelte';
 	import Personal2 from './Personal2.svelte';
 	import Personal3 from './Personal3.svelte';
+	import Group52 from './Group52.svelte';
+	import Group53 from './Group53.svelte';
+	import Group54 from './Group54.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -383,6 +386,24 @@
 			name: 'Group51 - Dimensions (Advanced bindings)',
 			component: Group51,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/dimensions'
+		},
+		{
+			id: '32b2687c-0181-43a0-bcf0-2a6928ab07ba',
+			name: 'Group52 - This (Advanced bindings)',
+			component: Group52,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/bind-this'
+		},
+		{
+			id: '15ac1920-5e41-4edd-8a91-ef46b93b095c',
+			name: 'Group53 - Component bindings (Advanced bindings)',
+			component: Group53,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-bindings'
+		},
+		{
+			id: '535cd449-1477-4b0f-b97d-01486d979ca4',
+			name: 'Group54 - Binding to component instances (Advanced bindings)',
+			component: Group54,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-this'
 		}
 		// {
 		// 	id: '0d9b50a7-30b1-41eb-9fc4-c7ded7cf2a5c',
