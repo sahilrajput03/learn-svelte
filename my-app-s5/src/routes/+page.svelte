@@ -522,7 +522,7 @@
 		navigator.clipboard.writeText(newUuid);
 	};
 
-	$inspect('selected?', componentToShow); // For debugging
+	// $inspect('selected?', componentToShow); // For debugging
 </script>
 
 <!--  Why am I using `id` (uuid) to sync the selected value of <select> element with localStorage instead of using array indexes like 0,1,2.. values.

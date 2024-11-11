@@ -28,7 +28,7 @@ reference e.g. selected.id in the template.
 	]);
 
 	let selected = $state() as QuestionType;
-	$inspect('selected?', selected);
+	// $inspect('selected?', selected);
 
 	let answer = $state('');
 
