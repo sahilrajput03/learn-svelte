@@ -382,7 +382,7 @@
 			id: '521f598a-586d-49a8-beae-21bc7b474d10',
 			name: 'Group51 - Dimensions (Advanced bindings)',
 			component: Group51,
-			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/media-elements'
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/dimensions'
 		}
 		// {
 		// 	id: '0d9b50a7-30b1-41eb-9fc4-c7ded7cf2a5c',
