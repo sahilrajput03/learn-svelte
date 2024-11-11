@@ -1,4 +1,4 @@
-# create-svelte
+# create-svelte (v5)
 
 - Deployed at - https://sveltev5.vercel.app/
   - On vercel using preset SvelteKit (v1)
