@@ -12,3 +12,8 @@
     background: lightgray;
     color: darkgray;
 }
+
+.input-primary {
+    @apply border border-solid border-[black] px-[5px] py-0.5 rounded-sm;
+}
+

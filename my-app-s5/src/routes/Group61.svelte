@@ -2,7 +2,7 @@
 <!-- https://svelte.dev/tutorial/svelte/context-api -->
 
 <script lang="ts">
-	import Canvas from './Canvas2.svelte';
+	import Canvas from './Canvas3.svelte';
 	import Square from './Square.svelte';
 
 	// we use a seeded random number generator to get consistent jitter

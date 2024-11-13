@@ -71,6 +71,8 @@
 	import Group52 from './Group52.svelte';
 	import Group53 from './Group53.svelte';
 	import Group54 from './Group54.svelte';
+	import Group55 from './Group55.svelte';
+	import Group56 from './Group56.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -404,6 +406,18 @@
 			name: 'Group54 - Binding to component instances (Advanced bindings)',
 			component: Group54,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-this'
+		},
+		{
+			id: 'c682dd16-4104-4592-897f-f7a3bd1f966f',
+			name: 'Group55 - Deferred transitions (Advanced bindings)',
+			component: Group55,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/deferred-transitions'
+		},
+		{
+			id: '826b8bc2-fbfe-4d15-82b0-c321f242aa08',
+			name: 'Group56 - Animations (Advanced bindings)',
+			component: Group56,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/animations'
 		}
 		// {
 		// 	id: '0d9b50a7-30b1-41eb-9fc4-c7ded7cf2a5c',
