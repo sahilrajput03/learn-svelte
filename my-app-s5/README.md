@@ -1,10 +1,10 @@
-# create-svelte (v5)
+# Learn Svelte (v5)
 
-Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** (using Vercel with `SvelteKit (v1)` preset)
+Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** _(using Vercel with `SvelteKit (v1)` preset)_
 
 **Quick Links:**
 
-- README.sveltekit.md: [Click here](./README.sveltekit.md)
+- ❤️ README.sveltekit.md: [Click here](./README.sveltekit.md)
 - README.initial.md: [Click here](./README.initial.md)
 - README.more.md: [Click here](./README.more.md)
 
