@@ -23,80 +23,78 @@ Multiple route parameters can appear within one URL segment, as long as they are
 
 1. For route: `/blog` - Data is loaded in `+layout.server.ts` file, then `+page.server.ts`, then DOM element is rendred using `+layout.svelte` then `+page.svelte` file.
 
-```bash
-loading data in /blog/+layout.server.ts
+   ```bash
+   loading data in /blog/+layout.server.ts
 
-loading data in /blog/+page.server.ts
+   loading data in /blog/+page.server.ts
 
-/blog/+layout.svelte,
-data? {
-  commonProperty: '/blog/+layout.server.ts',
-  '/blog/+layout.server.ts': 'server data'
-}
+   /blog/+layout.svelte,
+   data? {
+     commonProperty: '/blog/+layout.server.ts',
+     '/blog/+layout.server.ts': 'server data'
+   }
 
-/blog/+page.svelte
-data? {
-  commonProperty: '/blog/+page.server.ts',
-  '/blog/+layout.server.ts': 'server data',
-  '/blog/+page.server.ts': 'server data'
-}
-```
+   /blog/+page.svelte
+   data? {
+     commonProperty: '/blog/+page.server.ts',
+     '/blog/+layout.server.ts': 'server data',
+     '/blog/+page.server.ts': 'server data'
+   }
+   ```
 
 2. For route: `/blog/welcom` (using `/blog/[slug]`) - Data loading and DOM rendering elements are loaded in exactly same manner as in above case.
 
-```bash
-loading data in /blog/+layout.server.ts
+   ```bash
+   loading data in /blog/+layout.server.ts
 
-loading data in /blog/[slug]/+page.server.ts
+   loading data in /blog/[slug]/+page.server.ts
 
-/blog/+layout.svelte,
-data? {
-  commonProperty: '/blog/+layout.server.ts',
-  '/blog/+layout.server.ts': 'server data'
-}
+   /blog/+layout.svelte,
+   data? {
+     commonProperty: '/blog/+layout.server.ts',
+     '/blog/+layout.server.ts': 'server data'
+   }
 
-/blog/[slug]/+layout.svelte
-data? {
-  commonProperty: '/blog/+layout.server.ts',
-  '/blog/+layout.server.ts': 'server data'
-}
+   /blog/[slug]/+layout.svelte
+   data? {
+     commonProperty: '/blog/+layout.server.ts',
+     '/blog/+layout.server.ts': 'server data'
+   }
 
-/blog/[slug]/+page.svelte,
-data? {
-  commonProperty: '/blog/[slug]/+page.server.ts',
-  '/blog/+layout.server.ts': 'server data',
-  '/blog/[slug]/+page.server.ts': 'server data'
-}
-```
+   /blog/[slug]/+page.svelte,
+   data? {
+     commonProperty: '/blog/[slug]/+page.server.ts',
+     '/blog/+layout.server.ts': 'server data',
+     '/blog/[slug]/+page.server.ts': 'server data'
+   }
+   ```
 
-3. _(advanced version of above 2nd case)_
+3. _(advanced version of above i.e., 2nd case)_ **NOTE:** To trigger these logs you must rename file in directory _/blog/[slug]/_ from `__TEST__+layout.server.ts` to `+layout.server.ts`.
 
-**NOTE:** To trigger these logs you must rename file in directory _/blog/[slug]/_ from `__TEST__+layout.server.ts` to `+layout.server.ts`.
+   ```bash
+   loading data in /blog/+layout.server.ts
 
-```bash
-loading data in /blog/+layout.server.ts
+   loading data in /blog/[slug]/+layout.server.ts
 
-loading data in /blog/[slug]/+layout.server.ts
+   loading data in /blog/[slug]/+page.server.ts
 
-loading data in /blog/[slug]/+page.server.ts
+   /blog/+layout.svelte,
+   data? {
+     commonProperty: '/blog/+layout.server.ts',
+     '/blog/+layout.server.ts': 'server data'
+   }
 
-/blog/+layout.svelte,
-data? {
-  commonProperty: '/blog/+layout.server.ts',
-  '/blog/+layout.server.ts': 'server data'
-}
+   /blog/[slug]/+layout.svelte
+   data? {
+     commonProperty: '/blog/[slug]/+layout.server.ts',
+     '/blog/+layout.server.ts': 'server data',
+     '/blog/[slug]/+layout.server.ts': 'server data'
+   }
 
-/blog/[slug]/+layout.svelte
-data? {
-  commonProperty: '/blog/[slug]/+layout.server.ts',
-  '/blog/+layout.server.ts': 'server data',
-  '/blog/[slug]/+layout.server.ts': 'server data'
-}
-
-/blog/[slug]/+page.svelte,
-data? {
-  commonProperty: '/blog/[slug]/+page.server.ts',
-  '/blog/+layout.server.ts': 'server data',
-  '/blog/[slug]/+layout.server.ts': 'server data',
-  '/blog/[slug]/+page.server.ts': 'server data'
-```
+   /blog/[slug]/+page.svelte,
+   data? {
+     commonProperty: '/blog/[slug]/+page.server.ts',
+     '/blog/+layout.server.ts': 'server data',
+     '/blog/[slug]/+layout.server.ts': 'server data',
+     '/blog/[slug]/+page.server.ts': 'server data'
+   ```
