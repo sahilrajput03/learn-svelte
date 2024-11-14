@@ -501,15 +501,6 @@
 
 	// console.log('here??', Math.random()); // This log (random number) is different on server log and client side log.
 
-	// Since I am using name as to detect individual component while traversing using next and prev button I need to check for duplicate check for duplicate component names
-	const componentNames = componentItems.map((ci) => ci.name);
-	const duplicateNames = componentNames.filter((ci, index) => componentNames.indexOf(ci) !== index);
-	if (duplicateNames.length > 0) {
-		throw new Error(
-			`Error from Sahil: Duplicate component names found: ${[...new Set(duplicateNames)].join(', ')}`
-		);
-	}
-
 	let idOfComponentToShow = $state<string>();
 
 	// Note: `currentIndex` and `componentToShow` are automatic derived when `idOfComponentToShow` changes
@@ -525,6 +516,7 @@
 	// https://svelte.dev/docs/svelte/lifecycle-hooks
 	// https://svelte.dev/playground/onmount?version=5.1.9
 	onMount(() => {
+		console.log('onmount now....');
 		const componentIdFromLocalStorage = localStorage.getItem('component-name');
 		if (componentIdFromLocalStorage) {
 			idOfComponentToShow = componentIdFromLocalStorage;
@@ -534,6 +526,7 @@
 	const saveToLocalStorage = (name: string) => localStorage.setItem('component-name', name);
 
 	$effect(() => {
+		console.log('effect now....');
 		if (idOfComponentToShow) {
 			saveToLocalStorage(idOfComponentToShow);
 		}

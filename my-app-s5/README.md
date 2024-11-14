@@ -4,8 +4,9 @@ Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** (us
 
 **Quick Links:**
 
-- README.more.md: [Click here](./README.more.md)
+- README.sveltekit.md: [Click here](./README.sveltekit.md)
 - README.initial.md: [Click here](./README.initial.md)
+- README.more.md: [Click here](./README.more.md)
 
 ## Typescript for Svelte
 
