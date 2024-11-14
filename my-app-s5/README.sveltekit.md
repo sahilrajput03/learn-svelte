@@ -68,3 +68,35 @@ data? {
   '/blog/[slug]/+page.server.ts': 'server data'
 }
 ```
+
+3. _(advanced version of above 2nd case)_
+
+**NOTE:** To trigger these logs you must rename file in directory _/blog/[slug]/_ from `__TEST__+layout.server.ts` to `+layout.server.ts`.
+
+```bash
+loading data in /blog/+layout.server.ts
+
+loading data in /blog/[slug]/+layout.server.ts
+
+loading data in /blog/[slug]/+page.server.ts
+
+/blog/+layout.svelte,
+data? {
+  commonProperty: '/blog/+layout.server.ts',
+  '/blog/+layout.server.ts': 'server data'
+}
+
+/blog/[slug]/+layout.svelte
+data? {
+  commonProperty: '/blog/[slug]/+layout.server.ts',
+  '/blog/+layout.server.ts': 'server data',
+  '/blog/[slug]/+layout.server.ts': 'server data'
+}
+
+/blog/[slug]/+page.svelte,
+data? {
+  commonProperty: '/blog/[slug]/+page.server.ts',
+  '/blog/+layout.server.ts': 'server data',
+  '/blog/[slug]/+layout.server.ts': 'server data',
+  '/blog/[slug]/+page.server.ts': 'server data'
+```
