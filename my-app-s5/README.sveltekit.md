@@ -16,7 +16,9 @@ Source - [Tutorial: Basic SvelteKit - Routing - Route parameters](https://svelte
 
 Multiple route parameters can appear within one URL segment, as long as they are separated by at least one static character: `foo/[bar]x[baz]` is a valid route where `[bar]` and `[baz]` are dynamic parameters.
 
-## Routes
+## Routes and loading data
+
+Docs of Loading data: [Click here](https://svelte.dev/docs/kit/load)
 
 - For `+page.svelte` file: `data` is merged from **both `+page.server.ts` and `+layout.server.ts` files.**
 - For `+layout.svelte` file: `data` loaded **only from `+layout.server.ts` file only.**
