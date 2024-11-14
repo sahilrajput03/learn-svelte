@@ -10,6 +10,11 @@
 - print and stick to wall all the different html elements you use for e.g., <aside> - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside
 -
 
+## Tutorials
+
+- `routes/test1/*` - SvelteKit Tutorial-6
+- `routes/test2/*` - SvelteKit Tutorial-7
+
 ## Multiple route parameters
 
 Source - [Tutorial: Basic SvelteKit - Routing - Route parameters](https://svelte.dev/tutorial/kit/params)
