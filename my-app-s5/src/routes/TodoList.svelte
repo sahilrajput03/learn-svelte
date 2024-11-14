@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { send, receive } from './transition2';
+	import { flip } from 'svelte/animate';
 
 	type TodoType = {
 		id?: string;
@@ -21,6 +22,7 @@
 			class:done={todo.done}
 			in:receive={{ key: todo.id }}
 			out:send={{ key: todo.id }}
+			animate:flip={{ duration: 200 }}
 		>
 			<label>
 				<input style="margin-right: 5px;" type="checkbox" bind:checked={todo.done} />
