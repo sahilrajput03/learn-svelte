@@ -8,4 +8,12 @@
 	console.log('\n/blog/+layout.svelte,\ndata?', dataCopy);
 </script>
 
-{@render children()}
+<section>
+	{@render children()}
+</section>
+
+<style>
+	section {
+		padding: 50px;
+	}
+</style>

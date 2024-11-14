@@ -14,11 +14,12 @@
 	</main>
 
 	<aside>
-		<h2>More posts (+layout.svelte)</h2>
+		<h2>More posts <code class="text-[0.6rem] italic">(/blog/[slug]/+layout.svelte)</code></h2>
+
 		<ul>
 			{#each data.summaries as { slug, title }}
 				<li>
-					<a href="/blog/{slug}">{title}</a>
+					<a class="text-blue-600 underline" href="/blog/{slug}">{title}</a>
 				</li>
 			{/each}
 		</ul>
