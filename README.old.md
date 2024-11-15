@@ -14,11 +14,8 @@
   - Runes Docs: [Click here](https://svelte-5-preview.vercel.app/docs/runes)
 - Popular Svelte Question on Stackoverflow (src):
   - How can I pass parameters to on:click in Svelte?: [Click here](https://stackoverflow.com/a/61025286)
-
-**Article - Companies Using Svelte:** [Click here](https://www.okupter.com/blog/companies-using-svelte)
-
-- (Done) - Why Stack Overflow is embracing Svelte: [Click here](https://the-stack-overflow-podcast.simplecast.com/episodes/why-stack-overflow-is-embracing-svelte/transcript)
-  - My annotated pdf: [Click here](./Why_Stack_Overflow_is_embracing_Svelte.pdf)
+- **Article - COMPANIES USING SVELTE:** [Click here](https://www.okupter.com/blog/companies-using-svelte)
+  - (Done) - Why Stack Overflow is embracing Svelte: [Click here](https://the-stack-overflow-podcast.simplecast.com/episodes/why-stack-overflow-is-embracing-svelte/transcript) ([my annotated pdf][Click here](./Why_Stack_Overflow_is_embracing_Svelte.pdf))
 
 **+ves:**
 
