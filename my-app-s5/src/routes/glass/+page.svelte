@@ -1,4 +1,6 @@
 <script>
+	import { fade } from 'svelte/transition';
+
 	const imgs = [
 		'1.jpg',
 		'2.jpg',
@@ -14,7 +16,6 @@
 	];
 	let playing = $state(true);
 	let index = $state(0);
-	let src = $derived(imgs[index]);
 
 	$effect(() => {
 		let id = setInterval(() => {
@@ -48,7 +49,10 @@
 <!-- For debugging only -->
 <!-- {index} -->
 
-<img class="center" src={`/glass-imgs/${src}`} alt="glass" />
+<!-- Note: Key is used to trigger transition on change on `index` (Group37.svelte) -->
+{#key index}
+	<img transition:fade class="center" src={`/glass-imgs/${imgs[index]}`} alt="glass" />
+{/key}
 
 <div class="button-container">
 	<button onclick={previous}>Previous</button>
@@ -62,15 +66,17 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 20px;
+		margin-right: 5px;
 
-		position: fixed;
-		top: 50vh;
-		right: 15px;
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translate(0, 100%);
 	}
 	button {
 		border: 2px solid black;
 		border-radius: 8px;
-		padding: 10px 20px;
+		padding: 5px 10px;
 		background: white;
 	}
 	img {

@@ -301,7 +301,7 @@
 		// },
 		// {
 		// 	id: '5d84afde-9c3c-442e-b185-f6f2035b7901',
-		// 	name: 'Group37 - {#key i} ... {/key} - Play transitions on expression change instead of only when the element enters or leaves the DOM',
+		// 	name: 'Group37 - ❤️ {#key i} ... {/key} - Play transitions on expression change instead of only when the element enters or leaves the DOM',
 		// 	component: Group37,
 		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/key-blocks'
 		// },
