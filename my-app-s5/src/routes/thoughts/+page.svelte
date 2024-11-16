@@ -1,42 +1,30 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	let thoughts = $state<string[]>([]);
-	let thoughtsToShow = $state(['t1', 't2']);
 	let isShowSahilThoughtsInitially = true;
+
+	let thoughts = $state<string[]>([]);
+	let thoughtsToShow = $state<string[]>([]);
 	let isShowSahilThoughts = $state(isShowSahilThoughtsInitially);
 
-	const showSahilThoughts = () => {
-		console.log('triggered');
-		thoughtsToShow = thoughts.filter((thought) => thought.includes('~ Sahil'));
-		// To remove `~ Sahil` use below code instead
-		// thoughts = text
-		// 	.split('\n')
-		// 	.filter((thought) => thought.includes('~ Sahil'))
-		// 	.map((thought) => thought.replace('~ Sahil', '').trim());
-	};
-
 	onMount(async () => {
-		console.log('load-fn');
+		console.log('fn-load');
 
 		const response = await fetch(
 			'https://raw.githubusercontent.com/sahilrajput03/sahilrajput03/refs/heads/main/thoughts-principles-react/src/thoughts.md'
 		);
 		const text = await response.text();
 		thoughts = text.split('\n');
-
-		if (isShowSahilThoughtsInitially) {
-			showSahilThoughts();
-		} else {
-			thoughtsToShow = thoughts;
-		}
 	});
 
 	$effect(() => {
-		console.log('effect-fn');
+		console.log('fn-$effect');
 
+		// From docs: Your effects run after the component has been mounted to the DOM. Docs - https://svelte.dev/docs/svelte/$effect
 		if (isShowSahilThoughts) {
-			showSahilThoughts();
+			thoughtsToShow = thoughts
+				.filter((thought) => thought.includes('~ Sahil'))
+				.map((thought) => thought.replace('~ Sahil', '').trim());
 		} else {
 			thoughtsToShow = thoughts;
 		}
@@ -44,8 +32,13 @@
 </script>
 
 <section>
-	<h1 class="text-2xl">Thoughts & Principles</h1>
-	<input type="checkbox" bind:checked={isShowSahilThoughts} />
+	<h1 class="text-2xl font-bold">Thoughts & Principles</h1>
+	<div class="my-3">
+		<label>
+			<input type="checkbox" bind:checked={isShowSahilThoughts} />
+			Show only Sahil's Thoughts
+		</label>
+	</div>
 
 	<ol>
 		{#each thoughtsToShow as thought}

@@ -669,6 +669,10 @@ Why?
 		<a class="text-xs text-blue-600" href="/glass">/glass (slideshow)</a>
 	</div>
 
+	<div class="mt-1 flex justify-end">
+		<a class="text-xs text-blue-600" href="/thoughts">/thoughts</a>
+	</div>
+
 	<hr class="divider" />
 
 	<componentToShow.component />

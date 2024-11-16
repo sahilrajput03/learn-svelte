@@ -8,12 +8,14 @@ Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** _(u
 - README.initial.md: [Click here](./README.initial.md)
 - README.more.md: [Click here](./README.more.md)
 
-## asyn function in `onMount` and `$effect`
+## `onMount` and `$effect`
+
+Svelte Docs: Your effects run after the component has been mounted to the DOM, and in a microtask after state changes. [Docs](https://svelte.dev/docs/svelte/$effect)
 
 ```ts
-onMount(async () => {}); // 👍
+onMount(async () => {}); // 👍 Async function is good here.
 
-$effect(async () => {}); // 👎 It works but we get typescript error that an async can not be accepted. (Svelte issue: https://github.com/sveltejs/svelte/issues/9946)
+$effect(async () => {}); // 👎 Async function works but we get typescript error that an async can not be accepted. (Svelte issue: https://github.com/sveltejs/svelte/issues/9946)
 // Solution: Declare an async function inside the $effect callback and call that function.
 ```
 
