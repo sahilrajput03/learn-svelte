@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 
 	let isShowSahilThoughtsInitially = true;
 
@@ -40,13 +41,15 @@
 		</label>
 	</div>
 
-	<ol>
-		{#each thoughtsToShow as thought}
-			<li>
-				{thought}
-			</li>
-		{/each}
-	</ol>
+	{#key isShowSahilThoughts}
+		<ol in:fade={{ duration: 600 }} out:fade={{ duration: 100 }}>
+			{#each thoughtsToShow as thought}
+				<li>
+					{thought}
+				</li>
+			{/each}
+		</ol>
+	{/key}
 </section>
 
 <style>
