@@ -734,11 +734,11 @@ Why?
 		margin: 20px 0;
 	}
 
-	/* Group66.svelte's style tries to change the display:flex for the body and thus
-	changes the position of the component-selector and the its related buttons, so
-	I am overwriting that style by writging global style here. */
+	/* Group66.svelte's style tries to change the `display:flex` for <body> element and thus
+	centers the position of the component-selector (and the its related buttons), so
+	I am overwriting `display: flex` with `display: block` by using global style for
+	`<body>` here using `!important`. */
 	:global(body) {
 		display: block !important;
-		margin: 20px;
 	}
 </style>
