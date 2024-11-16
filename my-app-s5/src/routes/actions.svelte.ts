@@ -50,3 +50,50 @@ export function trapFocus(node: any) {
         };
     });
 }
+
+type ArgsType = { numberOfImages: number, interval: number }
+export function createSlideShow({ numberOfImages, interval }: ArgsType) {
+    let playing = $state(true);
+    let index = $state(0);
+
+    $effect(() => {
+        let id = setInterval(() => {
+            if (!playing) return;
+
+            if (index === numberOfImages - 1) {
+                index = 0;
+            } else {
+                console.log('here.....2')
+                index++;
+            }
+        }, interval);
+        return () => clearInterval(id);
+    });
+
+    const next = () => {
+        if (index === numberOfImages - 1) {
+            index = 0;
+        } else {
+            index += 1;
+        }
+    };
+    const previous = () => {
+        if (index === 0) {
+            index = numberOfImages - 1;
+        } else {
+            index -= 1;
+        }
+    };
+    const playPause = () => (playing = !playing)
+
+
+    // * Why use a getter property? Because simply returning variable doesn't work! Docs - https://svelte.dev/blog/runes#Beyond-components
+    // https://github.com/sahilrajput03/sahilrajput03/blob/main/learn-js.md#getter-property-in-an-object
+    return {
+        get playing() { return playing; },
+        get index() { return index },
+        next,
+        previous,
+        playPause
+    }
+}

@@ -1,5 +1,6 @@
 <script>
 	import { fade } from 'svelte/transition';
+	import { createSlideShow } from '../actions.svelte';
 
 	const imgs = [
 		'1.jpg',
@@ -14,50 +15,24 @@
 		'10.jpeg',
 		'11.jpg'
 	];
-	let playing = $state(true);
-	let index = $state(0);
+	let slideShow = createSlideShow({ numberOfImages: imgs.length, interval: 7_000 });
 
-	$effect(() => {
-		let id = setInterval(() => {
-			if (!playing) return;
-
-			if (index === imgs.length - 1) {
-				index = 0;
-			} else {
-				index++;
-			}
-		}, 7_000);
-		return () => clearInterval(id);
-	});
-
-	const next = () => {
-		if (index === imgs.length - 1) {
-			index = 0;
-		} else {
-			index += 1;
-		}
-	};
-	const previous = () => {
-		if (index === 0) {
-			index = imgs.length - 1;
-		} else {
-			index -= 1;
-		}
-	};
+	// NOTE: This doesn't work in svelte (TESTED)
+	// { index, playing, next, previous } = createSlideShow(imgs);
 </script>
 
 <!-- For debugging only -->
-<!-- {index} -->
+<!-- {ss.index} -->
 
 <!-- Note: Key is used to trigger transition on change on `index` (Group37.svelte) -->
-{#key index}
-	<img transition:fade class="center" src={`/glass-imgs/${imgs[index]}`} alt="glass" />
+{#key slideShow.index}
+	<img transition:fade class="center" src={`/glass-imgs/${imgs[slideShow.index]}`} alt="glass" />
 {/key}
 
 <div class="button-container">
-	<button onclick={previous}>Previous</button>
-	<button onclick={() => (playing = !playing)}>{playing ? 'Pause' : 'Play'}</button>
-	<button onclick={next}>Next</button>
+	<button onclick={slideShow.previous}>Previous</button>
+	<button onclick={slideShow.playPause}>{slideShow.playing ? 'Pause' : 'Play'}</button>
+	<button onclick={slideShow.next}>Next</button>
 </div>
 
 <style>
