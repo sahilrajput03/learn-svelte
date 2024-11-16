@@ -36,4 +36,4 @@ Say you apply some style via `:global(body){ .. }` in `/routes/+page.svelte` fil
 
 1. Now if you go to `/` route the syle will apply.
 2. If you open `/thoughts` from some internal link the styles will apply.
-3. BUT if you now refresh the page while you're still on `/thoughts` route, the style will NOT APPLY. (TESTED)
+3. BUT if you now refresh the page while you're still on `/thoughts` route, **the style will NOT APPLY. (TESTED)**
