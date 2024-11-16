@@ -665,6 +665,9 @@ Why?
 			}}>{enableSlideshow ? 'Pause' : 'Start'} slideshow</button
 		>
 	</div>
+	<div class="mt-1 flex justify-end">
+		<a class="text-xs text-blue-600" href="/glass">/glass (slideshow)</a>
+	</div>
 
 	<hr class="divider" />
 
