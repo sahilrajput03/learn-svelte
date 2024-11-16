@@ -33,6 +33,9 @@
 	<button onclick={slideShow.previous}>Previous</button>
 	<button onclick={slideShow.playPause}>{slideShow.playing ? 'Pause' : 'Play'}</button>
 	<button onclick={slideShow.next}>Next</button>
+
+	<!-- //* This also works since I have added a setter function otherwise we get setter function not defined error in console. -->
+	<!-- <button onclick={() => (slideShow.index = slideShow.index + 1)}>Next</button> -->
 </div>
 
 <style>

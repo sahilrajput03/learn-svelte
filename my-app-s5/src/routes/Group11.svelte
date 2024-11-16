@@ -21,7 +21,7 @@
 
 <!-- For source explanation, check source - https://svelte.dev/tutorial/svelte/keyed-each-blocks --->
 
-<!-- / //* Read this carefully. -->
+<!-- //* Read this carefully. -->
 <div class="text-amber-700">
 	Note by Sahil: It is important to give each block a `key` so it knows which item's DOM node to
 	add/remove rather than add/remove in the end of list which is default behavior.

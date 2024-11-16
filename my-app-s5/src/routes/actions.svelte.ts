@@ -92,6 +92,7 @@ export function createSlideShow({ numberOfImages, interval }: ArgsType) {
     return {
         get playing() { return playing; },
         get index() { return index },
+        set index(value) { index = value }, // setter function needed to allow changing the value of `index` property otherwise we get error in console.
         next,
         previous,
         playPause

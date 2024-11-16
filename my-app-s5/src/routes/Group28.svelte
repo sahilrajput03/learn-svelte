@@ -1,7 +1,7 @@
 <!-- 36/45 -->
 <!-- https://svelte.dev/tutorial/svelte/actions -->
 
-<!--/ //* PLEASE READ THE TUTORIAL FULLY TO UNDERSTAND ALL OF IT -->
+<!--//* PLEASE READ THE TUTORIAL FULLY TO UNDERSTAND ALL OF IT -->
 
 <!-- Last 8 tutorials (38 to 45) are on `Transitions` topic. -->
 
@@ -38,7 +38,7 @@
 				}
 			}}
 		>
-			<!-- / //* We add action function to the menu HTML element with the `use:` directive: -->
+			<!-- //* We add action function to the menu HTML element with the `use:` directive: -->
 			<div class="menu" use:trapFocus>
 				<div class="colors">
 					{#each colors as color}

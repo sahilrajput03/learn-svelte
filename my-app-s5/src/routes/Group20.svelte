@@ -5,7 +5,7 @@
 	let yes = $state(false);
 </script>
 
-<!-- / //*Using checkbox input elements -->
+<!-- //*Using checkbox input elements -->
 <label>
 	<input type="checkbox" bind:checked={yes} />
 	Yes! Send me regular email spam

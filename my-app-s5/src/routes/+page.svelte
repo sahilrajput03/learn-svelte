@@ -632,7 +632,7 @@ Why?
 		<!-- href="https://github.com/sahilrajput03/learn-svelte/tree/main/my-app-s5/src/routes" -->
 		<!-- href="https://github.com/sahilrajput03/learn-svelte/blob/main/my-app-s5/src/routes/Group12.svelte" -->
 	</div>
-	<!-- / //* Svelte Tutorial Link -->
+	<!-- //* Svelte Tutorial Link -->
 	<div class="mt-1 flex justify-end">
 		<a
 			target="_blank"
