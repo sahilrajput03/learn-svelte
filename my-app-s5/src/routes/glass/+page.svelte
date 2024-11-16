@@ -1,6 +1,7 @@
 <script>
-	import { fade } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 	import { createSlideShow } from '../actions.svelte';
+	import { circIn, cubicIn, cubicOut, elasticIn, sineIn } from 'svelte/easing';
 
 	const imgs = [
 		'1.jpg',
@@ -26,7 +27,13 @@
 
 <!-- Note: Key is used to trigger transition on change on `index` (Group37.svelte) -->
 {#key slideShow.index}
-	<img transition:fade class="center" src={`/glass-imgs/${imgs[slideShow.index]}`} alt="glass" />
+	<img
+		in:fade={{ duration: 1000, delay: 200 }}
+		out:fade={{ duration: 600 }}
+		class="center"
+		src={`/glass-imgs/${imgs[slideShow.index]}`}
+		alt="glass"
+	/>
 {/key}
 
 <div class="button-container">
