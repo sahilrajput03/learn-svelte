@@ -37,3 +37,9 @@ Say you apply some style via `:global(body){ .. }` in `/routes/+page.svelte` fil
 1. Now if you go to `/` route the syle will apply.
 2. If you open `/thoughts` from some internal link the styles will apply.
 3. BUT if you now refresh the page while you're still on `/thoughts` route, **the style will NOT APPLY. (TESTED)**
+
+## Transition
+
+30,31,32,33,34
+
+Easing functions in svelte playground: [https://svelte.dev/playground/easing](https://svelte.dev/playground/easing?version=5.2.2)
