@@ -682,8 +682,8 @@ Why?
 	<!-- <OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} /> -->
 {:else}
 	<!--	Note: We wait for the component to mount so that JavaScript can execute
- 			and fetch the ID of the most recently mounted component, ensuring that
-			the application continues to display that component. -->
+ 			and fetch the ID of the most recently mounted component (from componentItems),
+			ensuring that the application continues to display that component. -->
 	<div>
 		Loading... {dev ? 'why?' : null}
 	</div>
