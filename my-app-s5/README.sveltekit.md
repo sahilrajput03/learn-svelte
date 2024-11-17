@@ -12,12 +12,13 @@
 ## Tutorials
 
 - Tutorial-1,2,3,4,5: folder - `/blog`
-- Tutorial-6 (Header and cookies): `/group101`
-- Tutorial-7 (Header and cookies): `/group102`
-- Tutorial-8 (Shared modulesThe $lib alias): `/group103/*`
-- Tutorial-9,10,11,12,13 (NOT IMPLEMENTED) (forms): `/group104`
+- Tutorial-6 (Header and cookies): `/group101/`
+- Tutorial-7 (Header and cookies): `/group102/`
+- Tutorial-8 (Shared modulesThe $lib alias): `/group103/`
+- Tutorial-9,10,11,12,13 (NOT IMPLEMENTED) (forms): `/group104/`
   - I can make nested route in future if actually want to add forms tutorials.
-- Tutorial-14 (api routes): `/group105`
+- Tutorial-14 (api routes GET): `/group105/`
+- Tutorial-15,16 (api routes: POST, PUT, DELETE) = `/group106/`
 
 ## Multiple route parameters
 
