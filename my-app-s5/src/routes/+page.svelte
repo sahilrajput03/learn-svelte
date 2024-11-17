@@ -671,6 +671,7 @@ Why?
 		<a class="ml-2 text-xs text-blue-600" href="/glass">/glass (slideshow)</a>
 		<a class="ml-2 text-xs text-blue-600" href="/thoughts">/thoughts</a>
 		<a class="ml-2 text-xs text-blue-600" href="/chat">/chat</a>
+		<a class="ml-2 text-xs text-blue-600" href="/effect-root">/effect-root</a>
 	</div>
 
 	<hr class="divider" />
