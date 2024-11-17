@@ -23,12 +23,18 @@
 	};
 </script>
 
-<button class="btn-primary" onclick={() => count++}>{count} (click me)</button>
+<h1 class="pb-8 text-5xl font-bold">$effect.root</h1>
+
+<button class="btn-primary font-bold" onclick={() => count++}>{count} (click me)</button>
 
 <button class="btn-primary" onclick={cleanup1}>call cleanup</button>
-<button class="btn-primary" onclick={createOnTheFlyEffect}>create on-the-fly effect</button>
+<button class="btn-primary" onclick={createOnTheFlyEffect}
+	>create <strong>on-the-fly effect</strong></button
+>
 
-<button class="btn-primary" onclick={onTheFlyEffectCleanup}>destroy on-the-fly effect</button>
+<button class="btn-primary" onclick={onTheFlyEffectCleanup}
+	>destroy <strong>on-the-fly effect</strong></button
+>
 
 <p class="mt-3 italic text-gray-600">Please refer logs in browser console to learn.</p>
 
