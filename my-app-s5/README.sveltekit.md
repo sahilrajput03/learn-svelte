@@ -8,12 +8,13 @@
 ## TODO:
 
 - print and stick to wall all the different html elements you use for e.g., <aside> - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside
--
 
 ## Tutorials
 
-- `routes/test1/*` - SvelteKit Tutorial-6
-- `routes/test2/*` - SvelteKit Tutorial-7
+- Tutorial-1,2,3,4,5: folder - `/blog`
+- Tutorial-6: `routes/test1/*`
+- Tutorial-7: `routes/test2/*`
+- Tutorial-8: `routes/test3/*`
 
 ## Multiple route parameters
 

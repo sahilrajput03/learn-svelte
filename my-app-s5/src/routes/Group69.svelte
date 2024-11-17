@@ -2,13 +2,13 @@
 <!-- https://svelte.dev/tutorial/svelte/sharing-code -->
 
 <script>
-	import AudioPlayer, { stopAll } from './AudioPlayer2.svelte';
+	import AudioPlayer2, { stopAll } from './AudioPlayer2.svelte';
 	import { tracks } from './tracks';
 </script>
 
 <div class="centered">
 	{#each tracks as track}
-		<AudioPlayer {...track} />
+		<AudioPlayer2 {...track} />
 	{/each}
 
 	<button class="btn-primary bg-purple-100" onclick={stopAll}> stop all </button>
