@@ -4,6 +4,7 @@
 	let { children } = $props();
 </script>
 
+Layout here.. (temp remove this..)
 {@render children()}
 
 <NewVersionAvailableToast />
