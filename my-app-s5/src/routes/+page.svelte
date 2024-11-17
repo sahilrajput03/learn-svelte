@@ -666,17 +666,6 @@ Why?
 			}}>{enableSlideshow ? 'Pause' : 'Start'} slideshow</button
 		>
 	</div>
-	<div class="mt-1 flex justify-end">
-		<div class="ml-2 text-xs">Docs Examples:</div>
-		<a class="ml-2 text-xs text-blue-600" href="/">Home</a>
-		<a class="ml-2 text-xs text-blue-600" href="/chat">/chat</a>
-		<a class="ml-2 text-xs text-blue-600" href="/effect-root">/effect-root</a>
-	</div>
-	<div class="mt-1 flex justify-end">
-		<div class="ml-2 text-xs">Personal Examples:</div>
-		<a class="ml-2 text-xs text-blue-600" href="glass-slideshow">/glass-slideshow</a>
-		<a class="ml-2 text-xs text-blue-600" href="/thoughts">/thoughts</a>
-	</div>
 
 	<hr class="divider" />
 

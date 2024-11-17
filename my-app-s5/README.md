@@ -7,6 +7,12 @@ Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** _(u
 - ❤️ README.sveltekit.md: [Click here](./README.sveltekit.md)
 - README.initial.md: [Click here](./README.initial.md)
 - README.more.md: [Click here](./README.more.md)
+- Canvas Tutorials:
+  - Group28
+  - Group52
+  - Group54
+  - Group61 ([Schotter Tutorial](https://collections.vam.ac.uk/item/O221321/schotter-print-nees-georg/))
+  - Group63 ([Ocean Depth Turorial](https://svelte.dev/tutorial/svelte/svelte-window-bindings))
 
 ## $effect
 
