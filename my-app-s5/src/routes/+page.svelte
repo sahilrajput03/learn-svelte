@@ -667,15 +667,10 @@ Why?
 		>
 	</div>
 	<div class="mt-1 flex justify-end">
-		<a class="text-xs text-blue-600" href="/glass">/glass (slideshow)</a>
-	</div>
-
-	<div class="mt-1 flex justify-end">
-		<a class="text-xs text-blue-600" href="/thoughts">/thoughts</a>
-	</div>
-
-	<div class="mt-1 flex justify-end">
-		<a class="text-xs text-blue-600" href="/chat">/chat</a>
+		<div class="ml-2 text-xs">Routes:</div>
+		<a class="ml-2 text-xs text-blue-600" href="/glass">/glass (slideshow)</a>
+		<a class="ml-2 text-xs text-blue-600" href="/thoughts">/thoughts</a>
+		<a class="ml-2 text-xs text-blue-600" href="/chat">/chat</a>
 	</div>
 
 	<hr class="divider" />
