@@ -1,7 +1,15 @@
 <script>
+	// Sahil; $bindable is used to make prop bound so that data can from child to parent component.
+	// I use $bindable in `src/routes/Keypad.svelte` file as well. Docs - https://svelte.dev/docs/svelte/$bindable
 	let { data = $bindable() } = $props();
 	console.log('data?', data);
+	const reset = () => {
+		data.todos = [];
+		console.log('🚀 ~ reset ~ data.todos:', data.todos);
+	};
 </script>
+
+<button onclick={reset}>reset</button>
 
 <div class="centered">
 	<h1 class="mb-3 text-5xl">todos</h1>
@@ -63,7 +71,7 @@
 					/>
 					<span>{todo.description}</span>
 					<button
-						class="btn-primary"
+						class="btn-primary btn-delete"
 						style="width: 24px;"
 						aria-label="Mark as complete"
 						onclick={async (e) => {
@@ -99,7 +107,7 @@
 		flex: 1;
 	}
 
-	button {
+	.btn-delete {
 		border: none;
 		background: url(./remove.svg) no-repeat 50% 50%;
 		background-size: 1rem 1rem;
