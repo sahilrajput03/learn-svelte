@@ -7,7 +7,7 @@
 {#if $updated}
 	<div class="toast">
 		<p>
-			A new version of the app is available
+			A new version of the app is available1
 
 			<button onclick={() => location.reload()}> Click here to reload the page </button>
 		</p>
