@@ -24,6 +24,7 @@ onMount(async () => {}); // 👍 Async function is good here. BUT, (from docs on
 // passed to onMount synchronously returns a value. async functions always
 // return a Promise, and as such cannot synchronously return a function.
 // src - https://svelte.dev/docs/svelte/lifecycle-hooks#onMount
+// Sahil: I can always use `onDestroy` if I want to make use of cleanup function. (probably?)
 
 $effect(async () => {}); // 👎 Async function works but we get typescript error
 // that an async can not be accepted. (Svelte issue: https://github.com/sveltejs/svelte/issues/9946)
