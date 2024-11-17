@@ -12,7 +12,9 @@ Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** _(u
 
 1. Docs: Your effects run after the component has been mounted to the DOM, and in a microtask after state changes. [Docs](https://svelte.dev/docs/svelte/$effect)
 2. Sahil: Functions if defined inside or outside $effect behaves same, for example check - file://./src/routes/thoughts/+page.svelte
-3. Docs: Read about `untrack`at https://svelte.dev/docs/svelte/svelte#untrack (untrack is also mentioendi in the end of [$effect docs](https://svelte.dev/docs/svelte/$effect#$effect.tracking)).
+3. DOCS - If you absolutely have to update $state within an effect and run into an infinite loop because you read and write to the same $state, use untrack. source - [in the end of this docs page](https://svelte.dev/docs/svelte/$effect#$effect.tracking)
+
+- Docs: Read about `untrack`at https://svelte.dev/docs/svelte/svelte#untrack.
 
 ## `onMount` and `$effect`
 
