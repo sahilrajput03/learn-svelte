@@ -22,6 +22,7 @@
 	// `isShowSahilThoughts` is needed because we need to update `isShowSahilThoughts` whenever checkbox is clicked.
 	// `thoughts` is needed because we want it to run when thoughts are updated on page load time as defined in `onMount`
 	//  (TESTED)
+	// DO NOT REMOVE fn-$effect logs.
 	$effect(() => {
 		console.log('fn-$effect'); // runs twice because `$effect` depends on `isShowSahilThoughts` and `thoughts` and its needed too.
 
