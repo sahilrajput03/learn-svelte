@@ -19,10 +19,16 @@ Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** _(u
 `onMount` should have as minimum logic as needed as possible and anything that can be put inside $effect should be put inside $effect instead. (refer - `./src/routes/thoughts/+page.svelte`)
 
 ```ts
-onMount(async () => {}); // 👍 Async function is good here.
+onMount(async () => {}); // 👍 Async function is good here. BUT, (from docs on
+// using `cleanup function`) This behaviour will only work when the function
+// passed to onMount synchronously returns a value. async functions always
+// return a Promise, and as such cannot synchronously return a function.
+// src - https://svelte.dev/docs/svelte/lifecycle-hooks#onMount
 
-$effect(async () => {}); // 👎 Async function works but we get typescript error that an async can not be accepted. (Svelte issue: https://github.com/sveltejs/svelte/issues/9946)
-// Solution: Declare an async function inside the $effect callback and call that function.
+$effect(async () => {}); // 👎 Async function works but we get typescript error
+// that an async can not be accepted. (Svelte issue: https://github.com/sveltejs/svelte/issues/9946)
+// Solution: Declare an async function inside the $effect callback and call
+// that function.
 ```
 
 ## Typescript for Svelte
