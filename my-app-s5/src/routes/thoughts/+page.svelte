@@ -8,6 +8,8 @@
 	let thoughtsToShow = $state<string[]>([]);
 	let isShowSahilThoughts = $state(isShowSahilThoughtsInitially);
 
+	// onMount should have as minimum logic as needed as possible and anything that
+	// can be put inside $effect should be put inside $effect instead.
 	onMount(async () => {
 		console.log('fn-load');
 

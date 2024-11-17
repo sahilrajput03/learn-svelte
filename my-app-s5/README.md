@@ -16,6 +16,8 @@ Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** _(u
 
 ## `onMount` and `$effect`
 
+`onMount` should have as minimum logic as needed as possible and anything that can be put inside $effect should be put inside $effect instead. (refer - `./src/routes/thoughts/+page.svelte`)
+
 ```ts
 onMount(async () => {}); // 👍 Async function is good here.
 
