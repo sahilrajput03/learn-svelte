@@ -47,3 +47,9 @@ Say you apply some style via `:global(body){ .. }` in `/routes/+page.svelte` fil
 30,31,32,33,34
 
 Easing functions in svelte playground: [https://svelte.dev/playground/easing](https://svelte.dev/playground/easing?version=5.2.2)
+
+## New Version Available Feature of SvelteKit
+
+Tutorial: [svelte.dev/tutorial/kit/updated-store](https://svelte.dev/tutorial/kit/updated-store)
+
+File - `src/routes/NewVersionAvailableToast.svelte`
