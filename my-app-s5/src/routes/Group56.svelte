@@ -2,7 +2,7 @@
 <!-- https://svelte.dev/tutorial/svelte/deferred-transitions -->
 
 <script lang="ts">
-	import TodoList from './TodoList.svelte';
+	import TodoList from './TodoList2.svelte';
 
 	const todos = $state([
 		{ done: false, description: 'write some docs' },
