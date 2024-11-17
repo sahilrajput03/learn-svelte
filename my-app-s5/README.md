@@ -8,9 +8,13 @@ Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** _(u
 - README.initial.md: [Click here](./README.initial.md)
 - README.more.md: [Click here](./README.more.md)
 
-## `onMount` and `$effect`
+## $effect
 
-Svelte Docs: Your effects run after the component has been mounted to the DOM, and in a microtask after state changes. [Docs](https://svelte.dev/docs/svelte/$effect)
+1. Docs: Your effects run after the component has been mounted to the DOM, and in a microtask after state changes. [Docs](https://svelte.dev/docs/svelte/$effect)
+2. Sahil: Functions if defined inside or outside $effect behaves same, for example check - file://./src/routes/thoughts/+page.svelte
+3. Docs: Read about `untrack`at https://svelte.dev/docs/svelte/svelte#untrack (untrack is also mentioendi in the end of [$effect docs](https://svelte.dev/docs/svelte/$effect#$effect.tracking)).
+
+## `onMount` and `$effect`
 
 ```ts
 onMount(async () => {}); // 👍 Async function is good here.

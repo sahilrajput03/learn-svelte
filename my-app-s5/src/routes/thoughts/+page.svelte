@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, untrack } from 'svelte';
 	import { fade } from 'svelte/transition';
 
 	let isShowSahilThoughtsInitially = true;
@@ -18,10 +18,13 @@
 		thoughts = text.split('\n');
 	});
 
+	// This effect is run anytime `isShowSahilThoughts` or `thoughts` is updated and both cases are needed.
+	// `isShowSahilThoughts` is needed because we need to update `isShowSahilThoughts` whenever checkbox is clicked.
+	// `thoughts` is needed because we want it to run when thoughts are updated on page load time as defined in `onMount`
+	//  (TESTED)
 	$effect(() => {
-		console.log('fn-$effect');
+		console.log('fn-$effect'); // runs twice because `$effect` depends on `isShowSahilThoughts` and `thoughts` and its needed too.
 
-		// From docs: Your effects run after the component has been mounted to the DOM. Docs - https://svelte.dev/docs/svelte/$effect
 		if (isShowSahilThoughts) {
 			thoughtsToShow = thoughts
 				.filter((thought) => thought.includes('~ Sahil'))
