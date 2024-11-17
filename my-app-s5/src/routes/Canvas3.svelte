@@ -6,7 +6,7 @@
 	type PropsType = { width: number; height: number; children: Function };
 	let { width = 100, height = 100, children }: PropsType = $props();
 
-	let canvas: any;
+	let canvas: HTMLCanvasElement;
 	let items = new SvelteSet();
 
 	setContext('canvas', { addItem });
@@ -21,7 +21,7 @@
 	$effect(() => {
 		const ctx = canvas.getContext('2d');
 
-		ctx.clearRect(0, 0, width, height);
+		ctx?.clearRect(0, 0, width, height);
 		items.forEach((fn: any) => fn(ctx));
 	});
 </script>

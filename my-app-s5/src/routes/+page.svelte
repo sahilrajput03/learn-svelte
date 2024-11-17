@@ -674,6 +674,10 @@ Why?
 		<a class="text-xs text-blue-600" href="/thoughts">/thoughts</a>
 	</div>
 
+	<div class="mt-1 flex justify-end">
+		<a class="text-xs text-blue-600" href="/chat">/chat</a>
+	</div>
+
 	<hr class="divider" />
 
 	<componentToShow.component />

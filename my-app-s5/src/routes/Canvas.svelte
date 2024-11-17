@@ -4,7 +4,7 @@
 	type PropsType = { color: string; size: number };
 	let { color, size }: PropsType = $props();
 
-	let canvas = $state<any>();
+	let canvas = $state<any>() as HTMLCanvasElement;
 	let context = $state<any>();
 	let coords = $state<any>();
 

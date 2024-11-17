@@ -14,6 +14,7 @@
 
 	let offsetFromTop = '120px'; // this it to distance component's ui from overlapping the global `component-selector` select menu in `+page.svelte` file
 
+	// Sahil: I have types it like above to get component instance handler like `canvas.clear()`.
 	let canvas: ReturnType<typeof Canvas>;
 </script>
 
