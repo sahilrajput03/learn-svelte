@@ -1,6 +1,10 @@
+<script>
+	import { updated } from '$app/stores';
+</script>
+
 <!-- SveltKit Tutorial -->
 <!-- https://svelte.dev/tutorial/kit/updated-store -->
-{#if true}
+{#if $updated}
 	<div class="toast">
 		<p>
 			A new version of the app is available
