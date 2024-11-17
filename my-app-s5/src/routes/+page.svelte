@@ -85,12 +85,12 @@
 	let isLoading = $state(true);
 	// UUID Generator: https://www.uuidgenerator.net/
 	let componentItems = $state<Array<ComponentsItemType>>([
-		// {
-		// 	id: 'eba91667-1fba-485c-aa2e-2e9e1551b4ad',
-		// 	name: 'Group1 - Using Component, Renderig strings and string as html via {@html ...} tag',
-		// 	component: Group1,
-		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/your-first-component'
-		// },
+		{
+			id: 'eba91667-1fba-485c-aa2e-2e9e1551b4ad',
+			name: 'Group1 - Using Component, Renderig strings and string as html via {@html ...} tag',
+			component: Group1,
+			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/your-first-component'
+		}
 		// {
 		// 	id: '441ec256-772d-4358-b77e-6ed751e884c0',
 		// 	name: 'Group2 - $state() and $derived()',
@@ -367,60 +367,60 @@
 		// 	component: Group47,
 		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/springs'
 		// },
-		{
-			id: 'f596a478-a3d9-488f-8581-1c861f23885a',
-			name: 'Group48 - Contenteditable bindings (Advanced bindings-1)',
-			component: Group48,
-			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/contenteditable-bindings'
-		},
-		{
-			id: '1a7fa115-e209-42ad-bafd-8290a0ed4712',
-			name: 'Group49 - ❤️ Each block bindings (Advanced bindings-2)',
-			component: Group49,
-			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/each-block-bindings'
-		},
-		{
-			id: '26e9cb93-82c3-457d-8fb8-830812ba0085',
-			name: 'Group50 - Media elements (Advanced bindings-3)',
-			component: Group50,
-			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/media-elements'
-		},
-		{
-			id: '521f598a-586d-49a8-beae-21bc7b474d10',
-			name: 'Group51 - Dimensions (Advanced bindings-4)',
-			component: Group51,
-			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/dimensions'
-		},
-		{
-			id: '32b2687c-0181-43a0-bcf0-2a6928ab07ba',
-			name: 'Group52 - This (Advanced bindings-5)',
-			component: Group52,
-			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/bind-this'
-		},
-		{
-			id: '15ac1920-5e41-4edd-8a91-ef46b93b095c',
-			name: 'Group53 - Component bindings (Advanced bindings-6)',
-			component: Group53,
-			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-bindings'
-		},
-		{
-			id: '535cd449-1477-4b0f-b97d-01486d979ca4',
-			name: 'Group54 - Binding to component instances (Advanced bindings-7)',
-			component: Group54,
-			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-this'
-		},
-		{
-			id: 'c682dd16-4104-4592-897f-f7a3bd1f966f',
-			name: 'Group55 - Deferred transitions (Advanced TRANSITIONS)',
-			component: Group55,
-			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/deferred-transitions'
-		},
-		{
-			id: '826b8bc2-fbfe-4d15-82b0-c321f242aa08',
-			name: 'Group56 - Animations (Advanced TRANSITIONS)',
-			component: Group56,
-			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/animations'
-		}
+		// {
+		// 	id: 'f596a478-a3d9-488f-8581-1c861f23885a',
+		// 	name: 'Group48 - Contenteditable bindings (Advanced bindings-1)',
+		// 	component: Group48,
+		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/contenteditable-bindings'
+		// },
+		// {
+		// 	id: '1a7fa115-e209-42ad-bafd-8290a0ed4712',
+		// 	name: 'Group49 - ❤️ Each block bindings (Advanced bindings-2)',
+		// 	component: Group49,
+		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/each-block-bindings'
+		// },
+		// {
+		// 	id: '26e9cb93-82c3-457d-8fb8-830812ba0085',
+		// 	name: 'Group50 - Media elements (Advanced bindings-3)',
+		// 	component: Group50,
+		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/media-elements'
+		// },
+		// {
+		// 	id: '521f598a-586d-49a8-beae-21bc7b474d10',
+		// 	name: 'Group51 - Dimensions (Advanced bindings-4)',
+		// 	component: Group51,
+		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/dimensions'
+		// },
+		// {
+		// 	id: '32b2687c-0181-43a0-bcf0-2a6928ab07ba',
+		// 	name: 'Group52 - This (Advanced bindings-5)',
+		// 	component: Group52,
+		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/bind-this'
+		// },
+		// {
+		// 	id: '15ac1920-5e41-4edd-8a91-ef46b93b095c',
+		// 	name: 'Group53 - Component bindings (Advanced bindings-6)',
+		// 	component: Group53,
+		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-bindings'
+		// },
+		// {
+		// 	id: '535cd449-1477-4b0f-b97d-01486d979ca4',
+		// 	name: 'Group54 - Binding to component instances (Advanced bindings-7)',
+		// 	component: Group54,
+		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-this'
+		// },
+		// {
+		// 	id: 'c682dd16-4104-4592-897f-f7a3bd1f966f',
+		// 	name: 'Group55 - Deferred transitions (Advanced TRANSITIONS)',
+		// 	component: Group55,
+		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/deferred-transitions'
+		// },
+		// {
+		// 	id: '826b8bc2-fbfe-4d15-82b0-c321f242aa08',
+		// 	name: 'Group56 - Animations (Advanced TRANSITIONS)',
+		// 	component: Group56,
+		// 	svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/animations'
+		// }
 		// {
 		// 	id: '0d9b50a7-30b1-41eb-9fc4-c7ded7cf2a5c',
 		// 	name: 'Group61 - setContext and getContext (Context API )',
