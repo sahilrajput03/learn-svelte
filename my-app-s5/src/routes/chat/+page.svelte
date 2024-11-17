@@ -13,7 +13,7 @@
 	let viewport: HTMLDivElement;
 
 	$effect.pre(() => {
-		messages;
+		messages; // used as dependency
 
 		// Sahil: We use value `50` (px) such that we only scroll to bottom if the has
 		// scrolled 2 or less messages (rought equals to 50px <2x24=48px>).
