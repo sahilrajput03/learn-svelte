@@ -73,6 +73,7 @@
 	import Group54 from './Group54.svelte';
 	import Group55 from './Group55.svelte';
 	import Group56 from './Group56.svelte';
+	import { dev } from '$app/environment';
 
 	type ComponentsItemType = {
 		id: string;
@@ -81,6 +82,7 @@
 		svelteTutorialLink?: string;
 	};
 
+	let isLoading = $state(true);
 	// UUID Generator: https://www.uuidgenerator.net/
 	let componentItems = $state<Array<ComponentsItemType>>([
 		// {
@@ -517,13 +519,12 @@
 	// https://svelte.dev/playground/onmount?version=5.1.9
 	onMount(() => {
 		console.log('onmount now....');
-		const componentIdFromLocalStorage = localStorage.getItem('component-name');
-		if (componentIdFromLocalStorage) {
-			idOfComponentToShow = componentIdFromLocalStorage;
-		}
+		isLoading = false;
+		// Fetch last component-id from local storage
+		idOfComponentToShow = localStorage.getItem('component-id') ?? componentItems[0].id;
 	});
 
-	const saveToLocalStorage = (name: string) => localStorage.setItem('component-name', name);
+	const saveToLocalStorage = (name: string) => localStorage.setItem('component-id', name);
 
 	$effect(() => {
 		console.log('effect now....');
@@ -577,7 +578,7 @@
 //* Because I can't use `name` and `index` of array (componentItems) thus using `id` (uuid) to sync with localStorage is the only solution.
 
 Why?
-- `name`: When I use component.name to sync between $state and localStorage I am facing a bug i.e., when I change the name of the component the component sync the old component-name value from the local storage thus the component selector resets the current component to first component which is now what I want.
+- `name`: When I use component.name to sync between $state and localStorage I am facing a bug i.e., when I change the name of the component the component sync the old component-id value from the local storage thus the component selector resets the current component to first component which is now what I want.
 - `index` of the array of componentItems. I should never use index to
 	sync between localStorage and state because then I would need to sync the index value
 	to localStorage for the purpose of preserving the component on page refresh. Storing the 
@@ -590,7 +591,7 @@ Why?
 <!-- Debug only -->
 <!-- {idOfComponentToShow} -->
 
-{#if componentToShow}
+{#if !isLoading}
 	<div>
 		<select class="max-w-full border border-solid border-[black]" bind:value={idOfComponentToShow}>
 			{#each componentItems as componentItem}
@@ -679,6 +680,13 @@ Why?
 
 	<!-- Earlier I was using below code in each component file which was polluting each file. Thus I now have common component for this. -->
 	<!-- <OpenFileInVscode relativeFilePath={(import.meta.hot as any)?.ownerPath} /> -->
+{:else}
+	<!--	Note: We wait for the component to mount so that JavaScript can execute
+ 			and fetch the ID of the most recently mounted component, ensuring that
+			the application continues to display that component. -->
+	<div>
+		Loading... {dev ? 'why?' : null}
+	</div>
 {/if}
 
 <!-- `<Group28/>` is paint brush with canvas. -->
