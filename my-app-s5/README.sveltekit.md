@@ -17,8 +17,8 @@
 - Tutorial-8 (Shared modulesThe $lib alias): `/group103/`
 - Tutorial-9,10,11,12,13 (NOT IMPLEMENTED) (forms): `/group104/`
   - I can make nested route in future if actually want to add forms tutorials.
-- Tutorial-14 (api routes GET): `/group105/`
-- Tutorial-15,16 (api routes: POST, PUT, DELETE) = `/group106/`
+- Tutorial-14 (API Routes GET): `/group105/`
+- Tutorial-15,16 (API Routes: POST, PUT, DELETE) = `/group106/`
   - The updation of the todos should work without page refresh and the issue is reported here - https://github.com/sveltejs/svelte.dev/issues/786
 
 ## Multiple route parameters
