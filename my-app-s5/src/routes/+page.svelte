@@ -535,9 +535,8 @@
 		console.log('onmount now....');
 		isLoading = false;
 		// Fetch component-id from url search params
-		const id = $page.url.searchParams.get('id');
-		if (id) {
-			idOfComponentToShow = id;
+		if ($page.url.searchParams.has('id')) {
+			idOfComponentToShow = $page.url.searchParams.get('id')!;
 		} else {
 			idOfComponentToShow = componentItems[0].id;
 			tick().then(() => {
