@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount, type Component } from 'svelte';
+	import { onMount, tick, type Component } from 'svelte';
 	import { v4 as uuidv4 } from 'uuid';
 
 	import OpenFileInVscode from './OpenFileInVscode.svelte';
@@ -75,6 +75,8 @@
 	import Group56 from './Group56.svelte';
 	import { dev } from '$app/environment';
 	import Personal4 from './Personal4.svelte';
+	import { page } from '$app/stores';
+	import { pushState, replaceState } from '$app/navigation';
 
 	type ComponentsItemType = {
 		id: string;
@@ -521,36 +523,62 @@
 		return componentItems.findIndex((ci) => ci.id === componentToShow.id);
 	});
 
+	// This function is also called in onselect on <select/> that's why its encapsulated
+	const updateQuerySearchParams = (id: string) => {
+		pushState(`?id=${id}`, $page.state);
+	};
+
 	// ❤️ Lifecycle Hooks in svelte `onMount`:
 	// https://svelte.dev/docs/svelte/lifecycle-hooks
 	// https://svelte.dev/playground/onmount?version=5.1.9
 	onMount(() => {
 		console.log('onmount now....');
 		isLoading = false;
-		// Fetch last component-id from local storage
-		idOfComponentToShow = localStorage.getItem('component-id') ?? componentItems[0].id;
-	});
+		// Fetch component-id from url search params
+		const id = $page.url.searchParams.get('id');
+		if (id) {
+			idOfComponentToShow = id;
+		} else {
+			idOfComponentToShow = componentItems[0].id;
+			tick().then(() => {
+				replaceState(`?id=${idOfComponentToShow}`, $page.state);
+			});
+		}
 
-	const saveToLocalStorage = (name: string) => localStorage.setItem('component-id', name);
+		const popStateEvent = () => {
+			// alert('here');
+			const params = new URLSearchParams(window.location.search);
+			const { id } = Object.fromEntries(params.entries());
+			idOfComponentToShow = id;
+		};
+
+		// Whenever browser's back or forward button is clicked below event is triggered
+		window.addEventListener('popstate', popStateEvent);
+
+		return () => {
+			window.removeEventListener('popstate', popStateEvent);
+		};
+	});
 
 	$effect(() => {
 		console.log('effect now....');
-		if (idOfComponentToShow) {
-			saveToLocalStorage(idOfComponentToShow);
-		}
 	});
 
 	const prev = () => {
 		idOfComponentToShow = componentItems[indexOfComponentToShow - 1].id;
+		updateQuerySearchParams(idOfComponentToShow);
 	};
 	const next = () => {
 		idOfComponentToShow = componentItems[indexOfComponentToShow + 1].id;
+		updateQuerySearchParams(idOfComponentToShow);
 	};
 	const goToFirst = () => {
 		idOfComponentToShow = componentItems[0].id;
+		updateQuerySearchParams(idOfComponentToShow);
 	};
 	const goToLast = () => {
 		idOfComponentToShow = componentItems[componentItems.length - 1].id;
+		updateQuerySearchParams(idOfComponentToShow);
 	};
 
 	let interval = $state(1000);
@@ -600,7 +628,13 @@ Why?
 
 {#if !isLoading}
 	<div>
-		<select class="max-w-full border border-solid border-[black]" bind:value={idOfComponentToShow}>
+		<select
+			class="max-w-full border border-solid border-[black]"
+			bind:value={idOfComponentToShow}
+			onchange={(e: any) => {
+				updateQuerySearchParams(e.target?.value);
+			}}
+		>
 			{#each componentItems as componentItem}
 				<option value={componentItem.id}>
 					{componentItem.name}
