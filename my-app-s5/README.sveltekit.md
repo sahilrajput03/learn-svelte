@@ -21,6 +21,29 @@
 - Tutorial-15,16 (API Routes: POST, PUT, DELETE) = `/group106/`
   - The updation of the todos should work without page refresh and the issue is reported here - https://github.com/sveltejs/svelte.dev/issues/786
 
+## Sync search params
+
+```jsx
+onMount(() => {
+	const popStateEvent = () => {
+		const params = new URLSearchParams(window.location.search);
+		const { id } = Object.fromEntries(params.entries()); // `/?id=123`
+		// ... do what you want to do with id on browser back and forward button clicks here
+	};
+
+	// Whenever browser's back or forward button is clicked below event is triggered
+	window.addEventListener('popstate', popStateEvent);
+
+	// cleanup
+	return () => {
+		window.removeEventListener('popstate', popStateEvent);
+	};
+});
+
+// push state to history using pushState e.g., on button clicks
+pushState(`?id=${id}`, $page.state);
+```
+
 ## pushState, replaceState
 
 _I posted this on stackoverflow as answer: [Click here](https://stackoverflow.com/a/79204864/10012446)_
