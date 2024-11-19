@@ -14,6 +14,24 @@ Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** _(u
   - Group61 ([Schotter Tutorial](https://collections.vam.ac.uk/item/O221321/schotter-print-nees-georg/))
   - Group63 ([Ocean Depth Turorial](https://svelte.dev/tutorial/svelte/svelte-window-bindings))
 
+## Syncing localstorage in a component
+
+```js
+let value = $state()
+
+onMount(() => {
+  value = localStorage.getItem('value') ?? 'default-value-here';
+})
+
+const saveToLocalStorage = (val: string) => localStorage.setItem('value', val);
+$effect(() => {
+		console.log('effect now....');
+		if (value) {
+			saveToLocalStorage(value); // wheneer `value` changes we update to localStorage
+		}
+	});
+```
+
 ## $effect
 
 1. Docs: Your effects run after the component has been mounted to the DOM, and in a microtask after state changes. [Docs](https://svelte.dev/docs/svelte/$effect)
