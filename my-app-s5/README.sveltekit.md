@@ -21,6 +21,20 @@
 - Tutorial-15,16 (API Routes: POST, PUT, DELETE) = `/group106/`
   - The updation of the todos should work without page refresh and the issue is reported here - https://github.com/sveltejs/svelte.dev/issues/786
 
+## pushState, replaceState
+
+_I posted this on stackoverflow as answer: [Click here](https://stackoverflow.com/a/79204864/10012446)_
+
+- Docs: [pushState](https://svelte.dev/docs/kit/$app-navigation#pushState)
+- Docs: [replaceState](https://svelte.dev/docs/kit/$app-navigation#replaceState)
+
+```ts
+pushState(`?id=123`, $page.state); // Docs: create a new history entry
+replaceState(`?id=456`, $page.state); // Docs: replace the current history entry
+```
+
+_tldr; Do not use `history.pushState`_ but use pushState (svelte's builtin function).
+
 ## Multiple route parameters
 
 Source - [Tutorial: Basic SvelteKit - Routing - Route parameters](https://svelte.dev/tutorial/kit/params)
