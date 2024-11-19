@@ -74,6 +74,7 @@
 	import Group55 from './Group55.svelte';
 	import Group56 from './Group56.svelte';
 	import { dev } from '$app/environment';
+	import Personal4 from './Personal4.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -497,6 +498,12 @@
 			id: '934b6546-d1d6-4c04-b217-607bd598f3ad',
 			name: 'Personal3 - Text box with character position tracking',
 			component: Personal3,
+			svelteTutorialLink: ''
+		},
+		{
+			id: 'd7f24462-85af-402d-aa0b-81352a341a57',
+			name: 'Personal4 - Query Params',
+			component: Personal4,
 			svelteTutorialLink: ''
 		}
 	]);
