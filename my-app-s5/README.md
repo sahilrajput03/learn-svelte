@@ -2,7 +2,7 @@
 
 Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** _(using Vercel with `SvelteKit (v1)` preset)_
 
-## ❤️ README.sveltekit.md: [Click here](./README.sveltekit.md)
+## ❤️ README.sveltekit.md: [Click here](./README.sveltekit.md) ✌🏻✌🏻🙌🏻🙌🏻👏🏻
 
 **Quick Links:**
 
