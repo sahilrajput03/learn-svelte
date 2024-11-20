@@ -1,3 +1,4 @@
+<!-- This file is consumed in file://./Group44.svelte -->
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { colors, ColorType } from './data2';

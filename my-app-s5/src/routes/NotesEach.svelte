@@ -5,7 +5,7 @@
 	let keyWithIndexSyntax = '{#each things as thing, index (thing.id)}';
 </script>
 
-<hr class="my-10" />
+<hr class="my-3" />
 
 <h1 class="pb-3 text-4xl">Notes: Syntax of <code>each blocks</code></h1>
 

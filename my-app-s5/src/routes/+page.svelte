@@ -634,9 +634,9 @@ Why?
 				updateQuerySearchParams(e.target?.value);
 			}}
 		>
-			{#each componentItems as componentItem}
-				<option value={componentItem.id}>
-					{componentItem.name}
+			{#each componentItems as { id, name }}
+				<option value={id}>
+					{name}
 				</option>
 			{/each}
 		</select>

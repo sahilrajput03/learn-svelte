@@ -2,11 +2,11 @@
 <!-- https://svelte.dev/tutorial/svelte/implicit-snippet-props -->
 
 <script lang="ts">
-	import FilteredList from './FilteredList2.svelte';
+	import FilteredList2 from './FilteredList2.svelte';
 	import { colors } from './data2';
 </script>
 
-<FilteredList data={colors} field="name">
+<FilteredList2 data={colors} field="name">
 	<!-- Any content inside a component that is not part of a
 	declared snippet becomes a special children snippet. Since
 	header has no parameters, we can turn it into children by
@@ -29,7 +29,7 @@
 			<span class="hsl">{d.hsl}</span>
 		</div>
 	{/snippet}
-</FilteredList>
+</FilteredList2>
 
 <style>
 	header,

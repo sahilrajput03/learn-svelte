@@ -30,4 +30,9 @@
 	<Thing name={thing.name} />
 {/each}
 
+<div class="mt-5 underline">Duplicate (to show destructuring in #each)</div>
+{#each things as { id, name } (id)}
+	<Thing {name} />
+{/each}
+
 <NotesEach />
