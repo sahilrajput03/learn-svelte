@@ -1,8 +1,18 @@
 <script lang="ts">
+	import { goto, pushState } from '$app/navigation';
 	import { page } from '$app/stores';
 	import '../app.css';
 	import NewVersionAvailableToast from './NewVersionAvailableToast.svelte';
 	let { children } = $props();
+
+	const handleTutorialsClick = () => {
+		if ($page.url.pathname !== '/') {
+			goto('/');
+		} else {
+			// do nothing when already on Tutorials page
+			// alert('You are already on tutorials page.');
+		}
+	};
 </script>
 
 <div class="mt-1 flex justify-end">
@@ -14,9 +24,7 @@
 		   rather than the currently selected component_id as query
 		   params.)
 	-->
-	<a class="ml-2 text-xs text-blue-600" href={$page.url.pathname === '/' ? $page.url.href : '/'}
-		>Tutorials</a
-	>
+	<button class=" ml-2 text-xs text-blue-600" onclick={handleTutorialsClick}>TutorialsFirst</button>
 	<a class="ml-2 text-xs text-blue-600" href="/chat">/chat</a>
 	<a class="ml-2 text-xs text-blue-600" href="/effect-root">/effect-root</a>
 </div>
