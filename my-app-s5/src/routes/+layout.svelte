@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { goto, pushState } from '$app/navigation';
+	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import '../app.css';
 	import NewVersionAvailableToast from './NewVersionAvailableToast.svelte';

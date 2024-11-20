@@ -44,14 +44,23 @@ onMount(() => {
 pushState(`?id=${id}`, $page.state);
 ```
 
-## pushState, replaceState
+## pushState, replaceState, goto
 
 _I posted this on stackoverflow as answer: [Click here](https://stackoverflow.com/a/79204864/10012446)_
 
+- Docs: [goto](https://svelte.dev/docs/kit/$app-navigation#goto)
 - Docs: [pushState](https://svelte.dev/docs/kit/$app-navigation#pushState)
 - Docs: [replaceState](https://svelte.dev/docs/kit/$app-navigation#replaceState)
+- Docs: ❤️👏🏻 [Shallow Routing](https://svelte.dev/docs/kit/shallow-routing)
+
+`pushState` and `replaceState` are used for shallow routing. Why? Because sometimes we need to create history entries without navigating.(for more check docs of [Shalllow Routing](https://svelte.dev/docs/kit/shallow-routing))
 
 ```ts
+import { goto, pushState, replaceState } from '$app/navigation';
+
+goto('/id=789', { replaceState: true }); // replace browser history
+goto('/id=789'); // default value of `replaceState` is false i.e, it doesn't replace current page history entry
+
 pushState(`?id=123`, $page.state); // Docs: create a new history entry
 replaceState(`?id=456`, $page.state); // Docs: replace the current history entry
 ```
