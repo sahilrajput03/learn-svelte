@@ -38,6 +38,15 @@
 		width: 100%;
 		height: 100%;
 		display: flex;
+		/* Sahil: */
+		padding: 0.5em;
+		/* Sahil: Giving default background color to each label */
+		background-color: #eee;
+	}
+
+	.done > label {
+		/* Sahil: We override the label having "done" class with a greener background color */
+		background-color: rgb(180, 240, 100);
 	}
 
 	span {

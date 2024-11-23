@@ -18,8 +18,8 @@
 				// hsl color => 0-360 (color degree), 0-100% (greyness), 0-100% (light)
 				// color degree value will go from 0 to 360
 				// Math.trunc(..) removes the decimal parts
-				// Math.min(...) value will go from (100, 100, ... 99, 98, .., 0) because `1000 * (1-t)` goes from 1000 to 0.
-				// Math.max(...) value will go from (50, 50, .., 49, 48, .., 0) because `500 * (1-t)` goes from 500 to 0.
+				// Math.min(...) value will go from (100, 100, 100, ... 99, 98, .., 0) because `1000 * (1-t)` goes from 1000 to 0.
+				// Math.max(...) value will go from (50, 50, 50, .., 49, 48, .., 0) because `500 * (1-t)` goes from 500 to 0.
 				// MORAL: Color goes from `hsl(0deg, 100%, 50%) =====> hsl(360deg, 0%, 0%)`
 				return `
 					transform: scale(${eased}) rotate(${eased * 1080}deg);

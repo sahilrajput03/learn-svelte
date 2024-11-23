@@ -1,8 +1,8 @@
 <!-- 63/75 -->
-<!-- https://svelte.dev/tutorial/svelte/deferred-transitions -->
+<!-- https://svelte.dev/tutorial/svelte/animations -->
 
 <script lang="ts">
-	import TodoList from './TodoList2.svelte';
+	import TodoList2 from './TodoList2.svelte';
 
 	const todos = $state([
 		{ done: false, description: 'write some docs' },
@@ -37,12 +37,12 @@
 
 	<div class="todo">
 		<h2>todo</h2>
-		<TodoList todos={todos.filter((t) => !t.done)} {remove} />
+		<TodoList2 todos={todos.filter((t) => !t.done)} {remove} />
 	</div>
 
 	<div class="done">
 		<h2>done</h2>
-		<TodoList todos={todos.filter((t) => t.done)} {remove} />
+		<TodoList2 todos={todos.filter((t) => t.done)} {remove} />
 	</div>
 </div>
 

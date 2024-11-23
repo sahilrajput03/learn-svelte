@@ -10,7 +10,7 @@
 <h1 class="pb-3 text-4xl">Notes: Syntax of <code>each blocks</code></h1>
 
 <a class="text-blue-500 underline" target="_blank" href="https://svelte.dev/docs/svelte/each"
-	>Svelte Docs - each</a
+	>❤️ Svelte Docs - each</a
 >
 <div>
 	<p><span class="text-purple-600">key syntax: </span> {keySyntax}</p>
