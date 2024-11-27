@@ -27,7 +27,8 @@
 	let rec: MediaRecorder;
 	let audioChunks: Blob[] = []; // this need not to be state
 
-	const myTranscribeFn = async (blob: Blob) => {
+	// convert audio to text
+	const transcribe = async (blob: Blob) => {
 		const file = new File([blob], 'myFile.mp3', { type: 'audio/mp3' });
 
 		const transcription = await openai.audio.transcriptions.create({
@@ -62,7 +63,7 @@
 				recordedAudioButton.src = URL.createObjectURL(blob);
 				recordedAudioButton.controls = true;
 				recordedAudioButton.autoplay = true;
-				myTranscribeFn(blob);
+				transcribe(blob);
 			}
 		};
 	}
