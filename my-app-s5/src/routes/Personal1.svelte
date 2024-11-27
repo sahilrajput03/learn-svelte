@@ -1,5 +1,6 @@
 <script lang="ts">
 	import OpenAI from 'openai';
+	import { fade } from 'svelte/transition';
 
 	const VITE_OPEN_AI_API_KEY = import.meta.env?.VITE_OPEN_AI_API_KEY;
 	// console.log('OPEN_AI_API_KEY?', VITE_OPEN_AI_API_KEY);
@@ -17,10 +18,11 @@
 		});
 	}
 
-	let recordButton: HTMLButtonElement;
-	let stopRecordButton: HTMLButtonElement;
+	let transcribedText = $state('');
+	let isRecording = $state(false);
+	let isTranscribing = $state(false);
+
 	let recordedAudioButton: HTMLAudioElement;
-	let transcribedText = $state('<transcribed text here>');
 
 	let rec: MediaRecorder;
 	let audioChunks: Blob[] = []; // this need not to be state
@@ -36,6 +38,7 @@
 		});
 		console.log('transcription?', transcription.text);
 		transcribedText = transcription.text;
+		isTranscribing = false;
 	};
 
 	// Why check `navigator.mediaDevices` is defined or not? (src: https://stackoverflow.com/questions/67663961/cannot-read-property-getusermedia-of-undefined-over-https)
@@ -65,16 +68,17 @@
 	}
 
 	const handleRecordButton = () => {
-		recordButton.disabled = true;
-		stopRecordButton.disabled = false;
+		isRecording = true;
+		transcribedText = '';
 		audioChunks = [];
 		rec.start();
 	};
 	const handleStopRecord = () => {
-		recordButton.disabled = false;
-		stopRecordButton.disabled = true;
+		isRecording = false;
 		rec.stop();
+		isTranscribing = true;
 	};
+	$inspect({ isRecording, transcribedText });
 </script>
 
 <div class="mb-3 text-xl font-bold">Personal1 - Record and transcribe with OpenAI</div>
@@ -85,29 +89,25 @@
 	</div>
 {/if}
 
-<p>
-	<button bind:this={recordButton} class="btn-primary" type="button" onclick={handleRecordButton}
-		>Record</button
-	>
-	<button
-		bind:this={stopRecordButton}
-		class="btn-primary"
-		type="button"
-		disabled
-		onclick={handleStopRecord}>Stop</button
-	>
-</p>
-<p>
+<div in:fade>
+	{#if !isRecording && !isTranscribing}
+		<button in:fade class="btn-primary" type="button" onclick={handleRecordButton}>Record</button>
+	{:else if isRecording}
+		<button in:fade class="btn-primary" type="button" onclick={handleStopRecord}> Stop </button>
+	{:else}
+		<!-- Setting this div height (to prevent content shift) because above button's height is 30px as checked from browser dev tools. -->
+		<div style:height="30px"></div>
+	{/if}
+</div>
+
+<p class="mt-5" in:fade>
 	<audio bind:this={recordedAudioButton}></audio>
 </p>
 
-<p class="mt-3">
-	{transcribedText}
-</p>
-
-<hr class="my-3" />
-
-<div class="mt-[300px] text-purple-600">
-	Tip: You can give id1 to an element and then you can direclty access it via a variables named
-	`id1`. You can use this technique while debugging in browser as well.
+<div class="mt-3">
+	{#if isTranscribing}
+		<i style="color: grey" in:fade>Transcribing now...</i>
+	{:else}
+		<div transition:fade>{transcribedText}</div>
+	{/if}
 </div>
