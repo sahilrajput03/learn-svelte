@@ -32,3 +32,7 @@ export function getTicks(min: number, max: number) {
 
     return ticks;
 }
+
+export function roundToTwoDecimals(num: number) {
+    return +(Math.round((num + 'e+2') as any) + 'e-2');
+}

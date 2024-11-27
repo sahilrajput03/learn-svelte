@@ -1,6 +1,7 @@
 <script lang="ts">
 	import OpenAI from 'openai';
 	import { fade } from 'svelte/transition';
+	import { roundToTwoDecimals } from './utils';
 
 	const VITE_OPEN_AI_API_KEY = import.meta.env?.VITE_OPEN_AI_API_KEY;
 	// console.log('OPEN_AI_API_KEY?', VITE_OPEN_AI_API_KEY);
@@ -26,10 +27,12 @@
 
 	let rec: MediaRecorder;
 	let audioChunks: Blob[] = []; // this need not to be state
+	let transcribeTime = $state('');
 
 	// convert audio to text
 	const transcribe = async (blob: Blob) => {
 		const file = new File([blob], 'myFile.mp3', { type: 'audio/mp3' });
+		const startTime = new Date();
 
 		const transcription = await openai.audio.transcriptions.create({
 			file: file,
@@ -37,6 +40,12 @@
 			model: 'whisper-1'
 			// response_format: "srt", // default = "json" (valids: "text", "vtt", "srt", )
 		});
+
+		// Calculate time taken in milliseconds
+		let timeTaken: number = new Date().getTime() - startTime.getTime();
+		let roundedToTwoDecimals = roundToTwoDecimals(timeTaken / 1000);
+
+		transcribeTime = `${roundedToTwoDecimals}s`;
 		console.log('transcription?', transcription.text);
 		transcribedText = transcription.text;
 		isTranscribing = false;
@@ -84,6 +93,11 @@
 
 <div class="mb-3 text-xl font-bold">Personal1 - Record and transcribe with OpenAI</div>
 
+<div class="mb-3 text-xs italic text-gray-400">
+	Tip: I can revoke the API_KEY immediately from the open if its ever compromised in worst case
+	scenario.
+</div>
+
 {#if !VITE_OPEN_AI_API_KEY}
 	<div class="py-3 text-4xl font-bold text-red-600">
 		API Key is not defined in environment requried to test this transcription example with OpenAI.
@@ -110,5 +124,6 @@
 		<i style="color: grey" in:fade>Transcribing now...</i>
 	{:else}
 		<div transition:fade>{transcribedText}</div>
+		<div class="mt-5 text-xs italic text-gray-600">{transcribeTime}</div>
 	{/if}
 </div>
