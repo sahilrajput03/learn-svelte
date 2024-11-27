@@ -2,22 +2,25 @@
 	import OpenAI from 'openai';
 	import { fade } from 'svelte/transition';
 	import { roundToTwoDecimals } from './utils';
-
-	const VITE_OPEN_AI_API_KEY = import.meta.env?.VITE_OPEN_AI_API_KEY;
-	// console.log('OPEN_AI_API_KEY?', VITE_OPEN_AI_API_KEY);
-
-	if (!VITE_OPEN_AI_API_KEY) {
-		console.log('ERROR-SAHIL: VITE_OPEN_AI_API_KEY not found in environment.');
-	}
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 
 	let openai: OpenAI;
-	// Only initiate openai if we have api key otherwise openai throws error
-	if (VITE_OPEN_AI_API_KEY) {
-		openai = new OpenAI({
-			apiKey: VITE_OPEN_AI_API_KEY,
-			dangerouslyAllowBrowser: true
-		});
-	}
+	let OPEN_AI_API_KEY = $state('');
+
+	onMount(() => {
+		const oai = localStorage.getItem('oai');
+		if (oai) {
+			// Only initiate openai if we have api key otherwise openai throws error
+			openai = new OpenAI({
+				apiKey: oai,
+				dangerouslyAllowBrowser: true
+			});
+			OPEN_AI_API_KEY = oai; // When `OPEN_AI_API_KEY` is set we show key not found to user in the UI.
+		} else {
+			console.log('ERROR-SAHIL: VITE_OPEN_AI_API_KEY not found in environment.');
+		}
+	});
 
 	let transcribedText = $state('');
 	let isRecording = $state(false);
@@ -91,20 +94,35 @@
 	$inspect({ isRecording, transcribedText });
 </script>
 
-<div class="mb-3 text-xl font-bold">Personal1 - Record and transcribe with OpenAI</div>
+<div class="mb-1 text-xl font-bold">Personal1 - Record and transcribe with OpenAI</div>
 
 <div class="mb-3 text-xs italic text-gray-400">
 	Tip: I can revoke the API_KEY immediately from the open if its ever compromised in worst case
 	scenario.
 </div>
 
-{#if !VITE_OPEN_AI_API_KEY}
-	<div class="py-3 text-4xl font-bold text-red-600">
-		API Key is not defined in environment requried to test this transcription example with OpenAI.
-	</div>
+{#if !OPEN_AI_API_KEY}
+	<div class=" text-xl font-bold italic text-red-600">API Key is not found in localstorage.</div>
 {/if}
 
-<div in:fade>
+<!-- * I want to show this button at all times in order to allow user to clear their openai api key from local storage. -->
+<div class="flex items-center">
+	<button
+		onclick={(e) => {
+			e.preventDefault();
+			goto('/open-ai-api-key');
+		}}
+		class="my-3 block text-sm text-blue-700 underline"
+	>
+		Set OpenAI API key
+	</button>
+
+	<div
+		class={`ms-2 h-[10px] w-[10px] rounded ${!!OPEN_AI_API_KEY ? 'bg-green-500' : 'bg-red-400'}`}
+	></div>
+</div>
+
+<div in:fade style:display={OPEN_AI_API_KEY ? 'block' : 'none'}>
 	{#if !isRecording && !isTranscribing}
 		<button in:fade class="btn-primary" type="button" onclick={handleRecordButton}>Record</button>
 	{:else if isRecording}

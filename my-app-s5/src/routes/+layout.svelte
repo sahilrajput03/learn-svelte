@@ -24,7 +24,7 @@
 		   rather than the currently selected component_id as query
 		   params.)
 	-->
-	<button class=" ml-2 text-xs text-blue-600" onclick={handleTutorialsClick}>TutorialsFirst</button>
+	<button class=" ml-2 text-xs text-blue-600" onclick={handleTutorialsClick}>Tutorials</button>
 	<a class="ml-2 text-xs text-blue-600" href="/chat">/chat</a>
 	<a class="ml-2 text-xs text-blue-600" href="/effect-root">/effect-root</a>
 </div>
