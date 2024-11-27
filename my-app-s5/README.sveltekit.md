@@ -59,14 +59,14 @@ _I posted this on stackoverflow as answer: [Click here](https://stackoverflow.co
 import { goto, pushState, replaceState } from '$app/navigation';
 
 // DEFAULT ROUTING:
-// When  we  want  to  navigate  with  re-running  any  load  functions  and  replacing  page  components
+// When  we  want  to  navigate  with  re-running  any  load  functions (https://svelte.dev/docs/kit/load)  and  replacing  page  components
 goto('/id=789'); // create  a  new  page  history  entry  (`replaceState`  is  false  by  default  here)
 goto('/id=789', { replaceState: true }); // it replaces current page history entry
 
 // SHALLOW ROUTING
 // (Why?): When  we  want  to  navigate -
 //   1. without  traversal  through  the  list  of  history  entries
-//   2. without  re-running  any  load  functions  and
+//   2. without  re-running  any  load  functions (https://svelte.dev/docs/kit/load)  AND
 //   3. without  replacing  page  components  as  necessary
 pushState(`?id=123`, $page.state); // Docs: create a new history entry
 replaceState(`?id=456`, $page.state); // Docs: replace the current history entry
