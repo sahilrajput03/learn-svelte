@@ -11,7 +11,7 @@
 		alert('OpenAI API key saved to localstorage.');
 	};
 	const handleClearOpenAIAPIkey = () => {
-		localStorage.clear();
+		localStorage.set('oai', '');
 		openAiApiKey = '';
 	};
 </script>
@@ -22,4 +22,4 @@
 </div>
 <br />
 <button class="btn-primary mb-3" onclick={handleSaveOpenAIAPIKey}>Save to local storage</button>
-<button class="btn-primary mb-3" onclick={handleClearOpenAIAPIkey}>Clear local storage</button>
+<button class="btn-primary mb-3" onclick={handleClearOpenAIAPIkey}>Clear from local storage</button>

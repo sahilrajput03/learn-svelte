@@ -534,28 +534,38 @@
 	onMount(() => {
 		console.log('onmount now....');
 		isLoading = false;
+		// & LEARN: I tried to use `$page.url.searchParams.get('id')` and it
+		// &		was behaving weirdly as it wasn't considering the url as
+		// &		the source of truth and thus discrepancies were there.
+
 		// Fetch component-id from url search params
-		if ($page.url.searchParams.has('id')) {
-			idOfComponentToShow = $page.url.searchParams.get('id')!;
+		const params = new URLSearchParams(window.location.search);
+		const { id } = Object.fromEntries(params.entries());
+
+		if (id) {
+			idOfComponentToShow = id;
+			// alert('got id, setting id = ' + idOfComponentToShow);
 		} else {
+			// alert('no id, setting id=0');
 			idOfComponentToShow = componentItems[0].id;
 			tick().then(() => {
 				replaceState(`?id=${idOfComponentToShow}`, $page.state);
 			});
 		}
 
-		const popStateEvent = () => {
-			// alert('here');
+		const handlePopState = () => {
+			// alert('here'); // Note: alert doesn't work well in pop state event.
+			// console.log('popStateEvent');
 			const params = new URLSearchParams(window.location.search);
 			const { id } = Object.fromEntries(params.entries());
 			idOfComponentToShow = id;
 		};
 
 		// Whenever browser's back or forward button is clicked below event is triggered
-		window.addEventListener('popstate', popStateEvent);
+		window.addEventListener('popstate', handlePopState);
 
 		return () => {
-			window.removeEventListener('popstate', popStateEvent);
+			window.removeEventListener('popstate', handlePopState);
 		};
 	});
 
