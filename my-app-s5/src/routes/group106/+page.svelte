@@ -1,5 +1,5 @@
 <script>
-	// Sahil; $bindable is used to make prop bound so that data can from child to parent component.
+	// Sahil; $bindable is used to make prop bound so that data can flow from child to parent component.
 	// I use $bindable in `src/routes/Keypad.svelte` file as well. Docs - https://svelte.dev/docs/svelte/$bindable
 	let { data = $bindable() } = $props();
 	console.log('data?', data);

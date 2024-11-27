@@ -15,6 +15,7 @@
 	</thead>
 
 	<tbody>
+		<!-- Snippet definition -->
 		{#snippet monkey(emoji: string, description: string)}
 			<tr>
 				<td>{emoji}</td>
@@ -24,6 +25,7 @@
 			</tr>
 		{/snippet}
 
+		<!-- Snippet rendering -->
 		{@render monkey('🙈', 'see no evil')}
 		{@render monkey('🙉', 'hear no evil')}
 		{@render monkey('🙊', 'speak no evil')}

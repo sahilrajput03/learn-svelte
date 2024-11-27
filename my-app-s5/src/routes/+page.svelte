@@ -336,19 +336,19 @@
 		},
 		{
 			id: 'c0916f32-7569-431d-8cef-c8fd8160c564',
-			name: 'Group42 - Snippet: Encapsulate markup in a reusable block',
+			name: 'Group42 - SNIPPET: Encapsulate markup in a reusable block',
 			component: Group42,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/snippets-and-render-tags'
 		},
 		{
 			id: '7c8e8faf-9d2b-400c-98c0-bc06e4ea72cf',
-			name: 'Group43 - Passing snippets to components',
+			name: 'Group43 - SNIPPET: Passing snippets to components',
 			component: Group43,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/passing-snippets'
 		},
 		{
 			id: 'f946f320-e5c0-4925-8633-d0593a9942bd',
-			name: 'Group44 - Implicit snippet props',
+			name: 'Group44 - SNIPPET: Implicit snippet props',
 			component: Group44,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/implicit-snippet-props'
 		},

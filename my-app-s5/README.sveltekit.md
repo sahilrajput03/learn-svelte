@@ -21,7 +21,7 @@
 - Tutorial-15,16 (API Routes: POST, PUT, DELETE) = `/group106/`
   - The updation of the todos should work without page refresh and the issue is reported here - https://github.com/sveltejs/svelte.dev/issues/786
 
-## Sync search params
+## Sync search params when browser back/forard buttons are pressed
 
 ```jsx
 onMount(() => {
@@ -44,7 +44,7 @@ onMount(() => {
 pushState(`?id=${id}`, $page.state);
 ```
 
-## pushState, replaceState, goto
+## `pushState`, `replaceState`, `goto`
 
 _I posted this on stackoverflow as answer: [Click here](https://stackoverflow.com/a/79204864/10012446)_
 
@@ -58,9 +58,16 @@ _I posted this on stackoverflow as answer: [Click here](https://stackoverflow.co
 ```ts
 import { goto, pushState, replaceState } from '$app/navigation';
 
-goto('/id=789', { replaceState: true }); // replace browser history
-goto('/id=789'); // default value of `replaceState` is false i.e, it doesn't replace current page history entry
+// DEFAULT ROUTING:
+// When we want to navigate with re-running any load functions and replacing page components
+goto('/id=789'); // create a new page history entry (`replaceState` is false by default here)
+goto('/id=789', { replaceState: true }); // it replaces current page history entry
 
+// SHALLOW ROUTING
+// (Why?): When we want to navigate -
+//   1. without traversal through the list of history entries
+//   2. without re-running any load functions  and
+//   3. without replacing page components as necessary
 pushState(`?id=123`, $page.state); // Docs: create a new history entry
 replaceState(`?id=456`, $page.state); // Docs: replace the current history entry
 ```

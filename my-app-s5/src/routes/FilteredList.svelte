@@ -27,13 +27,13 @@
 	</label>
 
 	<div class="header">
-		<!-- HEADER IS RENDERED HERE -->
+		<!-- Snippet rendering -->
 		{@render header()}
 	</div>
 
 	<div class="content">
 		{#each filtered as d}
-			<!-- ROW IS RENDERED HERE -->
+			<!-- Snippet rendering -->
 			{@render row(d)}
 		{/each}
 	</div>

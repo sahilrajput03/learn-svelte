@@ -2,6 +2,46 @@
 
 Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** _(using Vercel with `SvelteKit (v1)` preset)_
 
+## Rendering children snippet `{@render children()}`
+
+`Group44.svelte` and `Group61.svelte`.
+
+## Controlling state of parent component from child component
+
+Tutorial `Group53.svelte` ([svelte tutorial](https://svelte.dev/tutorial/svelte/component-bindings))
+
+```jsx
+// Group53.svelte
+let pin = $state('');
+<Keypad bind:value={pin} {onsubmit} />
+
+// Keypad.svelte
+let { value = $bindable(), onsubmit }: PropsType = $props(); // `type PropsType = { value: string; onsubmit: Function };`
+// value can be mutated as you like e.g.,
+const select = (num: number) => () => (value += num);
+const clear = () => (value = '');
+```
+
+## Why use snippet instead of making a new component?
+
+**Snippet Tutorials Files:** `Group42.svetle`, `Group43.svetle` and `Group44.svelte`
+
+1. Snippets look beautiful inside markup
+2. Snippets are:
+   a. easier to make than making a new file just for a component
+   b. snippet name don't need to start with a capilat letter
+3. `Group42.svelte`: Simple definition and renderig of snippets.
+4. `Group43.svelte`: Snippet can be defined just below the `<script>` tag or just above the `<style>` tag as well.
+5. `Group44.svelte`: ❤️ Passing snippets as props to components.
+
+## From Rich Harris
+
+In `if`, `each` `snippet` and other syntax in svelte.
+
+- `#` opens
+- `:` continues
+- `/` closes
+
 ## ❤️ README.sveltekit.md: [Click here](./README.sveltekit.md) ✌🏻✌🏻🙌🏻🙌🏻👏🏻
 
 **Quick Links:**
@@ -71,6 +111,8 @@ let { color, size }: PropsType = $props();
 ```
 
 ## `:global`
+
+Tip: If you want to use somthing in between of `:global` and scoped css (default way of css in svelte component), then you should do something like `.boxes :global(.box)` as you can see in `Group27.svelte` file.
 
 Say you apply some style via `:global(body){ .. }` in `/routes/+page.svelte` file.
 

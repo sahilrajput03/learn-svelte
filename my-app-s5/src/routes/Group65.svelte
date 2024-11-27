@@ -25,6 +25,8 @@
 
 <svelte:body onmouseenter={() => (hereKitty = true)} onmouseleave={() => (hereKitty = false)} />
 
+<div class="m-5 font-bold">Kitty comes from window edge if you hover here</div>
+
 <!-- creative commons BY-NC http://www.pngall.com/kitten-png/download/7247 -->
 <img class:curious={hereKitty} alt="Kitten wants to know what's going on" src={kitten} />
 

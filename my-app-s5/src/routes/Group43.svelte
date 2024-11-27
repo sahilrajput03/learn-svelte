@@ -9,6 +9,7 @@
 <!-- Tip: you can get type of `header` and `row` by hovering over them: -->
 <FilteredList data={colors} field="name" {header} {row}></FilteredList>
 
+<!-- Snippet definition -->
 {#snippet header()}
 	<header>
 		<span class="color"></span>
@@ -19,6 +20,7 @@
 	</header>
 {/snippet}
 
+<!-- Snippet definition -->
 {#snippet row(d: ColorType)}
 	<div class="row">
 		<span class="color" style="background-color: {d.hex}"></span>
