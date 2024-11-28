@@ -37,7 +37,6 @@
 </script>
 
 <div class="mt-1 flex justify-end">
-	<div class="ml-2 text-xs">Docs Examples:</div>
 	<!-- Note: 
 		1. When user is on /any_other_page, then I redirect it to `/`
 		2. When user is on /?id=id1, then I redirect it to its own url,
@@ -50,7 +49,7 @@
 	<a class="ml-2 text-xs text-blue-600" href="/effect-root">/effect-root</a>
 </div>
 <div class="mb-3 mt-1 flex justify-end">
-	<div class="ml-2 text-xs">Personal Examples:</div>
+	<div class="ml-2 text-xs">Personal:</div>
 	<a class="ml-2 text-xs text-blue-600" href="glass-slideshow">/glass-slideshow</a>
 	<a class="ml-2 text-xs text-blue-600" href="/thoughts">/thoughts</a>
 </div>

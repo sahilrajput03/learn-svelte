@@ -9,11 +9,11 @@
 
 	// From Sahil: It helps to replicate the behavior of `:global` in <style/> tag as it works in original svelte tutorial.
 	onMount(() => {
-		const element = document.getElementsByTagName('body')[0];
+		const element = document.body;
 
 		// Set the properties
 		element.style.height = '50vh';
-		element.style.outline = '1px solid orange';
+		element.style.outline = '1px solid #f6bb4d';
 
 		return () => {
 			// Settign properties of body to their initial values i.e., before setting it in the first place, in Chrome (MacOS)
@@ -44,8 +44,8 @@
 		transform: translate(-15%, 0) rotate(0deg);
 	}
 
-	/* //* I am not using this because `:global()` style is applied even when this component is not rendered,
-       //* which is destructive in my current component selector case. */
+	/* //* I am not using this because if I use code below i.e., `:global()` then the style to <body> tag is applied even when this component is not rendered,
+       //* which is destructive to my current component selector component in ./src/routes/+page.svelte. */
 	/* :global(body) {
 		border: 2px solid red;
 		overflow: hidden;

@@ -20,7 +20,7 @@
 		position: fixed;
 		left: 50px;
 		right: 50px;
-		top: 120px;
+		top: 270px;
 		bottom: 100px;
 		padding: 1rem;
 	}
