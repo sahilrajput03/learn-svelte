@@ -486,12 +486,6 @@
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/module-exports'
 		},
 		{
-			id: '0f07e431-0f37-49a2-8109-d86ac4d3b544',
-			name: 'Example1 - @debug tag',
-			component: Example1,
-			svelteTutorialLink: 'https://svelte.dev/playground/debug'
-		},
-		{
 			id: '15f7992e-886b-4bbb-af20-2ff0a3d41831',
 			name: 'Personal1 - Record and then transcribe with OpenAI',
 			component: Personal1,
@@ -514,6 +508,12 @@
 			name: 'Personal4 - Query Params',
 			component: Personal4,
 			svelteTutorialLink: ''
+		},
+		{
+			id: '0f07e431-0f37-49a2-8109-d86ac4d3b544',
+			name: 'Example1 - @debug tag',
+			component: Example1,
+			svelteTutorialLink: 'https://svelte.dev/playground/debug'
 		}
 	]);
 
