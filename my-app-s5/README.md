@@ -2,13 +2,19 @@
 
 Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** _(using Vercel with `SvelteKit (v1)` preset)_
 
-## Exporting code from `*.svetle` files
+## Exporting code from `*.svetle` files using `<script module ..`
 
-Refer file `Gropu61b.svelte`.
+Refer file:
+
+- `AudioPlayer2.svelte` (used in `Group68.svelte` and `Group69.svelte`)
+- `Gropu61b.svelte`
 
 ## `getContext` and `setContext`
 
-Refer file `Group61b.svelte` and `Group61.svelte` files. `Group61b.svelte` is a much cleaner example.
+Refer files:
+
+- `Group61b.svelte` (much cleaner tutorial)
+- `Group61.svelte`
 
 ## Rendering children snippet `{@render children()}`
 

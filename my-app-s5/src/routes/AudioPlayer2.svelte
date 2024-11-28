@@ -1,7 +1,7 @@
 <!-- This file is consumed in file://./Group68.svelte -->
 <!-- This file is consumed in file://./Group69.svelte -->
 
-<script lang="ts" module>
+<script module lang="ts">
 	let current: any;
 
 	export function stopAll() {
