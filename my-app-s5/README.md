@@ -2,7 +2,7 @@
 
 Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** _(using Vercel with `SvelteKit (v1)` preset)_
 
-## Exporting code from `*.svetle` files using `<script module ..`
+## Named export / Exporting variables from a `*.svetle` file using `<script module ..`
 
 Refer file:
 
