@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import type { UserContextType } from './types';
+	import type { UserContextType } from './Group61b.svelte';
 
 	const context = getContext<UserContextType>('my-context');
 </script>

@@ -1,10 +1,12 @@
 <!-- 61b/75 -->
 <!-- https://svelte.dev/tutorial/svelte/context-api -->
+<script module>
+	export type UserContextType = { name: string; age: number };
+</script>
 
 <script lang="ts">
 	import { setContext } from 'svelte';
 	import Child1 from './Child1.svelte';
-	import type { UserContextType } from './types';
 
 	let context = $state<UserContextType>({ name: 'Sahil Rajput', age: 27 });
 	setContext('my-context', context);

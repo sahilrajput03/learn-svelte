@@ -2,6 +2,14 @@
 
 Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** _(using Vercel with `SvelteKit (v1)` preset)_
 
+## Exporting code from `*.svetle` files
+
+Refer file `Gropu61b.svelte`.
+
+## `getContext` and `setContext`
+
+Refer file `Group61b.svelte` and `Group61.svelte` files. `Group61b.svelte` is a much cleaner example.
+
 ## Rendering children snippet `{@render children()}`
 
 `Group44.svelte` and `Group61.svelte`.
