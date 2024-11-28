@@ -13,6 +13,19 @@
 			// alert('You are already on tutorials page.');
 		}
 	};
+
+	// TODO: Record entreis to an external store such that when browser back
+	// button is pressed I can access the most recent home route along with
+	// its id for e.g., `http://localhost:5173/?id=ebasd..` and when ever I
+	// press tutorials link I should instead get back to the most recent
+	// component which was rendered so its a magical experience if you're
+	// showing a thing to anybody and just moving around and you don't mess
+	// up going to the very first tutorial when are expect the tutorials page
+	// to show the last component.
+	$effect(() => {
+		$page.route; // using as effect's dependency
+		console.log('window.location.href?', window.location.href); // Also: I tried to use $page.route but it seems it reflects the initial value at all times. Does not update dynamically.
+	});
 </script>
 
 <div class="mt-1 flex justify-end">
