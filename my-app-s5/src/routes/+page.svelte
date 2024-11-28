@@ -674,12 +674,19 @@ Why?
 	</div>
 	<div class="mt-3 flex justify-end">
 		<a
-			class="text-right text-xs text-blue-600"
+			class="flex items-center text-right text-xs text-blue-600"
 			target="_blank"
 			href="https://github.com/sahilrajput03/learn-svelte/blob/main/my-app-s5/src/routes/{componentToShow.name.split(
 				' '
-			)[0]}.svelte">See {componentToShow.name.split(' ')[0]}.svelte on Github</a
+			)[0]}.svelte"
 		>
+			See {componentToShow.name.split(' ')[0]}.svelte on Github
+			<img
+				class="w-[20px]"
+				src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
+				alt="github here"
+			/>
+		</a>
 		<!-- href="https://github.com/sahilrajput03/learn-svelte/tree/main/my-app-s5/src/routes" -->
 		<!-- href="https://github.com/sahilrajput03/learn-svelte/blob/main/my-app-s5/src/routes/Group12.svelte" -->
 	</div>
@@ -687,13 +694,20 @@ Why?
 	<div class="mt-1 flex justify-end">
 		<a
 			target="_blank"
-			class="text-right text-xs text-blue-600"
-			href={componentToShow?.svelteTutorialLink}>See this tutorial on svelte.dev</a
-		>
+			class="flex items-center text-right text-xs text-blue-600"
+			href={componentToShow?.svelteTutorialLink}
+			>See this tutorial on svelte.dev
+			<img class="ms-1 w-[13px]" src="/svelte-logo.svg" alt="svelte" />
+		</a>
 	</div>
 	<div class="mt-1 flex justify-end">
 		<OpenFileInVscode
 			relativeFilePath={`/src/routes/${componentToShow.name.split(' ')[0]}.svelte`}
+		/>
+		<img
+			class="ms-1 w-[13px]"
+			src="https://code.visualstudio.com/assets/images/code-stable.png"
+			alt="vscode"
 		/>
 	</div>
 	<div class="mt-1 flex justify-end">
