@@ -9,9 +9,7 @@
 
 	const handleTutorialsClick = () => {
 		if ($page.url.pathname !== '/') {
-			const lastTutorialPath = routesHistory.findLast((val) =>
-				val.includes('http://localhost:5173/?id=')
-			);
+			const lastTutorialPath = routesHistory.findLast((val) => val.includes('/?id='));
 			if (lastTutorialPath) {
 				const lastUrl = new URL(lastTutorialPath);
 				goto(lastUrl.pathname + lastUrl.search);
