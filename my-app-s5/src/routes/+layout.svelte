@@ -3,28 +3,38 @@
 	import { page } from '$app/stores';
 	import '../app.css';
 	import NewVersionAvailableToast from './NewVersionAvailableToast.svelte';
+
 	let { children } = $props();
+	let routesHistory: string[] = [];
 
 	const handleTutorialsClick = () => {
 		if ($page.url.pathname !== '/') {
-			goto('/');
+			const lastTutorialPath = routesHistory.findLast((val) =>
+				val.includes('http://localhost:5173/?id=')
+			);
+			if (lastTutorialPath) {
+				const lastUrl = new URL(lastTutorialPath);
+				goto(lastUrl.pathname + lastUrl.search);
+			} else {
+				goto('/');
+			}
 		} else {
 			// do nothing when already on Tutorials page
 			// alert('You are already on tutorials page.');
 		}
 	};
 
-	// TODO: Record entreis to an external store such that when browser back
-	// button is pressed I can access the most recent home route along with
-	// its id for e.g., `http://localhost:5173/?id=ebasd..` and when ever I
-	// press tutorials link I should instead get back to the most recent
-	// component which was rendered so its a magical experience if you're
-	// showing a thing to anybody and just moving around and you don't mess
-	// up going to the very first tutorial when are expect the tutorials page
-	// to show the last component.
 	$effect(() => {
 		$page.route; // using as effect's dependency
-		console.log('window.location.href?', window.location.href); // Also: I tried to use $page.route but it seems it reflects the initial value at all times. Does not update dynamically.
+		// Also: I tried to use `$page.route` but it seems it reflects the
+		// 		 initial value at all times. Does not update dynamically.
+		const path = window.location.href;
+		// console.log('path?', path);
+
+		// To prevent adding duplicate entry in a row
+		if (routesHistory[routesHistory.length - 1] !== path) {
+			routesHistory.push(path);
+		}
 	});
 </script>
 
