@@ -65,11 +65,11 @@
 		async function transcribeWithGroq() {
 			const transcription = await groq.audio.transcriptions.create({
 				file: file, // Required path to audio file - replace with your audio file!
-				model: 'whisper-large-v3-turbo', // Required model to use for transcription
-				prompt: 'Specify context or spelling', // Optional
+				model: 'whisper-large-v3', // (whisper-large-v3, whisper-large-v3-turbo, distil-whisper-large-v3-en)
+				// prompt: 'Specify context or spelling', // Optional
 				response_format: 'json', // Optional
-				language: 'en', // Optional
-				temperature: 0.0 // Optional
+				language: 'en' // Optional
+				// temperature: 0.0 // Optional
 			});
 			return transcription.text;
 		}
