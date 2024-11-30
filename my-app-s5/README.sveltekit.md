@@ -21,6 +21,111 @@
 - Tutorial-15,16 (API Routes: POST, PUT, DELETE) = `/group106/`
   - The updation of the todos should work without page refresh and the issue is reported here - https://github.com/sveltejs/svelte.dev/issues/786
 
+## SvelteKit - Advanced SvelteKit / Hooks / The RequestEvent object
+
+Source: [https://svelte.dev/tutorial/kit/event](https://svelte.dev/tutorial/kit/event)
+
+Properties of `event` in `handle()` function:
+
+- `cookies` — the cookies API
+- `fetch` — the standard Fetch API, with additional powers
+- `getClientAddress`() — a function to get the client’s IP address
+- `isDataRequest` — true if the browser is requesting data for a page during client-side navigation, false if a page/route is being requested directly
+- `locals` — a place to put arbitrary data
+- `params` — the route parameters
+- `request` — the Request object
+- `route` — an object with an id property representing the route that was matched
+- `setHeaders`(...) — a function for setting HTTP headers on the response
+- `url` — a URL object representing the current request
+
+A useful pattern is to add some data to event.locals in handle so that it can be read in subsequent load functions:
+
+```jsx
+// src/hooks.server
+export async function handle({ event, resolve }) {
+	event.locals.answer = 42;
+	return await resolve(event);
+}
+```
+
+```jsx
+// src/routes/+page.server
+export function load(event) {
+	return {
+		message: `the answer is ${event.locals.answer}`
+	};
+}
+```
+
+## SvekteKit - Advanced SvelteKit / Hooks / handle
+
+[https://svelte.dev/tutorial/kit/handle](https://svelte.dev/tutorial/kit/handle)
+
+- **Tutorial:**
+
+SvelteKit provides several hooks — ways to intercept and override the framework’s default behaviour.
+
+The most elementary hook is handle, which lives in src/hooks.server.js. It receives an event object along with a resolve function, and returns a Response.
+
+resolve is where the magic happens: SvelteKit matches the incoming request URL to a route of your app, imports the relevant code (+page.server.js and +page.svelte files and so on), loads the data needed by the route, and generates the response.
+
+The default handle hook looks like this:
+
+```jsx
+// File: src/hooks.server.js
+export async function handle({ event, resolve }) {
+	return await resolve(event);
+}
+```
+
+For pages (as opposed to API routes), you can modify the generated HTML with transformPageChunk:
+
+```jsx
+// File: src/hooks.server.js
+export async function handle({ event, resolve }) {
+	// You can also create entirely new routes:
+	if (event.url.pathname === '/ping') {
+		return new Response('pong');
+	}
+
+	return await resolve(event, {
+		transformPageChunk: ({ html }) => html.replace('<body', '<body style="color: hotpink"')
+	});
+}
+```
+
+## SvelteKit - stores: `page`, `navigating`, `updated`
+
+**Tutorials:**
+
+- Basic SvelteKit / Stores / page
+- Basic SvelteKit / Stores / navigating
+- Basic SvelteKit / Stores / navigated (Already implemented in this project, check file - `src/routes/NewVersionAvailableToast.svelte` )
+
+```jsx
+// https://svelte.dev/tutorial/kit/page-store
+import { page } from '$app/stores';
+// $page.url.pathname // Output: "/", "/about"
+
+// OTHER PROPERTIES OF `$page` STORE:
+// `url` — the URL of the current page
+// `params` — the current page’s parameters
+// `route` — an object with an id property representing the current route
+// `status` — the HTTP status code of the current page
+// `error` — the error object of the current page, if any (you’ll learn more about error handling in later exercises)
+// `data` — the data for the current page, combining the return values of all load functions
+// `form` — the data returned from a form action
+
+// https://svelte.dev/tutorial/kit/navigating-store
+<script>
+import { page, navigating } from '$app/stores';
+</script>
+
+{#if $navigating}
+  navigating to {$navigating.to.url.pathname}
+{/if}
+```
+
 ## Sync search params when browser back/forard buttons are pressed
 
 ```jsx

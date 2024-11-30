@@ -1,6 +1,6 @@
 <!-- 61b/75 -->
 <!-- https://svelte.dev/tutorial/svelte/context-api -->
-<script module>
+<script module lang="ts">
 	export type UserContextType = { name: string; age: number };
 </script>
 
