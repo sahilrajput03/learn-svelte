@@ -52,6 +52,7 @@
 	<div class="ml-2 text-xs">Personal:</div>
 	<a class="ml-2 text-xs text-blue-600" href="glass-slideshow">/glass-slideshow</a>
 	<a class="ml-2 text-xs text-blue-600" href="/thoughts">/thoughts</a>
+	<a class="ml-2 text-xs text-blue-600" href="/ai-sdk">/ai-sdk</a>
 </div>
 
 {@render children()}

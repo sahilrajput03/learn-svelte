@@ -8,13 +8,13 @@
 
 import { createOpenAI } from '@ai-sdk/openai';
 import { streamText } from 'ai';
-import type { RequestHandler } from '../ai-sdk-api/chat/$types';
 
 
 import { env } from '$env/dynamic/private';
 import { z } from 'zod';
 import { convertFarenheitToCelsius, weatherTool } from './tools';
 import { createGroq } from '@ai-sdk/groq';
+import type { RequestEvent, RequestHandler } from './$types';
 
 // OPENAI
 const openai = createOpenAI({
@@ -26,7 +26,7 @@ const groq = createGroq({
     apiKey: env.VITE_GROQ ?? ""
 });
 
-export const POST = (async ({ request }) => {
+export const POST = (async ({ request }: RequestEvent) => {
     const { messages } = await request.json();
 
     const result = streamText({
