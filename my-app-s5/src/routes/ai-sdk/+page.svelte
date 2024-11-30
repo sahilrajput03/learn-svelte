@@ -14,8 +14,8 @@
 	onMount(() => {
 		setTimeout(() => {
 			// To show single tool call
-			input.set("What's the weather in New York?");
-
+			// input.set("What's the weather in New York?");
+			//
 			// To show multiple tool calls
 			// input.set("What's the weather in New York in celsius?");
 		}, 1_000);
@@ -37,6 +37,13 @@
 		<input class="input-primary" bind:value={$input} />
 		<button type="submit" class="btn-primary">Send</button>
 	</form>
+
+	<div class="fixed right-5 mt-10 text-xs">
+		Some questions:
+		<br />
+		<li>What's the weather in New York?</li>
+		<li>What's the weather in New York in celsius?</li>
+	</div>
 
 	<!-- <button onclick={() => input = "What's the weather in New York?"}>Set question -->
 </main>

@@ -30,9 +30,9 @@ export const POST = (async ({ request }: RequestEvent) => {
     const { messages } = await request.json();
 
     const result = streamText({
-        // model: openai('gpt-4o-mini'),
-        model: groq('gemma2-9b-it'),
-        system: 'Be concise and use my name Sahil to address me in your reponses.', // System instruction (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
+        // model: openai('gpt-4o-mini'), // & Using OpenAI
+        model: groq('gemma2-9b-it'), // & Using Groq
+        system: 'Be concise and use my name Sahil to address me in your reponses. Please never remind me that you are machine.', // System instruction (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
         messages,
         tools: {
             weatherTool,

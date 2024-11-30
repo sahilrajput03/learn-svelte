@@ -75,10 +75,10 @@
 		}
 
 		// & Using openAI
-		// const text = await transcribeWithOpenAI();
+		const text = await transcribeWithOpenAI();
 
 		// & Using Groq
-		const text = await transcribeWithGroq();
+		// const text = await transcribeWithGroq();
 
 		// Calculate time taken in milliseconds
 		let timeTaken: number = new Date().getTime() - startTime.getTime();
