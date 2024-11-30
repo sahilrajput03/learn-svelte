@@ -4,9 +4,13 @@
 	import { roundToTwoDecimals } from './utils';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import Groq from 'groq-sdk';
 
 	let openai: OpenAI;
 	let OPEN_AI_API_KEY = $state('');
+
+	let groq: Groq;
+	let GROQ_API_KEY = import.meta.env.VITE_GROQ; // i am temporarily putting this here
 
 	onMount(() => {
 		const oai = localStorage.getItem('oai');
@@ -18,7 +22,17 @@
 			});
 			OPEN_AI_API_KEY = oai; // When `OPEN_AI_API_KEY` is set we show key not found to user in the UI.
 		} else {
-			console.log('ERROR-SAHIL: VITE_OPEN_AI_API_KEY not found in environment.');
+			console.log('ERROR-SAHIL: `open ai` key not found in local storage.');
+		}
+
+		if (GROQ_API_KEY) {
+			// Only initiate groq if we have api key otherwise openai throws error
+			groq = new Groq({
+				apiKey: GROQ_API_KEY,
+				dangerouslyAllowBrowser: true
+			});
+		} else {
+			console.log('ERROR-SAHIL: `groq` key not found in local storage.');
 		}
 	});
 
@@ -37,20 +51,42 @@
 		const file = new File([blob], 'myFile.mp3', { type: 'audio/mp3' });
 		const startTime = new Date();
 
-		const transcription = await openai.audio.transcriptions.create({
-			file: file,
-			// language: 'en', // (output language)
-			model: 'whisper-1'
-			// response_format: "srt", // default = "json" (valids: "text", "vtt", "srt", )
-		});
+		async function transcribeWithOpenAI() {
+			const transcription = await openai.audio.transcriptions.create({
+				file: file,
+				// language: 'en', // (output language)
+				model: 'whisper-1'
+				// response_format: "srt", // default = "json" (valids: "text", "vtt", "srt", )
+			});
+			return transcription.text;
+		}
+
+		// https://console.groq.com/docs/speech-text
+		async function transcribeWithGroq() {
+			const transcription = await groq.audio.transcriptions.create({
+				file: file, // Required path to audio file - replace with your audio file!
+				model: 'whisper-large-v3-turbo', // Required model to use for transcription
+				prompt: 'Specify context or spelling', // Optional
+				response_format: 'json', // Optional
+				language: 'en', // Optional
+				temperature: 0.0 // Optional
+			});
+			return transcription.text;
+		}
+
+		// & Using openAI
+		// const text = await transcribeWithOpenAI();
+
+		// & Using Groq
+		const text = await transcribeWithGroq();
 
 		// Calculate time taken in milliseconds
 		let timeTaken: number = new Date().getTime() - startTime.getTime();
 		let roundedToTwoDecimals = roundToTwoDecimals(timeTaken / 1000);
 
 		transcribeTime = `${roundedToTwoDecimals}s`;
-		console.log('transcription?', transcription.text);
-		transcribedText = transcription.text;
+		console.log('transcription?', text);
+		transcribedText = text;
 		isTranscribing = false;
 	};
 
