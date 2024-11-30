@@ -487,7 +487,7 @@
 		},
 		{
 			id: '15f7992e-886b-4bbb-af20-2ff0a3d41831',
-			name: 'Personal1 - Record and then transcribe with OpenAI',
+			name: 'Personal1 - Record and then transcribe with OpenAI / Groq',
 			component: Personal1,
 			svelteTutorialLink: ''
 		},

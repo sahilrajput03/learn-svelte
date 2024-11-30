@@ -6,6 +6,8 @@
 
 // TODO: Read ai-sdk 4.0: https://vercel.com/blog/ai-sdk-4-0#new-xai-grok-provider
 
+// Models provided by groq: https://sdk.vercel.ai/providers/ai-sdk-providers/groq#model-capabilities
+
 import { createOpenAI } from '@ai-sdk/openai';
 import { streamText } from 'ai';
 
@@ -21,7 +23,7 @@ const openai = createOpenAI({
     apiKey: env.VITE_OPEN_AI_API_KEY ?? '',
 });
 
-// GROQ
+// GROQ: https://sdk.vercel.ai/providers/ai-sdk-providers/groq
 const groq = createGroq({
     apiKey: env.VITE_GROQ ?? ""
 });
@@ -29,6 +31,7 @@ const groq = createGroq({
 export const POST = (async ({ request }: RequestEvent) => {
     const { messages } = await request.json();
 
+    // Tool calls work with openai and groq (tested for gemma-2-9b-it) both very well.
     const result = streamText({
         // model: openai('gpt-4o-mini'), // & Using OpenAI
         model: groq('gemma2-9b-it'), // & Using Groq
@@ -42,3 +45,4 @@ export const POST = (async ({ request }: RequestEvent) => {
 
     return result.toDataStreamResponse();
 }) satisfies RequestHandler;
+
