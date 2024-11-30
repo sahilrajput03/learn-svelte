@@ -130,11 +130,11 @@
 	$inspect({ isRecording, transcribedText });
 </script>
 
-<div class="mb-1 text-xl font-bold">Personal1 - Record and transcribe with OpenAI</div>
+<div class="mb-1 text-xl font-bold">Personal1 - Record and transcribe with OpenAI / Groq</div>
 
 <div class="mb-3 text-xs italic text-gray-400">
-	Tip: I can revoke the API_KEY immediately from the open if its ever compromised in worst case
-	scenario.
+	Tip: I can revoke the API_KEY immediately from the OpenAI/Groq if its ever compromised in worst
+	case scenario.
 </div>
 
 {#if !OPEN_AI_API_KEY}
