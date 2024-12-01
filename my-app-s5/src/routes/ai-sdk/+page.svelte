@@ -110,7 +110,7 @@
 	</form>
 
 	<!-- Position Fixed element -->
-	<!-- <div class="fixed right-5 top-16 mt-10 text-xs text-green-500">
+	<div class="fixed right-5 top-16 mt-10 text-xs text-green-500">
 		<div>Device Width: {deviceWidth}</div>
 		<div>Device Height: {deviceHeight}</div>
 		<br />
@@ -118,7 +118,7 @@
 		<br />
 		<li>What's the weather in New York?</li>
 		<li>What's the weather in New York in celsius?</li>
-	</div> -->
+	</div>
 
 	<!-- <button onclick={() => input = "What's the weather in New York?"}>Set question -->
 </main>
