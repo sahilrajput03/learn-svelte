@@ -34,7 +34,7 @@ export const POST = (async ({ request }: RequestEvent) => {
     // Tool calls work with openai and groq (tested for gemma-2-9b-it) both very well.
     const result = streamText({
         // model: openai('gpt-4o-mini'), // & Using OpenAI
-        model: groq('gemma2-9b-it'), // & Using Groq
+        model: groq('llama-3.1-70b-versatile'), // & Using Groq // "llama-3.1-70b-versatile", "llama-3.1-8b-instant", "gemma2-9b-it", "mixtral-8x7b-32768", etc
         system: 'Be concise and use my name Sahil to address me in your reponses. Please never remind me that you are machine.', // System instruction (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
         messages,
         tools: {
@@ -45,4 +45,3 @@ export const POST = (async ({ request }: RequestEvent) => {
 
     return result.toDataStreamResponse();
 }) satisfies RequestHandler;
-
