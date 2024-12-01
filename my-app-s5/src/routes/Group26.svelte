@@ -63,9 +63,10 @@
 		cursor: pointer;
 	}
 
-	.card.flipped {
+	/* We were only using this in previous tutorial. */
+	/* .card.flipped {
 		transform: rotateY(0);
-	}
+	} */
 
 	.front,
 	.back {

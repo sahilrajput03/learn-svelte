@@ -2,7 +2,6 @@
 <!-- Check the `AFTER` link for below code. -->
 <script lang="ts">
 	import { tick } from 'svelte';
-	import type { KeyboardEventHandler } from 'svelte/elements';
 
 	let theme = $state('dark');
 	let messages = $state([

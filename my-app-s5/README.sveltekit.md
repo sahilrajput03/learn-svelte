@@ -5,6 +5,10 @@
     - The layout (and any page below it) inherits `data.summaries` from the parent `+layout.server.js`.
     - TODO: For invalidation of data please check this - https://svelte.dev/docs/kit/load#Rerunning-load-functions
 
+## Env tutorial brocken?
+
+Yes. [https://github.com/sveltejs/svelte.dev/issues/690](https://github.com/sveltejs/svelte.dev/issues/690)
+
 ## TODO:
 
 - print and stick to wall all the different html elements you use for e.g., <aside> - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside

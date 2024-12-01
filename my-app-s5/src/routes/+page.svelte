@@ -78,6 +78,7 @@
 	import { page } from '$app/stores';
 	import { pushState, replaceState } from '$app/navigation';
 	import Example1 from './Example1.svelte';
+	import Personal5 from './Personal5.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -507,6 +508,12 @@
 			id: 'd7f24462-85af-402d-aa0b-81352a341a57',
 			name: 'Personal4 - Query Params',
 			component: Personal4,
+			svelteTutorialLink: ''
+		},
+		{
+			id: '1a26be0c-03ea-4c78-93e0-fdb779417104',
+			name: 'Personal5 - Device Width and Height Detection',
+			component: Personal5,
 			svelteTutorialLink: ''
 		},
 		{
