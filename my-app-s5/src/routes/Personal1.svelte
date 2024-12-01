@@ -10,7 +10,7 @@
 	let OPEN_AI_API_KEY = $state('');
 
 	let groq: Groq;
-	let GROQ_API_KEY = import.meta.env.GROQ_API_KEY; // i am temporarily putting this here
+	let GROQ_API_KEY = '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'; // i am temporarily putting this here
 
 	onMount(() => {
 		const oai = localStorage.getItem('oai');
