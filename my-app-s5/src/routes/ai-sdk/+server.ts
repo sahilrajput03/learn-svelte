@@ -45,3 +45,12 @@ export const POST = (async ({ request }: RequestEvent) => {
 
     return result.toDataStreamResponse();
 }) satisfies RequestHandler;
+
+
+// GROQ
+// ====
+// llama-3.1-70b-versatile: Powerful but resource-intensive.
+// llama-3.1-8b-instant: Good balance of performance and speed.
+// gemma2-9b-it: Strong in Italian language tasks.
+// mixtral-8x7b-32768: Excellent performance across various tasks.
+// If you need a versatile model with good performance, llama-3.1-70b-versatile is a good choice. If you prioritize speed and resource efficiency, llama-3.1-8b-instant is a better option. If you need a model specifically for Italian language tasks, gemma2-9b-it is the best choice. If you need a high-performing model across various tasks, mixtral-8x7b-32768 is the best choice.
