@@ -12,7 +12,7 @@ import { createOpenAI } from '@ai-sdk/openai';
 import { streamText } from 'ai';
 
 
-import { env } from '$env/dynamic/private';
+import { env } from '$env/dynamic/private'; // TODO (make notes in readme of this: Adv.SvelteKit/EnvironmentVarables) read the values of environment variables when the app runs, as opposed to when the app is built,
 import { z } from 'zod';
 import { convertFarenheitToCelsius, weatherTool } from './tools';
 import { createGroq } from '@ai-sdk/groq';
@@ -20,12 +20,12 @@ import type { RequestEvent, RequestHandler } from './$types';
 
 // OPENAI
 const openai = createOpenAI({
-    apiKey: env.VITE_OPEN_AI_API_KEY ?? '',
+    apiKey: env.OPEN_AI_API_KEY ?? '',
 });
 
 // GROQ: https://sdk.vercel.ai/providers/ai-sdk-providers/groq
 const groq = createGroq({
-    apiKey: env.VITE_GROQ ?? ""
+    apiKey: env.GROQ_API_KEY ?? ""
 });
 
 export const POST = (async ({ request }: RequestEvent) => {

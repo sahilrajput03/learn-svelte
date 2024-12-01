@@ -10,7 +10,7 @@
 	let OPEN_AI_API_KEY = $state('');
 
 	let groq: Groq;
-	let GROQ_API_KEY = import.meta.env.VITE_GROQ; // i am temporarily putting this here
+	let GROQ_API_KEY = import.meta.env.GROQ_API_KEY; // i am temporarily putting this here
 
 	onMount(() => {
 		const oai = localStorage.getItem('oai');
@@ -75,10 +75,10 @@
 		}
 
 		// & Using openAI
-		const text = await transcribeWithOpenAI();
+		// const text = await transcribeWithOpenAI();
 
 		// & Using Groq
-		// const text = await transcribeWithGroq();
+		const text = await transcribeWithGroq();
 
 		// Calculate time taken in milliseconds
 		let timeTaken: number = new Date().getTime() - startTime.getTime();
