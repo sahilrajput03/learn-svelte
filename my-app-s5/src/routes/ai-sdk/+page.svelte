@@ -68,7 +68,8 @@
 		// Submit when Enter key is pressed (this is needed because textarea's defautl enter behavior creates a new line character)
 		if (e.keyCode == 13) {
 			handleSubmit();
-			$input = '';
+			// When enter is pressed we are left with a new line character which prevent showing the placeholder text.
+			setTimeout(() => ($input = ''), 200);
 		}
 	}
 </script>
@@ -82,7 +83,8 @@
 			<!-- I'm hiding the toolCalls messages because they have content as empty string. -->
 			{#each $messages.filter((m) => !!m.content) as message}
 				<div>
-					{message.role}: {message.content}
+					<span class="text-sm font-bold underline">{message.role.toUpperCase()}:</span>
+					{message.content}
 				</div>
 			{/each}
 		</div>
