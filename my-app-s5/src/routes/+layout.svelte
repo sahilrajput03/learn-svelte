@@ -36,7 +36,7 @@
 	});
 </script>
 
-<div class="mt-1 flex justify-end">
+<div class="mt-[20px] flex justify-end">
 	<!-- Note: 
 		1. When user is on /any_other_page, then I redirect it to `/`
 		2. When user is on /?id=id1, then I redirect it to its own url,
@@ -62,6 +62,9 @@
 <style>
 	/* Sahil: `:root` is an alias for `html` */
 	:root {
-		margin: 20px;
+		/* We must set bottom margin AND padding to 0px on html element
+		otherwise it causes issues with the chat input box  while typing
+		on mobile android (TESTED). */
+		margin: 0px 20px;
 	}
 </style>
