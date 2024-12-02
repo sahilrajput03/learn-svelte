@@ -715,14 +715,17 @@ Why?
 		</a>
 	</div>
 	<div class="mt-1 flex justify-end">
-		<OpenFileInVscode
-			relativeFilePath={`/src/routes/${componentToShow.name.split(' ')[0]}.svelte`}
-		/>
-		<img
-			class="ms-1 w-[13px]"
-			src="https://code.visualstudio.com/assets/images/code-stable.png"
-			alt="vscode"
-		/>
+		<!-- Show only in development mode. -->
+		{#if dev}
+			<OpenFileInVscode
+				relativeFilePath={`/src/routes/${componentToShow.name.split(' ')[0]}.svelte`}
+			/>
+			<img
+				class="ms-1 w-[13px]"
+				src="https://code.visualstudio.com/assets/images/code-stable.png"
+				alt="vscode"
+			/>
+		{/if}
 	</div>
 	<div class="mt-1 flex justify-end">
 		<button class="btn-primary text-xs" onclick={generateUuidAndCopytoClipboard}>
