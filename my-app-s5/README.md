@@ -2,6 +2,21 @@
 
 Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** _(using Vercel with `SvelteKit (v1)` preset)_
 
+_Note to Sahil: Some content is only covered in the readme (including sveltekit readme) for the purpose of easy demonstration where suitable._
+
+## ❤️ README.sveltekit.md: [Click here](./README.sveltekit.md) ✌🏻✌🏻🙌🏻🙌🏻👏🏻
+
+**Quick Links:**
+
+- README.initial.md: [Click here](./README.initial.md)
+- README.more.md: [Click here](./README.more.md)
+- Canvas Tutorials:
+  - Group28
+  - Group52
+  - Group54
+  - Group61 ([Schotter Tutorial](https://collections.vam.ac.uk/item/O221321/schotter-print-nees-georg/))
+  - Group63 ([Ocean Depth Turorial](https://svelte.dev/tutorial/svelte/svelte-window-bindings))
+
 ## Named export / Exporting variables from a `*.svetle` file using `<script module ..`
 
 Refer file:
@@ -55,19 +70,6 @@ In `if`, `each` `snippet` and other syntax in svelte.
 - `#` opens
 - `:` continues
 - `/` closes
-
-## ❤️ README.sveltekit.md: [Click here](./README.sveltekit.md) ✌🏻✌🏻🙌🏻🙌🏻👏🏻
-
-**Quick Links:**
-
-- README.initial.md: [Click here](./README.initial.md)
-- README.more.md: [Click here](./README.more.md)
-- Canvas Tutorials:
-  - Group28
-  - Group52
-  - Group54
-  - Group61 ([Schotter Tutorial](https://collections.vam.ac.uk/item/O221321/schotter-print-nees-georg/))
-  - Group63 ([Ocean Depth Turorial](https://svelte.dev/tutorial/svelte/svelte-window-bindings))
 
 ## Syncing localstorage in a component
 
