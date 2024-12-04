@@ -22,8 +22,62 @@ Yes. [https://github.com/sveltejs/svelte.dev/issues/690](https://github.com/svel
 - Tutorial-9,10,11,12,13 (NOT IMPLEMENTED) (forms): `/group104/`
   - I can make nested route in future if actually want to add forms tutorials.
 - Tutorial-14 (API Routes GET): `/group105/`
-- Tutorial-15,16 (API Routes: POST, PUT, DELETE) = `/group106/`
+- Tutorial-15,16 (API Routes: POST, PUT, DELETE) = `/Group105/` `/Group106/`
   - The updation of the todos should work without page refresh and the issue is reported here - https://github.com/sveltejs/svelte.dev/issues/786
+
+## Errors 1: Expected errors vs. Unexpected errors - SvelteKit
+
+- Tutorial: [https://svelte.dev/tutorial/kit/error-basics](https://svelte.dev/tutorial/kit/error-basics) **(This tutorial is not added in this project)**
+
+**Note: In both the cases the `+page.svelte` page will never be rendered.**
+
+- When you throw an expected error, you’re telling SvelteKit ‘don’t worry, I know what I’m doing here’.
+
+```js
+// src/routes/expected/+page.server
+import { error } from '@sveltejs/kit';
+
+export function load() {
+	error(420, 'Enhance your calm');
+}
+```
+
+- An unexpected error, by contrast, is assumed to be a bug in your app. When an unexpected error is thrown, its message and stack trace will be logged to the console.
+
+```js
+// src/routes/unexpected/+page.server
+export function load() {
+	throw new Error('Kaboom!');
+}
+```
+
+**The expected error message is shown to the user, whereas the unexpected error message is redacted and replaced with a generic ‘Internal Error’ message and a 500 status code. That’s because error messages can contain sensitive data.**
+
+## Errors 2: Custom Error pages (custom site-wide error page) and Granular Error pages (page specific error page)
+
+Tutorial: [https://svelte.dev/tutorial/kit/error-pages](https://svelte.dev/tutorial/kit/error-pages)
+
+1. Custom site-wide error page: `src/routes/+error.svelte`
+
+```js
+<script>
+	import { page } from '$app/stores';
+	import { emojis } from './emojis.js';
+</script>
+
+<h1>{$page.status} {$page.error.message}</h1>
+<span style="font-size: 10em">
+	{emojis[$page.status] ?? emojis[500]}
+</span>
+```
+
+2. Page specific error page `src/routes/expected/+error`
+
+This component will be rendered for `/expected` instead of `src/routes/+error.svelte`.
+
+```js
+<h1>this error was expected</h1>
+```
 
 ## SvelteKit - Advanced SvelteKit / Hooks / The RequestEvent object
 
@@ -89,6 +143,7 @@ For pages (as opposed to API routes), you can modify the generated HTML with tra
 export async function handle({ event, resolve }) {
 	// You can also create entirely new routes:
 	if (event.url.pathname === '/ping') {
+		// Note: If the incoming request is on path `/ping` then we render 'pong' text to the user in browser.
 		return new Response('pong');
 	}
 
