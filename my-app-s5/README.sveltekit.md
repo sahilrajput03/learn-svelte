@@ -21,6 +21,114 @@ This document is written in reverse chronology order (recent at the top).
 - Tutorial-15,16 (API Routes: POST, PUT, DELETE) = `/Group105/` `/Group106/`
   - The updation of the todos should work without page refresh and the issue is reported here - https://github.com/sveltejs/svelte.dev/issues/786
 
+## Advanced SvelteKit / Link options / (2) Reloading the page
+
+[Tutorial Link](https://svelte.dev/tutorial/kit/reload)
+
+Ordinarily, SvelteKit will navigate between pages without refreshing the page. In this exercise, if we navigate between / and /about, the timer keeps on ticking.
+
+In rare cases, you might want to disable this behaviour. You can do so by adding the data-sveltekit-reload attribute on an individual link, or any element that contains links:
+
+```html
+<!-- src/routes/+layout -->
+<nav data-sveltekit-reload>
+	<a href="/">home</a>
+	<a href="/about">about</a>
+</nav>
+```
+
+For more information on available link options and their values, consult the link options documentation.
+
+## Advanced SvelteKit / Link options / (1) Preloading
+
+[Tutorial Link](https://svelte.dev/tutorial/kit/preload)
+
+Use `data-sveltekit-preload-data` attribute on an anchor element or on any element that contains links to preload their code+data.
+
+```html
+<a data-sveltekit-preload-data>My link</a>
+
+<!-- Note: The default project template includes the attribute on the <body> element: -->
+<body data-sveltekit-preload-data>
+	%sveltekit.body%
+</body>
+```
+
+**Amazingly 1:** Using data-sveltekit-preload-data may sometimes result in false positives - i.e. loading data in anticipation of a navigation that doesn’t then happen — which might be undesirable. As an alternative, data-sveltekit-preload-code allows you to preload the JavaScript needed by a given route without eagerly loading its data. (Sahil: Please go to the tutorial link to know the available options for this attribute).
+
+**❤️ Amazingly 2:** You can also initiate preloading programmatically with `preloadCode` and `preloadData` imported from `$app/navigation`:
+
+```js
+import { preloadCode, preloadData } from '$app/navigation';
+
+// preload the code and data needed to navigate to /foo
+preloadData('/foo');
+
+// preload the code needed to navigate to /bar, but not the data
+preloadCode('/bar');
+```
+
+## Advanced SvelteKit / Page options / (5) trailingSlash
+
+[Tutorila Link](https://svelte.dev/tutorial/kit/trailingslash)
+
+```js
+// src/routes/always/+page.server.js
+export const trailingSlash = 'always';
+// OR
+export const trailingSlash = 'ignore';
+// OR
+export const trailingSlash = 'never'; // (default, thus no need to define it in `+page.server.js` file)
+```
+
+## Advanced SvelteKit / Page options / (4) prerender
+
+[Tutorila Link](https://svelte.dev/tutorial/kit/prerender), Docs: [Prerendering](https://svelte.dev/docs/kit/page-options#prerender), [configuration](https://svelte.dev/docs/kit/configuration#prerender)
+
+_Sahil: Since it isn't something I'm ever gonna use, I don't need to learn much about it._
+
+## Advanced SvelteKit / Page options / (3) csr
+
+Client-side rendering is what makes the page interactive — such as incrementing the counter when you click the button in this app — and enables SvelteKit to update the page upon navigation without a full-page reload.
+
+As with csr, you can disable client-side rendering altogether:
+
+```ts
+// src/routes/+page.server
+export const csr = false;
+```
+
+This means that no JavaScript is served to the client, but it also means that your components are no longer interactive. It can be a useful way to check whether or not your application is usable for people who — for whatever reason — cannot use JavaScript.
+
+_Sahil: In the tutorial, you can see that we can check whether a page is rendered in the browser or server via `browser` (`import { browser } from '$app/environment'`)._
+
+## Advanced SvelteKit / Page options / (2) ssr
+
+[Tutorial Link](https://svelte.dev/tutorial/kit/page-options)
+
+```ts
+// src/routes/+page.server
+export const ssr = false;
+```
+
+- Setting ssr to false inside your root +layout.server.js effectively turns your entire app into a single-page app (SPA).
+- Please read from above tutorial link, it is awesome. ~ Sahil
+
+## Advanced SvelteKit / Page options / (1) Basics
+
+We can also export various page options from these modules:
+
+`ssr` — whether or not pages should be server-rendered
+`csr` — whether to load the SvelteKit client
+`prerender` — whether to prerender pages at build time, instead of per-request
+`trailingSlash` — whether to strip, add, or ignore trailing slashes in URLs
+
+In the following exercises, we’ll learn about each of these in turn.
+
+Page options can apply to individual pages (if exported from +page.js or +page.server.js), or groups of pages (if exported from +layout.js or +layout.server.js). To define an option for the whole app, export it from the root layout. Child layouts and pages override values set in parent layouts, so — for example — you can enable prerendering for your entire app then disable it for pages that need to be dynamically rendered.
+
+You can mix and match these options in different areas of your app — you could prerender your marketing pages, dynamically server-render your data-driven pages, and treat your admin pages as a client-rendered SPA. This makes SvelteKit very versatile.
+
 ## Basic SvelteKit / Errors and redirects / Redirects
 
 [Tutorial Link](https://svelte.dev/tutorial/kit/redirects)
