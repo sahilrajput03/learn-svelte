@@ -395,7 +395,8 @@ Multiple route parameters can appear within one URL segment, as long as they are
 
 Docs of Loading data: [Click here](https://svelte.dev/docs/kit/load)
 
-- Note: `+page.ts` === `+page.server.ts` AND `+layout.ts` === `+layout.server.ts` (Both tested on `/blog` routes) **BUT** `+page.ts` and `+layout.ts` would run again on browser (i.e, runs twice: once on server + again on browser) whereas `+page.server.ts` / `+layout.server.ts` runs only once on server. (TESTED and VERFIED by using `console.log(Math.random())`). Read the docs explanation here - [https://svelte.dev/docs/kit/load](https://svelte.dev/docs/kit/load).
+- Note 1: `+page.ts` === `+page.server.ts` AND `+layout.ts` === `+layout.server.ts` (Both tested on `/blog` routes) **BUT** `+page.ts` and `+layout.ts` would run again on browser (i.e, runs twice: once on server + again on browser) whereas `+page.server.ts` / `+layout.server.ts` runs only once on server. (TESTED and VERFIED by using `console.log(Math.random())`). Read the docs explanation here - [https://svelte.dev/docs/kit/load](https://svelte.dev/docs/kit/load).
+- Note 2: **`*.svelte.js` and `*.svelte.ts` files?** Besides .svelte files, Svelte also operates on .svelte.js and .svelte.ts files. These behave like any other .js or .ts module, except that you can use runes. This is useful for creating reusable reactive logic, or sharing reactive state across your app. [Docs](https://svelte.dev/docs/svelte/svelte-js-files)
 
 - For `+page.svelte` file: `data` is merged from **both `+page.server.ts` and `+layout.server.ts` files.**
 - For `+layout.svelte` file: `data` loaded **only from `+layout.server.ts` file only.**
