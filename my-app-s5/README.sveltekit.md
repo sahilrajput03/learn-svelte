@@ -5,6 +5,14 @@
     - The layout (and any page below it) inherits `data.summaries` from the parent `+layout.server.js`.
     - TODO: For invalidation of data please check this - https://svelte.dev/docs/kit/load#Rerunning-load-functions
 
+## ✌🏻 Using capacitor with Sveltekit and SSR
+
+- Sveltekit project can simply be developed to a capacitor project by providing the `isCapacitorApp ? API_URL_FOR_CAPACITOR_APP : "/"`.
+
+  - Here `API_URL_FOR_CAPACITOR_APP` variable is the url of the deployed SSR app and `"/"` is for building SSR web app deployment. These variables are used dynamically at built time.
+
+- Testing api routes with vitest or playwright - official sample code - [https://github.com/sveltejs/kit/discussions/9936#discussioncomment-6001570](https://github.com/sveltejs/kit/discussions/9936#discussioncomment-6001570)
+
 ## Env tutorial brocken?
 
 Yes. [https://github.com/sveltejs/svelte.dev/issues/690](https://github.com/sveltejs/svelte.dev/issues/690)
