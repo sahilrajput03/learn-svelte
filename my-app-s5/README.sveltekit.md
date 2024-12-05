@@ -395,6 +395,8 @@ Multiple route parameters can appear within one URL segment, as long as they are
 
 Docs of Loading data: [Click here](https://svelte.dev/docs/kit/load)
 
+- Note: `+page.ts` === `+page.server.ts` AND `+layout.ts` === `+layout.server.ts` (Both tested on `/blog` routes) **BUT** `+page.ts` and `+layout.ts` would run again on browser (i.e, runs twice: once on server + again on browser) whereas `+page.server.ts` / `+layout.server.ts` runs only once on server. (TESTED and VERFIED by using `console.log(Math.random())`). Read the docs explanation here - [https://svelte.dev/docs/kit/load](https://svelte.dev/docs/kit/load).
+
 - For `+page.svelte` file: `data` is merged from **both `+page.server.ts` and `+layout.server.ts` files.**
 - For `+layout.svelte` file: `data` loaded **only from `+layout.server.ts` file only.**
 
