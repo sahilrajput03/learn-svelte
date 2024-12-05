@@ -1,27 +1,15 @@
 # Learn Svelte Kit
 
-- `data` (server side) is availale in $props() in both `+layour.svelte` and `+page.svelte` file.
-  - From svelte docs:
-    - The layout (and any page below it) inherits `data.summaries` from the parent `+layout.server.js`.
-    - TODO: For invalidation of data please check this - https://svelte.dev/docs/kit/load#Rerunning-load-functions
+This document is written in reverse chronology order (recent at the top).
 
-## ✌🏻 Using capacitor with Sveltekit and SSR
+`data` (server side rendering) is availale in $props() in both `+layour.svelte` and `+page.svelte` file.
 
-- Sveltekit project can simply be developed to a capacitor project by providing the `isCapacitorApp ? API_URL_FOR_CAPACITOR_APP : "/"`.
+- From svelte docs:
 
-  - Here `API_URL_FOR_CAPACITOR_APP` variable is the url of the deployed SSR app and `"/"` is for building SSR web app deployment. These variables are used dynamically at built time.
+  - The layout (and any page below it) inherits `data.summaries` from the parent `+layout.server.js`.
+  - TODO: For invalidation of data please check this - https://svelte.dev/docs/kit/load#Rerunning-load-functions
 
-- Testing api routes with vitest or playwright - official sample code - [https://github.com/sveltejs/kit/discussions/9936#discussioncomment-6001570](https://github.com/sveltejs/kit/discussions/9936#discussioncomment-6001570)
-
-## Env tutorial brocken?
-
-Yes. [https://github.com/sveltejs/svelte.dev/issues/690](https://github.com/sveltejs/svelte.dev/issues/690)
-
-## TODO:
-
-- print and stick to wall all the different html elements you use for e.g., <aside> - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside
-
-## Tutorials
+  ## Tutorials
 
 - Tutorial-1,2,3,4,5: folder - `/blog`
 - Tutorial-6 (Header and cookies): `/group101/`
@@ -32,6 +20,78 @@ Yes. [https://github.com/sveltejs/svelte.dev/issues/690](https://github.com/svel
 - Tutorial-14 (API Routes GET): `/group105/`
 - Tutorial-15,16 (API Routes: POST, PUT, DELETE) = `/Group105/` `/Group106/`
   - The updation of the todos should work without page refresh and the issue is reported here - https://github.com/sveltejs/svelte.dev/issues/786
+
+## Basic SvelteKit / Errors and redirects / Redirects
+
+[Tutorial Link](https://svelte.dev/tutorial/kit/redirects)
+
+Navigating to `/a` will now take us straight to `/b`.
+
+You can `redirect(...)` inside `load` functions, form actions, API routes and the `handle` hook
+
+```ts
+import { redirect } from '@sveltejs/kit';
+
+export function load() {
+	redirect(307, '/b');
+}
+```
+
+The most common status codes you’ll use:
+
+- 303 — for form actions, following a successful submission
+- 307 — for temporary redirects
+- 308 — for permanent redirects
+
+## Basic SvelteKit / Errors and redirects / Fallback errors
+
+[Tutorial Link](https://svelte.dev/tutorial/kit/fallback-errors)
+
+If things go really wrong — an error occurs while loading the root layout data, or while rendering the error page — SvelteKit will fall back to a static error page.
+
+Have below code the root `+layour.server.ts` file.
+
+```js
+// src/routes/+layout.server
+import { error } from '@sveltejs/kit';
+
+export function load() {
+	error(420, 'Enhance your calm');
+	// throw new Error('yikes'); from tutorial example
+}
+```
+
+and then you'll render below `error.html` page where you have access to error status code and the error message.
+
+```html
+<!-- src/error.html -->
+<h1>Game over</h1>
+<p>Code %sveltekit.status%</p>
+<p>%sveltekit.error.message%</p>
+```
+
+## ✌🏻 Using capacitor with Sveltekit and SSR
+
+- Sveltekit project can simply be developed to a capacitor project by providing the `isCapacitorApp ? API_URL_FOR_CAPACITOR_APP : "/"`.
+
+  - Here `API_URL_FOR_CAPACITOR_APP` variable is the url of the deployed SSR app and `"/"` is for building SSR web app deployment. These variables are used dynamically at built time.
+
+- Testing api routes with vitest or playwright - official sample code - [https://github.com/sveltejs/kit/discussions/9936#discussioncomment-6001570](https://github.com/sveltejs/kit/discussions/9936#discussioncomment-6001570)
+
+**an old text log I made to telegram on 21 November, 2024**: Todo: Create a project demo for capacitor (spa, via isCapacitor logic) and SSR for web deployment. This will do our feature like twitter preview in user messages on mobiles and when clicked the user is directed to the app via deep linking. OM NAMAH SHIVAAY!. 💯❤️
+
+- Why SSR?
+  - better seo
+  - twitter like preview in messages
+  - no-loader page loads
+
+## Env tutorial brocken?
+
+Yes. [https://github.com/sveltejs/svelte.dev/issues/690](https://github.com/sveltejs/svelte.dev/issues/690)
+
+## TODO:
+
+- print and stick to wall all the different html elements you use for e.g., <aside> - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside
 
 ## Errors 1: Expected errors vs. Unexpected errors - SvelteKit
 
@@ -87,7 +147,84 @@ This component will be rendered for `/expected` instead of `src/routes/+error.sv
 <h1>this error was expected</h1>
 ```
 
-## SvelteKit - Advanced SvelteKit / Hooks / The RequestEvent object
+## Advanced SvelteKit / Hooks / (4) handleError
+
+[Tutorial Link](https://svelte.dev/tutorial/kit/handleerror)
+
+In file `src/hooks.server.ts`, `handleError` hook lets you intercept unexpected errors and trigger some behaviour, like pinging a Slack channel or sending data to an error logging service.
+
+As you’ll recall from an earlier exercise, an error is unexpected if it wasn’t created with the `error` helper from `@sveltejs/kit`. It generally means something in your app needs fixing. The default behaviour is to log the error:
+
+```ts
+src / hooks.server;
+export function handleError({ event, error }) {
+	console.error(error.stack);
+}
+```
+
+For e.g., The `page.server.ts` file throws unexpected error as shown below _(i.e, not using `error` handler imported from `sveltejs/kit`)_.
+
+```ts
+// src/routes/the-bad-place
+export function load() {
+	throw new Error('this is the bad place!');
+}
+```
+
+If you visit `/the-bad-place` in browser you'll that we’re not showing the error message to the user. That’s because error messages can include sensitive information that at best will confuse your users, and at worst could benefit evildoers. Instead, the error object available to your application — represented as `$page.error` in your `+error.svelte` pages, or `%sveltekit.error%` in your `src/error.html` fallback is `{ message: 'Internal Error' }` (or `{ message: 'Not Found' for a 404'}` for page not found).
+
+In some situations you may want to customise this object. To do so, you can return an object from `handleError` in `src/hooks.server.ts` file:
+
+```ts
+export function handleError({ event, error }) {
+	console.error(error.stack);
+
+	return {
+		// we can customize this object as much as you like
+		message: 'everything is fine',
+		code: 'JEREMYBEARIMY',
+		god: 'power' // sahil
+	};
+}
+```
+
+You can now reference properties other than message in a custom error page. Create `src/routes/+error.svelte`:
+
+```html
+<script>
+	import { page } from '$app/stores';
+</script>
+
+<h1>{$page.status}</h1>
+<p>{$page.error.message}</p>
+
+<p>error code: {$page.error.code}</p>
+<!-- Output: "JEREMYBEARIMY" -->
+
+<p>error god: {$page.error.god}</p>
+<!-- Output: "power" -->
+```
+
+## 😇❤️ Advanced SvelteKit / Hooks / (3) handleFetch
+
+[Tutorial Link](https://svelte.dev/tutorial/kit/handlefetch)
+
+Respond to requests (e.g., `GET` http request) for `src/routes/a/+server.js` with responses from `src/routes/b/+server.js` instead.
+
+```js
+export async function handleFetch({ event, request, fetch }) {
+	// 	console.log('request method?', request.method) // e.g., "GET", "POST" based on whatever type of request made by api call.
+
+	const url = new URL(request.url);
+	if (url.pathname === '/a') {
+		return await fetch('/b'); // This if for GET route. For POST, PUT, PATCH, et you can simply pass the second argument to `fetch(..)` as `{method: request.method}` and it works magically (TESTED).
+	}
+
+	return await fetch(request);
+}
+```
+
+## SvelteKit - Advanced SvelteKit / Hooks / (2) The RequestEvent object
 
 Source: [https://svelte.dev/tutorial/kit/event](https://svelte.dev/tutorial/kit/event)
 
@@ -123,7 +260,7 @@ export function load(event) {
 }
 ```
 
-## SvekteKit - Advanced SvelteKit / Hooks / handle
+## SvekteKit - Advanced SvelteKit / Hooks / (1) handle
 
 [https://svelte.dev/tutorial/kit/handle](https://svelte.dev/tutorial/kit/handle)
 
@@ -131,9 +268,9 @@ export function load(event) {
 
 SvelteKit provides several hooks — ways to intercept and override the framework’s default behaviour.
 
-The most elementary hook is handle, which lives in src/hooks.server.js. It receives an event object along with a resolve function, and returns a Response.
+The most elementary hook is `handle`, which lives in `src/hooks.server.js`. It receives an event object along with a resolve function, and returns a Response.
 
-resolve is where the magic happens: SvelteKit matches the incoming request URL to a route of your app, imports the relevant code (+page.server.js and +page.svelte files and so on), loads the data needed by the route, and generates the response.
+resolve is where the magic happens: SvelteKit matches the incoming request URL to a route of your app, imports the relevant code (`+page.server.js` and `+page.svelte` files and so on), loads the data needed by the route, and generates the response.
 
 The default handle hook looks like this:
 
@@ -161,7 +298,9 @@ export async function handle({ event, resolve }) {
 }
 ```
 
-## SvelteKit - stores: `page`, `navigating`, `updated`
+## SvelteKit / Stores / (`page`, `navigating`, `updated`)
+
+[Tutorial Link](https://svelte.dev/tutorial/kit/page-store)
 
 **Tutorials:**
 
@@ -252,7 +391,7 @@ Source - [Tutorial: Basic SvelteKit - Routing - Route parameters](https://svelte
 
 Multiple route parameters can appear within one URL segment, as long as they are separated by at least one static character: `foo/[bar]x[baz]` is a valid route where `[bar]` and `[baz]` are dynamic parameters.
 
-## Routes and loading data
+## 👏🏻❤️ Routes and loading data
 
 Docs of Loading data: [Click here](https://svelte.dev/docs/kit/load)
 
