@@ -21,6 +21,145 @@ This document is written in reverse chronology order (recent at the top).
 - Tutorial-15,16 (API Routes: POST, PUT, DELETE) = `/Group105/` `/Group106/`
   - The updation of the todos should work without page refresh and the issue is reported here - https://github.com/sveltejs/svelte.dev/issues/786
 
+## Advanced SvelteKit / Advance routing / (5) Breaking out of layouts
+
+[Tutorilal Link](https://svelte.dev/tutorial/kit/breaking-out-of-layouts)
+
+Ordinarily, a page inherits every layout above it, meaning that src/routes/a/b/c/+page.svelte inherits four layouts:
+
+- `src/routes/+layout.svelte`
+- `src/routes/a/+layout.svelte`
+- `src/routes/a/b/+layout.svelte`
+- `src/routes/a/b/c/+layout.svelte`
+
+Occasionally, it’s useful to break out of the current layout hierarchy. We can do that by adding the `@` sign followed by the name of the parent segment to ‘reset’ to — for example `+page@b.svelte` would put `/a/b/c` inside `src/routes/a/b/+layout.svelte`, while `+page@a.svelte` would put it inside `src/routes/a/+layout.svelte`.
+
+Let’s reset it all the way to the root layout, by renaming it to `+page@.svelte`.
+
+_NOTE: The root layout applies to every page of your app, you cannot break out of it._
+
+## Advanced SvelteKit / Advance routing / (4) Route groups
+
+[Tutorial Link](https://svelte.dev/tutorial/kit/route-groups)
+
+_😇 Sahil: This tutorial helps to make protected routes (routes behind authentication) using `route groups` featuer of sveltekit using cookies._
+
+Sometimes it’s useful to use layouts without affecting the route — for example, you might need your `/app` and `/account` routes to be behind authentication, while your `/about` page is open to the world. We can do this with a route group, which is a directory in parentheses.
+
+Create an (authed) group by renaming account to `(authed)/account` then renaming app to `(authed)/app`.
+
+Now we can control access to these routes by creating `src/routes/(authed)/+layout.server.js`:
+
+```ts
+// src/routes/(authed)/+layout.server.ts
+import { redirect } from '@sveltejs/kit';
+
+export function load({ cookies, url }) {
+	if (!cookies.get('logged_in')) {
+		redirect(303, `/login?redirectTo=${url.pathname}`);
+	}
+}
+```
+
+If you try to visit these pages, you’ll be redirected to the `/login` route, which has a form action in `src/routes/login/+page.server.js` that sets the `logged_in` cookie.
+
+We can also add some UI to these two routes by adding a `src/routes/(authed)/+layout.svelte` file:
+
+```html
+<!-- src/routes/(authed)/+layout.svelte -->
+<script>
+	let { children } = $props();
+</script>
+
+<form method="POST" action="/logout">
+	<button>log out</button>
+</form>
+```
+
+## Advanced SvelteKit / Advance routing / (3) Param matchers
+
+[Tutorial Link](https://svelte.dev/tutorial/kit/param-matchers)
+
+To prevent the router from matching on invalid input, you can specify a matcher. For example, you might want a route like /colors/[value] to match hex values like /colors/ff3e00 but not named colors like /colors/octarine or any other arbitrary input.
+
+First, create a new file called src/params/hex.js and export a match function from it:
+
+```js
+// src/params/hex.js;
+export function match(value) {
+	return /^[0-9a-f]{6}$/.test(value);
+}
+```
+
+Then, to use the new matcher, rename src/routes/colors/[color] to src/routes/colors/[color=hex].
+
+Now, whenever someone navigates to that route, SvelteKit will verify that color is a valid hex value. If not, SvelteKit will try to match other routes, before eventually returning a 404.
+
+NOTE: Matchers run both on the server and in the browser.
+
+## Advanced SvelteKit / Advance routing / (2) Rest parameters
+
+To match an unknown number of path segments, use a `[...rest]` parameter, so named for its resemblance to rest parameters in JavaScript.
+
+Rename `src/routes/[path]` to `src/routes/[...path]`. The route now matches any path. For this tutorial `[...path]` now matches these routes: `/`, `/how`, `/how/deep`, `/how/deep/does`, `/how/deep/does/the`, `/how/deep/does/the/rabbit`, `/how/deep/does/the/rabbit/hole`, `/how/deep/does/the/rabbit/hole/go`.
+
+let words = ['how', 'deep', 'does', 'the', 'rabbit', 'hole', 'go'
+
+_SAHIL: To easy view all the working values in the tutorial you can simply press the "solve" buton and add below code in markup as well for easy debugging._
+
+```html
+<pre>
+{JSON.stringify({
+	wordLength: words.length,
+	pageParamsPath: $page.params.path,
+	depth,
+	next
+}, null, 2)}
+</pre>
+
+<!-- In style tag -->
+pre { font-size: 0.7rem; position: fixed; }
+```
+
+ALSO: Other, more specific routes will be tested first, making rest parameters useful as ‘catch-all’ routes. For example, if you needed a custom 404 page for pages inside `/categories/...`, you could add these files:
+
+```txt
+src/routes/
+├ categories/
+│ ├ animal/
+│ ├ mineral/
+│ ├ vegetable/
+│ ├ [...catchall]/
+│ │ ├ +error.svelte
+│ │ └ +page.server.js
+<!-- Inside the +page.server.js file, if you throw error(404) inside load function then sveltekit will render `catchall/` routes. -->
+```
+
+Rest parameters do not need to go at the end — a route like /items/[...path]/edit or /items/[...path].json is totally valid.
+
+## Advanced SvelteKit / Advance routing / (2) Optional parameters
+
+To make a parameter optional. A classic example is when you use the pathname to determine the locale — /fr/..., /de/... and so on — but you also want to have a default locale.
+
+To do that, we use double brackets. Rename the [lang] directory to [[lang]].
+
+The app now fails to build, because `src/routes/+page.svelte` and `src/routes/[[lang]]/+page.svelte` would both match `/`. **Delete `src/routes/+page.svelte`. (You may need to reload the app to recover from the error page).**
+
+```ts
+// FILE: src/routes/[[lang]]/+page.server.ts
+const greetings = {
+	en: 'hello!',
+	de: 'hallo!',
+	fr: 'bonjour!'
+};
+
+export function load({ params }) {
+	return {
+		greeting: greetings[params.lang ?? 'en']
+	};
+}
+```
+
 ## Advanced SvelteKit / Link options / (2) Reloading the page
 
 [Tutorial Link](https://svelte.dev/tutorial/kit/reload)
@@ -499,12 +638,28 @@ Source - [Tutorial: Basic SvelteKit - Routing - Route parameters](https://svelte
 
 Multiple route parameters can appear within one URL segment, as long as they are separated by at least one static character: `foo/[bar]x[baz]` is a valid route where `[bar]` and `[baz]` are dynamic parameters.
 
-## 👏🏻❤️ Routes and loading data
+## 👏🏻❤️ Routes and loading data, `When does which load function run?`
 
 Docs of Loading data: [Click here](https://svelte.dev/docs/kit/load)
 
-- Note 1: `+page.ts` === `+page.server.ts` AND `+layout.ts` === `+layout.server.ts` (Both tested on `/blog` routes) **BUT** `+page.ts` and `+layout.ts` would run again on browser (i.e, runs twice: once on server + again on browser) whereas `+page.server.ts` / `+layout.server.ts` runs only once on server. (TESTED and VERFIED by using `console.log(Math.random())`). Read the docs explanation here - [https://svelte.dev/docs/kit/load](https://svelte.dev/docs/kit/load).
-- Note 2: **`*.svelte.js` and `*.svelte.ts` files?** Besides .svelte files, Svelte also operates on .svelte.js and .svelte.ts files. These behave like any other .js or .ts module, except that you can use runes. This is useful for creating reusable reactive logic, or sharing reactive state across your app. [Docs](https://svelte.dev/docs/svelte/svelte-js-files)
+All 4 sub topics are awesome ❤️:
+
+- Universal vs server
+
+  - When does which load function run?
+  - Input
+  - Output
+  - When to use which
+
+**Sahil : TLDR**
+
+- <ins>Sahil's Note 1:</ins> `+page.server.ts` files can't pass svelte component constructor because they are not serializable.
+- <ins>Sahil's Note 2:</ins> `+page.ts` (universal) runs on both server and client BUT the client's fetch requests uses responses made by server's requests because the API responses were send along with html response. Just awesome! ([check here](https://svelte.dev/docs/kit/load#Making-fetch-requests))
+- <ins>Sahil's Note 3:</ins> If a route contains both universal (`+page.ts`) and server (`+page.server.ts`) load functions, the server load runs first. When using both, the server load return value is not passed directly to the page, but to the universal load function (as the data property). ([check example in docs here](https://svelte.dev/docs/kit/load#Universal-vs-server-When-to-use-which))
+- <ins>Sahil's Note 4:</ins> `+page.ts` === `+page.server.ts` AND `+layout.ts` === `+layout.server.ts` (Both tested on `/blog` routes) **BUT** `+page.ts` and `+layout.ts` would run again on browser (i.e, runs twice: once on server + again on browser) whereas `+page.server.ts` / `+layout.server.ts` runs only once on server. (TESTED and VERFIED by using `console.log(Math.random())`).
+- <ins>Sahil's Note 5:</ins> **`*.svelte.js` and `*.svelte.ts` files?** Besides .svelte files, Svelte also operates on .svelte.js and .svelte.ts files. These behave like any other .js or .ts module, except that you can use runes. This is useful for creating reusable reactive logic, or sharing reactive state across your app. [Docs](https://svelte.dev/docs/svelte/svelte-js-files)
+
+**Analysed by experimentation:**
 
 - For `+page.svelte` file: `data` is merged from **both `+page.server.ts` and `+layout.server.ts` files.**
 - For `+layout.svelte` file: `data` loaded **only from `+layout.server.ts` file only.**
