@@ -79,6 +79,7 @@
 	import { pushState, replaceState } from '$app/navigation';
 	import Example1 from './Example1.svelte';
 	import Personal5 from './Personal5.svelte';
+	import { copyToClipboard } from './utils';
 
 	type ComponentsItemType = {
 		id: string;
@@ -626,7 +627,7 @@
 	const generateUuidAndCopytoClipboard = () => {
 		const newUuid = uuidv4();
 		uuid = newUuid;
-		navigator.clipboard.writeText(newUuid);
+		copyToClipboard(newUuid);
 	};
 
 	// $inspect('selected?', componentToShow); // For debugging

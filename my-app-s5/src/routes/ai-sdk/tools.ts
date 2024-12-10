@@ -30,3 +30,16 @@ export const convertFarenheitToCelsius = tool({
         };
     },
 })
+
+// export const sendSmsTool = tool({
+//     description: 'this function send sms/message to people',
+//     parameters: z.object({
+//         phoneNumber: z.number().describe('phone number'),
+//     }),
+//     execute: async ({ phoneNumber }) => {
+//         console.log('sms sent to?', phoneNumber)
+//         return {
+//             message: "message sent!"
+//         }
+//     },
+// })

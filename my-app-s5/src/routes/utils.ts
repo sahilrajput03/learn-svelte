@@ -36,3 +36,7 @@ export function getTicks(min: number, max: number) {
 export function roundToTwoDecimals(num: number) {
     return +(Math.round((num + 'e+2') as any) + 'e-2');
 }
+
+export function copyToClipboard(text: string) {
+    navigator.clipboard.writeText(text);
+}

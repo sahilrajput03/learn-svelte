@@ -1,7 +1,7 @@
 <script lang="ts">
 	import OpenAI from 'openai';
 	import { fade } from 'svelte/transition';
-	import { roundToTwoDecimals } from './utils';
+	import { copyToClipboard, roundToTwoDecimals } from './utils';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	import Groq from 'groq-sdk';
@@ -11,6 +11,9 @@
 
 	let groq: Groq;
 	let GROQ_API_KEY = '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'; // i am temporarily putting this here
+
+	const defautlCopyToClipboardButtonText = 'Copy to clipboard';
+	let copyToClipboardButtonText = $state(defautlCopyToClipboardButtonText);
 
 	onMount(() => {
 		const oai = localStorage.getItem('oai');
@@ -110,7 +113,7 @@
 				let blob = new Blob(audioChunks, { type: 'audio/mp3' });
 				recordedAudioButton.src = URL.createObjectURL(blob);
 				recordedAudioButton.controls = true;
-				recordedAudioButton.autoplay = true;
+				// recordedAudioButton.autoplay = true; // Uncommend this line to automatically play audio after recording is done
 				transcribe(blob);
 			}
 		};
@@ -158,9 +161,14 @@
 	></div>
 </div>
 
-<div in:fade style:display={OPEN_AI_API_KEY ? 'block' : 'none'}>
+<div in:fade style:display={OPEN_AI_API_KEY ? 'flex' : 'none'} class="justify-end md:justify-start">
 	{#if !isRecording && !isTranscribing}
-		<button in:fade class="btn-primary" type="button" onclick={handleRecordButton}>Record</button>
+		<button
+			in:fade
+			class="rounded-sm border border-solid border-[black] bg-white px-[50px] py-0.5"
+			type="button"
+			onclick={handleRecordButton}>Record</button
+		>
 	{:else if isRecording}
 		<button in:fade class="btn-primary" type="button" onclick={handleStopRecord}> Stop </button>
 	{:else}
@@ -178,6 +186,20 @@
 		<i style="color: grey" in:fade>Transcribing now...</i>
 	{:else}
 		<div transition:fade>{transcribedText}</div>
-		<div class="mt-5 text-xs italic text-gray-600">{transcribeTime}</div>
+		<div class="mt-5 px-10 text-xs italic">{transcribeTime}</div>
+		<div class="flex justify-end md:justify-start">
+			<button
+				class="rounded-sm border border-solid border-[black] bg-white px-[50px] py-0.5"
+				onclick={() => {
+					copyToClipboard(transcribedText);
+					copyToClipboardButtonText = 'copied!';
+					setTimeout(() => {
+						copyToClipboardButtonText = defautlCopyToClipboardButtonText;
+					}, 1000);
+				}}
+			>
+				{copyToClipboardButtonText}
+			</button>
+		</div>
 	{/if}
 </div>

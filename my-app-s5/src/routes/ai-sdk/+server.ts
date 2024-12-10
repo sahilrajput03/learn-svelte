@@ -39,7 +39,8 @@ export const POST = (async ({ request }: RequestEvent) => {
         messages,
         tools: {
             weatherTool,
-            convertFarenheitToCelsius
+            convertFarenheitToCelsius,
+            // sendSmsTool // dummy function to send sms to anybody, present in file `./tools.ts` file
         },
     });
 
