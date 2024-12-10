@@ -17,6 +17,13 @@ _Note to Sahil: Some content is only covered in the readme (including sveltekit 
   - Group61 ([Schotter Tutorial](https://collections.vam.ac.uk/item/O221321/schotter-print-nees-georg/))
   - Group63 ([Ocean Depth Turorial](https://svelte.dev/tutorial/svelte/svelte-window-bindings))
 
+## Using $state(...) rune outside the `.svelte` file for global state (shared state) management purpose
+
+See example in files:
+
+- `src/routes/shared.svelte.ts` (`Group4.svelte`)
+- `src/routes/actions.svelte.ts`
+
 ## Named export / Exporting variables from a `*.svetle` file using `<script module ..`
 
 Refer file:

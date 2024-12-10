@@ -111,7 +111,7 @@
 		},
 		{
 			id: '550384e7-fd76-49ea-80ae-86ce56332938',
-			name: 'Group4 - Shared state among components',
+			name: 'Group4 - ❤️ Shared state among components',
 			component: Group4,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/universal-reactivity'
 		},

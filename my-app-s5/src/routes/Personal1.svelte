@@ -222,3 +222,8 @@
 		<audio bind:this={recordedAudioButton}></audio>
 	</p>
 </div>
+
+<div class="mt-4 italic text-gray-400">
+	You can also use Google keyboard's voice button do it on any phone as well. Google voice doesn't
+	recognise whispering though but oai does.
+</div>
