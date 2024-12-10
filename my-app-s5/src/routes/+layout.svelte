@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import '../app.css';
+	import { idOfComponentToShow } from './+page.svelte';
 	import NewVersionAvailableToast from './NewVersionAvailableToast.svelte';
 
 	let { children } = $props();
@@ -57,8 +58,10 @@
 </div>
 
 <div class="mb-3 mt-1 flex justify-end">
-	<a class="ml-2 text-xs text-blue-600" href="/?id=15f7992e-886b-4bbb-af20-2ff0a3d41831"
-		>/Personal1</a
+	<a
+		onclick={() => (idOfComponentToShow.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}
+		class="ml-2 text-xs text-blue-600"
+		href="/?id=15f7992e-886b-4bbb-af20-2ff0a3d41831">/Personal1</a
 	>
 </div>
 

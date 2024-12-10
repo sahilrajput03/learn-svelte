@@ -1,3 +1,7 @@
+<script module>
+	export const idOfComponentToShow = $state<{ value: string | null }>({ value: null });
+</script>
+
 <script lang="ts">
 	import { onMount, tick, type Component } from 'svelte';
 	import { v4 as uuidv4 } from 'uuid';
@@ -527,21 +531,14 @@
 
 	// console.log('here??', Math.random()); // This log (random number) is different on server log and client side log.
 
-	let idOfComponentToShow = $state<string>();
-
-	// Note: `currentIndex` and `componentToShow` are automatic derived when `idOfComponentToShow` changes
+	// Note: `currentIndex` and `componentToShow` are automatic derived when `idOfComponentToShow.value` changes
 	let componentToShow = $derived.by<ComponentsItemType>(() => {
-		const comp = componentItems.find((ci) => ci.id === idOfComponentToShow);
+		const comp = componentItems.find((ci) => ci.id === idOfComponentToShow.value);
 		return comp ?? componentItems[0];
 	});
 	let indexOfComponentToShow = $derived.by(() => {
 		return componentItems.findIndex((ci) => ci.id === componentToShow.id);
 	});
-
-	// This function is also called in onselect on <select/> that's why its encapsulated
-	const updateQuerySearchParams = (id: string) => {
-		pushState(`?id=${id}`, $page.state);
-	};
 
 	// ❤️ Lifecycle Hooks in svelte `onMount`:
 	// https://svelte.dev/docs/svelte/lifecycle-hooks
@@ -558,13 +555,13 @@
 		const { id } = Object.fromEntries(params.entries());
 
 		if (id) {
-			idOfComponentToShow = id;
-			// alert('got id, setting id = ' + idOfComponentToShow);
+			idOfComponentToShow.value = id;
+			// alert('got id, setting id = ' + idOfComponentToShow.value);
 		} else {
 			// alert('no id, setting id=0');
-			idOfComponentToShow = componentItems[0].id;
+			idOfComponentToShow.value = componentItems[0].id;
 			tick().then(() => {
-				replaceState(`?id=${idOfComponentToShow}`, $page.state);
+				replaceState(`?id=${idOfComponentToShow.value}`, $page.state);
 			});
 		}
 
@@ -573,7 +570,7 @@
 			// console.log('popStateEvent');
 			const params = new URLSearchParams(window.location.search);
 			const { id } = Object.fromEntries(params.entries());
-			idOfComponentToShow = id;
+			idOfComponentToShow.value = id;
 		};
 
 		// Whenever browser's back or forward button is clicked below event is triggered
@@ -588,21 +585,26 @@
 		console.log('effect now....');
 	});
 
+	// This function is also called in onselect on <select/> that's why its encapsulated
+	const updateQuerySearchParams = (id: string) => {
+		pushState(`?id=${id}`, $page.state);
+	};
+
 	const prev = () => {
-		idOfComponentToShow = componentItems[indexOfComponentToShow - 1].id;
-		updateQuerySearchParams(idOfComponentToShow);
+		idOfComponentToShow.value = componentItems[indexOfComponentToShow - 1].id;
+		updateQuerySearchParams(idOfComponentToShow.value);
 	};
 	const next = () => {
-		idOfComponentToShow = componentItems[indexOfComponentToShow + 1].id;
-		updateQuerySearchParams(idOfComponentToShow);
+		idOfComponentToShow.value = componentItems[indexOfComponentToShow + 1].id;
+		updateQuerySearchParams(idOfComponentToShow.value);
 	};
 	const goToFirst = () => {
-		idOfComponentToShow = componentItems[0].id;
-		updateQuerySearchParams(idOfComponentToShow);
+		idOfComponentToShow.value = componentItems[0].id;
+		updateQuerySearchParams(idOfComponentToShow.value);
 	};
 	const goToLast = () => {
-		idOfComponentToShow = componentItems[componentItems.length - 1].id;
-		updateQuerySearchParams(idOfComponentToShow);
+		idOfComponentToShow.value = componentItems[componentItems.length - 1].id;
+		updateQuerySearchParams(idOfComponentToShow.value);
 	};
 
 	let interval = $state(1000);
@@ -648,13 +650,13 @@ Why?
 -->
 
 <!-- Debug only -->
-<!-- {idOfComponentToShow} -->
+<!-- {idOfComponentToShow.value} -->
 
 {#if !isLoading}
 	<div>
 		<select
 			class="max-w-full border border-solid border-[black]"
-			bind:value={idOfComponentToShow}
+			bind:value={idOfComponentToShow.value}
 			onchange={(e: any) => {
 				updateQuerySearchParams(e.target?.value);
 			}}
@@ -765,52 +767,6 @@ Why?
 {/if}
 
 <!-- `<Group28/>` is paint brush with canvas. -->
-
-<!-- <Group1 /> -->
-<!-- <Group2 /> -->
-<!-- <Group3 /> -->
-<!-- <Group4 /> -->
-<!-- <Group5 /> -->
-<!-- <Group6 /> -->
-<!-- <Group7 /> -->
-<!-- <Group8 /> -->
-<!-- <Group9 /> -->
-<!-- <Group10 /> -->
-<!-- <Group11 /> -->
-<!-- <Group12 /> -->
-<!-- <Group13 /> -->
-<!-- <Group14 /> -->
-<!-- <Group15 /> -->
-<!-- <Group16 /> -->
-<!-- <Group17 /> -->
-<!-- <Group18 /> -->
-<!-- <Group19 /> -->
-<!-- <Group20 /> -->
-<!-- <Group21 /> -->
-<!-- <Group22 /> -->
-<!-- <Group23 /> -->
-<!-- <Group24 /> -->
-<!-- <Group25 /> -->
-<!-- <Group26 /> -->
-<!-- <Group27 /> -->
-<!-- <Group27b /> -->
-<!-- <Group28 /> -->
-<!-- <Group29 /> -->
-<!-- <Group30 /> -->
-<!-- <Group31 /> -->
-<!-- <Group32 /> -->
-<!-- <Group33 /> -->
-<!-- <Group34 /> -->
-<!-- <Group35 /> -->
-<!-- <Group36 /> -->
-<!-- <Group37 /> -->
-<!-- <Group38 /> -->
-<!-- <Group39 /> -->
-<!-- <Group40 /> -->
-<!-- <Group41 /> -->
-<!-- <Group41 /> -->
-<!-- <Group42 /> -->
-<!-- <Group43 /> -->
 
 <style>
 	.divider {

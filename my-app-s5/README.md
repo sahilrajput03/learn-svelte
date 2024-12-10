@@ -22,6 +22,7 @@ _Note to Sahil: Some content is only covered in the readme (including sveltekit 
 See example in files:
 
 - `src/routes/shared.svelte.ts` (`Group4.svelte`)
+- ❤️ Shared usage of `idOfComponentToShow` state in `/src/routes/+page.svelte` and `/src/routes/+layout.svelte`.
 - `src/routes/actions.svelte.ts`
 
 ## Named export / Exporting variables from a `*.svetle` file using `<script module ..`
