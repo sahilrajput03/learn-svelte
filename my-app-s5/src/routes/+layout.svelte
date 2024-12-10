@@ -48,11 +48,18 @@
 	<a class="ml-2 text-xs text-blue-600" href="/chat">/chat</a>
 	<a class="ml-2 text-xs text-blue-600" href="/effect-root">/effect-root</a>
 </div>
-<div class="mb-3 mt-1 flex justify-end">
+<div class="mt-1 flex justify-end">
 	<div class="ml-2 text-xs">Personal:</div>
 	<a class="ml-2 text-xs text-blue-600" href="glass-slideshow">/glass-slideshow</a>
 	<a class="ml-2 text-xs text-blue-600" href="/thoughts">/thoughts</a>
 	<a class="ml-2 text-xs text-blue-600" href="/ai-sdk">/ai-sdk</a>
+	<a class="ml-2 text-xs text-blue-600" href="/read-along">/read-along</a>
+</div>
+
+<div class="mb-3 mt-1 flex justify-end">
+	<a class="ml-2 text-xs text-blue-600" href="/?id=15f7992e-886b-4bbb-af20-2ff0a3d41831"
+		>/Personal1</a
+	>
 </div>
 
 {@render children()}
