@@ -259,7 +259,7 @@
 		},
 		{
 			id: '81c97196-2f42-4e6d-81c8-84db422aea3e',
-			name: 'Group28 - Using action functions - Painting',
+			name: 'Group28 - Using action functions - Painting (<Canvas />)',
 			component: Group28,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/actions'
 		},
@@ -765,8 +765,6 @@ Why?
 		Loading... {dev ? 'why?' : null}
 	</div>
 {/if}
-
-<!-- `<Group28/>` is paint brush with canvas. -->
 
 <style>
 	.divider {
