@@ -21,6 +21,118 @@ This document is written in reverse chronology order (recent at the top).
 - Tutorial-15,16 (API Routes: POST, PUT, DELETE) = `/Group105/` `/Group106/`
   - The updation of the todos should work without page refresh and the issue is reported here - https://github.com/sveltejs/svelte.dev/issues/786
 
+## Advanced SvelteKit / Advance loading / (3) Using parent data
+
+To access data from their parents we can use `await parent()`.
+
+```js
+// FILE: src/routes/+layout.server.js
+export function load() {
+	return { a: 1 };
+}
+```
+
+```js
+// FILE: src/routes/sum/+layout.js
+export async function load({ parent }) {
+	const { a } = await parent();
+	return { b: a + 1 };
+}
+```
+
+```js
+// FILE: src/routes/sum/+page.js
+export async function load({ parent }) {
+	const { a, b } = await parent();
+	// ! Here we have access to data merged from all
+	//   parent load functions (i.e, `/routes/+layout.server.js` and
+	//   `/routes/sum/+layout.js` in this case).
+	return { c: a + b };
+}
+```
+
+And now we can access all a, b and c in `/routes/sum/page.svelte` file:
+
+```svelte
+<script>
+	let { data } = $props();
+</script>
+
+<p>{data.a} + {data.b} = {data.c}</p><p><a href="/">home</a></p>
+```
+
+## Advanced SvelteKit / Advance loading / (2) Using both load functions
+
+Using server load function and a universal load function together. **Amazing example.**
+
+```ts
+// File: /src/routes/+page.server.ts
+export async function load() {
+	return {
+		message: 'this data came from the server',
+		cool: true
+	};
+}
+```
+
+Now based on data computed from server we can pass the component to the client (+page.js).
+
+```ts
+// File: /src/routes/+page.ts
+export async function load({ data }) {
+	const module = data.cool
+		? await import('./CoolComponent.svelte')
+		: await import('./BoringComponent.svelte');
+
+	return {
+		component: module.default,
+		message: data.message
+	};
+}
+```
+
+We can now render the component `data.component` in `+page.svelte` file directly along with the data passed from the server. Please read the tutorial for better understanding on this.
+
+```svelte
+<script>
+	let { data } = $props();
+</script>
+
+<data.component message={data.message} />
+```
+
+## Advanced SvelteKit / Advance loading / (1) Universal load function
+
+[Tutorial Link](https://svelte.dev/tutorial/kit/universal-load-functions)
+
+Note:
+
+- +page.js has universal load functions
+- +page.server.js has server load functions
+
+We can pass a component from server to client and render the component on client side after that.
+
+```ts
+// FILE: /src/routes/blue/+page.js (universal load functions)
+import component from './blue.svelte';
+
+export function load() {
+	return {
+		color: 'blue',
+		component
+	};
+}
+```
+
+```svelte
+<!-- Rendering the component client side -->
+<!-- File: /src/routes/+layout.svelte -->
+{#if $page.data.component}
+	{@const Component = $page.data.component}
+	<Component />
+{/if}
+```
+
 ## Advanced SvelteKit / Advance routing / (5) Breaking out of layouts
 
 [Tutorilal Link](https://svelte.dev/tutorial/kit/breaking-out-of-layouts)
