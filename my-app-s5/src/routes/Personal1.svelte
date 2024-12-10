@@ -168,7 +168,6 @@
 		<button
 			in:fade
 			class="rounded-sm border border-solid border-[black] bg-white px-[50px] py-0.5"
-			type="button"
 			onclick={handleRecordButton}
 		>
 			<b>Record</b></button
@@ -177,49 +176,49 @@
 		<button
 			in:fade
 			class="rounded-sm border border-solid border-[black] bg-white px-[50px] py-0.5"
-			type="button"
 			onclick={handleStopRecord}
 		>
 			Stop
 		</button>
 	{:else}
-		<!-- Setting this div height (to prevent content shift) because above button's height is 30px as checked from browser dev tools. -->
-		<div style:height="30px"></div>
+		<button
+			in:fade
+			class="rounded-sm border border-solid border-[black] bg-white px-[50px] py-0.5 text-green-600"
+			disabled
+		>
+			Transcribing...
+		</button>
 	{/if}
 </div>
 
 <div class="mt-3">
-	{#if isTranscribing}
-		<i style="color: grey" in:fade>Transcribing now...</i>
-	{:else}
-		<div transition:fade>{transcribedText}</div>
-		<div class="flex justify-end md:justify-start">
-			<button
-				class="mr-2 rounded-sm border border-solid border-[black] bg-white px-[20px] py-0.5"
-				onclick={() => {
-					transcribedText = '';
-					transcribeTime = '';
-				}}
-			>
-				Clear
-			</button>
+	<div transition:fade>{transcribedText}</div>
+	<div class="flex justify-end md:justify-start">
+		<button
+			class="mr-2 rounded-sm border border-solid border-[black] bg-white px-[20px] py-0.5"
+			onclick={() => {
+				transcribedText = '';
+				transcribeTime = '';
+			}}
+		>
+			Clear
+		</button>
 
-			<button
-				class="rounded-sm border border-solid border-[black] bg-white px-[20px] py-0.5"
-				onclick={() => {
-					copyToClipboard(transcribedText);
-					copyToClipboardButtonText = 'copied!';
-					setTimeout(() => {
-						copyToClipboardButtonText = defautlCopyToClipboardButtonText;
-					}, 1000);
-				}}
-			>
-				{copyToClipboardButtonText}
-			</button>
-		</div>
-		<div class="mt-5 text-xs italic">{transcribeTime}</div>
-		<p class="mt-5" in:fade>
-			<audio bind:this={recordedAudioButton}></audio>
-		</p>
-	{/if}
+		<button
+			class="rounded-sm border border-solid border-[black] bg-white px-[20px] py-0.5"
+			onclick={() => {
+				copyToClipboard(transcribedText);
+				copyToClipboardButtonText = 'copied!';
+				setTimeout(() => {
+					copyToClipboardButtonText = defautlCopyToClipboardButtonText;
+				}, 1000);
+			}}
+		>
+			{copyToClipboardButtonText}
+		</button>
+	</div>
+	<div class="mt-5 text-xs italic">{transcribeTime}</div>
+	<p class="mt-5" in:fade>
+		<audio bind:this={recordedAudioButton}></audio>
+	</p>
 </div>

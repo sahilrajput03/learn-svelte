@@ -9,7 +9,7 @@ This document is written in reverse chronology order (recent at the top).
   - The layout (and any page below it) inherits `data.summaries` from the parent `+layout.server.js`.
   - TODO: For invalidation of data please check this - https://svelte.dev/docs/kit/load#Rerunning-load-functions
 
-  ## Tutorials
+## Tutorials
 
 - Tutorial-1,2,3,4,5: folder - `/blog`
 - Tutorial-6 (Header and cookies): `/group101/`
