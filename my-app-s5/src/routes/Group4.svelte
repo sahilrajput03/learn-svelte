@@ -17,3 +17,8 @@
 <Counter />
 <Counter />
 <Counter />
+
+<div class="mt-5 italic text-gray-400">
+	Find more ways to use state rune for shared/global usage in your `Readme.md` file by searching for
+	`global state` or `shared state` keyword there.
+</div>
