@@ -21,6 +21,77 @@ This document is written in reverse chronology order (recent at the top).
 - Tutorial-15,16 (API Routes: POST, PUT, DELETE) = `/Group105/` `/Group106/`
   - The updation of the todos should work without page refresh and the issue is reported here - https://github.com/sveltejs/svelte.dev/issues/786
 
+## Advanced SvelteKit / Advance loading / (4) Invalidation
+
+[Tutorial Link](https://svelte.dev/tutorial/kit/invalidation)
+
+1. Invalidate load function data using `invalidate(..)` function.
+2. We invalidate based on apiUrl (or apiUrl pattern).
+3. On invalidation any load function that depends that apiUrl is called.
+
+Docs - [invalidate](https://svelte.dev/docs/kit/$app-navigation#invalidate)
+
+Ways to use `invalidate(..)`?
+
+1. `invalidate('url')`
+2. You can also pass a function to invalidate, in case you want to invalidate based on a pattern and not specific URLs.
+   Example: Match `/path` regardless of the query parameters `invalidate((url) => url.pathname === '/path')`
+
+_Please read the comments in below file snippets code from the tutorial:_
+
+```html
+<!-- File: /src/routes/[...timezone]/+page.svelte -->
+<script>
+	import { onMount } from 'svelte';
+	import { invalidate } from '$app/navigation';
+
+	let { data } = $props();
+
+	onMount(() => {
+		const interval = setInterval(() => {
+			invalidate('/api/now');
+		}, 2000);
+
+		return () => {
+			clearInterval(interval);
+		};
+	});
+</script>
+
+<h1>
+	{new Intl.DateTimeFormat([], { timeStyle: 'full', timeZone: data.timezone }).format(new
+	Date(data.now))}
+</h1>
+```
+
+```ts
+// File: /src/routes/[...timezone]/+page.js
+export function load({ params }) {
+	// This load function is run by default whenever query params are updated i.e, when
+	// user clicks the different links e.g., New York, São Paulo, London, etc in tutorial.
+	return {
+		timezone: params.timezone
+	};
+}
+```
+
+```ts
+// File: /src/routes/+layout.js
+export async function load({ fetch }) {
+	// Sahil: Since now we are calling `invalidate('/api/now')` in `/src/routes/[...timezone]/+page.svelte`
+	// so this load function each time `invalidate('/api/now')`is called because this load function
+	// depends on api call '/api/now' api response.
+	const response = await fetch('/api/now');
+	const now = await response.json();
+
+	console.log('+layout.js .', Math.random());
+
+	return {
+		now
+	};
+}
+```
+
 ## Advanced SvelteKit / Advance loading / (3) Using parent data
 
 To access data from their parents we can use `await parent()`.
@@ -51,14 +122,15 @@ export async function load({ parent }) {
 }
 ```
 
-And now we can access all a, b and c in `/routes/sum/page.svelte` file:
+And now we can access all a, b and c in `/routes/sum/page.svelte` file because data is merged from all parent load functions:
 
-```svelte
+```html
 <script>
 	let { data } = $props();
 </script>
 
-<p>{data.a} + {data.b} = {data.c}</p><p><a href="/">home</a></p>
+<p>{data.a} + {data.b} = {data.c}</p>
+<p><a href="/">home</a></p>
 ```
 
 ## Advanced SvelteKit / Advance loading / (2) Using both load functions
@@ -93,12 +165,12 @@ export async function load({ data }) {
 
 We can now render the component `data.component` in `+page.svelte` file directly along with the data passed from the server. Please read the tutorial for better understanding on this.
 
-```svelte
+```html
 <script>
 	let { data } = $props();
 </script>
 
-<data.component message={data.message} />
+<data.component message="{data.message}" />
 ```
 
 ## Advanced SvelteKit / Advance loading / (1) Universal load function
@@ -124,12 +196,11 @@ export function load() {
 }
 ```
 
-```svelte
+```html
 <!-- Rendering the component client side -->
 <!-- File: /src/routes/+layout.svelte -->
-{#if $page.data.component}
-	{@const Component = $page.data.component}
-	<Component />
+{#if $page.data.component} {@const Component = $page.data.component}
+<Component />
 {/if}
 ```
 
