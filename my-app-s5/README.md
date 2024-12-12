@@ -1,15 +1,19 @@
 # Learn Svelte (v5)
 
-Deployed at - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)** _(using Vercel with `SvelteKit (v1)` preset)_
+Deployed at:
 
-_Note to Sahil: Some content is only covered in the readme (including sveltekit readme) for the purpose of easy demonstration where suitable._
+- **[https://svelte.monktechnoworld.com/](https://svelte.monktechnoworld.com/)**
+- **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)**
+  - _(The deployment is done using Vercel with `SvelteKit (v1)` preset)_
+
+_Note to Sahil: Some content is only covered in this readme or `README.sveltekit.md` readme for the purpose of easy demonstration._
 
 ## ❤️ README.sveltekit.md: [Click here](./README.sveltekit.md) ✌🏻✌🏻🙌🏻🙌🏻👏🏻
 
 **Quick Links:**
 
-- README.initial.md: [Click here](./README.initial.md)
-- README.more.md: [Click here](./README.more.md)
+- README.initial.md: [Click here](./README.initial.md) (generated on project creation)
+- Errors to be reported on svelte github repository (): [README.more.md](./README.more.md)
 - Canvas Tutorials:
   - Group28
   - Group52
