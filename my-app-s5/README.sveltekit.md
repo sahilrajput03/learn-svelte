@@ -21,9 +21,102 @@ This document is written in reverse chronology order (recent at the top).
 - Tutorial-15,16 (API Routes: POST, PUT, DELETE) = `/Group105/` `/Group106/`
   - The updation of the todos should work without page refresh and the issue is reported here - https://github.com/sveltejs/svelte.dev/issues/786
 
+## Advanced SvelteKit / Environment Variables / (1) $env/static/private
+
+[Tutorial link](https://svelte.dev/tutorial/kit/env-static-private)
+
+Environment variables — like API keys and database credentials — can be added to a .env file, and they will be made available to your application.
+
+Environment variables in `process.env` are also available via `$env/static/private`.
+
+```bash
+# File: .env
+PASSPHRASE="open sesame"
+```
+
+```ts
+// src/routes/+page.server.ts
+import { PASSPHRASE } from '$env/static/private';
+
+// We can use `PASSPHRASE` here..
+```
+
+**Keeping secrets**:
+
+It’s important that sensitive data doesn’t accidentally end up being sent to the browser, where it could easily be stolen by hackers and scoundrels.
+
+SvelteKit makes it easy to prevent this from happening. Notice what happens if we try to import `PASSPHRASE` into `src/routes/+page.svelte`:
+
+```svelte
+<script>
+	import { PASSPHRASE } from '$env/static/private';
+	// We get error in `terminal` from vite and `browser`:
+	// "Cannot import $env/static/private into **client-side** code: src/routes/+page.svelte"
+</script>
+```
+
+Variables from `$env/static/private` can only be imported into server modules:
+
+- `+page.server.js`
+- `+layout.server.js`
+- `+server.js`
+- any modules ending with `.server.js`
+- any modules inside `src/lib/server`
+
+In turn, these modules can only be imported by other server modules.
+
+**Static vs dynamic**
+
+The static in `$env/static/private` indicates that these values are known at build time, and can be statically replaced. This enables useful optimisations:
+
+```ts
+import { FEATURE_FLAG_X } from '`$env/static/private`';
+
+if (FEATURE_FLAG_X === 'enabled') {
+	// code in here will be removed from the build output
+	// if FEATURE_FLAG_X is not enabled
+}
+```
+
+In some cases you might need to refer to environment variables that are dynamic — in other words, not known until we run the app. We’ll cover this case in the next exercise.
+
+## Advanced SvelteKit / Advance loading / (6) invalidateAll
+
+[Tutorial link](https://svelte.dev/tutorial/kit/invalidate-all)
+
+Finally, there’s the nuclear option — `invalidateAll()`. This will indiscriminately re-run all load functions for the current page, regardless of what they depend on.
+
+Update `src/routes/[...timezone]/+page.svelte.js` from the previous exercise update `invalidate('data:now')` to `invalidateAll()`.
+
+Also remove `depends('data:now')` in file `src/routes/+layout.js` because no longer necessary.
+
+NOTE: `invalidate(() => true)` and `invalidateAll` are not the same. `invalidateAll` also re-runs load functions without any url dependencies, which `invalidate(() => true)` does not.
+
+## Advanced SvelteKit / Advance loading / (5) Custom dependencies
+
+[Tutorial link](https://svelte.dev/tutorial/kit/custom-dependencies)
+
+Docs: [`depends(url)`](https://svelte.dev/docs/kit/load#Rerunning-load-functions-Manual-invalidation)
+
+Calling `fetch(url)` inside a load function registers url as a dependency. Sometimes it’s not appropriate to use fetch, in which case you can specify a dependency manually with the depends(url) function.
+
+Since any string that begins with an `[a-z]+:` pattern is a valid URL, we can create custom invalidation keys like `data:now`.
+
+```ts
+// File: /src/routes/+layout.js
+export async function load({ depends }) {
+	depends('data:now');
+	return {
+		now: Date.now()
+	};
+}
+```
+
+And in file `/src/routes/[...timezone]/+page.svelte` we can now replace`invalidate('/api/now')`with`invalidate('data:now')`.
+
 ## Advanced SvelteKit / Advance loading / (4) Invalidation
 
-[Tutorial Link](https://svelte.dev/tutorial/kit/invalidation)
+[Tutorial link](https://svelte.dev/tutorial/kit/invalidation)
 
 1. Invalidate load function data using `invalidate(..)` function.
 2. We invalidate based on apiUrl (or apiUrl pattern).
@@ -175,7 +268,7 @@ We can now render the component `data.component` in `+page.svelte` file directly
 
 ## Advanced SvelteKit / Advance loading / (1) Universal load function
 
-[Tutorial Link](https://svelte.dev/tutorial/kit/universal-load-functions)
+[Tutorial link](https://svelte.dev/tutorial/kit/universal-load-functions)
 
 Note:
 
@@ -223,7 +316,7 @@ _NOTE: The root layout applies to every page of your app, you cannot break out o
 
 ## Advanced SvelteKit / Advance routing / (4) Route groups
 
-[Tutorial Link](https://svelte.dev/tutorial/kit/route-groups)
+[Tutorial link](https://svelte.dev/tutorial/kit/route-groups)
 
 _😇 Sahil: This tutorial helps to make protected routes (routes behind authentication) using `route groups` featuer of sveltekit using cookies._
 
@@ -261,7 +354,7 @@ We can also add some UI to these two routes by adding a `src/routes/(authed)/+la
 
 ## Advanced SvelteKit / Advance routing / (3) Param matchers
 
-[Tutorial Link](https://svelte.dev/tutorial/kit/param-matchers)
+[Tutorial link](https://svelte.dev/tutorial/kit/param-matchers)
 
 To prevent the router from matching on invalid input, you can specify a matcher. For example, you might want a route like /colors/[value] to match hex values like /colors/ff3e00 but not named colors like /colors/octarine or any other arbitrary input.
 
@@ -345,7 +438,7 @@ export function load({ params }) {
 
 ## Advanced SvelteKit / Link options / (2) Reloading the page
 
-[Tutorial Link](https://svelte.dev/tutorial/kit/reload)
+[Tutorial link](https://svelte.dev/tutorial/kit/reload)
 
 Ordinarily, SvelteKit will navigate between pages without refreshing the page. In this exercise, if we navigate between / and /about, the timer keeps on ticking.
 
@@ -363,7 +456,7 @@ For more information on available link options and their values, consult the lin
 
 ## Advanced SvelteKit / Link options / (1) Preloading
 
-[Tutorial Link](https://svelte.dev/tutorial/kit/preload)
+[Tutorial link](https://svelte.dev/tutorial/kit/preload)
 
 Use `data-sveltekit-preload-data` attribute on an anchor element or on any element that contains links to preload their code+data.
 
@@ -376,7 +469,7 @@ Use `data-sveltekit-preload-data` attribute on an anchor element or on any eleme
 </body>
 ```
 
-**Amazingly 1:** Using data-sveltekit-preload-data may sometimes result in false positives - i.e. loading data in anticipation of a navigation that doesn’t then happen — which might be undesirable. As an alternative, data-sveltekit-preload-code allows you to preload the JavaScript needed by a given route without eagerly loading its data. (Sahil: Please go to the tutorial link to know the available options for this attribute).
+**Amazingly 1:** Using data-sveltekit-preload-data may sometimes result in false positives - i.e. loading data in anticipation of a navigation that doesn’t then happen — which might be undesirable. As an alternative, data-sveltekit-preload-code allows you to preload the JavaScript needed by a given route without eagerly loading its data. (Sahil: Please go to the Tutorial link to know the available options for this attribute).
 
 **❤️ Amazingly 2:** You can also initiate preloading programmatically with `preloadCode` and `preloadData` imported from `$app/navigation`:
 
@@ -426,7 +519,7 @@ _Sahil: In the tutorial, you can see that we can check whether a page is rendere
 
 ## Advanced SvelteKit / Page options / (2) ssr
 
-[Tutorial Link](https://svelte.dev/tutorial/kit/page-options)
+[Tutorial link](https://svelte.dev/tutorial/kit/page-options)
 
 ```ts
 // src/routes/+page.server
@@ -434,7 +527,7 @@ export const ssr = false;
 ```
 
 - Setting ssr to false inside your root +layout.server.js effectively turns your entire app into a single-page app (SPA).
-- Please read from above tutorial link, it is awesome. ~ Sahil
+- Please read from above Tutorial link, it is awesome. ~ Sahil
 
 ## Advanced SvelteKit / Page options / (1) Basics
 
@@ -453,7 +546,7 @@ You can mix and match these options in different areas of your app — you could
 
 ## Basic SvelteKit / Errors and redirects / Redirects
 
-[Tutorial Link](https://svelte.dev/tutorial/kit/redirects)
+[Tutorial link](https://svelte.dev/tutorial/kit/redirects)
 
 Navigating to `/a` will now take us straight to `/b`.
 
@@ -475,7 +568,7 @@ The most common status codes you’ll use:
 
 ## Basic SvelteKit / Errors and redirects / Fallback errors
 
-[Tutorial Link](https://svelte.dev/tutorial/kit/fallback-errors)
+[Tutorial link](https://svelte.dev/tutorial/kit/fallback-errors)
 
 If things go really wrong — an error occurs while loading the root layout data, or while rendering the error page — SvelteKit will fall back to a static error page.
 
@@ -579,7 +672,7 @@ This component will be rendered for `/expected` instead of `src/routes/+error.sv
 
 ## Advanced SvelteKit / Hooks / (4) handleError
 
-[Tutorial Link](https://svelte.dev/tutorial/kit/handleerror)
+[Tutorial link](https://svelte.dev/tutorial/kit/handleerror)
 
 In file `src/hooks.server.ts`, `handleError` hook lets you intercept unexpected errors and trigger some behaviour, like pinging a Slack channel or sending data to an error logging service.
 
@@ -637,7 +730,7 @@ You can now reference properties other than message in a custom error page. Crea
 
 ## 😇❤️ Advanced SvelteKit / Hooks / (3) handleFetch
 
-[Tutorial Link](https://svelte.dev/tutorial/kit/handlefetch)
+[Tutorial link](https://svelte.dev/tutorial/kit/handlefetch)
 
 Respond to requests (e.g., `GET` http request) for `src/routes/a/+server.js` with responses from `src/routes/b/+server.js` instead.
 
@@ -730,7 +823,7 @@ export async function handle({ event, resolve }) {
 
 ## SvelteKit / Stores / (`page`, `navigating`, `updated`)
 
-[Tutorial Link](https://svelte.dev/tutorial/kit/page-store)
+[Tutorial link](https://svelte.dev/tutorial/kit/page-store)
 
 **Tutorials:**
 

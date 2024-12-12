@@ -1,4 +1,5 @@
-// https://svelte.dev/tutorial/kit/post-handlers
+// Tutorial: https://svelte.dev/tutorial/kit/post-handlers
+// Docs: https://svelte.dev/docs/kit/server-only-modules
 type TodoType = { id: string, description: string, done: boolean }
 
 const database = new Map<string, Map<string, TodoType>>();
