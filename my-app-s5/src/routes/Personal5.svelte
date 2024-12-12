@@ -16,7 +16,7 @@
 	});
 </script>
 
-<div class="text-3xl">Hello personal 5</div>
+<div class="text-3xl">Hello Personal5</div>
 
 Device Width: {deviceWidth}
 <br />
