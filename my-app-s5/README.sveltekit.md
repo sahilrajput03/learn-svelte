@@ -21,6 +21,51 @@ This document is written in reverse chronology order (recent at the top).
 - Tutorial-15,16 (API Routes: POST, PUT, DELETE) = `/Group105/` `/Group106/`
   - The updation of the todos should work without page refresh and the issue is reported here - https://github.com/sveltejs/svelte.dev/issues/786
 
+## Advanced SvelteKit / Environment Variables / (4) $env/dynamic/public
+
+As with private environment variables, it’s preferable to use `static` values if possible, but if necessary we can use `dynamic` values instead:
+
+```svelte
+<!-- src/routes/+page.svelte -->
+<script>
+	import { env } from '$env/dynamic/public';
+</script>
+```
+
+## Advanced SvelteKit / Environment Variables / (3) $env/static/public
+
+[Tutorial link](https://svelte.dev/tutorial/kit/env-static-public)
+
+_Tags: #Using js variable for css e.g, `style:color={PUBLIC_THEME_FOREGROUND}`_
+
+Some environment variables can be safely exposed to the browser. These are distinguished from private environment variables with a `PUBLIC_ prefix`.
+
+Add values to the two public environment variables in `.env`:
+
+```bash
+# file: .env
+PUBLIC_THEME_BACKGROUND="steelblue"
+PUBLIC_THEME_FOREGROUND="bisque"
+```
+
+```js
+// src/routes/+page.js
+<script>
+	import {(PUBLIC_THEME_BACKGROUND, PUBLIC_THEME_FOREGROUND)} from '$env/static/public';
+</script>
+```
+
+## Advanced SvelteKit / Environment Variables / (2) $env/dynamic/private
+
+[Tutorial link](https://svelte.dev/tutorial/kit/env-dynamic-private)
+
+If you need to read the values of environment variables when the app runs, as opposed to when the app is built, you can use `$env/dynamic/private` instead of `$env/static/private`:
+
+```js
+// src/routes/+page.server.js
+import { env } from '$env/dynamic/private'; // (notice `dyanmic` in the import path )
+```
+
 ## Advanced SvelteKit / Environment Variables / (1) $env/static/private
 
 [Tutorial link](https://svelte.dev/tutorial/kit/env-static-private)
