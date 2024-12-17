@@ -128,7 +128,7 @@ $effect(() => {
 2. Sahil: Functions if defined inside or outside `$effect` behaves same, for example check - file://./src/routes/thoughts/+page.svelte
 3. ❤️ DOCS - If you absolutely have to update `$state` within an effect and run into an infinite loop because you read and write to the same `$state`, use `untrack`. source - [in the end of this docs page](https://svelte.dev/docs/svelte/$effect#$effect.tracking)
 
-- Docs: Read about `untrack`at https://svelte.dev/docs/svelte/svelte#untrack. I have used `untrack` in project in `browser-for-terminal` github repo. (search for it in that repo to know more). TLDR: We get untracked value of a state via:
+- Docs: Read about `untrack`at https://svelte.dev/docs/svelte/svelte#untrack. **We get untracked value from the return value of `untrack` function:**
 
 ```jsx
 // ❤️❤️ Using `untrack` to get untracked state value
