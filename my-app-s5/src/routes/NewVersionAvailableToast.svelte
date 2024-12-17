@@ -1,5 +1,8 @@
 <script>
-	import { updated } from '$app/stores'; // NOTE: This is updagted to `$app/state` recently - check https://svelte.dev/tutorial/kit/updated-state
+	//! NOTE: For implementation in new projects please check https://svelte.dev/tutorial/kit/updated-state
+	// Because: 1. import path is changed to `$app/state`
+	// 			2. $updated is changed to `updated.current`
+	import { updated } from '$app/stores';
 </script>
 
 <!-- SveltKit Tutorial -->
