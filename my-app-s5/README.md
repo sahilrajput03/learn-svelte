@@ -8,6 +8,15 @@ Deployed at:
 
 _Note to Sahil: Some content is only covered in this readme or `README.sveltekit.md` readme for the purpose of easy demonstration._
 
+## Vercel Deployment Error?
+
+```bash
+Error during build:
+Error: Unsupported Node.js version: v22.12.0. Please use Node 18 or Node 20 to build your project, or explicitly specify a runtime in your adapter configuration.
+```
+
+**Solution:** You can go to project settings in Vercel and set Node.js Version to `20.x` from the dropdown and click on Save button. Now go to <i>Deployments</i> tab and click on **<i>three dots</i> of your last deployment** and select **Redeploy** option to redeploy.
+
 ## ❤️ README.sveltekit.md: [Click here](./README.sveltekit.md) ✌🏻✌🏻🙌🏻🙌🏻👏🏻
 
 **Quick Links:**

@@ -63,6 +63,12 @@
 		class="ml-2 text-xs text-blue-600"
 		href="/?id=15f7992e-886b-4bbb-af20-2ff0a3d41831">/Personal1</a
 	>
+	<a
+		target="_blank"
+		onclick={() => (idOfComponentToShow.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}
+		class="ml-2 text-xs text-blue-600"
+		href="https://browser-for-terminal.vercel.app">browser-for-terminal.vercel.app</a
+	>
 </div>
 
 {@render children()}
