@@ -3,6 +3,8 @@
 	// Because: 1. import path is changed to `$app/state`
 	// 			2. $updated is changed to `updated.current`
 	import { updated } from '$app/stores';
+
+	// & Please make sure you add necessary changes `version.pollInterval` property to `svelte.config.js` (refer this project's file reference)
 </script>
 
 <!-- SveltKit Tutorial -->
