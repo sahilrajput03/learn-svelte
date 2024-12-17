@@ -1,5 +1,5 @@
 <script>
-	import { updated } from '$app/stores';
+	import { updated } from '$app/stores'; // NOTE: This is updagted to `$app/state` recently - check https://svelte.dev/tutorial/kit/updated-state
 </script>
 
 <!-- SveltKit Tutorial -->
