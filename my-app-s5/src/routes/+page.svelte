@@ -652,6 +652,8 @@ Why?
 <!-- Debug only -->
 <!-- {idOfComponentToShow.value} -->
 
+<h1 class="mb-2 text-3xl font-bold">Learn Svelte 5</h1>
+
 {#if !isLoading}
 	<div>
 		<select
