@@ -20,6 +20,17 @@ const config = {
 			// Sahil: I added this inspired by sveltekit tutorial: https://svelte.dev/tutorial/kit/updated-store
 			pollInterval: 10_000
 		}
+	},
+
+	// `SVELTE-VITE INSPECTOR`
+	// `npm install --save-dev @sveltejs/vite-plugin-svelte`
+	// Docs: https://github.com/sveltejs/vite-plugin-svelte/blob/main/docs/inspector.md
+	vitePlugin: {
+		inspector: {
+			toggleKeyCombo: 'meta-shift', // shortcut to trigger inspector. Use `Esc` to cancel
+			showToggleButton: 'always',
+			toggleButtonPos: 'bottom-right'
+		}
 	}
 };
 

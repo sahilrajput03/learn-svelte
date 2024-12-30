@@ -8,6 +8,10 @@ Deployed at:
 
 _Note to Sahil: Some content is only covered in this readme or `README.sveltekit.md` readme for the purpose of easy demonstration._
 
+## ❤️ Magical SVELTE-VITE INSPECTOR
+
+Check file: `svelte.config.js`
+
 ## Vercel Deployment Error?
 
 ```bash
