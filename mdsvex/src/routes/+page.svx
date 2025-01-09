@@ -1,0 +1,15 @@
+# Welcome to SvelteKit
+
+[Visit /page2](/page2)
+
+## Heading 2
+
+loremipsum loremipsum loremipsum loremipsum 
+
+### Heading 3
+
+loremipsum loremipsum loremipsum 
+
+### Heading 4
+
+loremipsum loremipsum loremipsum 
