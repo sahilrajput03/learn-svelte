@@ -57,7 +57,7 @@
 	<a class="ml-2 text-xs text-blue-600" href="/read-along">/read-along</a>
 </div>
 
-<div class="mb-3 mt-1 flex justify-end text-xs">
+<div class="mt-1 flex justify-end text-xs">
 	<a
 		onclick={() => (idOfComponentToShow.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}
 		class="ml-2 text-blue-600"
@@ -69,6 +69,8 @@
 		class="ml-2 text-xs text-blue-600"
 		href="https://browser-for-terminal.vercel.app">browser-for-terminal.vercel.app</a
 	>
+</div>
+<div class="mb-3 mt-1 flex justify-end text-xs">
 	<a
 		target="_blank"
 		onclick={() => (idOfComponentToShow.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}
