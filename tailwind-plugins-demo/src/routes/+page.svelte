@@ -19,9 +19,9 @@
 	<li><code>@tailwindcss/container-queries</code></li>
 </ul>
 
-<h2 class="mb-[100px] mt-[100px] text-8xl font-bold">Tailwindcss Typography</h2>
+<h2 class="mb-[50px] mt-[80px] bg-black text-3xl font-bold text-white">Tailwindcss Typography</h2>
 <Typography />
 
-<h2 class="mt-[100px] text-8xl font-bold">Tailwindcss Forms</h2>
+<h2 class="mt-[80px] bg-black text-3xl font-bold text-white">Tailwindcss Forms</h2>
 <Forms1 />
 <Forms2 />
