@@ -21,6 +21,10 @@ Error: Unsupported Node.js version: v22.12.0. Please use Node 18 or Node 20 to b
 
 **Solution:** You can go to project settings in Vercel and set Node.js Version to `20.x` from the dropdown and click on Save button. Now go to <i>Deployments</i> tab and click on **<i>three dots</i> of your last deployment** and select **Redeploy** option to redeploy.
 
+**Another solution:**
+
+- From Docs: You can define the major Node.js version in the engines#node section of the package.json to override the one you have selected in the Project Settings. Source - [https://vercel.com/docs/functions/runtimes/node-js/node-js-versions#version-overrides-in-package.json](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions#version-overrides-in-package.json)
+
 ## ❤️ README.sveltekit.md: [Click here](./README.sveltekit.md) ✌🏻✌🏻🙌🏻🙌🏻👏🏻
 
 **Quick Links:**
