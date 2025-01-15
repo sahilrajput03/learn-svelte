@@ -1,6 +1,7 @@
 <script>
 	import Forms1 from './Forms1.svelte';
 	import Forms2 from './Forms2.svelte';
+	import MyForms from './MyForms.svelte';
 	import Typography from './Typography.svelte';
 </script>
 
@@ -23,5 +24,6 @@
 <Typography />
 
 <h2 class="mt-[80px] bg-black text-3xl font-bold text-white">Tailwindcss Forms</h2>
+<MyForms />
 <Forms1 />
 <Forms2 />
