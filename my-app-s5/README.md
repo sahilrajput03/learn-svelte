@@ -123,6 +123,8 @@ In `if`, `if-else`, `if-elseif`, `each` `snippet` and other syntax in svelte.
 
 ## Syncing localstorage in a component
 
+An example of storing an array of strings is made in `Personal6` in this app.
+
 ```js
 let value = $state()
 
