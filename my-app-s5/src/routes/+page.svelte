@@ -531,7 +531,7 @@
 		},
 		{
 			id: 'd3608e5b-e42b-405f-967e-db14fd77a1f5',
-			name: 'Personal7 - UPI Links Testing',
+			name: 'Personal7 - UPI Links Testing (Result: Failue',
 			component: Personal7,
 			svelteTutorialLink: ''
 		},
