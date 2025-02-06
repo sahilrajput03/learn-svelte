@@ -55,7 +55,7 @@
 </script>
 
 <section class="p-2">
-	<h1 class="text-3xl font-bold">webrtc demo</h1>
+	<h1 class="text-3xl font-bold">WebRTC Demo using Peerjs (no backend)</h1>
 
 	My PeerId: {peerId}
 	<div class="">
