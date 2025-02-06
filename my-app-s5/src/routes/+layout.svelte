@@ -77,7 +77,7 @@
 		class="ml-2 text-xs text-blue-600"
 		href="https://tailwind-plugins-demo.vercel.app">tailwind-plugins-demo.vercel.app</a
 	>
-	<a target="_blank" class="ml-2 text-xs text-blue-600" href="/webrtc-demo">/webrtc-demo</a>
+	<a class="ml-2 text-xs text-blue-600" href="/webrtc-demo">/webrtc-demo</a>
 </div>
 
 {@render children()}
