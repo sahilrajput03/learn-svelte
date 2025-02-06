@@ -59,8 +59,17 @@
 <section class="p-2">
 	<h1 class="text-3xl font-bold">WebRTC Demo using Peerjs (no backend)</h1>
 
-	My PeerId: {peerId}
-	<div class="">
+	{#if peerId}
+		<div>
+			<div>My PeerId: {peerId}</div>
+			<div class="italic text-gray-500">(Use this PeerId to connect from another device)</div>
+		</div>
+	{:else}
+		<div class="italic">Generating peer id...</div>
+		<div>&nbsp;</div>
+	{/if}
+
+	<div class="mt-8">
 		<input class="input" bind:value={friendPeerId} placeholder="Enter friend's peer id" />
 		<br />
 		<button class="btn" disabled={!friendPeerId} onclick={connectToFriend}>Connect</button>
