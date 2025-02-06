@@ -15,12 +15,13 @@
 	const addToMessageList = (peerId: string, message: string) => {
 		messages.push(`${peerId}: ${message}`);
 	};
+	const connectionSuccessfulGreet = 'Connection Successful.';
 
 	const connectToFriend = () => {
 		try {
 			friendConnection = peer.connect(friendPeerId);
 			friendConnection.on('open', () => {
-				// friendConnection.send(`hi from Sahil.`);
+				addToMessageList(friendConnection.peer, connectionSuccessfulGreet);
 			});
 
 			friendConnection.on('data', (data: any) => {
@@ -40,6 +41,7 @@
 		peer.on('connection', (con) => {
 			friendConnection = con;
 			console.log(`A peer connected to me of peer Id: ${friendConnection.peer}`); // (also - con.connectionId)
+			addToMessageList(friendConnection.peer, connectionSuccessfulGreet);
 			friendConnection.on('data', (data: any) => {
 				addToMessageList(friendConnection.peer, data);
 			});
