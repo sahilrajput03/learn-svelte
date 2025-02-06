@@ -1,3 +1,5 @@
+<!-- src: https://www.npmjs.com/package/peerjs -->
+<!-- TODO: Note above has code to send video media as well (TODO) - make demo of that as well. -->
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Peer from 'peerjs';
