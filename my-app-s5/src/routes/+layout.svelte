@@ -78,6 +78,7 @@
 		href="https://tailwind-plugins-demo.vercel.app">tailwind-plugins-demo.vercel.app</a
 	>
 	<a class="ml-2 bg-pink-400 text-xs" href="/webrtc-demo">/webrtc-demo</a>
+	<a class="ml-2 bg-pink-400 text-xs" href="/webrtc-demo2">/webrtc-demo2</a>
 </div>
 
 {@render children()}
