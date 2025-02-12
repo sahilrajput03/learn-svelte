@@ -1,6 +1,31 @@
-<!-- src: https://www.npmjs.com/package/peerjs -->
-<!-- TODO: Note above has code to send video media as well (TODO) - make demo of that as well. -->
 <!-- Official Live Demo of peerjs of vidoe call - https://glitch.com/~peerjs-video -->
+
+<!-- TODO: 
+ 
+
+How this works for now: Open webstie in two tabs:
+1st tab:
+	- Copy peerid from second tab to this tab to connect.
+	- Now pick a file and play the video and now you need to click on play.
+	- For now there is bug i..e, you do need to press the play button on the second tab to be able to play it there.
+
+	TODO:
+	1. Fix the bugs while playing videos and make it robust. 
+	TODO:
+	2. Implement features in future:
+	I need to make call independently to multiple peers like below so that more than 2 people can watch together:
+	Check chatgpt's answer here - 
+	    peerIDs.forEach((peerId) => {
+        const call = peer.call(peerId, stream);
+        call.on('stream', (remoteStream) => {
+            addVideoStream(remoteStream);
+        });
+	Q. Does webrtc supports one to many communication? --- https://chatgpt.com/c/67acf6a2-2a04-8007-b2e9-db5e89c3e398
+
+
+
+-->
+
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Peer from 'peerjs';
@@ -57,9 +82,9 @@
 		});
 
 		// Below event is executed when someone else calls this peer via `peer.call(..)` --- [When receiving a call]
-		peer.on('call', (call) => {
-			call.answer(localStream);
-			call.on('stream', (remoteStream) => {
+		peer.on('call', (incomingCall) => {
+			incomingCall.answer(localStream);
+			incomingCall.on('stream', (remoteStream) => {
 				remoteVideoEl.srcObject = remoteStream;
 			});
 		});
@@ -131,7 +156,13 @@
 <br />
 <br />
 
-<h2>Video Streaming with PeerJS</h2>
+<h2 class="text-3xl font-bold">Video Streaming of local video files with PeerJS</h2>
+<div class="text-xs italic">
+	Note to users: This service is purposely made for people to watch their locally downloaded files
+	with a friend currently. (more than 2 people is not allowed at the moment but will be done in
+	future).
+</div>
+
 <input onchange={handleFile} type="file" id="videoFile" accept="video/*" />
 <video bind:this={localVideoEl} controls>
 	<track kind="captions" />
