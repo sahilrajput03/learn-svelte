@@ -42,11 +42,21 @@ How this works for now: Open webstie in two tabs:
 	import Peer from 'peerjs';
 	import type { DataConnection } from 'peerjs';
 
-	const VIDEO_EVENTS = {
+	const VIDEO_EVENT = {
 		PLAY_VIDEO: '5e9bbd2b-592c-4a46-bf47-66d1401b9049',
 		PAUSE_VIDEO: '1ea7e748-f5fd-4714-a1ae-139d2942f2ff'
 	};
-	const isVideoEvent = (data: string) => Object.values(VIDEO_EVENTS).includes(data);
+	const isVideoEventFn = (data: any) => Object.values(VIDEO_EVENT).includes(data?.videoEvent);
+
+	type VideoEventType = {
+		videoEvent: string;
+		currentTime?: number;
+		duration?: number;
+	};
+
+	// seekbar for `receivingVideoEl`
+	let seekValueOfReceivingVideoEl = $state(0); // Initial value
+	let maxSeekValueOfReceivingVideoEl = $state(100);
 
 	// video watching together
 	let localVideoEl: any;
@@ -55,6 +65,8 @@ How this works for now: Open webstie in two tabs:
 	//
 	let hideLocalVideoEl: boolean = $state(true);
 	let hideReceivingVideoEl: boolean = $state(true);
+	const isPlayingInLocalVideoEl = $derived(!hideLocalVideoEl);
+	const isPlayingInReceivingVideoEl = $derived(!hideReceivingVideoEl);
 
 	let selfPeerId = $state(''); // `peer.id` when peer is assigned an id
 	let friendPeerId = $state('');
@@ -78,8 +90,8 @@ How this works for now: Open webstie in two tabs:
 			});
 
 			friendConnection.on('data', (data: any) => {
-				if (isVideoEvent(data)) {
-					handleVideoEvent(data);
+				if (isVideoEventFn(data)) {
+					handleVideoEventFromFriendConn(data);
 				} else {
 					addToMessageList(friendConnection.peer, data);
 				}
@@ -90,7 +102,17 @@ How this works for now: Open webstie in two tabs:
 	};
 
 	onMount(() => {
+		// TEMP vvvv
+		// Set these manually in each tab:
+		// sessionStorage.setItem('id', "4c19ccd0-1fdd-45a1-9c36-a07b5feec062") // tab 1
+		// sessionStorage.setItem('id', "7f775bc4-f2eb-4eeb-97c8-9b323fa1cecc") // tab 2
+
+		// selfPeerId = sessionStorage.getItem('id') ?? '';
+		// selfPeer = new Peer(selfPeerId); // (You can pass your own id or omit the id if you want to get a random one from the server.)
+		// TEMP ^^^^
+
 		// Create a peer
+		// (commenting below line in favor to assignign my own ids to peers for faster testing)
 		selfPeer = new Peer(); // (You can pass your own id or omit the id if you want to get a random one from the server.)
 		selfPeer.on('open', (id) => (selfPeerId = id));
 
@@ -101,8 +123,8 @@ How this works for now: Open webstie in two tabs:
 			friendPeerId = friendConnection.peer;
 			addToMessageList(friendConnection.peer, CONNECTION_SUCCESS_GREETING);
 			friendConnection.on('data', (data: any) => {
-				if (isVideoEvent(data)) {
-					handleVideoEvent(data);
+				if (isVideoEventFn(data)) {
+					handleVideoEventFromFriendConn(data);
 				} else {
 					addToMessageList(friendConnection.peer, data);
 				}
@@ -143,36 +165,52 @@ How this works for now: Open webstie in two tabs:
 		};
 	}
 
-	// NOTE: This event is passed to `receivingVideoEl` as well for now.
-	const onPlayLocalVideoEl = (e: any) => {
-		const isPlayingInLocalVideoEl = !hideLocalVideoEl;
+	const onPlay = (e: any) => {
 		if (isPlayingInLocalVideoEl) {
 			localVideoEl.currentTime -= 2; // play from 2 seconds before to cover for loss of streaming packets when recontinuing.
+			friendConnection.send({
+				videoEvent: VIDEO_EVENT.PLAY_VIDEO,
+				currentTime: localVideoEl?.currentTime,
+				duration: localVideoEl?.duration
+			} as VideoEventType);
 		}
-		friendConnection.send(VIDEO_EVENTS.PLAY_VIDEO);
+		if (isPlayingInReceivingVideoEl) {
+			friendConnection.send({ videoEvent: VIDEO_EVENT.PLAY_VIDEO } as VideoEventType);
+		}
 	};
-	// NOTE: This event is passed to `receivingVideoEl` as well for now.
-	const onPauseLocalVideoEl = (e: any) => {
-		friendConnection.send(VIDEO_EVENTS.PAUSE_VIDEO);
+	const onPause = (e: any) => {
+		if (isPlayingInLocalVideoEl) {
+			friendConnection.send({
+				videoEvent: VIDEO_EVENT.PAUSE_VIDEO,
+				currentTime: localVideoEl?.currentTime,
+				duration: localVideoEl?.duration
+			} as VideoEventType);
+		}
+		if (isPlayingInReceivingVideoEl) {
+			friendConnection.send({ videoEvent: VIDEO_EVENT.PLAY_VIDEO } as VideoEventType);
+		}
 	};
 
-	function handleVideoEvent(data: string) {
-		const isPlayingInLocalVideoEl = !hideLocalVideoEl;
-		const isPlayingInReceivingVideoEl = !hideReceivingVideoEl;
-		if (data === VIDEO_EVENTS.PAUSE_VIDEO) {
+	function handleVideoEventFromFriendConn(data: VideoEventType) {
+		console.log('handleVideoEventFromFriendConn-data?', data);
+		if (data.videoEvent === VIDEO_EVENT.PAUSE_VIDEO) {
 			if (isPlayingInLocalVideoEl) {
 				localVideoEl.pause();
 			}
 			if (isPlayingInReceivingVideoEl) {
 				receivingVideoEl.pause();
+				seekValueOfReceivingVideoEl = data.currentTime ?? 0;
+				maxSeekValueOfReceivingVideoEl = data.duration ?? 100;
 			}
 		}
-		if (data === VIDEO_EVENTS.PLAY_VIDEO) {
+		if (data.videoEvent === VIDEO_EVENT.PLAY_VIDEO) {
 			if (isPlayingInLocalVideoEl) {
-				localVideoEl.play();
+				// localVideoEl.play(); // ! this is causing issues which makes me unalbe to pause the video.
 			}
 			if (isPlayingInReceivingVideoEl) {
 				receivingVideoEl.play();
+				seekValueOfReceivingVideoEl = data.currentTime ?? 0;
+				maxSeekValueOfReceivingVideoEl = data.duration ?? 100;
 			}
 		}
 	}
@@ -230,22 +268,31 @@ How this works for now: Open webstie in two tabs:
 <!-- Note to Sahi: Putting below video element inside the <section> tag give me some weird error (might be related to some hydration related issue in svelte) -->
 <video
 	bind:this={localVideoEl}
-	onplay={onPlayLocalVideoEl}
-	onpause={onPauseLocalVideoEl}
+	onplay={onPlay}
+	onpause={onPause}
 	controls
 	style={`display: ${hideLocalVideoEl ? 'none' : 'block'};`}
 >
 	<track kind="captions" />
 </video>
-<video
-	bind:this={receivingVideoEl}
-	onplay={onPlayLocalVideoEl}
-	onpause={onPauseLocalVideoEl}
-	controls
-	style={`display: ${hideReceivingVideoEl ? 'none' : 'block'};`}
->
+
+<!-- Note: In below `receivingVideoElement` I am not passing `controls`, `onpause`, `onplay` attribute on purpose because we get only inconistent timings which is totally useless. -->
+<video bind:this={receivingVideoEl} style={`display: ${hideReceivingVideoEl ? 'none' : 'block'};`}>
 	<track kind="captions" />
 </video>
+
+<!-- TODO: make use of viedo.webkitRequestFullscreen() to go to full screen. -->
+
+{#if !hideReceivingVideoEl}
+	<input
+		class="receiving-video-el-seekbar"
+		type="range"
+		min="0"
+		max={maxSeekValueOfReceivingVideoEl}
+		bind:value={seekValueOfReceivingVideoEl}
+	/>
+	<p>Time: {seekValueOfReceivingVideoEl}</p>
+{/if}
 
 <style>
 	.btn {
@@ -258,5 +305,9 @@ How this works for now: Open webstie in two tabs:
 		height: 22px;
 		width: 250px;
 		padding: 8px 12px;
+	}
+	.receiving-video-el-seekbar {
+		width: 100%;
+		max-width: 500px;
 	}
 </style>
