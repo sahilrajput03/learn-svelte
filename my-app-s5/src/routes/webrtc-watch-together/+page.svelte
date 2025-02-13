@@ -68,6 +68,9 @@ How this works for now: Open webstie in two tabs:
 	const isPlayingInLocalVideoEl = $derived(!hideLocalVideoEl);
 	const isPlayingInReceivingVideoEl = $derived(!hideReceivingVideoEl);
 
+	let isReceivingVideoPaused = $state(true);
+	let receivingVideoTimeTicker: any = null;
+
 	let selfPeerId = $state(''); // `peer.id` when peer is assigned an id
 	let friendPeerId = $state('');
 
@@ -187,7 +190,7 @@ How this works for now: Open webstie in two tabs:
 			} as VideoEventType);
 		}
 		if (isPlayingInReceivingVideoEl) {
-			friendConnection.send({ videoEvent: VIDEO_EVENT.PLAY_VIDEO } as VideoEventType);
+			friendConnection.send({ videoEvent: VIDEO_EVENT.PAUSE_VIDEO } as VideoEventType);
 		}
 	};
 
@@ -198,6 +201,7 @@ How this works for now: Open webstie in two tabs:
 				localVideoEl.pause();
 			}
 			if (isPlayingInReceivingVideoEl) {
+				// isReceivingVideoPaused = true;
 				receivingVideoEl.pause();
 				seekValueOfReceivingVideoEl = data.currentTime ?? 0;
 				maxSeekValueOfReceivingVideoEl = data.duration ?? 100;
@@ -205,15 +209,39 @@ How this works for now: Open webstie in two tabs:
 		}
 		if (data.videoEvent === VIDEO_EVENT.PLAY_VIDEO) {
 			if (isPlayingInLocalVideoEl) {
-				// localVideoEl.play(); // ! this is causing issues which makes me unalbe to pause the video.
+				localVideoEl.play();
+				localVideoEl.currentTime = data.currentTime;
 			}
 			if (isPlayingInReceivingVideoEl) {
+				// isReceivingVideoPaused = false;
 				receivingVideoEl.play();
 				seekValueOfReceivingVideoEl = data.currentTime ?? 0;
 				maxSeekValueOfReceivingVideoEl = data.duration ?? 100;
 			}
 		}
 	}
+
+	function onSeekOnReceivingVideo(e: any) {
+		seekValueOfReceivingVideoEl = e.target.value;
+		friendConnection.send({
+			videoEvent: VIDEO_EVENT.PLAY_VIDEO,
+			currentTime: seekValueOfReceivingVideoEl,
+			duration: localVideoEl?.duration
+		} as VideoEventType);
+	}
+
+	// TODO: I tried to use `isReceivingVideoPaused` to help increment timing on receivingVideo's custom seekbar I have.
+
+	// Doesn't work.
+	// $effect(() => {
+	// 	if (!isReceivingVideoPaused) {
+	// 		receivingVideoTimeTicker = setTimeout(() => {
+	// 			seekValueOfReceivingVideoEl = seekValueOfReceivingVideoEl + 1;
+	// 		}, 1_000);
+	// 	} else {
+	// 		clearInterval(receivingVideoTimeTicker);
+	// 	}
+	// });
 </script>
 
 <section class="p-2">
@@ -289,10 +317,16 @@ How this works for now: Open webstie in two tabs:
 		type="range"
 		min="0"
 		max={maxSeekValueOfReceivingVideoEl}
-		bind:value={seekValueOfReceivingVideoEl}
+		value={seekValueOfReceivingVideoEl}
+		onchange={onSeekOnReceivingVideo}
 	/>
-	<p>Time: {seekValueOfReceivingVideoEl}</p>
+	<p>Time: {seekValueOfReceivingVideoEl}/{maxSeekValueOfReceivingVideoEl}</p>
+	<!-- Note: Please do not optimize to show play/pause in a single button because it involves much complexity as it might appear. -->
+	<button class="btn" onclick={onPause}>Pause</button>
+	<button class="btn" onclick={onPlay}>Play</button>
 {/if}
+
+<!-- {isReceivingVideoPaused ? 'isReceivingVideoPaused' : ' not - isReceivingVideoPaused'} -->
 
 <style>
 	.btn {
