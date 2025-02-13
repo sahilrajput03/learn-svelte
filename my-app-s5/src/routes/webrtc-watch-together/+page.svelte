@@ -42,6 +42,12 @@ How this works for now: Open webstie in two tabs:
 	import Peer from 'peerjs';
 	import type { DataConnection } from 'peerjs';
 
+	const VIDEO_EVENTS = {
+		PLAY_VIDEO: '5e9bbd2b-592c-4a46-bf47-66d1401b9049',
+		PAUSE_VIDEO: '1ea7e748-f5fd-4714-a1ae-139d2942f2ff'
+	};
+	const isVideoEvent = (data: string) => Object.values(VIDEO_EVENTS).includes(data);
+
 	// video watching together
 	let localVideoEl: any;
 	let receivingVideoEl: any;
@@ -62,17 +68,21 @@ How this works for now: Open webstie in two tabs:
 	const addToMessageList = (peerId: string, message: string) => {
 		messages.push(`${peerId}: ${message}`);
 	};
-	const connectionSuccessfulGreet = 'Connection Successful.';
+	const CONNECTION_SUCCESS_GREETING = 'Connection Successful.';
 
 	const connectToFriend = () => {
 		try {
 			friendConnection = selfPeer.connect(friendPeerId);
 			friendConnection.on('open', () => {
-				addToMessageList(friendConnection.peer, connectionSuccessfulGreet);
+				addToMessageList(friendConnection.peer, CONNECTION_SUCCESS_GREETING);
 			});
 
 			friendConnection.on('data', (data: any) => {
-				addToMessageList(friendConnection.peer, data);
+				if (isVideoEvent(data)) {
+					handleVideoEvent(data);
+				} else {
+					addToMessageList(friendConnection.peer, data);
+				}
 			});
 		} catch (error) {
 			console.log('ERROR_connectToFriend?', error);
@@ -89,9 +99,13 @@ How this works for now: Open webstie in two tabs:
 			friendConnection = con;
 			console.log(`A peer connected to me of peer Id: ${friendConnection.peer}`); // (also - con.connectionId)
 			friendPeerId = friendConnection.peer;
-			addToMessageList(friendConnection.peer, connectionSuccessfulGreet);
+			addToMessageList(friendConnection.peer, CONNECTION_SUCCESS_GREETING);
 			friendConnection.on('data', (data: any) => {
-				addToMessageList(friendConnection.peer, data);
+				if (isVideoEvent(data)) {
+					handleVideoEvent(data);
+				} else {
+					addToMessageList(friendConnection.peer, data);
+				}
 			});
 		});
 
@@ -130,11 +144,32 @@ How this works for now: Open webstie in two tabs:
 	}
 
 	const onPlayLocalVideoEl = (e: any) => {
-		console.log('play event:', e);
+		friendConnection.send(VIDEO_EVENTS.PLAY_VIDEO);
 	};
 	const onPauseLocalVideoEl = (e: any) => {
-		console.log('pause event:', e);
+		friendConnection.send(VIDEO_EVENTS.PAUSE_VIDEO);
 	};
+
+	function handleVideoEvent(data: string) {
+		const isPlayingInLocalVideoEl = !hideLocalVideoEl;
+		const isPlayingInReceivingVideoEl = !hideReceivingVideoEl;
+		if (data === VIDEO_EVENTS.PAUSE_VIDEO) {
+			if (isPlayingInLocalVideoEl) {
+				localVideoEl.pause();
+			}
+			if (isPlayingInReceivingVideoEl) {
+				receivingVideoEl.pause();
+			}
+		}
+		if (data === VIDEO_EVENTS.PLAY_VIDEO) {
+			if (isPlayingInLocalVideoEl) {
+				localVideoEl.play();
+			}
+			if (isPlayingInReceivingVideoEl) {
+				receivingVideoEl.play();
+			}
+		}
+	}
 </script>
 
 <section class="p-2">
@@ -198,6 +233,8 @@ How this works for now: Open webstie in two tabs:
 </video>
 <video
 	bind:this={receivingVideoEl}
+	onplay={onPlayLocalVideoEl}
+	onpause={onPauseLocalVideoEl}
 	controls
 	style={`display: ${hideReceivingVideoEl ? 'none' : 'block'};`}
 >
