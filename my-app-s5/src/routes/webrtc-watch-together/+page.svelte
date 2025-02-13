@@ -143,9 +143,15 @@ How this works for now: Open webstie in two tabs:
 		};
 	}
 
+	// NOTE: This event is passed to `receivingVideoEl` as well for now.
 	const onPlayLocalVideoEl = (e: any) => {
+		const isPlayingInLocalVideoEl = !hideLocalVideoEl;
+		if (isPlayingInLocalVideoEl) {
+			localVideoEl.currentTime -= 2; // play from 2 seconds before to cover for loss of streaming packets when recontinuing.
+		}
 		friendConnection.send(VIDEO_EVENTS.PLAY_VIDEO);
 	};
+	// NOTE: This event is passed to `receivingVideoEl` as well for now.
 	const onPauseLocalVideoEl = (e: any) => {
 		friendConnection.send(VIDEO_EVENTS.PAUSE_VIDEO);
 	};
