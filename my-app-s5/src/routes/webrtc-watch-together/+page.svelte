@@ -50,10 +50,10 @@ How this works for now: Open webstie in two tabs:
 	let hideLocalVideoEl: boolean = $state(true);
 	let hideReceivingVideoEl: boolean = $state(true);
 
-	let peerId = $state(''); // `peer.id` when peer is assigned an id
+	let selfPeerId = $state(''); // `peer.id` when peer is assigned an id
 	let friendPeerId = $state('');
 
-	let peer: Peer;
+	let selfPeer: Peer;
 	let friendConnection: DataConnection;
 
 	let message = $state('');
@@ -66,7 +66,7 @@ How this works for now: Open webstie in two tabs:
 
 	const connectToFriend = () => {
 		try {
-			friendConnection = peer.connect(friendPeerId);
+			friendConnection = selfPeer.connect(friendPeerId);
 			friendConnection.on('open', () => {
 				addToMessageList(friendConnection.peer, connectionSuccessfulGreet);
 			});
@@ -81,11 +81,11 @@ How this works for now: Open webstie in two tabs:
 
 	onMount(() => {
 		// Create a peer
-		peer = new Peer(); // (You can pass your own id or omit the id if you want to get a random one from the server.)
-		peer.on('open', (id) => (peerId = id));
+		selfPeer = new Peer(); // (You can pass your own id or omit the id if you want to get a random one from the server.)
+		selfPeer.on('open', (id) => (selfPeerId = id));
 
 		// Below event is executed when someone else connectes to this peer
-		peer.on('connection', (con) => {
+		selfPeer.on('connection', (con) => {
 			friendConnection = con;
 			console.log(`A peer connected to me of peer Id: ${friendConnection.peer}`); // (also - con.connectionId)
 			friendPeerId = friendConnection.peer;
@@ -96,7 +96,7 @@ How this works for now: Open webstie in two tabs:
 		});
 
 		// Below event is executed when someone else calls this peer via `peer.call(..)` --- [When receiving a call]
-		peer.on('call', (incomingCall) => {
+		selfPeer.on('call', (incomingCall) => {
 			incomingCall.answer(localStream);
 			incomingCall.on('stream', (remoteStream) => {
 				receivingVideoEl.srcObject = remoteStream;
@@ -118,24 +118,31 @@ How this works for now: Open webstie in two tabs:
 		localVideoEl.src = fileURL;
 		hideLocalVideoEl = false;
 
-		// Ensure the video is loaded before getting the stream
+		// Ensure the file is loaded in <video> element before getting the video stream from it
 		localVideoEl.onloadedmetadata = () => {
 			// localVideoEl.play(); // Start playing
 
 			// Capture the media stream from the video element
 			localStream = localVideoEl.captureStream(); // Learn: The captureStream() function captures a live media stream from an HTML <video> or <canvas> element and returns a MediaStream that can be used with WebRTC, PeerJS, or other APIs like MediaRecorder.
 			// Now you can send localStream using PeerJS (make sure connection is ready i..e, peer.on('connection') has been called)
-			peer.call(friendPeerId, localStream);
+			selfPeer.call(friendPeerId, localStream);
 		};
 	}
+
+	const onPlayLocalVideoEl = (e: any) => {
+		console.log('play event:', e);
+	};
+	const onPauseLocalVideoEl = (e: any) => {
+		console.log('pause event:', e);
+	};
 </script>
 
 <section class="p-2">
 	<h1 class="text-3xl font-bold">WebRTC Demo using Peerjs (no backend)</h1>
 
-	{#if peerId}
+	{#if selfPeerId}
 		<div>
-			<div>My PeerId: {peerId}</div>
+			<div>My PeerId: {selfPeerId}</div>
 			<div class="italic text-gray-500">
 				(Use this PeerId to connect from another browser tab/device)
 			</div>
@@ -179,7 +186,14 @@ How this works for now: Open webstie in two tabs:
 </div>
 
 <input onchange={handleFile} type="file" id="videoFile" accept="video/*" />
-<video bind:this={localVideoEl} controls style={`display: ${hideLocalVideoEl ? 'none' : 'block'};`}>
+<!-- Note to Sahi: Putting below video element inside the <section> tag give me some weird error (might be related to some hydration related issue in svelte) -->
+<video
+	bind:this={localVideoEl}
+	onplay={onPlayLocalVideoEl}
+	onpause={onPauseLocalVideoEl}
+	controls
+	style={`display: ${hideLocalVideoEl ? 'none' : 'block'};`}
+>
 	<track kind="captions" />
 </video>
 <video
