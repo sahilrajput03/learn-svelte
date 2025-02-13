@@ -230,7 +230,8 @@ How this works for now: Open webstie in two tabs:
 		} as VideoEventType);
 	}
 
-	// TODO: I tried to use `isReceivingVideoPaused` to help increment timing on receivingVideo's custom seekbar I have.
+	// TODO: To update time every second in `receivingVideoDevice` (person other than who is selecting the file and playing it).
+	// => I tried to use `isReceivingVideoPaused` to help increment timing on receivingVideo's custom seekbar I have.
 
 	// Doesn't work.
 	// $effect(() => {
