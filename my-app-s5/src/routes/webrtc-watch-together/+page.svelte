@@ -17,7 +17,12 @@ How this works for now: Open webstie in two tabs:
 	thus we can implement that so that we can listen to long mp3 files as well for e.gc., long lecutres of osho listening with people.
 
 	TODO:
-	3. I would need to make call independently to multiple peers like below so that more than 2 people can also watch together.
+	3. Make solution for subtitles: Check if including subtitles stream subtitles as well?
+	Also check if you can write subtitles to movie directly so its not a problem at all to inclucde the subtitle to the movie.
+
+
+	TODO:
+	4. I would need to make call independently to multiple peers like below so that more than 2 people can also watch together.
 	The reason its not doable natively with peerjs because webrtc itself doesn't support one to many communication (check below chatgpt answer).
 	Q. Does webrtc supports one to many communication? --- https://chatgpt.com/c/67acf6a2-2a04-8007-b2e9-db5e89c3e398
 	Implementing hints from ChatGPT - https://chatgpt.com/c/67acf5d0-2478-8007-a94b-8fa1ae4d494f
@@ -39,9 +44,11 @@ How this works for now: Open webstie in two tabs:
 
 	// video watching together
 	let localVideoEl: any;
-	let remoteVideoEl: any;
+	let receivingVideoEl: any;
 	let localStream: any;
 	//
+	let hideLocalVideoEl: boolean = $state(true);
+	let hideReceivingVideoEl: boolean = $state(true);
 
 	let peerId = $state(''); // `peer.id` when peer is assigned an id
 	let friendPeerId = $state('');
@@ -81,6 +88,7 @@ How this works for now: Open webstie in two tabs:
 		peer.on('connection', (con) => {
 			friendConnection = con;
 			console.log(`A peer connected to me of peer Id: ${friendConnection.peer}`); // (also - con.connectionId)
+			friendPeerId = friendConnection.peer;
 			addToMessageList(friendConnection.peer, connectionSuccessfulGreet);
 			friendConnection.on('data', (data: any) => {
 				addToMessageList(friendConnection.peer, data);
@@ -91,7 +99,8 @@ How this works for now: Open webstie in two tabs:
 		peer.on('call', (incomingCall) => {
 			incomingCall.answer(localStream);
 			incomingCall.on('stream', (remoteStream) => {
-				remoteVideoEl.srcObject = remoteStream;
+				receivingVideoEl.srcObject = remoteStream;
+				hideReceivingVideoEl = false;
 			});
 		});
 	});
@@ -107,6 +116,7 @@ How this works for now: Open webstie in two tabs:
 
 		const fileURL = URL.createObjectURL(file);
 		localVideoEl.src = fileURL;
+		hideLocalVideoEl = false;
 
 		// Ensure the video is loaded before getting the stream
 		localVideoEl.onloadedmetadata = () => {
@@ -115,10 +125,7 @@ How this works for now: Open webstie in two tabs:
 			// Capture the media stream from the video element
 			localStream = localVideoEl.captureStream(); // Learn: The captureStream() function captures a live media stream from an HTML <video> or <canvas> element and returns a MediaStream that can be used with WebRTC, PeerJS, or other APIs like MediaRecorder.
 			// Now you can send localStream using PeerJS (make sure connection is ready i..e, peer.on('connection') has been called)
-			const call = peer.call(friendPeerId, localStream);
-			call.on('stream', (remoteStream) => {
-				remoteVideoEl.srcObject = remoteStream;
-			});
+			peer.call(friendPeerId, localStream);
 		};
 	}
 </script>
@@ -129,7 +136,9 @@ How this works for now: Open webstie in two tabs:
 	{#if peerId}
 		<div>
 			<div>My PeerId: {peerId}</div>
-			<div class="italic text-gray-500">(Use this PeerId to connect from another device)</div>
+			<div class="italic text-gray-500">
+				(Use this PeerId to connect from another browser tab/device)
+			</div>
 		</div>
 	{:else}
 		<div class="italic">Generating peer id...</div>
@@ -170,10 +179,14 @@ How this works for now: Open webstie in two tabs:
 </div>
 
 <input onchange={handleFile} type="file" id="videoFile" accept="video/*" />
-<video bind:this={localVideoEl} controls>
+<video bind:this={localVideoEl} controls style={`display: ${hideLocalVideoEl ? 'none' : 'block'};`}>
 	<track kind="captions" />
 </video>
-<video bind:this={remoteVideoEl} controls>
+<video
+	bind:this={receivingVideoEl}
+	controls
+	style={`display: ${hideReceivingVideoEl ? 'none' : 'block'};`}
+>
 	<track kind="captions" />
 </video>
 
