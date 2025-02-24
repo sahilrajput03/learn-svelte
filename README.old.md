@@ -30,6 +30,7 @@
 
 - ~~No comments allowed inside jsx or html. [Check this issue](https://github.com/sveltejs/rfcs/pull/43)~~
   - ❤️ [Check this comment](https://github.com/sveltejs/rfcs/pull/43#issuecomment-798933140) for an alternate answer I follow.
+    - TLDR: Use `{...{/* comment */}}` which works because {...{}} is valid to pass.
 - Google Search: Why svelte is not popular: [Click here](https://www.google.com/search?q=why+svelte+is+not+popular)
 - _TODO: Nov 16, 2020_ - Why people aren’t switching to Svelte yet: [Click here](https://blog.logrocket.com/why-people-arent-switching-to-svelte-yet/)
 
