@@ -123,6 +123,8 @@ In `if`, `if-else`, `if-elseif`, `each` `snippet` and other syntax in svelte.
 
 ## Syncing localstorage in a component + ❤️️custom rune style
 
+❤ For most recent updates of your please refer file `shared.svelte.ts` in qr-solution project.
+
 ❤️For usage via a custom function please refer file `Personal6a` instead.
 
 An example of storing an array of strings is made in `Personal6` in this app.
