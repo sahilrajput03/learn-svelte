@@ -121,7 +121,9 @@ In `if`, `if-else`, `if-elseif`, `each` `snippet` and other syntax in svelte.
 {/if}
 ```
 
-## Syncing localstorage in a component
+## Syncing localstorage in a component + ❤️️custom rune style
+
+❤️For usage via a custom function please refer file `Personal6a` instead.
 
 An example of storing an array of strings is made in `Personal6` in this app.
 
@@ -136,7 +138,7 @@ const saveToLocalStorage = (val: string) => localStorage.setItem('value', val);
 $effect(() => {
 		console.log('effect now....');
 		if (value) {
-			saveToLocalStorage(value); // wheneer `value` changes we update to localStorage
+			saveToLocalStorage(value); // whenever `value` changes we update to localStorage
 		}
 	});
 ```

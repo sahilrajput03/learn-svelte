@@ -86,6 +86,7 @@
 	import { copyToClipboard } from './utils';
 	import Personal6 from './Personal6.svelte';
 	import Personal7 from './Personal7.svelte';
+	import Personal6a from './Personal6a.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -527,6 +528,12 @@
 			id: '079324bb-e2ac-4ea2-a4cf-9d4c2259631d',
 			name: 'Personal6 - Vocab Collector for Books',
 			component: Personal6,
+			svelteTutorialLink: ''
+		},
+		{
+			id: 'b6db5b26-5ed6-4fd1-afa6-4d8ac7e46b93',
+			name: 'Personal6a - Vocab Collector for Books',
+			component: Personal6a,
 			svelteTutorialLink: ''
 		},
 		{
