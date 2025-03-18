@@ -40,8 +40,6 @@
 		chatDivHeight = window.innerHeight - chatDiv.offsetTop - heightOfTextAreaForm;
 	});
 
-	console.log('boom?');
-
 	// Scroll to bottom whenever messages are added
 	$: {
 		$messages.length;
