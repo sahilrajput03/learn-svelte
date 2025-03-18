@@ -29,6 +29,7 @@ const groq = createGroq({
 });
 
 export const POST = (async ({ request }: RequestEvent) => {
+    console.log('POST: /ai-sdk')
     const { messages } = await request.json();
 
     // Tool calls work with openai and groq (tested for gemma-2-9b-it) both very well.

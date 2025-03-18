@@ -2,6 +2,7 @@
 	import { useChat } from '@ai-sdk/svelte';
 	import { onMount, tick } from 'svelte';
 	import { isBrowser, scrollToBottom } from '../scroll-utils';
+	import { browser } from '$app/environment';
 
 	// TODO: Implement a multimodal example in another component from here - https://sdk.vercel.ai/docs/guides/multi-modal-chatbot
 
@@ -18,8 +19,6 @@
 
 	let deviceWidth: number;
 	let deviceHeight: number;
-
-	let kk;
 
 	// * FOR EASY TESTING
 	onMount(() => {
@@ -43,10 +42,11 @@
 	// Scroll to bottom whenever messages are added
 	$: {
 		$messages.length;
-		scrollToBottom();
-		// if (isBrowser() && chatDiv) chatDiv.scrollTop = chatDiv?.scrollHeight;
-		if (isBrowser() && innerContainerDiv)
+		scrollToBottom(); // Necessary so that chat-input sticks to bottom of the screeen.
+		// if (browser && chatDiv) chatDiv.scrollTop = chatDiv?.scrollHeight;
+		if (browser && innerContainerDiv) {
 			innerContainerDiv.scrollTop = innerContainerDiv?.scrollHeight;
+		}
 	}
 
 	function resizeCallback() {

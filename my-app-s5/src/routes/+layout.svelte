@@ -53,7 +53,6 @@
 	<div class="ml-2 text-xs">Personal:</div>
 	<a class="ml-2 text-xs text-blue-600" href="glass-slideshow">/glass-slideshow</a>
 	<a class="ml-2 text-xs text-blue-600" href="/thoughts">/thoughts</a>
-	<a class="ml-2 text-xs text-blue-600" href="/ai-sdk">/ai-sdk</a>
 	<a class="ml-2 text-xs text-blue-600" href="/read-along">/read-along</a>
 </div>
 
@@ -79,6 +78,8 @@
 	>
 	<a class="ml-2 bg-pink-400 text-xs" href="/webrtc-demo">/webrtc-demo</a>
 	<a class="ml-2 bg-pink-400 text-xs" href="/webrtc-watch-together">/webrtc-watch-together</a>
+	<a class="ml-2 bg-pink-400 text-xs" href="/ai-sdk">/ai-sdk</a>
+	<a class="ml-2 bg-pink-400 text-xs" href="/tts-and-stt">/tts-and-stt</a>
 </div>
 
 {@render children()}
