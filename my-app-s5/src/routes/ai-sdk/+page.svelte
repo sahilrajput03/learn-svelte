@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { useChat } from '@ai-sdk/svelte';
 	import { onMount, tick } from 'svelte';
-	import { isBrowser, scrollToBottom } from '../scroll-utils';
+	import { scrollToBottom } from '../scroll-utils';
 	import { browser } from '$app/environment';
+	import debounce from 'lodash.debounce';
+	import type { VoiceT } from '../../types';
+	import { getVoices } from '$lib/speechRecognitionUtil';
+	import { fade } from 'svelte/transition';
 
 	// TODO: Implement a multimodal example in another component from here - https://sdk.vercel.ai/docs/guides/multi-modal-chatbot
 
@@ -39,9 +43,36 @@
 		chatDivHeight = window.innerHeight - chatDiv.offsetTop - heightOfTextAreaForm;
 	});
 
+	let voices: VoiceT[] = [];
+
+	onMount(async () => {
+		voices = (await getVoices()) as VoiceT[];
+	});
+
+	const speak = () => {
+		// return console.log('speaking now?...'); // & For Debugging
+		const lastMessage = $messages[$messages.length - 1];
+		const speech = new SpeechSynthesisUtterance(lastMessage.content); // * Docs: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance
+		speech.voice = voices[192] as any; // comment this line to use default `voices[0]`
+		// 		FEMALE: 191 (treble), 192 (warm),
+		// 		MALE: 193 (warm),
+		speech.lang = 'en-US'; // Set language
+		// speech.lang = 'hi-IN'; // Set language
+		speech.rate = 1; // Adjust speed (0.1 to 10)
+		speech.pitch = 1; // Adjust pitch (0 to 2)
+		speech.volume = 1; // Adjust volume (0 to 1)
+
+		window.speechSynthesis.speak(speech);
+	};
+	const debouncedSpeakCallback = debounce(speak, 1_000);
+
 	// Scroll to bottom whenever messages are added
 	$: {
-		$messages.length;
+		$messages.length; // using as a dependency
+		const isLastMessageOfAssistant = $messages?.[$messages.length - 1]?.role === 'assistant';
+		if (isLastMessageOfAssistant) {
+			debouncedSpeakCallback();
+		}
 		scrollToBottom(); // Necessary so that chat-input sticks to bottom of the screeen.
 		// if (browser && chatDiv) chatDiv.scrollTop = chatDiv?.scrollHeight;
 		if (browser && innerContainerDiv) {
@@ -80,7 +111,7 @@
 		<div bind:this={innerContainerDiv} class="overflow-y-auto">
 			<!-- I'm hiding the toolCalls messages because they have content as empty string. -->
 			{#each $messages.filter((m) => !!m.content) as message}
-				<div>
+				<div transition:fade>
 					<span class="text-sm font-bold underline">{message.role.toUpperCase()}:</span>
 					{message.content}
 				</div>

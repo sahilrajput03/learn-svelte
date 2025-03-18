@@ -1,14 +1,7 @@
 <script lang="ts">
 	import { getVoices } from '$lib/speechRecognitionUtil';
 	import { onMount } from 'svelte';
-
-	type VoiceT = {
-		name: string;
-		lang: string;
-		localService: string;
-		default: boolean;
-		voiceURI: string;
-	};
+	import type { VoiceT } from '../../types';
 
 	let voices: VoiceT[] = $state([]);
 	let showAvailableVoices = $state(!!0);
