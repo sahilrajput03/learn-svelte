@@ -50,7 +50,8 @@
 	});
 
 	const speak = () => {
-		// return console.log('speaking now?...'); // & For Debugging
+		console.log('✅ Calling speak function..');
+		// return// & For Debugging
 		const lastMessage = $messages[$messages.length - 1];
 		const speech = new SpeechSynthesisUtterance(lastMessage.content); // * Docs: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance
 		speech.voice = voices[192] as any; // comment this line to use default `voices[0]`
