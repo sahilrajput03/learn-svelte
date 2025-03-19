@@ -69,6 +69,7 @@
 	// Scroll to bottom whenever messages are added
 	$: {
 		$messages.length; // using as a dependency
+		// TODO: Check if there is way to check inherently if the completion has been done by generative ai --- that can help me prevent the 1 second delay I'm having with debounce function because instead of using deboucne I can make use of that to call speech function when the message has been completed instead.
 		const isLastMessageOfAssistant = $messages?.[$messages.length - 1]?.role === 'assistant';
 		if (isLastMessageOfAssistant) {
 			debouncedSpeakCallback();
