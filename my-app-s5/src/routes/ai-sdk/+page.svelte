@@ -123,6 +123,12 @@
 		<!-- / //& Below input shows an additional bar on top of google-keyboard whch has "passwrod", "card", "map" on right side of it which is content shift issues. That's why I'm using textarea tag now.  -->
 		<!-- <input class="input-primary" bind:value={$input} /> -->
 
+		<div class="my-3 bg-yellow-100 px-3 py-1 text-xs text-red-700">
+			TODO:
+			<li>Increase height on text input for phones and</li>
+			<li>fix the issue of text input not showing properly sometimes.</li>
+			<li>Fix the initial initial jerk of text input.</li>
+		</div>
 		<textarea
 			rows="1"
 			class="input-primary w-full outline-none"
