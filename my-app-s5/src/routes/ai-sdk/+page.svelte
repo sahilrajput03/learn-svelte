@@ -148,7 +148,8 @@
 	<!-- Position Fixed element -->
 	<div class="fixed right-0 top-[100px] mt-10 w-full text-xs">
 		<div class="bg-pink-200 py-1 text-center text-gray-500 underline">
-			Tags: Conversation Agent, Voice Assistant, Conversation Bot, Realtime Bot, Speech to Speech
+			Tags: #Conversation Agent, #Voice Assistant, #Conversation Bot, #Realtime Bot, #Speech to
+			Speech
 		</div>
 		<div class="bg-yellow-100 px-3 py-1 text-xs text-red-700">
 			TODO:
