@@ -6,7 +6,7 @@
 	import debounce from 'lodash.debounce';
 	import type { VoiceT } from '../../types';
 	import { getVoices } from '$lib/speechRecognitionUtil';
-	import { fade } from 'svelte/transition';
+	import { blur, fade } from 'svelte/transition';
 
 	// TODO: Implement a multimodal example in another component from here - https://sdk.vercel.ai/docs/guides/multi-modal-chatbot
 
@@ -119,26 +119,28 @@
 		</div>
 	</div>
 
-	<form onsubmit={handleSubmit} style="margin: 0px -20px;">
-		<!-- / //& Below input shows an additional bar on top of google-keyboard whch has "passwrod", "card", "map" on right side of it which is content shift issues. That's why I'm using textarea tag now.  -->
-		<!-- <input class="input-primary" bind:value={$input} /> -->
+	{#if chatDivHeight}
+		<form transition:blur onsubmit={handleSubmit} style="margin: 0px -20px;">
+			<!-- / //& Below input shows an additional bar on top of google-keyboard whch has "passwrod", "card", "map" on right side of it which is content shift issues. That's why I'm using textarea tag now.  -->
+			<!-- <input class="input-primary" bind:value={$input} /> -->
 
-		<textarea
-			rows="1"
-			class="input-primary w-full outline-none"
-			bind:value={$input}
-			onkeydown={handleKeyDown}
-			placeholder="Ask AI"
-		>
-		</textarea>
+			<textarea
+				rows="1"
+				class="input-primary w-full outline-none"
+				bind:value={$input}
+				onkeydown={handleKeyDown}
+				placeholder="Ask AI"
+			>
+			</textarea>
 
-		<!-- / //*  Send button is now needed since "Enter" on both desktop and mobile works fine. -->
-		<!-- <button
+			<!-- / //*  Send button is not needed now since "Enter" on both desktop and mobile works fine. -->
+			<!-- <button
 			onclick={() => (document.querySelector('.input-primary') as any).focus()}
 			type="submit"
 			class="btn-primary">Send</button
 		> -->
-	</form>
+		</form>
+	{/if}
 
 	<!-- Position Fixed element -->
 	<div class="fixed right-0 top-[100px] mt-10 w-full text-xs text-green-500">
