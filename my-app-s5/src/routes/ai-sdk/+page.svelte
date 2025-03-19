@@ -119,6 +119,7 @@
 		</div>
 	</div>
 
+	<!-- I hide chat input text box till `chatDivHeight` is computed to prevent jerky-content-shift of the input text box. . -->
 	{#if chatDivHeight}
 		<form transition:blur onsubmit={handleSubmit} style="margin: 0px -20px;">
 			<!-- / //& Below input shows an additional bar on top of google-keyboard whch has "passwrod", "card", "map" on right side of it which is content shift issues. That's why I'm using textarea tag now.  -->
