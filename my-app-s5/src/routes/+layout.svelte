@@ -76,12 +76,12 @@
 		class="ml-2 text-xs text-blue-600"
 		href="https://tailwind-plugins-demo.vercel.app">tailwind-plugins-demo.vercel.app</a
 	>
-	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs" href="/webrtc-demo">/webrtc-demo</a>
-	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs" href="/webrtc-watch-together"
+	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/webrtc-demo">/webrtc-demo</a>
+	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/webrtc-watch-together"
 		>/webrtc-watch-together</a
 	>
-	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs" href="/ai-sdk">/ai-sdk</a>
-	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs" href="/tts-and-stt">/tts-and-stt</a>
+	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/ai-sdk">/ai-sdk</a>
+	<!-- <a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/tts-and-stt">/tts-and-stt</a> -->
 </div>
 
 {@render children()}
