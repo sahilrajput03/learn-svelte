@@ -146,7 +146,10 @@
 	{/if}
 
 	<!-- Position Fixed element -->
-	<div class="fixed right-0 top-[100px] mt-10 w-full text-xs text-green-500">
+	<div class="fixed right-0 top-[100px] mt-10 w-full text-xs">
+		<div class="bg-pink-200 py-1 text-center text-gray-500 underline">
+			Tags: Conversation Agent, Voice Assistant, Conversation Bot, Realtime Bot, Speech to Speech
+		</div>
 		<div class="bg-yellow-100 px-3 py-1 text-xs text-red-700">
 			TODO:
 			<li>Increase height on text input for phones and</li>
@@ -155,13 +158,21 @@
 		</div>
 
 		<div class="bg-blue-100 px-3 py-1">
-			<div>Device Width: {deviceWidth}</div>
-			<div>Device Height: {deviceHeight}</div>
-			<br />
-			Some questions:
-			<br />
-			<li>What's the weather in New York?</li>
-			<li>What's the weather in New York in celsius?</li>
+			<div>
+				{#if deviceWidth}
+					<div transition:fade>
+						Device Resolution (width x height): {deviceWidth} x {deviceHeight}
+					</div>
+				{:else}
+					<div>&nbsp;</div>
+				{/if}
+			</div>
+
+			<div class="mt-3 text-green-500">
+				<div class="underline">Some questions:</div>
+				<li>What's the weather in New York?</li>
+				<li>What's the weather in New York in celsius?</li>
+			</div>
 		</div>
 	</div>
 
