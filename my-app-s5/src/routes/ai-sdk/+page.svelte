@@ -123,12 +123,6 @@
 		<!-- / //& Below input shows an additional bar on top of google-keyboard whch has "passwrod", "card", "map" on right side of it which is content shift issues. That's why I'm using textarea tag now.  -->
 		<!-- <input class="input-primary" bind:value={$input} /> -->
 
-		<div class="my-3 bg-yellow-100 px-3 py-1 text-xs text-red-700">
-			TODO:
-			<li>Increase height on text input for phones and</li>
-			<li>fix the issue of text input not showing properly sometimes.</li>
-			<li>Fix the initial initial jerk of text input.</li>
-		</div>
 		<textarea
 			rows="1"
 			class="input-primary w-full outline-none"
@@ -147,14 +141,23 @@
 	</form>
 
 	<!-- Position Fixed element -->
-	<div class="fixed right-5 top-16 mt-10 text-xs text-green-500">
-		<div>Device Width: {deviceWidth}</div>
-		<div>Device Height: {deviceHeight}</div>
-		<br />
-		Some questions:
-		<br />
-		<li>What's the weather in New York?</li>
-		<li>What's the weather in New York in celsius?</li>
+	<div class="fixed right-0 top-[100px] mt-10 text-xs text-green-500">
+		<div class="bg-yellow-100 px-3 py-1 text-xs text-red-700">
+			TODO:
+			<li>Increase height on text input for phones and</li>
+			<li>fix the issue of text input not showing properly sometimes.</li>
+			<li>Fix the initial initial jerk of text input.</li>
+		</div>
+
+		<div class="bg-blue-100 px-3 py-1">
+			<div>Device Width: {deviceWidth}</div>
+			<div>Device Height: {deviceHeight}</div>
+			<br />
+			Some questions:
+			<br />
+			<li>What's the weather in New York?</li>
+			<li>What's the weather in New York in celsius?</li>
+		</div>
 	</div>
 
 	<!-- <button onclick={() => input = "What's the weather in New York?"}>Set question -->
