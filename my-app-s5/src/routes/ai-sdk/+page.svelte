@@ -10,6 +10,26 @@
 
 	// TODO: Implement a multimodal example in another component from here - https://sdk.vercel.ai/docs/guides/multi-modal-chatbot
 
+	// ! TODO: Implement speech to speech thing now. Its very very easy!
+	// ! TODO: Implement speech to speech thing now. Its very very easy!
+	// ! TODO: Implement speech to speech thing now. Its very very easy!
+	// ! TODO: Implement speech to speech thing now. Its very very easy!
+	// ! TODO: Implement speech to speech thing now. Its very very easy!
+	// ! TODO: Implement speech to speech thing now. Its very very easy!
+	// ! TODO: Implement speech to speech thing now. Its very very easy!
+	// ! TODO: Implement speech to speech thing now. Its very very easy!
+
+	async function stt() {
+		const w = window as any;
+		const recognition = new w.webkitSpeechRecognition() || new w.SpeechRecognition(); // chatgpt
+		recognition.onresult = (event) => {
+			const transcript = event.results[0][0].transcript;
+			console.log(transcript);
+		};
+		recognition.start();
+		// recognition.stop();
+	}
+
 	// Why `maxSteps` (in `usechat()`) should be set greater than 1 ?
 	//      We need maxSteps more than 1 so that toolcall's response is automatically passed and new response is generated automatically.
 	//      Another advantage is allow to be able to call more than 1 tool calls on its own.
@@ -124,7 +144,7 @@
 	<!-- I hide chat input text box till `chatDivHeight` is computed to prevent jerky-content-shift of the input text box. . -->
 	{#if chatDivHeight}
 		<form transition:blur onsubmit={handleSubmit} style="margin: 0px -20px;">
-			<!-- / //& Below input shows an additional bar on top of google-keyboard whch has "passwrod", "card", "map" on right side of it which is content shift issues. That's why I'm using textarea tag now.  -->
+			<!-- / //& Note: Below <input/> tag shows an additional bar on top of google-keyboard whch has "passwrod", "card", "map" on right side of it which is content shift issues. That's why I'm using textarea tag now.  -->
 			<!-- <input class="input-primary" bind:value={$input} /> -->
 
 			<textarea
@@ -153,9 +173,12 @@
 		</div>
 		<div class="bg-yellow-100 px-3 py-1 text-xs text-red-700">
 			TODO:
-			<li>Increase height on text input for phones and</li>
-			<li>fix the issue of text input not showing properly sometimes.</li>
-			<li>Fix the initial initial jerk of text input.</li>
+			<ol class="ml-4 list-decimal">
+				<li>Increase height on text input for phones and</li>
+				<li>fix the issue of text input not showing properly sometimes.</li>
+				<li>Fix the initial initial jerk of text input.</li>
+				<li>Enable the send button and change it to a send like button as it is in telegram.</li>
+			</ol>
 		</div>
 
 		<div class="bg-blue-100 px-3 py-1">
