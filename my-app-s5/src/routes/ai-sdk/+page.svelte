@@ -19,17 +19,6 @@
 	// ! TODO: Implement speech to speech thing now. Its very very easy!
 	// ! TODO: Implement speech to speech thing now. Its very very easy!
 
-	async function stt() {
-		const w = window as any;
-		const recognition = new w.webkitSpeechRecognition() || new w.SpeechRecognition(); // chatgpt
-		recognition.onresult = (event) => {
-			const transcript = event.results[0][0].transcript;
-			console.log(transcript);
-		};
-		recognition.start();
-		// recognition.stop();
-	}
-
 	// Why `maxSteps` (in `usechat()`) should be set greater than 1 ?
 	//      We need maxSteps more than 1 so that toolcall's response is automatically passed and new response is generated automatically.
 	//      Another advantage is allow to be able to call more than 1 tool calls on its own.
@@ -71,7 +60,7 @@
 
 	const speak = () => {
 		console.log('✅ Calling speak function..');
-		// return// & For Debugging
+		return; // & For Debugging
 		const lastMessage = $messages[$messages.length - 1];
 		const speech = new SpeechSynthesisUtterance(lastMessage.content); // * Docs: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance
 		speech.voice = voices[192] as any; // comment this line to use default `voices[0]`
@@ -90,6 +79,7 @@
 	// Scroll to bottom whenever messages are added
 	$: {
 		$messages.length; // using as a dependency
+		console.log('messages.length?', $messages.length);
 		// TODO: Check if there is way to check inherently if the completion has been done by generative ai --- that can help me prevent the 1 second delay I'm having with debounce function because instead of using deboucne I can make use of that to call speech function when the message has been completed instead.
 		const isLastMessageOfAssistant = $messages?.[$messages.length - 1]?.role === 'assistant';
 		if (isLastMessageOfAssistant) {
@@ -101,12 +91,23 @@
 			innerContainerDiv.scrollTop = innerContainerDiv?.scrollHeight;
 		}
 	}
+	async function stt() {
+		const w = window as any;
+		const recognition = new w.webkitSpeechRecognition() || new w.SpeechRecognition(); // chatgpt
+		recognition.onresult = (event) => {
+			const transcript = event.results[0][0].transcript;
+			console.log(transcript);
+			$input = transcript;
+			handleSubmit();
+		};
+		recognition.start();
+		// recognition.stop();
+	}
 
 	function resizeCallback() {
 		deviceWidth = window.innerWidth;
 		deviceHeight = window.innerHeight;
 	}
-
 	onMount(() => {
 		resizeCallback();
 		window.addEventListener('resize', resizeCallback);
@@ -163,6 +164,13 @@
 			class="btn-primary">Send</button
 		> -->
 		</form>
+
+		<button
+			class="fixed right-[10px] top-[50vh] z-20 rounded bg-blue-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
+			onclick={stt}
+		>
+			🚀 Start Talking
+		</button>
 	{/if}
 
 	<!-- / //& Container (position: fixed) -->
@@ -178,6 +186,7 @@
 				<li>fix the issue of text input not showing properly sometimes.</li>
 				<li>Fix the initial initial jerk of text input.</li>
 				<li>Enable the send button and change it to a send like button as it is in telegram.</li>
+				<li>Fix the enter key bug when there is not text in text-input (found in mobile)</li>
 			</ol>
 		</div>
 		<div class="bg-blue-100 px-3 py-1">

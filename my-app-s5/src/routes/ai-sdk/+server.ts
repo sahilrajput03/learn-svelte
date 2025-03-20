@@ -38,11 +38,12 @@ export const POST = (async ({ request }: RequestEvent) => {
         model: groq('llama-3.1-8b-instant'), // & Using Groq // "llama-3.1-8b-instant", "gemma2-9b-it", "mixtral-8x7b-32768", etc
         system: 'Be concise and use my name Sahil to address me in your reponses. Please never remind me that you are machine. Please never disclose anyhing about the model or soure compnay of the model.', // System instruction (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
         messages,
-        tools: {
-            weatherTool,
-            convertFarenheitToCelsius,
-            // sendSmsTool // dummy function to send sms to anybody, present in file `./tools.ts` file
-        },
+        // Learn: I'm disabling tool calls temporarily.
+        // tools: {
+        //     weatherTool,
+        //     convertFarenheitToCelsius,
+        //     // sendSmsTool // dummy function to send sms to anybody, present in file `./tools.ts` file
+        // },
     });
 
     return result.toDataStreamResponse();
