@@ -60,7 +60,7 @@
 
 	const speak = () => {
 		console.log('✅ Calling speak function..');
-		return; // & For Debugging
+		// return; // & For Debugging
 		const lastMessage = $messages[$messages.length - 1];
 		const speech = new SpeechSynthesisUtterance(lastMessage.content); // * Docs: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance
 		speech.voice = voices[192] as any; // comment this line to use default `voices[0]`
@@ -72,9 +72,16 @@
 		speech.pitch = 1; // Adjust pitch (0 to 2)
 		speech.volume = 1; // Adjust volume (0 to 1)
 
+		speech.onend = () => {
+			isBotSpeaking = false;
+			console.log('  ✅ Bot Speech finished');
+		};
 		window.speechSynthesis.speak(speech);
 	};
 	const debouncedSpeakCallback = debounce(speak, 1_000);
+
+	let isBotSpeaking = false;
+	let idOfLastMessageSpokenByBot: string | null = null;
 
 	// Scroll to bottom whenever messages are added
 	$: {
@@ -85,10 +92,19 @@
 		if (browser && innerContainerDiv) {
 			innerContainerDiv.scrollTop = innerContainerDiv?.scrollHeight;
 		}
-		// TODO: Check if there is way to check inherently if the completion has been done by generative ai --- that can help me prevent the 1 second delay I'm having with debounce function because instead of using deboucne I can make use of that to call speech function when the message has been completed instead.
-		const isLastMessageOfAssistant = $messages?.[$messages.length - 1]?.role === 'assistant';
-		if (isLastMessageOfAssistant) {
-			debouncedSpeakCallback();
+
+		if (!isBotSpeaking) {
+			// TODO: Check if there is way to check inherently if the completion has been done by generative ai --- that can help me prevent the 1 second delay I'm having with debounce function because instead of using deboucne I can make use of that to call speech function when the message has been completed instead.
+			const lastMessage = $messages?.[$messages.length - 1];
+			const isLastMessageOfAssistant = lastMessage?.role === 'assistant';
+			if (isLastMessageOfAssistant) {
+				const isNewMessageFromBot = idOfLastMessageSpokenByBot !== lastMessage.id;
+				if (isNewMessageFromBot) {
+					isBotSpeaking = true;
+					idOfLastMessageSpokenByBot = lastMessage.id;
+					debouncedSpeakCallback();
+				}
+			}
 		}
 	}
 	async function stt() {
