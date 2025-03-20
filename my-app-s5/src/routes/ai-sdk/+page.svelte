@@ -80,15 +80,15 @@
 	$: {
 		$messages.length; // using as a dependency
 		console.log('messages.length?', $messages.length);
-		// TODO: Check if there is way to check inherently if the completion has been done by generative ai --- that can help me prevent the 1 second delay I'm having with debounce function because instead of using deboucne I can make use of that to call speech function when the message has been completed instead.
-		const isLastMessageOfAssistant = $messages?.[$messages.length - 1]?.role === 'assistant';
-		if (isLastMessageOfAssistant) {
-			debouncedSpeakCallback();
-		}
 		scrollToBottom(); // Necessary so that chat-input sticks to bottom of the screeen.
 		// if (browser && chatDiv) chatDiv.scrollTop = chatDiv?.scrollHeight;
 		if (browser && innerContainerDiv) {
 			innerContainerDiv.scrollTop = innerContainerDiv?.scrollHeight;
+		}
+		// TODO: Check if there is way to check inherently if the completion has been done by generative ai --- that can help me prevent the 1 second delay I'm having with debounce function because instead of using deboucne I can make use of that to call speech function when the message has been completed instead.
+		const isLastMessageOfAssistant = $messages?.[$messages.length - 1]?.role === 'assistant';
+		if (isLastMessageOfAssistant) {
+			debouncedSpeakCallback();
 		}
 	}
 	async function stt() {
