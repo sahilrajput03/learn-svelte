@@ -10,12 +10,6 @@
 
 	// TODO: Implement a multimodal example in another component from here - https://sdk.vercel.ai/docs/guides/multi-modal-chatbot
 
-	// ! TODO: Fix the issue of quickly pressing stop and start listing...
-	// ! TODO: Fix the issue of quickly pressing stop and start listing...
-	// ! TODO: Fix the issue of quickly pressing stop and start listing...
-	// ! TODO: Fix the issue of quickly pressing stop and start listing...
-	// ! TODO: Fix the issue of quickly pressing stop and start listing...
-
 	// Why `maxSteps` (in `usechat()`) should be set greater than 1 ?
 	//      We need maxSteps more than 1 so that toolcall's response is automatically passed and new response is generated automatically.
 	//      Another advantage is allow to be able to call more than 1 tool calls on its own.
@@ -224,6 +218,7 @@
 		<div class="bg-yellow-100 px-3 py-1 text-xs text-red-700">
 			TODO:
 			<ol class="ml-4 list-decimal">
+				<li>Fix the issue of quickly pressing stop and start listing...</li>
 				<li>Increase height on text input for phones and</li>
 				<li>fix the issue of text input not showing properly sometimes.</li>
 				<li>Fix the initial initial jerk of text input.</li>
