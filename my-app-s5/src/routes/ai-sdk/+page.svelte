@@ -165,7 +165,7 @@
 		</form>
 	{/if}
 
-	<!-- Position Fixed element -->
+	<!-- / //& Container (position: fixed) -->
 	<div class="fixed right-0 top-[100px] mt-10 w-full text-xs">
 		<div class="bg-pink-200 py-1 text-center text-gray-500 underline">
 			Tags: #Conversation Agent, #Voice Assistant, #Conversation Bot, #Realtime Bot, #Speech to
@@ -180,7 +180,6 @@
 				<li>Enable the send button and change it to a send like button as it is in telegram.</li>
 			</ol>
 		</div>
-
 		<div class="bg-blue-100 px-3 py-1">
 			<div>
 				{#if deviceWidth}
@@ -191,7 +190,6 @@
 					<div>&nbsp;</div>
 				{/if}
 			</div>
-
 			<div class="mt-3 text-green-500">
 				<div class="underline">Some questions:</div>
 				<li>What's the weather in New York?</li>
