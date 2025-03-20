@@ -94,6 +94,7 @@
 		}
 
 		if (!isBotSpeaking) {
+			// TODO: Add speaking status on the start talking button when bot is speaking and change label to "stop".
 			// TODO: Check if there is way to check inherently if the completion has been done by generative ai --- that can help me prevent the 1 second delay I'm having with debounce function because instead of using deboucne I can make use of that to call speech function when the message has been completed instead.
 			const lastMessage = $messages?.[$messages.length - 1];
 			const isLastMessageOfAssistant = lastMessage?.role === 'assistant';
@@ -107,17 +108,22 @@
 			}
 		}
 	}
+	let recognition = null as any;
 	async function stt() {
-		const w = window as any;
-		const recognition = new w.webkitSpeechRecognition() || new w.SpeechRecognition(); // chatgpt
-		recognition.onresult = (event) => {
-			const transcript = event.results[0][0].transcript;
-			console.log(transcript);
-			$input = transcript;
-			handleSubmit();
-		};
-		recognition.start();
-		// recognition.stop();
+		let w = window as any;
+		recognition = new w.webkitSpeechRecognition() || new w.SpeechRecognition(); // chatgpt
+
+		if (!isBotSpeaking) {
+			recognition.onresult = (event) => {
+				const transcript = event.results[0][0].transcript;
+				console.log(transcript);
+				$input = transcript;
+				handleSubmit();
+			};
+			recognition.start();
+		} else {
+			recognition.stop();
+		}
 	}
 
 	function resizeCallback() {
@@ -185,7 +191,7 @@
 			class="fixed right-[10px] top-[50vh] z-20 rounded bg-blue-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
 			onclick={stt}
 		>
-			🚀 Start Talking
+			{!isBotSpeaking ? '🚀 Start Talking' : 'Stop'}
 		</button>
 	{/if}
 
