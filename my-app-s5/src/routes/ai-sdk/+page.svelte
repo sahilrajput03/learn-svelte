@@ -110,28 +110,27 @@
 	}
 	let isBotListening = false;
 	let recognition = null as any;
-	async function stt() {
+	async function handleStartListening() {
+		// speech to text
 		let w = window as any;
 		recognition = new w.webkitSpeechRecognition() || new w.SpeechRecognition(); // chatgpt
-
+		recognition.onresult = (event) => {
+			isBotListening = false;
+			const transcript = event.results[0][0].transcript;
+			console.log(transcript);
+			$input = transcript;
+			handleSubmit();
+		};
+		recognition.start();
+		isBotListening = true;
+	}
+	function handleStopButton() {
 		const shouldStop = isBotListening || isBotSpeaking;
 		if (shouldStop) {
 			recognition.stop(); // todo: test this...
 			window.speechSynthesis.cancel(); // Stop any ongoing speech
 			isBotListening = false;
 			isBotSpeaking = false;
-		}
-
-		if (!isBotSpeaking) {
-			recognition.onresult = (event) => {
-				isBotListening = false;
-				const transcript = event.results[0][0].transcript;
-				console.log(transcript);
-				$input = transcript;
-				handleSubmit();
-			};
-			recognition.start();
-			isBotListening = true;
 		}
 	}
 
@@ -197,13 +196,22 @@
 		</form>
 
 		<div class="fixed right-[10px] top-[50vh] z-20">
-			<button
-				transition:fade
-				class="rounded bg-blue-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
-				onclick={stt}
-			>
-				{isBotListening || isBotSpeaking ? 'Stop' : '🚀 Listen to me'}
-			</button>
+			{#if !(isBotListening || isBotSpeaking)}
+				<button
+					in:fade
+					class="rounded bg-blue-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
+					onclick={handleStartListening}
+					>🚀 Listen to me
+				</button>
+			{:else}
+				<button
+					in:fade
+					class="rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-red-600"
+					onclick={handleStopButton}
+					>stop
+				</button>
+			{/if}
+
 			<div>
 				{isBotListening ? 'Listening 👂🏻' : null}
 			</div>
