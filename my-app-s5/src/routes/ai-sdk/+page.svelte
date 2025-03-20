@@ -10,14 +10,11 @@
 
 	// TODO: Implement a multimodal example in another component from here - https://sdk.vercel.ai/docs/guides/multi-modal-chatbot
 
-	// ! TODO: Implement speech to speech thing now. Its very very easy!
-	// ! TODO: Implement speech to speech thing now. Its very very easy!
-	// ! TODO: Implement speech to speech thing now. Its very very easy!
-	// ! TODO: Implement speech to speech thing now. Its very very easy!
-	// ! TODO: Implement speech to speech thing now. Its very very easy!
-	// ! TODO: Implement speech to speech thing now. Its very very easy!
-	// ! TODO: Implement speech to speech thing now. Its very very easy!
-	// ! TODO: Implement speech to speech thing now. Its very very easy!
+	// ! TODO: Fix the issue of quickly pressing stop and start listing...
+	// ! TODO: Fix the issue of quickly pressing stop and start listing...
+	// ! TODO: Fix the issue of quickly pressing stop and start listing...
+	// ! TODO: Fix the issue of quickly pressing stop and start listing...
+	// ! TODO: Fix the issue of quickly pressing stop and start listing...
 
 	// Why `maxSteps` (in `usechat()`) should be set greater than 1 ?
 	//      We need maxSteps more than 1 so that toolcall's response is automatically passed and new response is generated automatically.
