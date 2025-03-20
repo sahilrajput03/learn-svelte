@@ -77,7 +77,7 @@
 	// Scroll to bottom whenever messages are added
 	$: {
 		$messages.length; // using as a dependency
-		console.log('messages.length?', $messages.length);
+		// console.log('messages.length?', $messages.length);
 		scrollToBottom(); // Necessary so that chat-input sticks to bottom of the screeen.
 		// if (browser && chatDiv) chatDiv.scrollTop = chatDiv?.scrollHeight;
 		if (browser && innerContainerDiv) {
