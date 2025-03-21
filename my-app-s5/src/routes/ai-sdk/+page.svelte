@@ -186,26 +186,34 @@
 		> -->
 		</form>
 
-		<div class="fixed right-[10px] top-[50vh] z-20">
+		<div class="fixed right-[10px] top-[50vh] z-20 flex flex-col items-end">
 			{#if !(isBotListening || isBotSpeaking)}
 				<button
 					in:fade
-					class="rounded bg-blue-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
+					class="rounded-lg bg-blue-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
 					onclick={handleStartListening}
 					>🚀 Listen to me
 				</button>
 			{:else}
 				<button
 					in:fade
-					class="rounded bg-red-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-red-600"
+					class="rounded-lg bg-red-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-red-600"
 					onclick={handleStopButton}
 					>stop
 				</button>
 			{/if}
 
-			<div>
-				{isBotListening ? 'Listening 👂🏻' : null}
-			</div>
+			{#if isBotListening}
+				<div in:fade class="mt-1 rounded-lg border border-gray-300 bg-white px-2 text-gray-400">
+					Listening 👂🏻
+				</div>
+			{/if}
+
+			{#if isBotSpeaking}
+				<div in:fade class="mt-1 rounded-lg border border-gray-300 bg-white px-2 text-gray-400">
+					Speaking 📢
+				</div>
+			{/if}
 		</div>
 	{/if}
 
