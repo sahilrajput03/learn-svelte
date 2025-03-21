@@ -229,7 +229,6 @@
 				<li>Fix the issue of quickly pressing stop and start listing...</li>
 				<li>Increase height on text input for phones and</li>
 				<li>fix the issue of text input not showing properly sometimes.</li>
-				<li>Fix the initial initial jerk of text input.</li>
 				<li>Enable the send button and change it to a send like button as it is in telegram.</li>
 				<li>Fix the enter key bug when there is not text in text-input (found in mobile)</li>
 			</ol>
