@@ -35,6 +35,19 @@
 			routesHistory.push(path);
 		}
 	});
+	function shareToFriend() {
+		if (navigator.share) {
+			navigator
+				.share({
+					title: 'Check this out!',
+					text: 'Interesting link for you:',
+					url: window.location.href
+				})
+				.catch(console.error);
+		} else {
+			alert('Sharing not supported on this device. Please contact developer for more info.');
+		}
+	}
 </script>
 
 <div class="mt-[20px] flex justify-end">
@@ -82,6 +95,10 @@
 	>
 	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/ai-sdk">/ai-sdk</a>
 	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/tts-and-stt">/tts-and-stt</a>
+</div>
+
+<div class="mb-3 mt-1 flex items-start justify-end text-xs">
+	<button onclick={shareToFriend}>Share to a friend</button>
 </div>
 
 {@render children()}
