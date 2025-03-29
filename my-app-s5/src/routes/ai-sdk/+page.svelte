@@ -221,7 +221,9 @@
 	<!-- / //& Container (position: fixed) -->
 
 	<div class="fixed right-0 top-[200px] mt-10 w-full text-xs">
-		<button class="m-2 border" onclick={() => (showPendingTodos = !showPendingTodos)}
+		<button
+			class="m-2 rounded-lg border px-2 py-1"
+			onclick={() => (showPendingTodos = !showPendingTodos)}
 			>{showPendingTodos ? 'Hide' : 'Show'} Pending Todos</button
 		>
 
