@@ -98,7 +98,7 @@
 </div>
 
 <div class="mb-3 mt-1 flex items-start justify-end text-xs">
-	<button onclick={shareToFriend}>Share to a friend</button>
+	<button class="rounded-lg border px-2 py-1" onclick={shareToFriend}>Share to a friend</button>
 </div>
 
 {@render children()}
