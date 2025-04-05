@@ -52,15 +52,20 @@ export const createReminderTool = tool({
         // const secondsFromNow = 0;
         // const scheduledTime = new Date(Date.now() + secondsFromNow * 1000);
         console.log('▶️ createReminder tool call executed!', { text, scheduledTime, priority })
-        await createReminder({
-            title: text,
-            scheduledTime,
-            priority,
-        })
-        console.log('✅ createReminder tool call SUCESSFUL')
-        return {
-            message: "Success"
-        };
+        let result = null as any
+        try {
+            await createReminder({
+                title: text,
+                scheduledTime,
+                priority,
+            })
+            result = { message: 'success' }
+            console.log('✅ createReminder tool call SUCESSFUL')
+        } catch (error) {
+            result = { message: 'failed', error }
+            console.log('❌ Error @ createReminder tool call while calling api.', error)
+        }
+        return result;
     },
 })
 
