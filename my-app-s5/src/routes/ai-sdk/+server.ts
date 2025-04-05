@@ -35,6 +35,8 @@ const getCurrentDate = () => {
     return now.toISOString()
 }
 
+// TODO: Check if this helps to improve system instruction - https://chatgpt.com/c/67f18bef-96fc-8007-87fe-3ead1a2ce3d4
+
 // Note: I have explicitly stated below that before calling createReminderTool you must get current
 //          time via `getCurrentTimeTool`.
 const systemPrompt = `
