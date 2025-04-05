@@ -33,8 +33,7 @@ export const convertFarenheitToCelsius = tool({
 })
 
 
-const isAppleMachine = process.env.USER === 'apple' // 🚀🚀🚀🚀🚀🚀
-const apiUrl = isAppleMachine ? 'http://localhost:8080' : 'http://xiaomi-22031116ai.tail23f445.ts.net:8080'
+const apiUrl = 'http://localhost:8080'
 export const axiosInstance = axios.create({ baseURL: apiUrl })
 export const createReminder = async (payload) => {
     const response = await axiosInstance.post('/api/v1/reminder', payload)
