@@ -2,7 +2,7 @@ import { tool } from "ai";
 import { z } from "zod";
 import axios from "axios";
 import { log } from "console";
-import { getHumanReadableIndianTimeFromDate } from "$lib/time-utils";
+import { dumbSimpleReadableTime, getHumanReadableIndianTimeFromDate } from "$lib/time-utils";
 
 export const weatherTool = tool({
     description: 'Get the weather in a location (farenheit)',
@@ -34,6 +34,14 @@ export const convertFarenheitToCelsius = tool({
     },
 })
 
+/**
+ * & ❤️️️️️️️️❤️️️️️️️️❤️️️️️️️️️️️️️️️️ The best way to create reminder is to say 
+ * - "Set reminder to drink water at 7:15pm."
+ * - "Set a reminder for releasing music tomorrow at 10:00 a.m."
+ * ! Do not use phrases like below because they are hallucinatory:
+ *  - "Set reminder to drink in 5mins." -- 
+ */
+
 
 const apiUrl = 'http://localhost:8080'
 let car = 20
@@ -54,7 +62,7 @@ export const createReminderTool = tool({
         // create reminder
         // const secondsFromNow = 0;
         // const scheduledTime = new Date(Date.now() + secondsFromNow * 1000);
-        const humanReadableTime = getHumanReadableIndianTimeFromDate(new Date(scheduledTime))
+        const humanReadableTime = dumbSimpleReadableTime(new Date(scheduledTime))
         console.log('2️⃣️ createReminder tool call initiated.', {
             text,
             scheduledTime: humanReadableTime,

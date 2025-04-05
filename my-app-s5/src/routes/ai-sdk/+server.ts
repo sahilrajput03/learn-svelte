@@ -17,6 +17,7 @@ import { z } from 'zod';
 import { convertFarenheitToCelsius, createReminderTool, getCurrentTimeForCreatingReminderTool, getHumanReadableTimeTool, weatherTool } from './tools';
 import { createGroq } from '@ai-sdk/groq';
 import type { RequestEvent, RequestHandler } from './$types';
+import { humanReadableTodayDayAndDate } from '$lib/time-utils';
 
 // OPENAI
 const openai = createOpenAI({
@@ -43,7 +44,9 @@ Never mention that you are an AI, machine, or disclose anything about the model 
 
 Whenever I ask to set a reminder, always call the getCurrentTimeForCreatingReminderTool first, before calling createReminderTool—every time, not just on the first reminder.
 
-For any questions related to date you can call getHumanReadableTimeTool to get current time and date.
+For any questions related to date, remember todays date is ${humanReadableTodayDayAndDate()}
+
+For any questions related to time you can call getHumanReadableTimeTool to get current time.
 `
 // Todays date is: ${getCurrentDate()}
 
