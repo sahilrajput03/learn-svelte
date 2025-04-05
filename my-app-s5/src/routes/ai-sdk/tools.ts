@@ -91,7 +91,7 @@ export const getCurrentTimeForCreatingReminderTool = tool({
     parameters: z.object({}), // no input needed
     execute: async () => {
         const now = new Date();
-        log('1️⃣️ Calling getCurrentTimeTool:', getHumanReadableIndianTimeFromDate(now))
+        log('1️⃣️ Calling getCurrentTimeTool:', dumbSimpleReadableTime(now))
         return { currentTime: now.toISOString() };
     },
 });
@@ -101,8 +101,8 @@ export const getHumanReadableTimeTool = tool({
     parameters: z.object({}), // no input needed
     execute: async () => {
         const now = new Date();
-        log('❤️️️️️❤️Calling getHumanReadableTimeTool:', getHumanReadableIndianTimeFromDate(now))
-        return { time: getHumanReadableIndianTimeFromDate(now) };
+        log('❤️️️️️❤️Calling getHumanReadableTimeTool:', dumbSimpleReadableTime(now))
+        return { time: dumbSimpleReadableTime(now) };
     },
 });
 // export const sendSmsTool = tool({
