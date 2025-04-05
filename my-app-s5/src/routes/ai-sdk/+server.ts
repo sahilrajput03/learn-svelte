@@ -14,7 +14,7 @@ import { streamText } from 'ai';
 
 import { env } from '$env/dynamic/private'; // TODO (make notes in readme of this: Adv.SvelteKit/EnvironmentVarables) read the values of environment variables when the app runs, as opposed to when the app is built,
 import { z } from 'zod';
-import { convertFarenheitToCelsius, createReminderTool, weatherTool } from './tools';
+import { convertFarenheitToCelsius, createReminderTool, getCurrentTimeForCreatingReminderTool, getHumanReadableTimeTool, weatherTool } from './tools';
 import { createGroq } from '@ai-sdk/groq';
 import type { RequestEvent, RequestHandler } from './$types';
 
@@ -28,22 +28,44 @@ const groq = createGroq({
     apiKey: env.GROQ_API_KEY ?? ""
 });
 
+
+const getCurrentDate = () => {
+    const now = new Date();
+    return now.toISOString()
+}
+
+// Note: I have explicitly stated below that before calling createReminderTool you must get current
+//          time via `getCurrentTimeTool`.
+const systemPrompt = `
+Be extremely concise in all responses. Always address me as Sáhil.
+
+Never mention that you are an AI, machine, or disclose anything about the model or its source company.
+
+Whenever I ask to set a reminder, always call the getCurrentTimeForCreatingReminderTool first, before calling createReminderTool—every time, not just on the first reminder.
+
+For any questions related to date you can call getHumanReadableTimeTool to get current time and date.
+`
+// Todays date is: ${getCurrentDate()}
+
 export const POST = (async ({ request }: RequestEvent) => {
-    console.log('POST: /ai-sdk')
+    // console.log('POST: /ai-sdk')
     const { messages } = await request.json();
 
     // Tool calls work with openai and groq (tested for gemma-2-9b-it) both very well.
     const result = streamText({
         // model: openai('gpt-4o-mini'), // & Using OpenAI
         model: groq('gemma2-9b-it'), // & Using Groq, Models: "llama-3.1-8b-instant", "gemma2-9b-it", "mixtral-8x7b-32768", etc
-        system: 'Be very very concise and use my name Sáhil to address me in your reponses. Please never remind me that you are machine. Please never disclose anyhing about the model or soure compnay of the model. Do not make any tool call unless explicitly asked.', // System instruction (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
+        system: systemPrompt, // System instruction/prompt/message (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
         messages,
-        // Learn: I'm disabling tool calls temporarily.
+        // Learn: Having explicit definition of below keys helps
+        //         vscode's cmd+click feature to work.
         tools: {
-            // weatherTool,
-            // convertFarenheitToCelsius,
-            createReminderTool
-            // sendSmsTool // dummy function to send sms to anybody, present in file `./tools.ts` file
+            // weatherTool: weatherTool,
+            // convertFarenheitToCelsius: convertFarenheitToCelsius,
+            createReminderTool: createReminderTool,
+            getCurrentTimeForCreatingReminderTool: getCurrentTimeForCreatingReminderTool,
+            getHumanReadableTimeTool: getHumanReadableTimeTool
+            // sendSmsTool: sendSmsTool // dummy function to send sms to anybody, present in file `./tools.ts` file
         },
     });
 

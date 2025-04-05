@@ -1,6 +1,8 @@
 import { tool } from "ai";
 import { z } from "zod";
 import axios from "axios";
+import { log } from "console";
+import { getHumanReadableIndianTimeFromDate } from "$lib/time-utils";
 
 export const weatherTool = tool({
     description: 'Get the weather in a location (farenheit)',
@@ -52,7 +54,12 @@ export const createReminderTool = tool({
         // create reminder
         // const secondsFromNow = 0;
         // const scheduledTime = new Date(Date.now() + secondsFromNow * 1000);
-        console.log('▶️ createReminder tool call executed!', { text, scheduledTime, priority })
+        const humanReadableTime = getHumanReadableIndianTimeFromDate(new Date(scheduledTime))
+        console.log('2️⃣️ createReminder tool call initiated.', {
+            text,
+            scheduledTime: humanReadableTime,
+            priority
+        })
         let result = null as any
         try {
             await createReminder({
@@ -60,17 +67,36 @@ export const createReminderTool = tool({
                 scheduledTime,
                 priority,
             })
-            result = { message: 'success' }
-            console.log('✅ createReminder tool call SUCESSFUL')
-        } catch (error) {
+            result = { message: 'Your reminder is set for ' + humanReadableTime }
+            console.log('✅Reminder added to database🎉🎉\n')
+        } catch (error: any) {
             result = { message: 'failed', error }
-            console.log('❌ Error @ createReminder tool call while calling api.', error)
+            console.log('❌ Error @ createReminder tool call while calling api.')
+            console.log({ name: error.name, message: error.message, responseData: error.response?.data })
         }
         return result;
     },
 })
 
+export const getCurrentTimeForCreatingReminderTool = tool({
+    description: 'Fetches the current date and time and returns it in ISO format.',
+    parameters: z.object({}), // no input needed
+    execute: async () => {
+        const now = new Date();
+        log('1️⃣️ Calling getCurrentTimeTool:', getHumanReadableIndianTimeFromDate(now))
+        return { currentTime: now.toISOString() };
+    },
+});
 
+export const getHumanReadableTimeTool = tool({
+    description: 'Human readable current time and date.',
+    parameters: z.object({}), // no input needed
+    execute: async () => {
+        const now = new Date();
+        log('❤️️️️️❤️Calling getHumanReadableTimeTool:', getHumanReadableIndianTimeFromDate(now))
+        return { time: getHumanReadableIndianTimeFromDate(now) };
+    },
+});
 // export const sendSmsTool = tool({
 //     description: 'this function send sms/message to people',
 //     parameters: z.object({
