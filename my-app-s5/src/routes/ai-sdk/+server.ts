@@ -35,8 +35,6 @@ const getCurrentDate = () => {
     return now.toISOString()
 }
 
-// Learn: 🏻 I have done lot of work on making sure the getCurrentTimeToolForCreatingReminder before reminder is created and my last interesting thing I found is adding redundancy to help robustness (suggested by ChatGPT 4o) - https://chatgpt.com/c/67f18bef-96fc-8007-87fe-3ead1a2ce3d4
-
 // Note: I have explicitly stated below that before calling createReminderTool you must get current
 //          time via `getCurrentTimeTool`.
 const systemPrompt = `
@@ -44,7 +42,7 @@ Be extremely concise in all responses. Always address me as Sáhil.
 
 Never mention that you are an AI, machine, or disclose anything about the model or its source company.
 
-Whenever I ask to set a reminder, whether I provide an exact time (like 'at 3:30 am') or a relative time (like 'in 3 minutes' or 'after 10 mins'), always call the getCurrentTimeForCreatingReminderTool first. This ensures you compute the correct current time before using createReminderTool every time. Never assume the current time — always retrieve it using getCurrentTimeForCreatingReminderTool, regardless of how the reminder time is phrased.
+Whenever I ask to set a reminder, always call the getCurrentTimeForCreatingReminderTool first, before calling createReminderTool every time so that you get the latest time in everytime.
 
 For any questions related to date, remember todays date is ${humanReadableTodayDayAndDate()}
 
