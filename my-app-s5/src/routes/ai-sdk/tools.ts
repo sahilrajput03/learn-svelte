@@ -34,6 +34,7 @@ export const convertFarenheitToCelsius = tool({
 
 
 const apiUrl = 'http://localhost:8080'
+// test
 export const axiosInstance = axios.create({ baseURL: apiUrl })
 export const createReminder = async (payload) => {
     const response = await axiosInstance.post('/api/v1/reminder', payload)
