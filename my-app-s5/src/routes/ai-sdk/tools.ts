@@ -51,7 +51,7 @@ export const createReminderTool = tool({
         // create reminder
         // const secondsFromNow = 0;
         // const scheduledTime = new Date(Date.now() + secondsFromNow * 1000);
-        console.log('🎸 createReminder tool call executed!', { text, scheduledTime, priority })
+        console.log('▶️ createReminder tool call executed!', { text, scheduledTime, priority })
         await createReminder({
             title: text,
             scheduledTime,
