@@ -39,11 +39,11 @@ export const POST = (async ({ request }: RequestEvent) => {
         system: 'Be very very concise and use my name Sáhil to address me in your reponses. Please never remind me that you are machine. Please never disclose anyhing about the model or soure compnay of the model.', // System instruction (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
         messages,
         // Learn: I'm disabling tool calls temporarily.
-        // tools: {
-        //     weatherTool,
-        //     convertFarenheitToCelsius,
-        //     // sendSmsTool // dummy function to send sms to anybody, present in file `./tools.ts` file
-        // },
+        tools: {
+            weatherTool,
+            convertFarenheitToCelsius,
+            // sendSmsTool // dummy function to send sms to anybody, present in file `./tools.ts` file
+        },
     });
 
     return result.toDataStreamResponse();
