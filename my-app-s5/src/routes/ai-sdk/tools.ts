@@ -43,6 +43,7 @@ export const createReminder = async (payload) => {
 export const createReminderTool = tool({
     description: 'Create a reminder',
     parameters: z.object({
+        // * Learn: Parameter name are on more priority than description (src: https://chatgpt.com/c/67f13768-3b28-8007-a721-531a6c22e1a3)
         text: z.string().describe('The text or description of the reminder.'),
         scheduledTime: z.string().describe('The date and time when the reminder should be triggered.'),
         priority: z.number().describe('The priority level of the reminder, with 0 being low, 1 being medium, and 2 being high.').default(1),
