@@ -91,7 +91,7 @@ export const getCurrentTimeForCreatingReminderTool = tool({
     parameters: z.object({}), // no input needed
     execute: async () => {
         const now = new Date();
-        log('1️⃣️ Calling getCurrentTimeTool:', dumbSimpleReadableTime(now))
+        log('1️⃣️ Calling getCurrentTimeForCreatingReminderTool:', dumbSimpleReadableTime(now))
         return { currentTime: now.toISOString() };
     },
 });

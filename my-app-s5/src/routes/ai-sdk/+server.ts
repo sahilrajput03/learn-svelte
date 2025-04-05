@@ -58,6 +58,8 @@ export const POST = (async ({ request }: RequestEvent) => {
     const result = streamText({
         // model: openai('gpt-4o-mini'), // & Using OpenAI
         model: groq('gemma2-9b-it'), // & Using Groq, Models: "llama-3.1-8b-instant", "gemma2-9b-it", "mixtral-8x7b-32768", etc
+        // model: groq('deepseek-r1-distill-qwen-32b'),
+        // model: groq('deepseek-r1-distill-llama-70b'),
         system: systemPrompt, // System instruction/prompt/message (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
         messages,
         // Learn: Having explicit definition of below keys helps
