@@ -32,6 +32,6 @@ export const humanReadableTodayDayAndDate = () => {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const humanReadableDate = today.toLocaleDateString('en-US', options as any);
 
-    console.log(humanReadableDate); // Saturday, April 5, 2025
+    // console.log(humanReadableDate); // Saturday, April 5, 2025
     return humanReadableDate
 }
