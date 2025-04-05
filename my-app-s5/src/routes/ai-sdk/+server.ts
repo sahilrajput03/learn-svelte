@@ -14,7 +14,7 @@ import { streamText } from 'ai';
 
 import { env } from '$env/dynamic/private'; // TODO (make notes in readme of this: Adv.SvelteKit/EnvironmentVarables) read the values of environment variables when the app runs, as opposed to when the app is built,
 import { z } from 'zod';
-import { convertFarenheitToCelsius, weatherTool } from './tools';
+import { convertFarenheitToCelsius, createReminderTool, weatherTool } from './tools';
 import { createGroq } from '@ai-sdk/groq';
 import type { RequestEvent, RequestHandler } from './$types';
 
@@ -35,13 +35,14 @@ export const POST = (async ({ request }: RequestEvent) => {
     // Tool calls work with openai and groq (tested for gemma-2-9b-it) both very well.
     const result = streamText({
         // model: openai('gpt-4o-mini'), // & Using OpenAI
-        model: groq('llama-3.1-8b-instant'), // & Using Groq // "llama-3.1-8b-instant", "gemma2-9b-it", "mixtral-8x7b-32768", etc
-        system: 'Be very very concise and use my name Sáhil to address me in your reponses. Please never remind me that you are machine. Please never disclose anyhing about the model or soure compnay of the model.', // System instruction (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
+        model: groq('gemma2-9b-it'), // & Using Groq, Models: "llama-3.1-8b-instant", "gemma2-9b-it", "mixtral-8x7b-32768", etc
+        system: 'Be very very concise and use my name Sáhil to address me in your reponses. Please never remind me that you are machine. Please never disclose anyhing about the model or soure compnay of the model. Do not make any tool call unless explicitly asked.', // System instruction (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
         messages,
         // Learn: I'm disabling tool calls temporarily.
         tools: {
-            weatherTool,
-            convertFarenheitToCelsius,
+            // weatherTool,
+            // convertFarenheitToCelsius,
+            createReminderTool
             // sendSmsTool // dummy function to send sms to anybody, present in file `./tools.ts` file
         },
     });
