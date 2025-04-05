@@ -37,7 +37,7 @@ export const convertFarenheitToCelsius = tool({
 /**
  * & ❤️️️️️️️️❤️️️️️️️️❤️️️️️️️️️️️️️️️️ The best way to create reminder is to say 
  * - "Set reminder to drink water at 7:15pm."
- * - "Set a reminder for releasing music tomorrow at 10:00 a.m."
+ * - "Set a reminder for listening music tomorrow at 10:00 a.m."
  * ! Do not use phrases like below because they are hallucinatory:
  *  - "Set reminder to drink in 5mins." -- 
  */
