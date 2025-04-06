@@ -2,13 +2,13 @@ import { describe, it, expect } from 'vitest'
 import { _groq, _systemPrompt } from './+server'
 import { log } from 'console'
 import { generateText, streamText } from 'ai'
-import { getHumanReadableTimeTool } from './tools'
+import { createReminderTool, getCurrentTimeForCreatingReminderTool, getHumanReadableTimeTool } from './tools'
 
 describe('ai-sdk tests', () => {
-    it('test1', async () => {
-        // const messages = [{ role: 'user', content: 'What is color of sky?' }] as any
+    it('test1', { timeout: 10_000 }, async () => {
+        const messages = [{ role: 'user', content: 'Create a reminder for 11:34pm for going to temple with friends.' }] as any
         // const messages = [{ role: 'user', content: 'How are you?' }] as any
-        const messages = [{ role: 'user', content: 'Tell me a 1 line poem?' }] as any
+        // const messages = [{ role: 'user', content: 'Tell me a 1 line poem?' }] as any
         // const messages = [{ role: 'user', content: 'What is 1 + 2?' }] as any
 
         const result = await generateText({
@@ -23,15 +23,16 @@ describe('ai-sdk tests', () => {
             tools: {
                 // weatherTool: weatherTool,
                 // convertFarenheitToCelsius: convertFarenheitToCelsius,
-                // createReminderTool: createReminderTool,
-                // getCurrentTimeForCreatingReminderTool: getCurrentTimeForCreatingReminderTool,
+                createReminderTool: createReminderTool,
+                getCurrentTimeForCreatingReminderTool: getCurrentTimeForCreatingReminderTool,
                 getHumanReadableTimeTool: getHumanReadableTimeTool
                 // sendSmsTool: sendSmsTool // dummy function to send sms to anybody, present in file `./tools.ts` file
             },
+            maxSteps: 5, // 🎉🎉🎉🎉
+            // experimental_continueSteps: true, // (I didn't need this for now)
         });
 
         console.log("🚀 result.text", result.text)
-        console.log("🚀 result", result)
 
         const received = 1
         const expected = 1
