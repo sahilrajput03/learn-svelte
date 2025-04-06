@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { _groq, _systemPrompt } from './+server'
+import { _systemPrompt, _groq } from './+server'
 import { log } from 'console'
 import { generateText, streamText } from 'ai'
 import { createReminderTool, getCurrentTimeForCreatingReminderTool, getHumanReadableTimeTool } from './tools'
@@ -8,7 +8,7 @@ describe('ai-sdk tests', () => {
     it('test1', { timeout: 10_000 }, async () => {
         const messages = [{ role: 'user', content: 'Create a reminder for 11:34pm for going to temple with friends.' }] as any
         // const messages = [{ role: 'user', content: 'How are you?' }] as any
-        // const messages = [{ role: 'user', content: 'Tell me a 1 line poem?' }] as any
+        // const messages = [{ role: 'user', content: 'Tell me a 1 line poem? ' }] as any
         // const messages = [{ role: 'user', content: 'What is 1 + 2?' }] as any
 
         // ❤️ generateText Docs: https://sdk.vercel.ai/docs/ai-sdk-core/generating-text
@@ -21,12 +21,26 @@ describe('ai-sdk tests', () => {
             messages,
             // Learn: Having explicit definition of below keys helps
             //         vscode's cmd+click feature to work.
+
+            /**
+            *  ? TEMPERATURE (May be its actually good to set temperature=0 (Totally Deterministic 🤔 to be more predictable about results?)
+            *  ? ===========
+            - Temperature setting. This is a number between 0 (almost no randomness) and 1 (very random).
+            - It is recommended to set either temperature or topP, but not both.
+            Temperature	Behavior
+            ====================
+                0.0	        Fully deterministic — same input = same output every time.
+                0.2 - 0.5	Slight creativity, but still fairly controlled.
+                0.7 - 1.0	More randomness, more creative.
+                >1.0	    High randomness — output can get wild, sometimes incoherent.
+             */
+            temperature: 0.5, // default value is 0
             tools: {
                 // weatherTool: weatherTool,
                 // convertFarenheitToCelsius: convertFarenheitToCelsius,
-                createReminderTool: createReminderTool,
-                getCurrentTimeForCreatingReminderTool: getCurrentTimeForCreatingReminderTool,
-                getHumanReadableTimeTool: getHumanReadableTimeTool
+                // createReminderTool: createReminderTool,
+                // getCurrentTimeForCreatingReminderTool: getCurrentTimeForCreatingReminderTool,
+                // getHumanReadableTimeTool: getHumanReadableTimeTool
                 // sendSmsTool: sendSmsTool // dummy function to send sms to anybody, present in file `./tools.ts` file
             },
             maxSteps: 10, // 🎉🎉🎉🎉
