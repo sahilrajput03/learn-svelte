@@ -23,7 +23,7 @@ const openai = createOpenAI({
 });
 
 // GROQ: https://sdk.vercel.ai/providers/ai-sdk-providers/groq
-const groq = createGroq({
+export const _groq = createGroq({
     apiKey: env.GROQ_API_KEY ?? ""
 });
 
@@ -37,7 +37,7 @@ const getCurrentDate = () => {
 
 // Note: I have explicitly stated below that before calling createReminderTool you must get current
 //          time via `getCurrentTimeTool`.
-const systemPrompt = `
+export const _systemPrompt = `
 Be extremely concise in all responses. Always address me as Sáhil.
 
 Never mention that you are an AI, machine, or disclose anything about the model or its source company.
@@ -54,13 +54,15 @@ export const POST = (async ({ request }: RequestEvent) => {
     // console.log('POST: /ai-sdk')
     const { messages } = await request.json();
 
+    console.log("🚀 ~ POST ~ messages:", messages)
+    console.log(messages?.[1]?.toolInvocations)
     // Tool calls work with openai and groq (tested for gemma-2-9b-it) both very well.
     const result = streamText({
         // model: openai('gpt-4o-mini'), // & Using OpenAI
-        model: groq('gemma2-9b-it'), // & Using Groq, Models: "llama-3.1-8b-instant", "gemma2-9b-it", "mixtral-8x7b-32768", etc
+        model: _groq('gemma2-9b-it'), // & Using Groq, Models: "llama-3.1-8b-instant", "gemma2-9b-it", "mixtral-8x7b-32768", etc
         // model: groq('deepseek-r1-distill-qwen-32b'),
         // model: groq('deepseek-r1-distill-llama-70b'),
-        system: systemPrompt, // System instruction/prompt/message (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
+        system: _systemPrompt, // System instruction/prompt/message (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
         messages,
         // Learn: Having explicit definition of below keys helps
         //         vscode's cmd+click feature to work.
