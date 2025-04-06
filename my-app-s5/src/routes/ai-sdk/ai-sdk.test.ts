@@ -29,7 +29,7 @@ describe('ai-sdk tests', () => {
                 getHumanReadableTimeTool: getHumanReadableTimeTool
                 // sendSmsTool: sendSmsTool // dummy function to send sms to anybody, present in file `./tools.ts` file
             },
-            maxSteps: 5, // 🎉🎉🎉🎉
+            maxSteps: 10, // 🎉🎉🎉🎉
             // experimental_continueSteps: true, // (I didn't need this for now)
         });
 

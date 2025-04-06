@@ -14,7 +14,11 @@
 	//      We need maxSteps more than 1 so that toolcall's response is automatically passed and new response is generated automatically.
 	//      Another advantage is allow to be able to call more than 1 tool calls on its own.
 
-	let { input, handleSubmit, messages } = useChat({ maxSteps: 10, api: '/ai-sdk' });
+	let { input, handleSubmit, messages } = useChat({
+		maxSteps: 10,
+		api: '/ai-sdk',
+		initialInput: 'Hi' // sets in initial message in chatbox
+	});
 
 	let chatDiv: HTMLDivElement;
 	let chatDivHeight: number;
