@@ -76,6 +76,12 @@ export const POST = (async ({ request }: RequestEvent) => {
         },
     });
 
+    // 🚀 Docs: https://sdk.vercel.ai/docs/ai-sdk-core/generating-text#streamtext
+    // example: use textStream as an async iterable
+    // for await (const textPart of result.textStream) {
+    //   console.log(textPart);
+    // }
+
     return result.toDataStreamResponse();
 }) satisfies RequestHandler;
 
