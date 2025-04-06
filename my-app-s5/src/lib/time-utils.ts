@@ -6,11 +6,14 @@ export const getHumanReadableIndianTimeFromDate = (date) => date.toLocaleString(
 export const getHumanReadableIndianTime = () => getHumanReadableIndianTimeFromDate(new Date())
 
 export const dumbSimpleReadableTime = (date: Date) => {
+    const isSecondsZero = date.getSeconds() === 0
+
     // Time format
     const time = date.toLocaleTimeString('en-IN', {
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit',
+        // & 🚀 We do not return seconds in time if seconds is zero
+        second: isSecondsZero ? undefined : '2-digit',
         hour12: true,
     });
 
