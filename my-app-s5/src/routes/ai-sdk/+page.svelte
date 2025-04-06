@@ -47,6 +47,8 @@
 
 	onMount(async () => {
 		voices = (await getVoices()) as VoiceT[];
+		// ! temp for testing only.
+		// $input = 'Tell human readable current time?';
 	});
 
 	const speak = () => {
@@ -77,7 +79,7 @@
 	// Scroll to bottom whenever messages are added
 	$: {
 		$messages.length; // using as a dependency
-		// console.log('messages.length?', $messages.length);
+		console.log('messages.length?', $messages.length, $messages);
 		scrollToBottom(); // Necessary so that chat-input sticks to bottom of the screeen.
 		// if (browser && chatDiv) chatDiv.scrollTop = chatDiv?.scrollHeight;
 		if (browser && innerContainerDiv) {
