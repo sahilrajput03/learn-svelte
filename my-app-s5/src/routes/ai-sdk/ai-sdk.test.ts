@@ -11,6 +11,7 @@ describe('ai-sdk tests', () => {
         // const messages = [{ role: 'user', content: 'Tell me a 1 line poem?' }] as any
         // const messages = [{ role: 'user', content: 'What is 1 + 2?' }] as any
 
+        // ❤️ generateText Docs: https://sdk.vercel.ai/docs/ai-sdk-core/generating-text
         const result = await generateText({
             // model: openai('gpt-4o-mini'), // & Using OpenAI
             model: _groq('gemma2-9b-it'), // & Using Groq
