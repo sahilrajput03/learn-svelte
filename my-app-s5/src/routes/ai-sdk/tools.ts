@@ -3,6 +3,7 @@ import { z } from "zod";
 import axios from "axios";
 import { log } from "console";
 import { dumbSimpleReadableTime, getHumanReadableIndianTimeFromDate } from "$lib/time-utils";
+import { vi } from "vitest";
 
 export const weatherTool = tool({
     description: 'Get the weather in a location (farenheit)',
@@ -46,7 +47,9 @@ export const convertFarenheitToCelsius = tool({
 const apiUrl = 'http://localhost:8080'
 let car = 20
 export const axiosInstance = axios.create({ baseURL: apiUrl })
-export const createReminder = async (payload) => {
+
+export const isTestEnvironment = process.env.NODE_ENV === 'test'
+export const createReminder = isTestEnvironment ? vi.fn() : async (payload) => {
     const response = await axiosInstance.post('/api/v1/reminder', payload)
     return response.data
 }
