@@ -19,6 +19,9 @@ describe('ai-sdk tests', () => {
                 "title": expect.any(String),
             },
         )
+
+        const expectedTime = '23:34:00'
+        // expect(currentTimeResult.currentTime).includes(expectedTime)
         expect(getCurrentTimeForCreatingReminderExecute).toHaveBeenCalledTimes(1)
         expect(createReminderExecute).toHaveBeenCalledTimes(1)
         // expect(received).toBe(expected)
@@ -34,14 +37,14 @@ describe('ai-sdk tests', () => {
 
         expect(createReminderRequest).toHaveBeenCalledTimes(1)
         const currentTimeResult = await getCurrentTimeForCreatingReminderExecute.mock.results[0].value
-        const original = new Date(currentTimeResult.currentTime)
+        const date = new Date(currentTimeResult.currentTime)
         // Add 5 minutes (5 * 60 * 1000 ms)
-        const updated = new Date(original.getTime() + mins * 60 * 1000)
-        const updatedIso = updated.toISOString()
+        const reminderDate = new Date(date.getTime() + mins * 60 * 1000)
+        const reminderISO = reminderDate.toISOString()
         expect(createReminderRequest).toHaveBeenCalledWith(
             {
                 "priority": 1,
-                "scheduledTime": updatedIso,
+                "scheduledTime": reminderISO,
                 "title": expect.any(String),
             },
         )

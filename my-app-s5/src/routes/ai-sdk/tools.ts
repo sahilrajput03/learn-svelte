@@ -5,6 +5,11 @@ import { log } from "console";
 import { dumbSimpleReadableTime, getHumanReadableIndianTimeFromDate } from "$lib/time-utils";
 import { vi } from "vitest";
 
+export const isTestEnvironment = process.env.NODE_ENV === 'test'
+if (!isTestEnvironment) {
+    vi.fn = (arg1: any) => arg1
+}
+
 export const weatherTool = tool({
     description: 'Get the weather in a location (farenheit)',
     parameters: z.object({
@@ -48,7 +53,6 @@ const apiUrl = 'http://localhost:8080'
 let car = 20
 export const axiosInstance = axios.create({ baseURL: apiUrl })
 
-export const isTestEnvironment = process.env.NODE_ENV === 'test'
 export const createReminderRequest = isTestEnvironment ? vi.fn() : async (payload) => {
     const response = await axiosInstance.post('/api/v1/reminder', payload)
     return response.data
