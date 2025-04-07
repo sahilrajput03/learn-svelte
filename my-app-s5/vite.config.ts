@@ -8,4 +8,8 @@ writeProjectPathToFile()
 // default code
 export default defineConfig({
 	plugins: [sveltekit()],
+	// Below code runs sequential processing of tests.
+	// test: {
+	// 	poolOptions: { threads: { singleThread: true } },
+	// }
 });

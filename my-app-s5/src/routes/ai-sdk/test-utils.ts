@@ -1,4 +1,3 @@
-import { vi } from 'vitest'
 import { generateText, streamText } from 'ai'
 import { createReminderTool, getCurrentTimeForCreatingReminderTool, getHumanReadableTimeTool } from './tools'
 import { _systemPrompt, _groq } from './+server'
