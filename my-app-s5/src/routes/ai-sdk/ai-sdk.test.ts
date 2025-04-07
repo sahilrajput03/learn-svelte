@@ -1,6 +1,6 @@
 import { describe, it, expect, afterEach, vi } from 'vitest'
 import { generateTextViaAiSDK } from './test-utils'
-import { createReminderRequest, createReminderExecute, getCurrentTimeForCreatingReminderExecute } from './tools'
+import { createReminderRequest, createReminderEXECUTE, getCurrentTimeForCreatingReminderEXECUTE } from './tools'
 
 describe('ai-sdk tests', () => {
     afterEach(() => {
@@ -32,11 +32,11 @@ describe('ai-sdk tests', () => {
         const messages = [{ role: 'user', content: `Set a reminder in ${mins} mins to go meet Alice` }] as any
 
         const result = await generateTextViaAiSDK(messages)
-        expect(getCurrentTimeForCreatingReminderExecute).toHaveBeenCalledTimes(1)
-        expect(createReminderExecute).toHaveBeenCalledTimes(1)
+        expect(getCurrentTimeForCreatingReminderEXECUTE).toHaveBeenCalledTimes(1)
+        expect(createReminderEXECUTE).toHaveBeenCalledTimes(1)
 
         expect(createReminderRequest).toHaveBeenCalledTimes(1)
-        const currentTimeResult = await getCurrentTimeForCreatingReminderExecute.mock.results[0].value
+        const currentTimeResult = await getCurrentTimeForCreatingReminderEXECUTE.mock.results[0].value
         const date = new Date(currentTimeResult.currentTime)
         // Add 5 minutes (5 * 60 * 1000 ms)
         const reminderDate = new Date(date.getTime() + mins * 60 * 1000)

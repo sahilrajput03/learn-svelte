@@ -57,7 +57,7 @@ export const createReminderRequest = isTestEnvironment ? vi.fn() : async (payloa
     const response = await axiosInstance.post('/api/v1/reminder', payload)
     return response.data
 }
-export const createReminderExecute = vi.fn(async ({ text, scheduledTime, priority }) => {
+export const createReminderEXECUTE = vi.fn(async ({ text, scheduledTime, priority }) => {
     // create reminder
     // const secondsFromNow = 0;
     // const scheduledTime = new Date(Date.now() + secondsFromNow * 1000);
@@ -91,9 +91,9 @@ export const createReminderTool = tool({
         scheduledTime: z.string().describe('The date and time when the reminder should be triggered.'),
         priority: z.number().describe('The priority level of the reminder, with 0 being low, 1 being medium, and 2 being high.').default(1),
     }),
-    execute: createReminderExecute
+    execute: createReminderEXECUTE
 })
-export const getCurrentTimeForCreatingReminderExecute = vi.fn(async () => {
+export const getCurrentTimeForCreatingReminderEXECUTE = vi.fn(async () => {
     const now = new Date();
     log('1️⃣️ Calling getCurrentTimeForCreatingReminderTool:', dumbSimpleReadableTime(now))
     return { currentTime: now.toISOString() };
@@ -101,7 +101,7 @@ export const getCurrentTimeForCreatingReminderExecute = vi.fn(async () => {
 export const getCurrentTimeForCreatingReminderTool = tool({
     description: 'Fetches the current date and time and returns it in ISO format.',
     parameters: z.object({}), // no input needed
-    execute: getCurrentTimeForCreatingReminderExecute,
+    execute: getCurrentTimeForCreatingReminderEXECUTE,
 });
 
 export const getHumanReadableTimeTool = tool({
