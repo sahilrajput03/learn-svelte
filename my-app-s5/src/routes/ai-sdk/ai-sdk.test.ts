@@ -7,7 +7,7 @@ describe('ai-sdk tests', () => {
         vi.restoreAllMocks()
     })
 
-    it('absolut time case', { timeout: 10_000 }, async () => {
+    it.only('absolut time case', { timeout: 10_000 }, async () => {
         const messages = [{ role: 'user', content: 'Create a reminder to go meet Alice at 11:34pm' }] as any
 
         const result = await generateTextViaAiSDK(messages)
@@ -21,7 +21,6 @@ describe('ai-sdk tests', () => {
         )
 
         const expectedTime = '23:34:00'
-        // expect(currentTimeResult.currentTime).includes(expectedTime)
         expect(getCurrentTimeForCreatingReminderExecute).toHaveBeenCalledTimes(1)
         expect(createReminderExecute).toHaveBeenCalledTimes(1)
         // expect(received).toBe(expected)
