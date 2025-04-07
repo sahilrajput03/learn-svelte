@@ -1,45 +1,49 @@
 import { describe, it, expect, afterEach, vi } from 'vitest'
 import { generateTextViaAiSDK } from './test-utils'
-import { createReminder } from './tools'
+import { createReminderRequest, createReminderExecute, getCurrentTimeForCreatingReminderExecute } from './tools'
 
 describe('ai-sdk tests', () => {
     afterEach(() => {
         vi.restoreAllMocks()
     })
 
-    it('test1', { timeout: 10_000 }, async () => {
+    it('absolut time case', { timeout: 10_000 }, async () => {
         const messages = [{ role: 'user', content: 'Create a reminder to go meet Alice at 11:34pm' }] as any
 
         const result = await generateTextViaAiSDK(messages)
-        expect(createReminder).toHaveBeenCalledTimes(1)
-        expect(createReminder).toHaveBeenCalledWith(
+        expect(createReminderRequest).toHaveBeenCalledTimes(1)
+        expect(createReminderRequest).toHaveBeenCalledWith(
             {
                 "priority": 1,
                 "scheduledTime": "2025-04-07T23:34:00",
                 "title": expect.any(String),
             },
         )
-
-        // const received = 1
-        // const expected = 1
+        expect(getCurrentTimeForCreatingReminderExecute).toHaveBeenCalledTimes(1)
+        expect(createReminderExecute).toHaveBeenCalledTimes(1)
         // expect(received).toBe(expected)
     })
 
-    it.skip('test1', { timeout: 10_000 }, async () => {
-        const messages = [{ role: 'user', content: 'Set a reminder in two mins to go meet Alice' }] as any
+    it('relative time case', { timeout: 10_000 }, async () => {
+        const mins = 5
+        const messages = [{ role: 'user', content: `Set a reminder in ${mins} mins to go meet Alice` }] as any
 
         const result = await generateTextViaAiSDK(messages)
-        expect(createReminder).toHaveBeenCalledTimes(1)
-        expect(createReminder).toHaveBeenCalledWith(
+        expect(getCurrentTimeForCreatingReminderExecute).toHaveBeenCalledTimes(1)
+        expect(createReminderExecute).toHaveBeenCalledTimes(1)
+
+        expect(createReminderRequest).toHaveBeenCalledTimes(1)
+        const currentTimeResult = await getCurrentTimeForCreatingReminderExecute.mock.results[0].value
+        const original = new Date(currentTimeResult.currentTime)
+        // Add 5 minutes (5 * 60 * 1000 ms)
+        const updated = new Date(original.getTime() + mins * 60 * 1000)
+        const updatedIso = updated.toISOString()
+        expect(createReminderRequest).toHaveBeenCalledWith(
             {
                 "priority": 1,
-                "scheduledTime": "2025-04-07T23:34:00",
+                "scheduledTime": updatedIso,
                 "title": expect.any(String),
             },
         )
-
-        // const received = 1
-        // const expected = 1
-        // expect(received).toBe(expected)
     })
 })

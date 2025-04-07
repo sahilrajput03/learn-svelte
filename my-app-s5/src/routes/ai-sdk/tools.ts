@@ -49,10 +49,36 @@ let car = 20
 export const axiosInstance = axios.create({ baseURL: apiUrl })
 
 export const isTestEnvironment = process.env.NODE_ENV === 'test'
-export const createReminder = isTestEnvironment ? vi.fn() : async (payload) => {
+export const createReminderRequest = isTestEnvironment ? vi.fn() : async (payload) => {
     const response = await axiosInstance.post('/api/v1/reminder', payload)
     return response.data
 }
+export const createReminderExecute = vi.fn(async ({ text, scheduledTime, priority }) => {
+    // create reminder
+    // const secondsFromNow = 0;
+    // const scheduledTime = new Date(Date.now() + secondsFromNow * 1000);
+    const humanReadableTime = dumbSimpleReadableTime(new Date(scheduledTime))
+    console.log('2️⃣️ createReminder tool call initiated.', {
+        text,
+        scheduledTime: humanReadableTime,
+        priority
+    })
+    let result = null as any
+    try {
+        await createReminderRequest({
+            title: text,
+            scheduledTime,
+            priority,
+        })
+        result = { message: 'Your reminder is set for ' + humanReadableTime }
+        console.log('✅Reminder added to database🎉🎉\n')
+    } catch (error: any) {
+        result = { message: 'failed', error }
+        console.log('❌ Error @ createReminder tool call while calling api.')
+        console.log({ name: error.name, message: error.message, responseData: error.response?.data })
+    }
+    return result;
+})
 export const createReminderTool = tool({
     description: 'Create a reminder',
     parameters: z.object({
@@ -61,42 +87,17 @@ export const createReminderTool = tool({
         scheduledTime: z.string().describe('The date and time when the reminder should be triggered.'),
         priority: z.number().describe('The priority level of the reminder, with 0 being low, 1 being medium, and 2 being high.').default(1),
     }),
-    execute: async ({ text, scheduledTime, priority }) => {
-        // create reminder
-        // const secondsFromNow = 0;
-        // const scheduledTime = new Date(Date.now() + secondsFromNow * 1000);
-        const humanReadableTime = dumbSimpleReadableTime(new Date(scheduledTime))
-        console.log('2️⃣️ createReminder tool call initiated.', {
-            text,
-            scheduledTime: humanReadableTime,
-            priority
-        })
-        let result = null as any
-        try {
-            await createReminder({
-                title: text,
-                scheduledTime,
-                priority,
-            })
-            result = { message: 'Your reminder is set for ' + humanReadableTime }
-            console.log('✅Reminder added to database🎉🎉\n')
-        } catch (error: any) {
-            result = { message: 'failed', error }
-            console.log('❌ Error @ createReminder tool call while calling api.')
-            console.log({ name: error.name, message: error.message, responseData: error.response?.data })
-        }
-        return result;
-    },
+    execute: createReminderExecute
 })
-
+export const getCurrentTimeForCreatingReminderExecute = vi.fn(async () => {
+    const now = new Date();
+    log('1️⃣️ Calling getCurrentTimeForCreatingReminderTool:', dumbSimpleReadableTime(now))
+    return { currentTime: now.toISOString() };
+})
 export const getCurrentTimeForCreatingReminderTool = tool({
     description: 'Fetches the current date and time and returns it in ISO format.',
     parameters: z.object({}), // no input needed
-    execute: async () => {
-        const now = new Date();
-        log('1️⃣️ Calling getCurrentTimeForCreatingReminderTool:', dumbSimpleReadableTime(now))
-        return { currentTime: now.toISOString() };
-    },
+    execute: getCurrentTimeForCreatingReminderExecute,
 });
 
 export const getHumanReadableTimeTool = tool({
