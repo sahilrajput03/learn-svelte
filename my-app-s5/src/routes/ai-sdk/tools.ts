@@ -5,6 +5,8 @@ import { log } from "console";
 import { dumbSimpleReadableTime } from "$lib/time-utils";
 import { createReminderEXECUTE, getCurrentTimeForCreatingReminderEXECUTE } from "./toolExecutes";
 
+// & LEARN: In tools (function calling), the name of parameters matter higherr than the description given of the parameter in the functionCall definition. (checked with ChatGPT too).
+
 export const weatherTool = tool({
     description: 'Get the weather in a location (farenheit)',
     parameters: z.object({
