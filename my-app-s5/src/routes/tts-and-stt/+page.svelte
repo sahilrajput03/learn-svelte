@@ -10,7 +10,8 @@
 		voices = (await getVoices()) as VoiceT[];
 	});
 
-	let text = $state('Whispers of autumn in the breeze,\nGolden leaves dance with gentle ease.');
+	// let text = $state('Whispers of autumn in the breeze,\nGolden leaves dance with gentle ease.');
+	let text = $state('hello world');
 
 	async function transcribe() {
 		//      * DEMO - Speech Synthesiser - https://mdn.github.io/dom-examples/web-speech-api/speak-easy-synthesis/
@@ -31,8 +32,7 @@
 	}
 
 	let isSpeechPlaying = $state(false);
-	// TODO: Implement stop button via this button only so as to stop speech early if you want to.
-	// TODO: Implement a download mp3 or wav file button here.
+
 	const speak = () => {
 		const speech = new SpeechSynthesisUtterance(text); // * Docs: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance
 		speech.voice = voices[192] as any; // comment this line to use default `voices[0]`
@@ -60,13 +60,31 @@
 </script>
 
 <h1 class="mb-3 text-3xl font-bold">TTS and STT</h1>
+<!-- / // & Speakers -->
 <div class="mb-5 text-xs text-gray-400">
-	Description: TTS using `window.SpeechSynthesisUtterance` and STT using `window.SpeechRecognition`.
+	<div>
+		Description: TTS using `window.SpeechSynthesisUtterance` and STT using
+		`window.SpeechRecognition`.
+	</div>
 
-	<br />
-	<u>My favorite speakers:</u>
-	<li>FEMALE: 191 (treble), 192 (warm)</li>
-	<li>MALE: 193 (warm)</li>
+	<div class="mt-2 text-[0.6rem] text-orange-400 underline">
+		Learn: I tried to implment download as mp3/wav and searched on google, stackoverflow and claude
+		but <strong>nothing worked (no working solutions)</strong>.
+	</div>
+
+	<div class="text-[0.6rem]">
+		<div class="mt-2 font-bold underline">My favorite speakers:</div>
+		<li>FEMALE: 191 (treble), 192 (warm)</li>
+		<li>MALE: 193 (warm)</li>
+		<li class="italic">
+			[TODO: Try Rishi (en-IN) with rate 1.5 and pitch 1.2],
+			<a
+				class="underline"
+				href="https://mdn.github.io/dom-examples/web-speech-api/speak-easy-synthesis/"
+				target="_blank">test in this playground</a
+			>
+		</li>
+	</div>
 </div>
 
 <div class="my-1">Text: <input bind:value={text} class="w-full rounded-md border px-2 py-1" /></div>
