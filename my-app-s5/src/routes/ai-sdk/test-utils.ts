@@ -2,7 +2,7 @@ import { generateText, streamText } from 'ai'
 import { createReminderTool, getCurrentTimeForCreatingReminderTool, getHumanReadableTimeTool } from './tools'
 import { _systemPrompt, _groq } from './+server'
 
-export const generateTextViaAiSDK = async (messages) => {
+export const generateTextViaAiSDKForTesting = async (messages) => {
     // ❤️ generateText Docs: https://sdk.vercel.ai/docs/ai-sdk-core/generating-text
     const result = await generateText({
         // model: openai('gpt-4o-mini'), // & Using OpenAI

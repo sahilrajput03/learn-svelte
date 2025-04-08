@@ -1,5 +1,5 @@
 import { describe, it, expect, afterEach, vi } from 'vitest'
-import { generateTextViaAiSDK } from './test-utils'
+import { generateTextViaAiSDKForTesting } from './test-utils'
 import { createReminderEXECUTE, getCurrentTimeForCreatingReminderEXECUTE } from './toolExecutes'
 import { createReminderRequest } from './requests'
 import util from 'util'
@@ -28,7 +28,7 @@ describe('ai-sdk tests', { concurrent: false }, () => {
         const mins = 5
         const messages = [{ role: 'user', content: `Set a reminder in ${mins} mins to go meet Alice` }] as any
 
-        const result = await generateTextViaAiSDK(messages)
+        const result = await generateTextViaAiSDKForTesting(messages)
         // & Learn Having tool calls mocked does not cause to create higher token usage. Though using toollcalls itself increases the input tokens alone.
         // console.log("🚀 ~ it.only ~ result.text:", result.text)
         // console.log("🚀 ~ it.only ~ result.response:", result.response)
@@ -58,7 +58,7 @@ describe('ai-sdk tests', { concurrent: false }, () => {
     it('absolut time case', { timeout: 30_000 }, async () => {
         const messages = [{ role: 'user', content: 'Create a reminder to go meet Alice at 11:34pm' }] as any
 
-        const result = await generateTextViaAiSDK(messages)
+        const result = await generateTextViaAiSDKForTesting(messages)
         expect(createReminderRequest).toHaveBeenCalledTimes(1)
         expect(createReminderRequest).toHaveBeenCalledWith(
             {
