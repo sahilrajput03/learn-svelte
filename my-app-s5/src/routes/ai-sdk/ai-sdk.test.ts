@@ -5,7 +5,7 @@ import { createReminderRequest } from './requests'
 import util from 'util'
 
 
-// & Confirmed: that when mocked the function calls doesn't cause to serialize all functions which increases the input token usage because of all the sideeffects helper methods that vitest put for mocking usage.
+// & Confirmed from Groq's Admin Logs - that when mocked the function calls doesn't cause to serialize all functions which increases the input token usage because of all the sideeffects helper methods that vitest put for mocking usage.
 vi.mock('./toolExecutes', { spy: true }) // ✅
 vi.mock('./requests', { spy: true }) // ✅
 
