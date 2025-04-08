@@ -78,7 +78,7 @@
 	import Personal7 from './Personal7.svelte';
 	import Personal6a from './Personal6a.svelte';
 	import Personal8 from './Personal8.svelte';
-	// import Personal9 from './Personal9.svelte.txt';
+	import Personal9 from './Personal9.svelte';
 	import Group52 from './Group52.svelte';
 	import Group53 from './Group53.svelte';
 	import Group54 from './Group54.svelte';
@@ -551,12 +551,12 @@
 			svelteTutorialLink: ''
 		},
 		// I failed to run this project on mobile (though desktop works quite fine)
-		// {
-		// 	id: '6b59a349-1a3b-4348-9c7b-f845b936e4dc',
-		// 	name: 'Personal9 - Plyr.js Video Player',
-		// 	component: Personal9,
-		// 	svelteTutorialLink: ''
-		// },
+		{
+			id: '6b59a349-1a3b-4348-9c7b-f845b936e4dc',
+			name: 'Personal9 - Plyr.js Video Player',
+			component: Personal9,
+			svelteTutorialLink: ''
+		},
 		{
 			id: '0f07e431-0f37-49a2-8109-d86ac4d3b544',
 			name: 'Example1 - @debug tag',

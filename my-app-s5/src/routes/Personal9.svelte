@@ -1,13 +1,15 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
-	import 'plyr/dist/plyr.css';
-	import Plyr from 'plyr';
+	// import 'plyr/dist/plyr.css';
+	// import Plyr from 'plyr';
 	import { browser } from '$app/environment';
 
 	let videoRef: HTMLVideoElement;
-	let player: Plyr;
+	let player;
 
+	// Learn: I am using cdn link to run Plyr (check app.html to know why?)
 	// Plyr.js Docs/Github - https://github.com/sampotts/plyr
+	let Plyr = (window as any).Plyr;
 
 	onMount(async () => {
 		// run only on client side
@@ -38,7 +40,8 @@
 	>)
 </div>
 
-<div class="w-[300px]">
+<!-- We can give class w-[300px] to set size on video. -->
+<div class="">
 	<!-- svelte-ignore a11y_media_has_caption -->
 	<video bind:this={videoRef} id="player" controls>
 		<source src={mp4FileUrl} type="video/mp4" />

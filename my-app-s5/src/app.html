@@ -12,5 +12,11 @@
 		<!-- Sahil; What is `display: contents`. It is for screen reader's accessibility i.e, to screen readers this element is replaced by its children i.e, this elment invisible to them.
 		 Read more in my Learn Accessibility Doc here - https://docs.google.com/document/d/1FsP4uZQl3oMRb9LKOuU1jzrvEvigce-NyllIXp2LweQ/edit?tab=t.0#heading=h.xl4iqlcuuql3
 		 -->
+
+		<!-- Note: When trying to use plyr from npm library it worked on desktop but development server was having some issues on termux mobile environment. (I tried clening .svelte-kit foler, node_modules folder and both --- but nothing worked. So I'm going with this cdn solution for now. Thanks.) -->
+		<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.css" />
+		<!-- Polyfilled version of plyr (use this if you want to try cross-browser support (?)) -->
+		<!-- <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script> -->
 	</body>
 </html>
