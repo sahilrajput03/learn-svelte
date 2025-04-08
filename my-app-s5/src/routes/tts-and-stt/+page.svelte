@@ -11,7 +11,22 @@
 	});
 
 	// let text = $state('Whispers of autumn in the breeze,\nGolden leaves dance with gentle ease.');
-	let text = $state('hello world');
+
+	// Story Title = "The Last Leaf"
+	let shortStory = `
+In a small village nestled between hills, an old painter named Hari lived alone. He wasn’t rich, but he was known for his kind heart and beautiful paintings.
+
+Next door lived a young girl named Meera, who had fallen ill. She lay in bed all day, staring out the window at a vine creeping up the wall outside. As autumn set in, the leaves began to fall. “When the last leaf falls,” Meera whispered one day, “I think I’ll go too.”
+
+Hari heard her words. That night, during a storm, he went outside with his paints and brushes. The next morning, Meera looked out and gasped—one last leaf still clung to the vine, unmoved by the wind.
+
+Days passed, and the leaf stayed. Inspired by its strength, Meera slowly began to recover.
+
+What she didn’t know was—Hari had painted that leaf on the wall during the storm.
+
+He caught a cold that night and passed away quietly, leaving behind his final masterpiece—and a life saved by love and color.
+	`;
+	let text = $state(shortStory); // 'hello world'
 
 	async function transcribe() {
 		//      * DEMO - Speech Synthesiser - https://mdn.github.io/dom-examples/web-speech-api/speak-easy-synthesis/
