@@ -72,21 +72,23 @@
 	import Personal1 from './Personal1.svelte';
 	import Personal2 from './Personal2.svelte';
 	import Personal3 from './Personal3.svelte';
+	import Personal4 from './Personal4.svelte';
+	import Personal5 from './Personal5.svelte';
+	import Personal6 from './Personal6.svelte';
+	import Personal7 from './Personal7.svelte';
+	import Personal6a from './Personal6a.svelte';
+	import Personal8 from './Personal8.svelte';
+	import Personal9 from './Personal9.svelte';
 	import Group52 from './Group52.svelte';
 	import Group53 from './Group53.svelte';
 	import Group54 from './Group54.svelte';
 	import Group55 from './Group55.svelte';
 	import Group56 from './Group56.svelte';
 	import { dev } from '$app/environment';
-	import Personal4 from './Personal4.svelte';
 	import { page } from '$app/stores';
 	import { pushState, replaceState } from '$app/navigation';
 	import Example1 from './Example1.svelte';
-	import Personal5 from './Personal5.svelte';
 	import { copyToClipboard } from './utils';
-	import Personal6 from './Personal6.svelte';
-	import Personal7 from './Personal7.svelte';
-	import Personal6a from './Personal6a.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -543,6 +545,18 @@
 			svelteTutorialLink: ''
 		},
 		{
+			id: '25ce4623-f71d-41ae-a773-3012d50ad3d1',
+			name: 'Personal8 - HTML5 Video Player',
+			component: Personal8,
+			svelteTutorialLink: ''
+		},
+		{
+			id: '6b59a349-1a3b-4348-9c7b-f845b936e4dc',
+			name: 'Personal9 - Plyr.js Video Player',
+			component: Personal9,
+			svelteTutorialLink: ''
+		},
+		{
 			id: '0f07e431-0f37-49a2-8109-d86ac4d3b544',
 			name: 'Example1 - @debug tag',
 			component: Example1,
@@ -671,7 +685,7 @@ Why?
 -->
 
 <!-- Debug only -->
-<!-- {idOfComponentToShow.value} -->
+{idOfComponentToShow.value}
 
 <h1 class="mb-2 text-3xl font-bold">Learn Svelte 5</h1>
 

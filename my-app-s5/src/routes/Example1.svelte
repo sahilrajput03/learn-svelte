@@ -7,7 +7,9 @@
 	let toy = $state('❤️ I am a toy and changing me does *NOT* trigger debug statement in markup)');
 </script>
 
-{@debug user}
+<!-- Please uncomment below line to get debugger working. -->
+<!-- {@debug user} -->
+
 <!-- Note: Hovering in markup's value isn't beneficial (because it is a `proxy` type)
  though 😇 `value` is always printed in browser console, which is AMAZING! 😇 -->
 
