@@ -24,6 +24,25 @@ describe('ai-sdk tests', { concurrent: false }, () => {
         vi.resetAllMocks() // ✅ (This resets the mocks the correct way).
     })
 
+    it('absolut time case', { timeout: 30_000 }, async () => {
+        const messages = [{ role: 'user', content: 'Create a reminder to go meet Alice at 11:34pm' }] as any
+
+        const result = await generateTextViaAiSDKForTesting(messages)
+        expect(createReminderRequest).toHaveBeenCalledTimes(1)
+        expect(createReminderRequest).toHaveBeenCalledWith(
+            {
+                "priority": 1,
+                "scheduledTime": expect.stringContaining("2025-04-08T23:34:00"),
+                "title": expect.any(String),
+            },
+        )
+
+        const expectedTime = '23:34:00'
+        expect(getCurrentTimeForCreatingReminderEXECUTE).toHaveBeenCalledTimes(1)
+        expect(createReminderEXECUTE).toHaveBeenCalledTimes(1)
+        // expect(received).toBe(expected)
+    })
+
     it('relative time case', { timeout: 30_000 }, async () => {
         const mins = 5
         const messages = [{ role: 'user', content: `Set a reminder in ${mins} mins to go meet Alice` }] as any
@@ -52,26 +71,5 @@ describe('ai-sdk tests', { concurrent: false }, () => {
                 "title": expect.any(String),
             },
         )
-    })
-
-
-    it('absolut time case', { timeout: 30_000 }, async () => {
-        const messages = [{ role: 'user', content: 'Create a reminder to go meet Alice at 11:34pm' }] as any
-
-        const result = await generateTextViaAiSDKForTesting(messages)
-        expect(createReminderRequest).toHaveBeenCalledTimes(1)
-        expect(createReminderRequest).toHaveBeenCalledWith(
-            {
-                "priority": 1,
-                "scheduledTime": expect.stringContaining("2025-04-08T23:34:00"),
-                "title": expect.any(String),
-            },
-        )
-
-        const expectedTime = '23:34:00'
-        expect(getCurrentTimeForCreatingReminderEXECUTE).toHaveBeenCalledTimes(1)
-        expect(createReminderEXECUTE).toHaveBeenCalledTimes(1)
-        // expect(received).toBe(expected)
-        console.log('❤️❤️❤️️ Test completed successfully!!')
     })
 })
