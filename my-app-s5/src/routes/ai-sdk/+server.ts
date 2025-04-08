@@ -66,6 +66,7 @@ export const POST = (async ({ request }: RequestEvent) => {
         messages,
         // Learn: Having explicit definition of below keys helps
         //         vscode's cmd+click feature to work.
+        // & Learn: Learn input tokens decreased from 1400 upto(1700) tokens for prompt "Hi" to 127 tokens for (prompt: Hi) when I had all three tools below vs. having them commented.
         tools: {
             // weatherTool: weatherTool,
             // convertFarenheitToCelsius: convertFarenheitToCelsius,

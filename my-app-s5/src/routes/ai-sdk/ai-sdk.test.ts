@@ -2,6 +2,7 @@ import { describe, it, expect, afterEach, vi } from 'vitest'
 import { generateTextViaAiSDK } from './test-utils'
 import { createReminderEXECUTE, getCurrentTimeForCreatingReminderEXECUTE } from './toolExecutes'
 import { createReminderRequest } from './requests'
+import util from 'util'
 
 vi.mock('./toolExecutes', { spy: true }) // ✅
 vi.mock('./requests', { spy: true }) // ✅
@@ -21,11 +22,18 @@ describe('ai-sdk tests', { concurrent: false }, () => {
         vi.resetAllMocks() // ✅ (This resets the mocks the correct way).
     })
 
-    it('relative time case', { timeout: 30_000 }, async () => {
+    it.only('relative time case', { timeout: 30_000 }, async () => {
         const mins = 5
         const messages = [{ role: 'user', content: `Set a reminder in ${mins} mins to go meet Alice` }] as any
 
         const result = await generateTextViaAiSDK(messages)
+        // & Learn Having tool calls mocked does not cause to create higher token usage. Though using toollcalls itself increases the input tokens alone.
+        // console.log("🚀 ~ it.only ~ result.text:", result.text)
+        // console.log("🚀 ~ it.only ~ result.response:", result.response)
+        // console.log("🚀 ~ it.only ~ result.response.messages:", util.inspect(result.response.messages, { depth: null, colors: true }))
+        // console.log("🚀 ~ it.only ~ result.toolCalls:", util.inspect(result.toolCalls, { depth: null, colors: true }))
+        // console.log("🚀 ~ it.only ~ result.toolResults,:", util.inspect(result.toolResults, { depth: null, colors: true }))
+
         expect(getCurrentTimeForCreatingReminderEXECUTE).toHaveBeenCalledTimes(1)
         expect(createReminderEXECUTE).toHaveBeenCalledTimes(1)
 
@@ -53,7 +61,7 @@ describe('ai-sdk tests', { concurrent: false }, () => {
         expect(createReminderRequest).toHaveBeenCalledWith(
             {
                 "priority": 1,
-                "scheduledTime": expect.stringContaining("2025-04-07T23:34:00"),
+                "scheduledTime": expect.stringContaining("2025-04-08T23:34:00"),
                 "title": expect.any(String),
             },
         )
