@@ -11,7 +11,6 @@
 
 	onMount(async () => {
 		// run only on client side
-		console.log('browser?', browser);
 		if (browser) {
 			player = new Plyr(videoRef);
 			player.play(); // autoplay on start
