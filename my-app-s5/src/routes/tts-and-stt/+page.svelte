@@ -50,7 +50,7 @@
 	Description: TTS using `window.SpeechSynthesisUtterance` and STT using `window.SpeechRecognition`.
 </div>
 
-<div>Text: {text}</div>
+<div class="my-1">Text: <input bind:value={text} class="w-full rounded-md border px-2 py-1" /></div>
 
 <button
 	class="rounded bg-blue-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
@@ -70,7 +70,7 @@
 <hr class="my-8" />
 
 <button
-	class="rounded bg-pink-300 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-pink-500"
+	class="mb-2 rounded bg-pink-300 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-pink-500"
 	onclick={() => (showAvailableVoices = !showAvailableVoices)}
 >
 	{showAvailableVoices ? 'Hide' : 'Show'}
