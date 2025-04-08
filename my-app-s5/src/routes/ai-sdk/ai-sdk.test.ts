@@ -24,7 +24,7 @@ describe('ai-sdk tests', { concurrent: false }, () => {
         vi.resetAllMocks() // ✅ (This resets the mocks the correct way).
     })
 
-    it.only('relative time case', { timeout: 30_000 }, async () => {
+    it('relative time case', { timeout: 30_000 }, async () => {
         const mins = 5
         const messages = [{ role: 'user', content: `Set a reminder in ${mins} mins to go meet Alice` }] as any
 
