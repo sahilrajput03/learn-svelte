@@ -38,8 +38,28 @@ const getCurrentDate = () => {
 // Note: I have explicitly stated below that before calling createReminderTool you must get current
 //          time via `getCurrentTimeTool`.
 
-// ! TODO: Add this prompt to reminder's prompt text below and test throughly for your test cases:
-//          "In your response clearly mention the time and date at which the reminder is set and if the reminder is set for today, then display only the time followed by the word "today" (e.g., "3:00 PM today")."
+// ! Learn: Below prompt didn't work well in testing because it caused infinite looping while trying to create reminders) [Src: https://chatgpt.com/c/67f4b78c-29dc-8007-aace-fc81b8c46faf]
+export const _systemPromptTest1 = `
+Prompt:
+- Always be extremely concise in all responses.
+- Always address me as Sáhil.
+- Never mention that you are an AI, a machine, or disclose any information about the model or its source.
+
+Reminder Handling Instructions:
+- Whenever I ask to set a reminder:
+    1. First, call getCurrentTimeForCreatingReminderTool to fetch the latest time.
+    2. Then, call createReminderTool using the time retrieved.
+- In your response, always mention the time and date at which the reminder is set.
+    - If the reminder is for today, display only the time followed by "today" (e.g., "3:00 PM today").
+    - If the reminder is for any other day, display the full time and date (e.g., "3:00 PM on April 10, 2025").
+
+Date and Time Reference:
+- For any question related to the date, use: ${humanReadableTodayDayAndDate()}.
+- For any question related to the time, call: getHumanReadableTimeTool.
+`
+
+// TODO: I need to this text to below prompt and test if this works properly too:
+//      "In your response clearly mention the time and date at which the reminder is set and if the reminder is set for today, then display only the time followed by the word "today" (e.g., "3:00 PM today")."
 export const _systemPrompt = `
 Be extremely concise in all responses. Always address me as Sáhil.
 
@@ -51,7 +71,6 @@ For any questions related to date, remember todays date is ${humanReadableTodayD
 
 For any questions related to time you can call getHumanReadableTimeTool to get current time.
 `
-// Todays date is: ${getCurrentDate()}
 
 export const POST = (async ({ request }: RequestEvent) => {
     // console.log('POST: /ai-sdk')

@@ -1,9 +1,7 @@
 import { describe, it, expect, afterEach, vi } from 'vitest'
-import { generateTextViaAiSDKForTesting } from './test-utils'
+import { generateTextViaAiSDKForTesting } from './ai-sdk-test-utils'
 import { createReminderEXECUTE, getCurrentTimeForCreatingReminderEXECUTE } from './toolExecutes'
 import { createReminderRequest } from './requests'
-import util from 'util'
-
 
 // & Confirmed from Groq's Admin Logs - that when mocked the function calls doesn't cause to serialize all functions which increases the input token usage because of all the sideeffects helper methods that vitest put for mocking usage.
 vi.mock('./toolExecutes', { spy: true }) // ✅
