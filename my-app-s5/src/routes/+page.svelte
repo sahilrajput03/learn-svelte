@@ -686,7 +686,7 @@ Why?
 -->
 
 <!-- Debug only -->
-{idOfComponentToShow.value}
+<!-- {idOfComponentToShow.value} -->
 
 <h1 class="mb-2 text-3xl font-bold">Learn Svelte 5</h1>
 
