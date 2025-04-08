@@ -30,34 +30,56 @@
 		// recognition.stop();
 	}
 
+	let isSpeechPlaying = $state(false);
+	// TODO: Implement stop button via this button only so as to stop speech early if you want to.
+	// TODO: Implement a download mp3 or wav file button here.
 	const speak = () => {
 		const speech = new SpeechSynthesisUtterance(text); // * Docs: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance
 		speech.voice = voices[192] as any; // comment this line to use default `voices[0]`
-		// 		FEMALE: 191 (treble), 192 (warm),
-		// 		MALE: 193 (warm),
 		speech.lang = 'en-US'; // Set language
 		// speech.lang = 'hi-IN'; // Set language
 		speech.rate = 1; // Adjust speed (0.1 to 10)
 		speech.pitch = 1; // Adjust pitch (0 to 2)
 		speech.volume = 1; // Adjust volume (0 to 1)
 
+		speech.onend = (event) => {
+			// console.log('✅Speech has finished');
+			isSpeechPlaying = false;
+		};
+
 		window.speechSynthesis.speak(speech);
+		isSpeechPlaying = true;
 	};
+
+	const stopSpeaking = () => {
+		window.speechSynthesis.cancel();
+		// console.log('✅Speech is cancelled');
+		isSpeechPlaying = false;
+	};
+	// window.speechSynthesis.speaking (true when speaking)
 </script>
 
 <h1 class="mb-3 text-3xl font-bold">TTS and STT</h1>
 <div class="mb-5 text-xs text-gray-400">
 	Description: TTS using `window.SpeechSynthesisUtterance` and STT using `window.SpeechRecognition`.
+
+	<br />
+	<u>My favorite speakers:</u>
+	<li>FEMALE: 191 (treble), 192 (warm)</li>
+	<li>MALE: 193 (warm)</li>
 </div>
 
 <div class="my-1">Text: <input bind:value={text} class="w-full rounded-md border px-2 py-1" /></div>
 
+<!-- For debugging `isSpeechplaying` -->
+<!-- Status: {isSpeechPlaying} -->
+
 <button
-	class="rounded bg-blue-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
-	onclick={speak}
+	class={`rounded ${!isSpeechPlaying ? 'bg-blue-500 hover:bg-blue-600' : 'bg-red-500 hover:bg-red-600'} px-4 py-2 font-bold text-white transition duration-300 ease-in-out`}
+	onclick={!isSpeechPlaying ? speak : stopSpeaking}
 	aria-label="speak"
 >
-	speak
+	{!isSpeechPlaying ? 'speak' : 'stop'}
 </button>
 
 <button
