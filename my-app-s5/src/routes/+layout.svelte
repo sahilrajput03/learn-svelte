@@ -50,7 +50,7 @@
 	}
 </script>
 
-<div class="mt-[20px] flex justify-end">
+<div class="my-[10px] flex flex-wrap items-baseline gap-2">
 	<!-- Note: 
 		1. When user is on /any_other_page, then I redirect it to `/`
 		2. When user is on /?id=id1, then I redirect it to its own url,
@@ -58,36 +58,16 @@
 		   rather than the currently selected component_id as query
 		   params.)
 	-->
-	<button class=" ml-2 text-xs text-blue-600" onclick={handleTutorialsClick}>Tutorials</button>
+	<button class=" ml-2 text-xs text-blue-600" onclick={handleTutorialsClick}>tutorials</button>
 	<a class="ml-2 text-xs text-blue-600" href="/chat">/chat</a>
 	<a class="ml-2 text-xs text-blue-600" href="/effect-root">/effect-root</a>
-</div>
-<div class="mt-1 flex justify-end">
-	<div class="ml-2 text-xs">Personal:</div>
 	<a class="ml-2 text-xs text-blue-600" href="glass-slideshow">/glass-slideshow</a>
 	<a class="ml-2 text-xs text-blue-600" href="/thoughts">/thoughts</a>
 	<a class="ml-2 text-xs text-blue-600" href="/read-along">/read-along</a>
-</div>
-
-<div class="mt-1 flex justify-end text-xs">
 	<a
 		onclick={() => (idOfComponentToShow.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}
-		class="ml-2 text-blue-600"
+		class="ml-2 text-xs text-blue-600"
 		href="/?id=15f7992e-886b-4bbb-af20-2ff0a3d41831">/Personal1</a
-	>
-	<a
-		target="_blank"
-		onclick={() => (idOfComponentToShow.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}
-		class="ml-2 text-xs text-blue-600"
-		href="https://browser-for-terminal.vercel.app">browser-for-terminal.vercel.app</a
-	>
-</div>
-<div class="mb-3 mt-1 flex items-start justify-end text-xs">
-	<a
-		target="_blank"
-		onclick={() => (idOfComponentToShow.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}
-		class="ml-2 text-xs text-blue-600"
-		href="https://tailwind-plugins-demo.vercel.app">tailwind-plugins-demo.vercel.app</a
 	>
 	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/webrtc-demo">/webrtc-demo</a>
 	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/webrtc-watch-together"
@@ -95,10 +75,21 @@
 	>
 	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/ai-sdk">/ai-sdk</a>
 	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/tts-and-stt">/tts-and-stt</a>
-</div>
-
-<div class="mb-3 mt-1 flex items-start justify-end text-xs">
-	<button class="rounded-lg border px-2 py-1" onclick={shareToFriend}>Share to a friend</button>
+	<a
+		target="_blank"
+		onclick={() => (idOfComponentToShow.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}
+		class="ml-2 text-[0.625rem] text-blue-600"
+		href="https://browser-for-terminal.vercel.app">browser-for-terminal🔗</a
+	>
+	<a
+		target="_blank"
+		onclick={() => (idOfComponentToShow.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}
+		class="ml-2 text-[0.625rem] text-blue-600"
+		href="https://tailwind-plugins-demo.vercel.app">tailwind-plugins🔗</a
+	>
+	<button class="rounded-lg border px-2 py-1 text-xs" onclick={shareToFriend}
+		>Share to a friend</button
+	>
 </div>
 
 {@render children()}

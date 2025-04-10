@@ -5,15 +5,14 @@
 
 /* * Sahil: This is to have a common button styles. */
 .btn-primary {
-    @apply border border-solid border-[black] px-[5px] py-0.5 rounded-sm bg-white;
+	@apply rounded-md border border-solid border-[black] bg-white px-[5px] py-0.5;
 }
 
 .btn-primary:disabled {
-    background: lightgray;
-    color: darkgray;
+	background: lightgray;
+	color: darkgray;
 }
 
 .input-primary {
-    @apply border border-solid border-[black] px-[5px] py-0.5 rounded-sm;
+	@apply rounded-sm border border-solid border-[black] px-[5px] py-0.5;
 }
-
