@@ -89,6 +89,7 @@
 	import { pushState, replaceState } from '$app/navigation';
 	import Example1 from './Example1.svelte';
 	import { copyToClipboard } from './utils';
+	import Flexbox1 from './Flexbox1.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -562,6 +563,31 @@
 			name: 'Example1 - @debug tag',
 			component: Example1,
 			svelteTutorialLink: 'https://svelte.dev/playground/debug'
+		},
+		// TEMP NOTE: I added 4 itmes at once for easy of doing in batching
+		{
+			id: 'a96c896c-d8d6-4777-8ec3-6590e922ca59',
+			name: 'Flexbox1',
+			component: Flexbox1,
+			svelteTutorialLink: ''
+		},
+		{
+			id: 'bac43c67-18b1-4f2a-aed5-9e060bb2551f',
+			name: 'Flexbox2',
+			component: Flexbox1,
+			svelteTutorialLink: ''
+		},
+		{
+			id: '3ffdf39c-086f-43d8-a532-6c76155ef037',
+			name: 'Flexbox3',
+			component: Flexbox1,
+			svelteTutorialLink: ''
+		},
+		{
+			id: 'a0deb145-b81c-4042-a379-24e613d83624',
+			name: 'Flexbox4',
+			component: Flexbox1,
+			svelteTutorialLink: ''
 		}
 	]);
 
@@ -727,9 +753,9 @@ Why?
 			onclick={goToLast}>Last</button
 		>
 	</div>
-	<div class="mt-3 flex justify-end">
+	<div class="mt-3 flex flex-wrap justify-end gap-x-2 gap-y-1 text-[0.675rem]">
 		<a
-			class="flex items-center text-right text-xs text-blue-600"
+			class="flex items-center text-right text-blue-600"
 			target="_blank"
 			href="https://github.com/sahilrajput03/learn-svelte/blob/main/my-app-s5/src/routes/{componentToShow.name.split(
 				' '
@@ -744,43 +770,37 @@ Why?
 		</a>
 		<!-- href="https://github.com/sahilrajput03/learn-svelte/tree/main/my-app-s5/src/routes" -->
 		<!-- href="https://github.com/sahilrajput03/learn-svelte/blob/main/my-app-s5/src/routes/Group12.svelte" -->
-	</div>
-	<!-- //* Svelte Tutorial Link -->
-	<div class="mt-1 flex justify-end">
+
 		<a
 			target="_blank"
-			class="flex items-center text-right text-xs text-blue-600"
+			class="flex items-center text-right text-blue-600"
 			href={componentToShow?.svelteTutorialLink}
 			>See this tutorial on svelte.dev
 			<img class="ms-1 w-[13px]" src="/svelte-logo.svg" alt="svelte" />
 		</a>
-	</div>
-	<div class="mt-1 flex justify-end">
+
 		<!-- Show only in development mode. -->
 		{#if dev}
-			<OpenFileInVscode
-				relativeFilePath={`/src/routes/${componentToShow.name.split(' ')[0]}.svelte`}
-			/>
-			<img
-				class="ms-1 w-[13px]"
-				src="https://code.visualstudio.com/assets/images/code-stable.png"
-				alt="vscode"
-			/>
+			<div class="flex items-center">
+				<OpenFileInVscode
+					relativeFilePath={`/src/routes/${componentToShow.name.split(' ')[0]}.svelte`}
+				/>
+				<img
+					class="ms-1 w-[13px]"
+					src="https://code.visualstudio.com/assets/images/code-stable.png"
+					alt="vscode"
+				/>
+			</div>
 		{/if}
-	</div>
-	<div class="mt-1 flex justify-end">
-		<button class="btn-primary text-xs" onclick={generateUuidAndCopytoClipboard}>
-			{uuid ? 'COPIED!  Click again for new' : 'Create and copy uuidv4'}
-		</button>
-	</div>
 
-	<div class="mt-1 flex justify-end">
+		<button class="btn-primary text-xs" onclick={generateUuidAndCopytoClipboard}>
+			{uuid ? 'COPIED!  Try again' : 'Create and copy uuidv4'}
+		</button>
+
 		<div class="text-xs">
 			{uuid}
 		</div>
-	</div>
 
-	<div class="mt-1 flex justify-end">
 		<button
 			class="btn-primary text-xs"
 			onclick={() => {
@@ -806,7 +826,7 @@ Why?
 
 <style>
 	.divider {
-		margin: 20px 0;
+		margin: 10px 0;
 	}
 
 	/* Group66.svelte's style tries to change the `display:flex` for <body> element and thus

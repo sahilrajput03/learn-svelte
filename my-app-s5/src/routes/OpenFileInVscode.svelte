@@ -6,8 +6,9 @@
 	const { relativeFilePath }: PropsType = $props();
 </script>
 
-<a class="text-xs text-orange-400" href={`vscode://file${projectPath.concat(relativeFilePath)}:1`}
-	>Open file in VS Code</a
+<a
+	class="text-[0.675rem] text-orange-400"
+	href={`vscode://file${projectPath.concat(relativeFilePath)}:1`}>Open file in VS Code</a
 >
 
 <!-- [Tested on MacOS] Below code works to open a vscode file from directly browser. -->
