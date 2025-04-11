@@ -1,18 +1,16 @@
 flexbox 1
 <div class="parent">
-	<div>div1</div>
-	<div>div2</div>
-	<div>div3</div>
-	<div>div4</div>
-	<div>div5</div>
-	<div>div6</div>
-	<div>div7</div>
-	<div>div8</div>
+	<div class="child">div1</div>
+	<div class="child">div2</div>
+	<div class="child">div3</div>
+	<div class="child">div4</div>
+	<div class="child">div5</div>
+	<div class="child">div6</div>
+	<div class="child">div7</div>
+	<div class="child">div8</div>
 </div>
 
-<!-- 
-Default values
-==============
+<!-- DEFAULT VALUES
 flex-direction: row                 Other values: column, row-reverse, column-reverse
 justify-content: flex-start;        Other values: center, flex-end, space-betwen, space-around, etc
 align-items: stretch;               Other values: center, flex-end, space-betwen, space-around, etc
@@ -24,20 +22,16 @@ align-content: stretch;             Other values:
 <style>
 	.parent {
 		width: 100%;
+		height: 150px;
 		border: 1px solid grey;
 		padding: 1px;
 
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
-
-		/* // TODO: Make video on commenting/commenting below key values individually and together. */
-		height: 150px;
-		flex-wrap: wrap;
-		align-items: stretch;
-		align-content: stretch;
-
+		/* flex-direction: row; */
+		/* justify-content: flex-start; */
 		/* align-items: flex-start; */
+
+		/* flex-wrap: wrap; */
 		/* align-content: flex-start; */
 	}
 	div {
