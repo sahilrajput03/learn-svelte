@@ -11,13 +11,12 @@ flexbox 1
 </div>
 
 <!-- DEFAULT VALUES
-flex-direction: row                 Other values: column, row-reverse, column-reverse
-justify-content: flex-start;        Other values: center, flex-end, space-betwen, space-around, etc
-align-items: stretch;               Other values: center, flex-end, space-betwen, space-around, etc
-align-content: stretch;             Other values: 
-
- flex-wrap: nowrap;                 Other values: wrap-reverse
- align-content: stretch;
+FLEX-DIRECTION: ROW                 			(column, row-reverse, column-reverse
+JUSTIFY-CONTENT: FLEX-START;        			(center, flex-start, flex-end, etc)
+ALIGN-ITEMS: STRETCH;               			(center, flex-start, flex-end, etc)
+ALIGN-SELF: STRETCH (inherit from align-items) 	(center, flex-start, flex-end, etc)
+ALIGN-CONTENT: STRETCH;             			(center, flex-start, flex-end, etc)
+FLEX-WRAP: NOWRAP;                 				(wrap-reverse)
 -->
 <style>
 	.parent {
