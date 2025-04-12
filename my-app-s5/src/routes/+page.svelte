@@ -90,6 +90,7 @@
 	import Example1 from './Example1.svelte';
 	import { copyToClipboard } from './utils';
 	import Flexbox1 from './Flexbox1.svelte';
+	import Flexbox2 from './Flexbox2.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -574,7 +575,7 @@
 		{
 			id: 'bac43c67-18b1-4f2a-aed5-9e060bb2551f',
 			name: 'Flexbox2',
-			component: Flexbox1,
+			component: Flexbox2,
 			svelteTutorialLink: ''
 		},
 		{

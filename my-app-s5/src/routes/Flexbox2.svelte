@@ -4,10 +4,10 @@ flexbox 1
 	<div class="child">div2</div>
 	<div class="child">div3</div>
 	<div class="child">div4</div>
-	<div class="child">div5</div>
+	<!-- <div class="child">div5</div>
 	<div class="child">div6</div>
 	<div class="child">div7</div>
-	<div class="child">div8</div>
+	<div class="child">div8</div> -->
 </div>
 
 <!-- DEFAULT VALUES
@@ -37,6 +37,17 @@ FLEX-WRAP: NOWRAP;                 				(wrap-reverse)
 		border: 1px solid orange;
 		padding: 1px;
 		margin: 1px;
-		width: 150px;
+		/* width: 150px; */
+		/** In flex children when `flex-direction: row` the
+		  		`flex-basis` takes precedence over `width` . */
+		/* flex-basis: 50%; */
+	}
+
+	:nth-of-type(3) {
+		color: red;
+
+		/* max-width: 30px; */
+		flex-basis: 100;
+		min-width: 80px;
 	}
 </style>
