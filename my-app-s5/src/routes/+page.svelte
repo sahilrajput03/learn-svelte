@@ -577,19 +577,19 @@
 			name: 'Flexbox2',
 			component: Flexbox2,
 			svelteTutorialLink: ''
-		},
-		{
-			id: '3ffdf39c-086f-43d8-a532-6c76155ef037',
-			name: 'Flexbox3',
-			component: Flexbox1,
-			svelteTutorialLink: ''
-		},
-		{
-			id: 'a0deb145-b81c-4042-a379-24e613d83624',
-			name: 'Flexbox4',
-			component: Flexbox1,
-			svelteTutorialLink: ''
 		}
+		// {
+		// 	id: '3ffdf39c-086f-43d8-a532-6c76155ef037',
+		// 	name: 'Flexbox3',
+		// 	component: Flexbox1,
+		// 	svelteTutorialLink: ''
+		// },
+		// {
+		// 	id: 'a0deb145-b81c-4042-a379-24e613d83624',
+		// 	name: 'Flexbox4',
+		// 	component: Flexbox1,
+		// 	svelteTutorialLink: ''
+		// }
 	]);
 
 	// console.log('here??', Math.random()); // This log (random number) is different on server log and client side log.
