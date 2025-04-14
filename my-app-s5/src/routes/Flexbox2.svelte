@@ -57,7 +57,7 @@ FLEX-BASIS: auto;								(any value that width, height supports)
 		color: red;
 
 		/* max-width: 30px; */
-		flex-basis: 100;
+		flex-basis: 100px;
 		min-width: 80px;
 	}
 </style>
