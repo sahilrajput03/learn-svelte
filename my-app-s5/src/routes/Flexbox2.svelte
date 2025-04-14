@@ -17,6 +17,11 @@ ALIGN-ITEMS: STRETCH;               			(center, flex-start, flex-end, etc)
 ALIGN-SELF: STRETCH (inherit from align-items) 	(center, flex-start, flex-end, etc)
 ALIGN-CONTENT: STRETCH;             			(center, flex-start, flex-end, etc)
 FLEX-WRAP: NOWRAP;                 				(wrap-reverse)
+
+FLEX-GROW: 0;									(any numeric value: 0, 1, 2, etc)
+FLEX-SHRINK: 1;									(any numeric value: 0, 1, 2, etc)
+FLEX-BASIS: auto;								(any value that width, height supports)
+(Note: `auto` in above line means to fallback to width (fxd="row") or height (fxd="column").
 -->
 <style>
 	.parent {
