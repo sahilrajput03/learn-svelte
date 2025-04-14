@@ -41,10 +41,15 @@ FLEX-BASIS: auto;								(any value that width, height supports)
 	div {
 		border: 1px solid orange;
 		padding: 1px;
-		margin: 1px;
+		/* Note: Never give margins to children as it causes issues
+			for e.g, when you have flex-basis: 50% on child then the
+			child do not act such that two items appear in main axis.  */
+		/* margin: 1px; */
+
 		/* width: 150px; */
-		/** In flex children when `flex-direction: row` the
-		  		`flex-basis` takes precedence over `width` . */
+
+		/* In flex children when `flex-direction: row` the
+		  	`flex-basis` takes precedence over `width` . */
 		/* flex-basis: 50%; */
 	}
 
