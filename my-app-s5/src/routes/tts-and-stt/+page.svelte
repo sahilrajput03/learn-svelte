@@ -13,6 +13,7 @@
 	// let text = $state('Whispers of autumn in the breeze,\nGolden leaves dance with gentle ease.');
 
 	// Story Title = "The Last Leaf"
+	// Note: Google TTS is only able to speak till - "In a small village ... She lay in bed all day, staring out"
 	let shortStory = `
 In a small village nestled between hills, an old painter named Hari lived alone. He wasn’t rich, but he was known for his kind heart and beautiful paintings.
 
