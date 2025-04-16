@@ -1,1 +1,0 @@
-export const projectPath = "/Users/apple/Documents/github_repos/learn-svelte/my-app-s5"
