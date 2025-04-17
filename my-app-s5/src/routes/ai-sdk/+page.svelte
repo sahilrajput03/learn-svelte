@@ -241,6 +241,7 @@
 			<div class="bg-yellow-100 px-3 py-1 text-xs text-red-700">
 				TODO:
 				<ol class="ml-4 list-decimal">
+					<li><strong>Reminder Tips:</strong> Set a reminder in 5 mins to go meet Alice.</li>
 					<li>Fix the issue of quickly pressing stop and start listing...</li>
 					<li>Increase height on text input for phones and</li>
 					<li>fix the issue of text input not showing properly sometimes.</li>
