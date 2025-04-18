@@ -1,4 +1,4 @@
-flexbox 2
+Flexbox 2
 <div class="parent">
 	<div class="child">div1</div>
 	<div class="child">div2</div>
@@ -53,7 +53,7 @@ FLEX-BASIS: auto;								(any value that width, height supports)
 		/* flex-basis: 50%; */
 	}
 
-	:nth-of-type(3) {
+	.child:nth-of-type(3) {
 		color: red;
 
 		/* max-width: 30px; */

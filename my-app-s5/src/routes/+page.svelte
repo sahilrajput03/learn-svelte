@@ -91,6 +91,7 @@
 	import { copyToClipboard } from './utils';
 	import Flexbox1 from './Flexbox1.svelte';
 	import Flexbox2 from './Flexbox2.svelte';
+	import Grid1 from './Grid1.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -577,7 +578,7 @@
 			name: 'Flexbox2',
 			component: Flexbox2,
 			svelteTutorialLink: ''
-		}
+		},
 		// {
 		// 	id: '3ffdf39c-086f-43d8-a532-6c76155ef037',
 		// 	name: 'Flexbox3',
@@ -589,7 +590,19 @@
 		// 	name: 'Flexbox4',
 		// 	component: Flexbox1,
 		// 	svelteTutorialLink: ''
-		// }
+		// },
+		{
+			id: 'a28ca0ee-427f-4f87-9d0c-d93d4f2b782a',
+			name: 'Grid1',
+			component: Grid1,
+			svelteTutorialLink: ''
+		},
+		{
+			id: '023ac469-234d-4522-b9a2-70cd1e24c621',
+			name: 'Grid2',
+			component: Grid1,
+			svelteTutorialLink: ''
+		}
 	]);
 
 	// console.log('here??', Math.random()); // This log (random number) is different on server log and client side log.

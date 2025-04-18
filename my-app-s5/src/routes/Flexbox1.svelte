@@ -1,4 +1,4 @@
-flexbox 1
+Flexbox 1
 <div class="parent">
 	<div class="child">div1</div>
 	<div class="child">div2</div>
@@ -36,7 +36,11 @@ FLEX-WRAP: NOWRAP;                 				(wrap-reverse)
 	.child {
 		border: 1px solid orange;
 		padding: 1px;
-		margin: 1px;
+
+		/* Note: Never give margins to children as it causes issues
+			for e.g, when you have flex-basis: 50% on child then the
+			child do not act such that two items appear in main axis.  */
+		/* margin: 1px; */
 		width: 150px;
 	}
 </style>
