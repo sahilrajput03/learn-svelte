@@ -33,7 +33,7 @@ FLEX-WRAP: NOWRAP;                 				(wrap-reverse)
 		/* flex-wrap: wrap; */
 		/* align-content: flex-start; */
 	}
-	div {
+	.child {
 		border: 1px solid orange;
 		padding: 1px;
 		margin: 1px;

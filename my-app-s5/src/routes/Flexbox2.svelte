@@ -38,7 +38,7 @@ FLEX-BASIS: auto;								(any value that width, height supports)
 		/* flex-wrap: wrap; */
 		/* align-content: flex-start; */
 	}
-	div {
+	.child {
 		border: 1px solid orange;
 		padding: 1px;
 		/* Note: Never give margins to children as it causes issues
