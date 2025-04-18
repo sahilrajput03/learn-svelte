@@ -1,4 +1,4 @@
-flexbox 1
+flexbox 2
 <div class="parent">
 	<div class="child">div1</div>
 	<div class="child">div2</div>
