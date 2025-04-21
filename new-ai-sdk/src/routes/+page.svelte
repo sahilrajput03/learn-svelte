@@ -244,6 +244,9 @@
 				TODO:
 				<ol class="ml-4 list-decimal">
 					<li>
+						<strong>TODO: Install this new app to be started on android-termux. </strong>
+					</li>
+					<li>
 						<strong>TODO: Add a pretty SEND key button. </strong>
 					</li>
 					<li>
