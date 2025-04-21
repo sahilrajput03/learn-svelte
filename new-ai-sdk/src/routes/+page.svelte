@@ -9,6 +9,9 @@
 </script>
 
 <main>
+	<!-- For test -->
+	<div>new-ai-sdk</div>
+
 	<ul>
 		{#each chat.messages as message, messageIndex (messageIndex)}
 			<li>
