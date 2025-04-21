@@ -29,16 +29,7 @@
 	let deviceWidth: number;
 	let deviceHeight: number;
 
-	// * FOR EASY TESTING
 	onMount(() => {
-		setTimeout(() => {
-			// To show single tool call
-			// input.set("What's the weather in New York?");
-			//
-			// To show multiple tool calls
-			// input.set("What's the weather in New York in celsius?");
-		}, 1_000);
-
 		// `chatDiv.offsetTop`  = Distance between top edge of body tag and top edge
 		// 		of the `chatdiv`. And since we have margin of "20px" on all edges the
 		// 		top margin is not included in `chatDiv.offsetTop`. Also we need to
@@ -88,11 +79,11 @@
 		scrollToBottom(); // Necessary so that chat-input sticks to bottom of the screeen.
 		// if (browser && chatDiv) chatDiv.scrollTop = chatDiv?.scrollHeight;
 		if (browser && innerContainerDiv) {
+			// Scroll the innerContainerDiv element to the bottom of its scrollable content.
 			innerContainerDiv.scrollTop = innerContainerDiv?.scrollHeight;
 		}
 
 		if (!isBotSpeaking) {
-			// TODO: Add speaking status on the start talking button when bot is speaking and change label to "stop".
 			// TODO: Check if there is way to check inherently if the completion has been done by generative ai --- that can help me prevent the 1 second delay I'm having with debounce function because instead of using deboucne I can make use of that to call speech function when the message has been completed instead.
 			const lastMessage = $messages?.[$messages.length - 1];
 			const isLastMessageOfAssistant = lastMessage?.role === 'assistant';
@@ -122,6 +113,7 @@
 		recognition.start();
 		isBotListening = true;
 	}
+
 	function handleStopButton() {
 		const shouldStop = isBotListening || isBotSpeaking;
 		if (shouldStop) {
@@ -226,7 +218,6 @@
 	{/if}
 
 	<!-- / //& Container (position: fixed) -->
-
 	<div class="fixed right-0 top-[200px] mt-10 w-full text-xs">
 		<button
 			class="m-2 rounded-lg border px-2 py-1"
