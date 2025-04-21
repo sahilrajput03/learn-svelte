@@ -47,6 +47,7 @@
 		"zod": "^3.24.3"
 	},
 	"dependencies": {
-		"@ai-sdk/groq": "^1.2.8"
+		"@ai-sdk/groq": "^1.2.8",
+		"axios": "^1.8.4"
 	}
 }

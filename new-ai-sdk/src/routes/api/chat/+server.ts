@@ -1,40 +1,118 @@
+// 😇😇 Source (DONE): https://sdk.vercel.ai/docs/getting-started/svelte
+// TODO: https://sdk.vercel.ai/docs/foundations/prompts
+
+// Frontend in file: src/routes/ai-sdk/+page.svelte
+// Visit chat assitant at: http://localhost:5173/ai-sdk
+
+// TODO: Read ai-sdk 4.0: https://vercel.com/blog/ai-sdk-4-0#new-xai-grok-provider
+
+// Models provided by groq: https://sdk.vercel.ai/providers/ai-sdk-providers/groq#model-capabilities
+
 import { createOpenAI } from '@ai-sdk/openai';
 import { streamText } from 'ai';
+import { env } from '$env/dynamic/private'; // TODO (make notes in readme of this: Adv.SvelteKit/EnvironmentVarables) read the values of environment variables when the app runs, as opposed to when the app is built,
+import { z } from 'zod';
+import { convertFarenheitToCelsius, createReminderTool, getCurrentTimeForCreatingReminderTool, getHumanReadableTimeTool, weatherTool } from './tools';
 import { createGroq } from '@ai-sdk/groq';
-import { env } from '$env/dynamic/private';
-import { weatherTool } from './tools';
+import type { RequestEvent, RequestHandler } from './$types';
+import { humanReadableTodayDayAndDate } from '$lib/time-utils';
 
-// import { OPENAI_API_KEY } from '$env/static/private';
-
-// const openai = createOpenAI({
-//     apiKey: OPENAI_API_KEY,
-// });
+// OPENAI
+const openai = createOpenAI({
+    apiKey: env.OPEN_AI_API_KEY ?? '',
+});
 
 // GROQ: https://sdk.vercel.ai/providers/ai-sdk-providers/groq
 export const _groq = createGroq({
     apiKey: env.GROQ_API_KEY ?? ""
 });
 
+
+const getCurrentDate = () => {
+    const now = new Date();
+    return now.toISOString()
+}
+
+// TODO: Check if this helps to improve system instruction - https://chatgpt.com/c/67f18bef-96fc-8007-87fe-3ead1a2ce3d4
+
+// Note: I have explicitly stated below that before calling createReminderTool you must get current
+//          time via `getCurrentTimeTool`.
+
+// ! Learn: Below prompt didn't work well in testing because it caused infinite looping while trying to create reminders) [Src: https://chatgpt.com/c/67f4b78c-29dc-8007-aace-fc81b8c46faf]
+export const _systemPromptTest1 = `
+Prompt:
+- Always be extremely concise in all responses.
+- Always address me as Sáhil.
+- Never mention that you are an AI, a machine, or disclose any information about the model or its source.
+
+Reminder Handling Instructions:
+- Whenever I ask to set a reminder:
+    1. First, call getCurrentTimeForCreatingReminderTool to fetch the latest time.
+    2. Then, call createReminderTool using the time retrieved.
+- In your response, always mention the time and date at which the reminder is set.
+    - If the reminder is for today, display only the time followed by "today" (e.g., "3:00 PM today").
+    - If the reminder is for any other day, display the full time and date (e.g., "3:00 PM on April 10, 2025").
+
+Date and Time Reference:
+- For any question related to the date, use: ${humanReadableTodayDayAndDate()}.
+- For any question related to the time, call: getHumanReadableTimeTool.
+`
+
+// TODO: I need to this text to below prompt and test if this works properly too:
+//      "In your response clearly mention the time and date at which the reminder is set and if the reminder is set for today, then display only the time followed by the word "today" (e.g., "3:00 PM today")."
 export const _systemPrompt = `
 Be extremely concise in all responses. Always address me as Sáhil.
 
 Never mention that you are an AI, machine, or disclose anything about the model or its source company.
 
-Don't call weatherTool unless I explicitly ask weather of a place.
+Whenever I ask to set a reminder, always call the getCurrentTimeForCreatingReminderTool first, before calling createReminderTool every time so that you get the latest time in everytime. 
+
+For any questions related to date, remember todays date is ${humanReadableTodayDayAndDate()}
+
+For any questions related to time you can call getHumanReadableTimeTool to get current time.
 `
 
-export async function POST({ request }) {
+export const POST = (async ({ request }: RequestEvent) => {
+    // console.log('POST: /ai-sdk')
     const { messages } = await request.json();
 
+    console.log("🚀 ~ POST ~ messages:", messages)
+    console.log(messages?.[1]?.toolInvocations)
+    // Tool calls work with openai and groq (tested for gemma-2-9b-it) both very well.
     const result = streamText({
-        // model: openai('gpt-4o'),
+        // model: openai('gpt-4o-mini'), // & Using OpenAI
         model: _groq('gemma2-9b-it'), // & Using Groq, Models: "llama-3.1-8b-instant", "gemma2-9b-it", "mixtral-8x7b-32768", etc
+        // model: groq('deepseek-r1-distill-qwen-32b'),
+        // model: groq('deepseek-r1-distill-llama-70b'),
         system: _systemPrompt, // System instruction/prompt/message (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
         messages,
+        // Learn: Having explicit definition of below keys helps
+        //         vscode's cmd+click feature to work.
+        // & Learn: Confirmed from Groq's Admin Logs that input tokens usage decreased from 1400 upto(1700) tokens for prompt "Hi" to 127 tokens for (prompt: Hi) when I had all three tools below vs. having them commented.
         tools: {
-            weatherTool: weatherTool,
-        }
+            // weatherTool: weatherTool,
+            // convertFarenheitToCelsius: convertFarenheitToCelsius,
+            createReminderTool: createReminderTool,
+            getCurrentTimeForCreatingReminderTool: getCurrentTimeForCreatingReminderTool,
+            getHumanReadableTimeTool: getHumanReadableTimeTool
+            // sendSmsTool: sendSmsTool // dummy function to send sms to anybody, present in file `./tools.ts` file
+        },
     });
 
+    // 🚀 Docs: https://sdk.vercel.ai/docs/ai-sdk-core/generating-text#streamtext
+    // example: use textStream as an async iterable
+    // for await (const textPart of result.textStream) {
+    //   console.log(textPart);
+    // }
+
     return result.toDataStreamResponse();
-}
+});
+
+
+// GROQ
+// ====
+// llama-3.1-8b-instant: Good balance of performance and speed.
+// gemma2-9b-it: Strong in Italian language tasks.
+// mixtral-8x7b-32768: Excellent performance across various tasks.
+// ! // (NO LONGER Exists =>>>) // ! llama-3.1-70b-versatile: Powerful but resource-intensive.
+// If you need a versatile model with good performance, llama-3.1-70b-versatile is a good choice. If you prioritize speed and resource efficiency, llama-3.1-8b-instant is a better option. If you need a model specifically for Italian language tasks, gemma2-9b-it is the best choice. If you need a high-performing model across various tasks, mixtral-8x7b-32768 is the best choice.
