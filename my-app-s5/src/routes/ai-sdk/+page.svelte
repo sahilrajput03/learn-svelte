@@ -125,7 +125,7 @@
 	function handleStopButton() {
 		const shouldStop = isBotListening || isBotSpeaking;
 		if (shouldStop) {
-			recognition.stop(); // todo: test this...
+			recognition.stop();
 			window.speechSynthesis.cancel(); // Stop any ongoing speech
 			isBotListening = false;
 			isBotSpeaking = false;
