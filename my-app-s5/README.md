@@ -8,6 +8,12 @@ Deployed at:
 
 _Note to Sahil: Some content is only covered in this readme or `README.sveltekit.md` readme for the purpose of easy demonstration._
 
+## Learn: On upgrading all deps of `ai-dk` I get this error when I use example code from official docs of ai-sdk
+
+Example code used from [here](https://sdk.vercel.ai/docs/getting-started/svelte).
+
+![alt text](err-ai-sdk-upgrade.png)
+
 ## ❤️ Testing with vitest 🚀🚀🚀
 
 Run `npm run test` or `nr test`
