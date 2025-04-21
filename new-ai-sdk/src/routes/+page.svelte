@@ -1,6 +1,9 @@
 <script>
 	import { Chat } from '@ai-sdk/svelte';
 
+	// Guide: https://sdk.vercel.ai/docs/getting-started/svelte#how-does-ai-sdksvelte-differ-from-ai-sdkreact
+	// Important notes about using `ai-sdk/svelte` -  How does @ai-sdk/svelte differ from @ai-sdk/react? - https://sdk.vercel.ai/docs/getting-started/svelte#how-does-ai-sdksvelte-differ-from-ai-sdkreact
+
 	const chat = new Chat({
 		// initialInput: '',
 		initialInput: 'What is weather in Chandigarh, India?', // For testing tool call
