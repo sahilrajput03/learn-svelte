@@ -10,11 +10,12 @@
 
 	// TODO: Implement a multimodal example in another component from here - https://sdk.vercel.ai/docs/guides/multi-modal-chatbot
 
-	// Why `maxSteps` (in `usechat()`) should be set greater than 1 ?
-	//      We need maxSteps more than 1 so that toolcall's response is automatically passed and new response is generated automatically.
-	//      Another advantage is allow to be able to call more than 1 tool calls on its own.
-
 	let { input, handleSubmit, messages } = useChat({
+		// Note: We need maxSteps (default=1) (d) more than 1 so that
+		//       toolcall's response is automatically passed and new
+		//       response is generated automatically.
+		//       🚀 Another advantage is that this allow to be able to
+		//       call more than 1 tool calls on its own.
 		maxSteps: 10,
 		api: '/ai-sdk',
 		initialInput: 'Hi' // sets in initial message in chatbox
