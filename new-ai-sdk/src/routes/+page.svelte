@@ -11,8 +11,10 @@
 	});
 
 	$effect(() => {
-		if (chat.messages.length !== 0 && chat.status === 'ready') {
-			console.log('Speaking now...');
+		const messages = $state.snapshot(chat.messages);
+		if (messages.length !== 0 && chat.status === 'ready') {
+			const lastMessage = messages[messages.length - 1];
+			// console.log('Speaking now: ', lastMessage.content);
 		}
 	});
 </script>
