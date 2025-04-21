@@ -6,6 +6,12 @@
 		initialInput: 'What is weather in Chandigarh, India?', // For testing tool call
 		maxSteps: 10
 	});
+
+	$effect(() => {
+		if (chat.messages.length !== 0 && chat.status === 'ready') {
+			console.log('Speaking now...');
+		}
+	});
 </script>
 
 <main>
