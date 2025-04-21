@@ -2,6 +2,7 @@ import { createOpenAI } from '@ai-sdk/openai';
 import { streamText } from 'ai';
 import { createGroq } from '@ai-sdk/groq';
 import { env } from '$env/dynamic/private';
+import { weatherTool } from './tools';
 
 // import { OPENAI_API_KEY } from '$env/static/private';
 
@@ -21,6 +22,9 @@ export async function POST({ request }) {
         // model: openai('gpt-4o'),
         model: _groq('gemma2-9b-it'), // & Using Groq, Models: "llama-3.1-8b-instant", "gemma2-9b-it", "mixtral-8x7b-32768", etc
         messages,
+        tools: {
+            weatherTool: weatherTool,
+        }
     });
 
     return result.toDataStreamResponse();
