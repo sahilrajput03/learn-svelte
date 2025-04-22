@@ -74,6 +74,13 @@
 	});
 
 	$effect(() => {
+		// Using messages as dependency so we scroll to bottom as soon as they are updated.
+		chat.messages;
+		// Necessary so that chat-input sticks to bottom of the screeen on android chrome.
+		scrollToBottom();
+	});
+
+	$effect(() => {
 		// console.log('effect.');
 		// Scroll to bottom whenever messages are added
 		const messages = $state.snapshot(chat.messages);
@@ -82,7 +89,7 @@
 			console.log('🚀Should trigger speak fn now with text:', lastMessage.content);
 			speak();
 			// Necessary so that chat-input sticks to bottom of the screeen on android chrome.
-			scrollToBottom();
+			// scrollToBottom();
 			if (browser && innerContainerDiv) {
 				// Scroll the innerContainerDiv element to the bottom of its scrollable content.
 				innerContainerDiv.scrollTop = innerContainerDiv?.scrollHeight;
