@@ -9,7 +9,7 @@ describe('/+page.svelte', () => {
 		expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
 	});
 
-	// Test by sahil
+	// Test by Sahil
 	test('should contain text "New AI SDK"', () => {
 		render(Page);
 		expect(screen.getByText('New AI SDK')).toBeInTheDocument();
