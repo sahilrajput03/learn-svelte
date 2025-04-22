@@ -74,13 +74,15 @@
 	});
 
 	$effect(() => {
+		// console.log('effect.');
 		// Scroll to bottom whenever messages are added
 		const messages = $state.snapshot(chat.messages);
 		if (messages.length !== 0 && chat.status === 'ready') {
 			const lastMessage = messages[messages.length - 1];
-			// console.log('Should trigger speak fn now: ', lastMessage.content);
+			console.log('🚀Should trigger speak fn now with text:', lastMessage.content);
 			speak();
-			scrollToBottom(); // Necessary so that chat-input sticks to bottom of the screeen.
+			// Necessary so that chat-input sticks to bottom of the screeen on android chrome.
+			scrollToBottom();
 			if (browser && innerContainerDiv) {
 				// Scroll the innerContainerDiv element to the bottom of its scrollable content.
 				innerContainerDiv.scrollTop = innerContainerDiv?.scrollHeight;
@@ -104,6 +106,8 @@
 			console.log('Transcript?', transcript);
 			chat.input = transcript;
 			chat.handleSubmit();
+			// Necessary so that chat-input sticks to bottom of the screeen on android chrome.
+			tick().then(scrollToBottom);
 		};
 		recognition.start();
 		isBotListening = true;
@@ -135,6 +139,8 @@
 		if (e.keyCode == 13) {
 			e.preventDefault();
 			chat.handleSubmit();
+			// Necessary so that chat-input sticks to bottom of the screeen on android chrome.
+			tick().then(scrollToBottom);
 		}
 	}
 
@@ -210,6 +216,8 @@
 				}}
 				onclick={(e) => {
 					chat.handleSubmit();
+					// Necessary so that chat-input sticks to bottom of the screeen on android chrome.
+					tick().then(scrollToBottom);
 				}}
 			>
 				<img class="mr-[5px]" width="25px" src="/send-button.svg" alt="send key" />

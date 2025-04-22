@@ -8,10 +8,17 @@ export function scrollToTop() {
 }
 
 // TESTED: Works for mobile (poco m4) even when keyboard is open (TESTED)
-export function scrollToBottom() {
+export function scrollToBottomSmoothly() {
     if (isBrowser()) document?.documentElement?.scrollIntoView?.({
         behavior: 'smooth',
         block: 'end', // block: 'end' ensures it scrolls to the bottom (equivalent to passing false as a legacy argument).
     });
 }
 
+
+export function scrollToBottom() {
+    if (isBrowser()) document?.documentElement?.scrollIntoView?.({
+        behavior: 'auto',
+        block: 'end', // block: 'end' ensures it scrolls to the bottom (equivalent to passing false as a legacy argument).
+    });
+}
