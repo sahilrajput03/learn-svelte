@@ -3,6 +3,7 @@
 	import { scrollToBottom } from '$lib/scroll-utils';
 	import { getVoices } from '$lib/speechRecognitionUtil';
 	import type { VoiceT } from '$lib/types';
+	import { veryLongMessageForUiTesting } from '$lib/utils-sample-messages';
 	import { Chat } from '@ai-sdk/svelte';
 	import { onMount, tick } from 'svelte';
 	import { blur, fade } from 'svelte/transition';
@@ -16,6 +17,7 @@
 		// 		id: '7f2ab8de-9160-4e6c-bea2-be0516a70793',
 		// 		role: 'user',
 		// 		content: 'Hi there.'
+		// 		// content: veryLongMessageForUiTesting
 		// 	}
 		// ],
 		initialInput: 'Hi',
@@ -38,6 +40,7 @@
 
 	let isBotSpeaking = $state(false);
 	const speak = () => {
+		return; // ! TEMPORARLY STOPPING FOR TESTING...
 		isBotSpeaking = true;
 		console.log('✅ Calling speak function..');
 		// return; // & For Debugging
@@ -161,7 +164,7 @@
 					{#each message.parts as part, partIndex (partIndex)}
 						{#if part.type === 'text'}
 							<div
-								class={`mb-[7px] w-fit rounded-[15px] ${message.role === 'user' ? 'rounded-br-xs' : 'rounded-bl-xs'} px-[8px] pt-[5px] pb-[6px] text-white ${message.role === 'user' && 'ml-auto'}`}
+								class={`mb-[7px] w-fit max-w-[70%] rounded-[15px] ${message.role === 'user' ? 'rounded-br-xs' : 'rounded-bl-xs'} px-[8px] pt-[5px] pb-[6px] text-white ${message.role === 'user' && 'ml-auto'}`}
 								style="background: rgb(135, 117, 218);"
 							>
 								{part.text}
@@ -219,7 +222,8 @@
 					in:fade={{ duration: 200 }}
 					class="aspect-[1] h-[95px] rounded-full px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
 					onclick={handleStartListening}
-					style="background: rgb(135, 117, 218);"
+					style="background: rgb(135, 117, 218); 
+						box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);"
 					onpointerdown={(e) => e.preventDefault()}
 					>🚀 Listen to me
 				</button>
