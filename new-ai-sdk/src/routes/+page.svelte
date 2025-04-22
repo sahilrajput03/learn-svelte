@@ -163,8 +163,9 @@
 					<!-- message -->
 					{#each message.parts as part, partIndex (partIndex)}
 						{#if part.type === 'text'}
+							<!-- Note: We give max-wdith 90% on mobiles and 70% on desktop view (md=768px). -->
 							<div
-								class={`mb-[7px] w-fit max-w-[70%] rounded-[15px] ${message.role === 'user' ? 'rounded-br-xs' : 'rounded-bl-xs'} px-[8px] pt-[5px] pb-[6px] text-white ${message.role === 'user' && 'ml-auto'}`}
+								class={`mb-[7px] w-fit max-w-[90%] rounded-[15px] md:max-w-[70%] ${message.role === 'user' ? 'rounded-br-xs' : 'rounded-bl-xs'} px-[8px] pt-[5px] pb-[6px] text-white ${message.role === 'user' && 'ml-auto'}`}
 								style="background: rgb(135, 117, 218);"
 							>
 								{part.text}
