@@ -30,6 +30,7 @@
 
 	let isBotSpeaking = $state(false);
 	const speak = () => {
+		isBotSpeaking = true;
 		console.log('✅ Calling speak function..');
 		// return; // & For Debugging
 		const messages = $state.snapshot(chat.messages);
@@ -75,9 +76,9 @@
 			}
 		}
 
-		tick().then(() => {
-			scrollToBottom();
-		});
+		// tick().then(() => {
+		// 	scrollToBottom();
+		// });
 	});
 
 	let isBotListening = $state(false);
@@ -120,8 +121,8 @@
 	function handleKeyDown(e: any) {
 		// When enter is pressed we are left with a new line character
 		//      which prevent showing the placeholder text. That's why we need `e.preventDefault()`
-		e.preventDefault();
 		if (e.keyCode == 13) {
+			e.preventDefault();
 			chat.handleSubmit();
 		}
 	}
@@ -174,7 +175,7 @@
 
 		<div class="flex rounded-2xl border-1">
 			<textarea
-				rows="1"
+				rows="2"
 				class="input-primary w-full border-0 bg-transparent outline-none"
 				bind:value={chat.input}
 				onkeydown={handleKeyDown}
@@ -182,7 +183,7 @@
 			>
 			</textarea>
 			<button
-				class="btn-primary w-[70px]"
+				class="btn-primary flex items-center px-2"
 				onmousedown={(e) => {
 					// Prevent focus shift so that when send button is pressed
 					//      keyboard doesn't close on android (tested on poco m4)
@@ -190,25 +191,31 @@
 				}}
 				onclick={(e) => {
 					chat.handleSubmit();
-				}}>➡️</button
+				}}
 			>
+				<img class="mr-[5px]" width="25px" src="/send-button.svg" alt="send key" />
+			</button>
 		</div>
 	</div>
 
 	{#if chatDivHeight}
 		<div class="fixed top-[50vh] right-[10px] z-20 flex flex-col items-end">
 			{#if !(isBotListening || isBotSpeaking)}
+				<!-- Note: I use onpointerdown to prevent keyboard closing on tapping button on android. (From ChatGPT) -->
 				<button
 					in:fade
 					class="rounded-lg bg-blue-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
 					onclick={handleStartListening}
+					onpointerdown={(e) => e.preventDefault()}
 					>🚀 Listen to me
 				</button>
 			{:else}
+				<!-- Note: I use onpointerdown to prevent keyboard closing on tapping button on android. (From ChatGPT) -->
 				<button
 					in:fade
 					class="rounded-lg bg-red-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-red-600"
 					onclick={handleStopButton}
+					onpointerdown={(e) => e.preventDefault()}
 					>stop
 				</button>
 			{/if}
@@ -245,9 +252,6 @@
 				<ol class="ml-4 list-decimal">
 					<li>
 						<strong>TODO: Install this new app to be started on android-termux. </strong>
-					</li>
-					<li>
-						<strong>TODO: Add a pretty SEND key button. </strong>
 					</li>
 					<li>
 						<strong
