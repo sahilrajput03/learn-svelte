@@ -217,8 +217,9 @@
 				<!-- Note: I use onpointerdown to prevent keyboard closing on tapping button on android. (From ChatGPT) -->
 				<button
 					in:fade
-					class="rounded-lg bg-blue-500 px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
+					class="rounded-2xl px-4 py-2 font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
 					onclick={handleStartListening}
+					style="background: rgb(135, 117, 218);"
 					onpointerdown={(e) => e.preventDefault()}
 					>🚀 Listen to me
 				</button>
