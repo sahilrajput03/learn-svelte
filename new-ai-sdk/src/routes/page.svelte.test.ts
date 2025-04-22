@@ -10,8 +10,8 @@ describe('/+page.svelte', () => {
 	});
 
 	// Test by sahil
-	test('should contain text "new-ai-sdk"', () => {
+	test('should contain text "New AI SDK"', () => {
 		render(Page);
-		expect(screen.getByText('new-ai-sdk')).toBeInTheDocument();
+		expect(screen.getByText('New AI SDK')).toBeInTheDocument();
 	});
 });
