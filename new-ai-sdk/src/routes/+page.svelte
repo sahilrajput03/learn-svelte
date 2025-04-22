@@ -11,8 +11,16 @@
 	// Important notes about using `ai-sdk/svelte` -  How does @ai-sdk/svelte differ from @ai-sdk/react? - https://sdk.vercel.ai/docs/getting-started/svelte#how-does-ai-sdksvelte-differ-from-ai-sdkreact
 
 	const chat = new Chat({
+		// initialMessages: [
+		// 	{
+		// 		id: '7f2ab8de-9160-4e6c-bea2-be0516a70793',
+		// 		role: 'user',
+		// 		content: 'Hi there.'
+		// 	}
+		// ],
+		initialInput: 'Hi',
 		// initialInput: 'What is weather in Chandigarh, India?', // For testing tool call
-		initialInput: 'Set a reminder at 12 am to buy Choco Latte Coffee', // For testing tool call
+		// initialInput: 'Set a reminder at 12 am to buy Choco Latte Coffee', // For testing tool call
 		// initialInput: 'Set a reminder in 1 mins to buy Choco Latte Coffee at 1:23am.', // For testing tool call
 		// initialInput: 'Give me a 250 words story please.', // For testing tool call
 		maxSteps: 10
@@ -147,12 +155,17 @@
 		>
 			<!-- I'm hiding the toolCalls messages because they have content as empty string. -->
 			{#each chat.messages as message, messageIndex (messageIndex)}
-				<div transition:fade class={`${message.role === 'user' && 'text-right'}`}>
+				<div transition:fade>
 					<!-- <span class="text-sm font-bold underline">{message.role.toUpperCase()}:</span> -->
 					<!-- message -->
 					{#each message.parts as part, partIndex (partIndex)}
 						{#if part.type === 'text'}
-							<div>{part.text}</div>
+							<div
+								class={`mb-[7px] w-fit rounded-[15px] ${message.role === 'user' ? 'rounded-br-xs' : 'rounded-bl-xs'} px-[8px] pt-[5px] pb-[6px] text-white ${message.role === 'user' && 'ml-auto'}`}
+								style="background: rgb(135, 117, 218);"
+							>
+								{part.text}
+							</div>
 							<!-- {:else if part.type === 'tool-invocation'}
 							<pre>{JSON.stringify(part.toolInvocation, null, 2)}</pre> -->
 						{/if}
