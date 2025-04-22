@@ -49,9 +49,5 @@
 	"dependencies": {
 		"@ai-sdk/groq": "^1.2.8",
 		"axios": "^1.8.4"
-	},
-	"optionalDependencies": {
-		"@tailwindcss/oxide-linux-x64-gnu": "^4.0.1",
-		"lightningcss-linux-x64-gnu": "^1.29.1"
 	}
 }
