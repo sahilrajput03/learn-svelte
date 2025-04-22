@@ -149,6 +149,14 @@
 
 <main>
 	<!-- <div class="h-[200vh]">i have height of 200px</div> -->
+	<div
+		class="mt-[50px] bg-yellow-200 py-10 text-center font-bold text-red-500 underline underline-offset-4"
+	>
+		(22 April 2025) NOTE FROM SAHIL : Prefer using your new svelte project -
+		`learn-svelte/new-ai-sdk` please because as it fixes the dual speaking issue on any tool call
+		execution and it makes use of runes feature of svelte so you don't need to write code in
+		svelte's legacy code.
+	</div>
 
 	<div bind:this={chatDiv} class="flex flex-col justify-end" style={`height: ${chatDivHeight}px;`}>
 		<!-- Note: Setting `overflow-y-auto` on above div doesn't work so I'm setting this on below div instead. -->
