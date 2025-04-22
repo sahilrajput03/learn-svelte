@@ -49,5 +49,8 @@
 	"dependencies": {
 		"@ai-sdk/groq": "^1.2.8",
 		"axios": "^1.8.4"
+	},
+	"optionalDependencies": {
+		"lightningcss.android-arm64.node": "^1.29.3-alpha.2"
 	}
 }
