@@ -135,7 +135,7 @@
 		}
 	}
 
-	let showPendingTodos = $state(true);
+	let showPendingTodos = $state(false);
 
 	const negativeHorizontalMargins = `margin: 0px -20px;`;
 </script>
@@ -264,12 +264,10 @@
 				TODO:
 				<ol class="ml-4 list-decimal">
 					<li>
-						<strong>TODO: Install this new app to be started on android-termux. </strong>
-					</li>
-					<li>
 						<strong
 							>TODO: Make enter key to `chat.submitHandler` on desktop and enter key as new line in
-							mobile phones as it happens in TWITTER WEB UI & TELEGRAM APP.
+							mobile phones as it happens in TWITTER WEB UI & TELEGRAM APP. For now mobile `Enter`
+							key act as sending message.
 						</strong>
 					</li>
 					<li><u>Reminder Tips:</u> Set a reminder in 5 mins to go meet Alice.</li>
