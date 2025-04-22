@@ -40,7 +40,7 @@
 
 	let isBotSpeaking = $state(false);
 	const speak = () => {
-		return; // ! TEMPORARLY STOPPING FOR TESTING...
+		// return; // TEMPORARLY STOPPING FOR TESTING TO PREVENT ABUSE OF GOOGLE TTS LEADING TO BAN OF MY IP TEMPORARILY.
 		isBotSpeaking = true;
 		console.log('✅ Calling speak function..');
 		// return; // & For Debugging
@@ -165,8 +165,10 @@
 						{#if part.type === 'text'}
 							<!-- Note: We give max-wdith 90% on mobiles and 70% on desktop view (md=768px). -->
 							<div
-								class={`mb-[7px] w-fit max-w-[90%] rounded-[15px] md:max-w-[70%] ${message.role === 'user' ? 'rounded-br-xs' : 'rounded-bl-xs'} px-[8px] pt-[5px] pb-[6px] text-white ${message.role === 'user' && 'ml-auto'}`}
-								style="background: rgb(135, 117, 218);"
+								class={`mb-[7px] w-fit max-w-[90%] rounded-[15px] px-[8px] pt-[5px] pb-[6px] md:max-w-[70%] ${message.role === 'user' ? 'ml-auto rounded-br-xs text-white' : 'rounded-bl-xs text-black'}`}
+								style={`background: ${
+									message.role === 'user' ? 'rgb(135, 117, 218)' : 'rgb(239, 243, 244)'
+								};`}
 							>
 								{part.text}
 							</div>
