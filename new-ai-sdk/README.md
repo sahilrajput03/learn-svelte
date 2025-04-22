@@ -9,3 +9,5 @@ Upstream of lightningcss: [Click here](https://github.com/parcel-bundler/lightni
 
 - On macos I ran: `npm install lightningcss.android-arm64.node --save-optional`
 - (optionally, no need though) On termux: I install dependency `npm install --save-dev lightningcss.android-arm64.node`.
+
+Thanks.
