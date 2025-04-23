@@ -287,7 +287,7 @@
 				TODO:
 				<ol class="ml-4 list-decimal">
 					<li class="font-bold">
-						Make the reminder a looping thing now (loops over 2 mins). URGENT.
+						Make the reminder a looping thing now (loops over 10 mins and not 1 min). URGENT.
 					</li>
 					<li class="font-bold">
 						Make a popupable view where you can see your reminders to confirm their timings and also
