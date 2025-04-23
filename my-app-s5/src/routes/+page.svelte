@@ -596,13 +596,13 @@
 			name: 'Grid1',
 			component: Grid1,
 			svelteTutorialLink: ''
-		},
-		{
-			id: '023ac469-234d-4522-b9a2-70cd1e24c621',
-			name: 'Grid2',
-			component: Grid1,
-			svelteTutorialLink: ''
 		}
+		// {
+		// 	id: '023ac469-234d-4522-b9a2-70cd1e24c621',
+		// 	name: 'Grid2',
+		// 	component: Grid1,
+		// 	svelteTutorialLink: ''
+		// }
 	]);
 
 	// console.log('here??', Math.random()); // This log (random number) is different on server log and client side log.

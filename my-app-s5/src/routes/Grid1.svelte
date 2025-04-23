@@ -43,6 +43,18 @@ grid 1
 
 		/* LEARN: Using mix of px and fr units */
 		/* grid-template-rows: repeat(4, 12.5px) 1fr; */
+
+		/* LEARN: Useful to define the flow of placing items in grid (default value `grid-auto-flow: row`) */
+		/* grid-auto-flow: column; */
+
+		/* ✅ Useful when using implicit grid tracks */
+		/* 		1. ⭐️ Columns added additional to those which are specified by `grid-template-columns`  are implicit columns. */
+		/* 		2. ⭐ ️If you haven't used `grid-template-columns` then all columns are implicit columns. */
+		/* 		From ChatGPT: https://chatgpt.com/c/6808fd1c-e0ec-8007-b827-2ff13b3dec85 */
+		/* grid-auto-columns: 50px; */
+
+		/* Same goes for `grid-auto-rows` */
+		/* grid-auto-rows: 20px; */
 	}
 	.child {
 		border: 1px solid orange;
