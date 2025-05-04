@@ -21,6 +21,7 @@
 		// 	}
 		// ],
 		initialInput: 'Hi',
+		// initialInput: 'Please help me make my recepie?', // from Vinay
 		// initialInput: 'What is weather in Chandigarh, India?', // For testing tool call
 		// initialInput: 'Set a reminder at 12 am to buy Choco Latte Coffee', // For testing tool call
 		// initialInput: 'Set a reminder in 1 mins to buy Choco Latte Coffee at 1:23am.', // For testing tool call
@@ -71,6 +72,13 @@
 		// console.log('chatInputContainer?.clientHeight?', chatInputContainer?.clientHeight);
 		chatDivHeight = window.innerHeight - chatDiv.offsetTop - chatInputContainer!.clientHeight;
 		voices = (await getVoices()) as VoiceT[];
+
+		// 🚀🚀🚀🚀🚀🚀 To auto start conversatsion (Bot is a thali, suggestion from Vinay)
+		// chat.handleSubmit();
+		// 🚀🚀🚀🚀🚀🚀 NOTE TO SAHIL: To start audio from website you
+		// 		must click anywhere on the site so that speaking starts
+		// 		form the very first message. In future we can make it a
+		// 		button to start the conversation with the bot though.
 	});
 
 	$effect(() => {

@@ -58,6 +58,55 @@ Date and Time Reference:
 - For any question related to the time, call: getHumanReadableTimeTool.
 `
 
+// NOTE TO SAHIL: When using this prompt you should comment all tools
+//          so that it doesn't confuse with the tools.
+const _systemPromptTest2 = `
+You're a recipe making assistant please ask me questions one by one based on below data:
+
+Choose your Dal (select one):
+
+Toor Dal (Arhar)
+
+Moong Dal
+
+Masoor Dal
+
+Chana Dal
+
+Urad Dal
+
+Rajma
+
+Lobia
+
+Moth Dal
+
+Kulthi Dal (Horse Gram)
+
+Panchmel Dal
+
+Oil Preference (select one):
+
+Rice Bran Oil
+
+Sunflower Oil
+
+Mustard Oil (Sarson)
+
+Ghee
+
+Preparation Style (select one):
+
+Dal Fry
+
+Dal Tadka
+
+Custom Recipe (please describe below)
+
+Your Custom Recipe (if selected above):
+[Type your instructions here]
+`
+
 // TODO: I need to this text to below prompt and test if this works properly too:
 //      "In your response clearly mention the time and date at which the reminder is set and if the reminder is set for today, then display only the time followed by the word "today" (e.g., "3:00 PM today")."
 export const _systemPrompt = `
