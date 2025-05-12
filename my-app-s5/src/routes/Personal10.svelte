@@ -42,16 +42,17 @@
 	// const mp4FileUrl =
 	// 	'https://www.youtube.com/watch?v=DKj5m9cSMZs&list=PLBfwD_NnDB3rgyp4ZmGtHDPNkf78o-shP';
 
-	// By getting embed code from youtube
-	// <iframe width="919" height="517" src="" title="Nadiyon Paar (Let the Music Play) – Roohi | Janhvi | Sachin-Jigar | Rashmeet, Shamur, IP Singh" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
 	// Stock video from plyr.js
 	const mp4FileUrl =
 		'https://www.youtube.com/embed/bTqVqk7FSmY?origin=https://plyr.io&iv_load_policy=3&modestbranding=1&playsinline=1&showinfo=0&rel=0&enablejsapi=1';
 
 	// Direct video link from youtube from url bar
+	// const mp4FileUrl2 =
+	// 	'https://www.youtube.com/watch?v=5h0Upn8RdGo&list=PLBfwD_NnDB3rgyp4ZmGtHDPNkf78o-shP&index=3';
+
+	// By getting embed code from youtube above (maahi ve video)
 	const mp4FileUrl2 =
-		'https://www.youtube.com/watch?v=5h0Upn8RdGo&list=PLBfwD_NnDB3rgyp4ZmGtHDPNkf78o-shP&index=3';
+		'https://www.youtube.com/embed/5h0Upn8RdGo?list=PLBfwD_NnDB3rgyp4ZmGtHDPNkf78o-shP';
 
 	// Direct video link from youtube from url bar
 	const mp4FileUrl3 =
