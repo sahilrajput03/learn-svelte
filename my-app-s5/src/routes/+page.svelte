@@ -93,6 +93,7 @@
 	import Flexbox2 from './Flexbox2.svelte';
 	import Grid1 from './Grid1.svelte';
 	import Personal10 from './Personal10.svelte';
+	import Personal11 from './Personal11.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -565,6 +566,12 @@
 			id: '8016167b-b219-4a8a-84b6-209a23aae7ca',
 			name: 'Personal10 - Plyr.js Video Player (youtube embed)',
 			component: Personal10,
+			svelteTutorialLink: ''
+		},
+		{
+			id: '454bcfd5-56a1-4977-aca6-efc1fe71e07d',
+			name: 'Personal11 - YouTube embed player with auto-play',
+			component: Personal11,
 			svelteTutorialLink: ''
 		},
 		{
