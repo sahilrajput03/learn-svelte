@@ -10,6 +10,11 @@
 
 <h1 class="text-2xl font-bold">Vanilla Youtube Embed with autoplay</h1>
 
+<div class="italic text-red-500 underline">
+	Note: You must disable your adblocker in chrome desktop mode so that video can play otherwise
+	video doesn't show up in domains like <span class="font-bold">sveltev5.vercel.app</span>
+</div>
+
 <!-- This code is fetched by right clicking on youtube video and clicking on 'Copy embed code'-->
 <iframe
 	width="100%"
