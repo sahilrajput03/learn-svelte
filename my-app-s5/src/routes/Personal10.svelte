@@ -6,6 +6,7 @@
 
 	let videoRef: HTMLVideoElement;
 	let player;
+	let player2;
 
 	// Learn: I am using cdn link to run Plyr (check app.html to know why?)
 	// Plyr.js Docs/Github - https://github.com/sampotts/plyr
@@ -22,7 +23,7 @@
 			});
 
 			// for player2 (for testing)
-			let player2 = new Plyr('#player2');
+			player2 = new Plyr('#player2');
 			player2.muted = true; // * NOTE: You must set `muted = true` if you need to autoplay on start
 			// For autoplay its necessary to play video inside 'ready' event for a youtube video (src: https://github.com/sampotts/plyr/issues/1185#issuecomment-433681263)
 			player2.on('ready', () => {
@@ -33,6 +34,7 @@
 	// Not necessary though
 	onDestroy(() => {
 		if (player) player.destroy();
+		if (player2) player2.destroy();
 	});
 	// const mp4FileUrl = 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4';
 
@@ -47,9 +49,9 @@
 	const mp4FileUrl =
 		'https://www.youtube.com/embed/bTqVqk7FSmY?origin=https://plyr.io&iv_load_policy=3&modestbranding=1&playsinline=1&showinfo=0&rel=0&enablejsapi=1';
 
-	// Getting embed link from youtube (from above embed code)
+	// Direct video link from youtube from url bar
 	const mp4FileUrl2 =
-		'https://www.youtube.com/embed/DKj5m9cSMZs?list=PLBfwD_NnDB3rgyp4ZmGtHDPNkf78o-shP';
+		'https://www.youtube.com/watch?v=5h0Upn8RdGo&list=PLBfwD_NnDB3rgyp4ZmGtHDPNkf78o-shP&index=3';
 
 	// Direct video link from youtube from url bar
 	const mp4FileUrl3 =
@@ -76,7 +78,7 @@
 		></iframe>
 	</div>
 
-	<div id="player2">
+	<!-- <div id="player2">
 		<iframe
 			title="YouTube video player"
 			width="100%"
@@ -85,7 +87,7 @@
 			allowtransparency
 			allow="autoplay"
 		></iframe>
-	</div>
+	</div> -->
 </div>
 
 <style>
