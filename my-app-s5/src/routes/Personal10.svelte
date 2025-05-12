@@ -17,18 +17,20 @@
 		if (browser) {
 			player = new Plyr('#player');
 			player.muted = true; // * NOTE: You must set `muted = true` if you need to autoplay on start
+			player.loop = true;
 			// For autoplay its necessary to play video inside 'ready' event for a youtube video (src: https://github.com/sampotts/plyr/issues/1185#issuecomment-433681263)
 			player.on('ready', () => {
 				player.play();
 			});
 
 			// for player2 (for testing)
-			player2 = new Plyr('#player2');
-			player2.muted = true; // * NOTE: You must set `muted = true` if you need to autoplay on start
+			// player2 = new Plyr('#player2');
+			// player2.muted = true; // * NOTE: You must set `muted = true` if you need to autoplay on start
+			// player.loop = true;
 			// For autoplay its necessary to play video inside 'ready' event for a youtube video (src: https://github.com/sampotts/plyr/issues/1185#issuecomment-433681263)
-			player2.on('ready', () => {
-				player2.play();
-			});
+			// player2.on('ready', () => {
+			// 	player2.play();
+			// });
 		}
 	});
 	// Not necessary though
@@ -64,6 +66,11 @@
 <div>
 	Note: You must not keep video element outside because it causes some hard to find bug for me.
 	(Time spend to find this 2 hours)
+</div>
+
+<div class="italic text-red-500 underline">
+	Note: You must disable your adblocker in chrome desktop mode so that video can play otherwise
+	video doesn't show up in domains like <span class="font-bold">sveltev5.vercel.app</span>
 </div>
 
 <!-- We can give class w-[300px] to set size on video. -->
