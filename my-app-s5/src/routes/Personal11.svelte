@@ -1,10 +1,17 @@
 <script lang="ts">
-	let autoplayPrefix = '?autoplay=1&mute=1';
+	// URL from Chrome desktop addressbar: https://www.youtube.com/watch?v=VIDEO_ID
+	// URL from right-click copying: https://youtu.be/VIDEO_ID
+	// URL from share button on youtube site (Chrome Desktop): https://youtu.be/VIDEO_ID?si=oH6ZKZ7ezfv14hMd (si is probably sharing id or some recommendation suggestion id probabay (ChatGPT))
+
+	let autoplaySuffix = '?autoplay=1&mute=1';
 
 	// Fetched by right clicking on youtube video and clicking on 'Copy embed code' then getting the "src" from the <iframe ../> code.
 	let youtubeEmbedUrl1 = 'https://www.youtube.com/embed/2f8kQSfSFvI';
 
-	let urlForAutoPlay = `${youtubeEmbedUrl1}${autoplayPrefix}`;
+	// For looping youtube embed video we need to set both `loop` and `playlist options like below`: (src: https://stackoverflow.com/a/13042891)
+	let loopVideoSuffix = '&loop=1&playlist=2f8kQSfSFvI'; // ! NOTE: playlist id is same as video id
+
+	let urlForAutoPlay = `${youtubeEmbedUrl1}${autoplaySuffix}${loopVideoSuffix}`;
 	// console.log('urlForAutoPlay?', urlForAutoPlay);
 </script>
 
