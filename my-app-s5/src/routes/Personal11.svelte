@@ -15,7 +15,7 @@
 	// console.log('urlForAutoPlay?', urlForAutoPlay);
 </script>
 
-<h1 class="text-2xl font-bold">Vanilla Youtube Embed with autoplay and loop</h1>
+<h1 class="text-2xl font-bold">Vanilla Youtube Embed with autoplay and loop ✅</h1>
 
 <div class="italic text-red-500 underline">
 	Note: You must disable your adblocker in chrome desktop mode so that video can play otherwise
