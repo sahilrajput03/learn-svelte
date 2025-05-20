@@ -1,5 +1,9 @@
 # README
 
+# TODO:
+
+**Test if capacitor app can handle audio playing on notificaiton hanlding.** as you mentioned in todo of [this capacitor notes](https://github.com/sahilrajput03/sahilrajput03/blob/main/learn-capacitor.md).
+
 # Fix lighting css issue when running `npm run dev` on android-termux because tailwind 4 uses lightningcss
 
 - Src: [Click here](https://github.com/tailwindlabs/tailwindcss/discussions/15999)
