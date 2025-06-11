@@ -1,4 +1,4 @@
-# Learn Svelte (v5)
+# ❤️Learn Svelte (v5) 
 
 _Note: On, 11 June 2025 - I moved notes from separte `Readme.svletekit.md` file and `Readme.md` (of my svelte 4 project) to this file for easy reference of sources and easy organizing of learning material._
 
