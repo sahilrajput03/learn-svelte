@@ -1,13 +1,50 @@
 # Learn Svelte (v5)
 
-Quick
-Deployed at:
+_Note: On, 11 June 2025 - I moved notes from separte `Readme.svletekit.md` file and `Readme.md` (of my svelte 4 project) to this file for easy reference of sources and easy organizing of learning material._
 
-- **[https://svelte.monktechnoworld.com/](https://svelte.monktechnoworld.com/)**
-- **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)**
+**Quick links:**
+
+- ❤️Deployment info
+  - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)**
   - _(The deployment is done using Vercel with `SvelteKit (v1)` preset)_
+- **Todo:** Testing in Svelte: [Click here](https://svelte.dev/docs/svelte/testing)
+- `svelte` on npm - [Click here](https://www.npmjs.com/package/svelte)
+- Article on Svelte 5 on frontend masters: [Click here](https://frontendmasters.com/blog/introducing-svelte-5/)
+- **Todo:** Introducing runes: [Click here](https://svelte.dev/blog/runes) (20 Sep, 2023)
+- Popular Svelte Question on Stackoverflow (src):
+  - How can I pass parameters to on:click in Svelte?: [Click here](https://stackoverflow.com/a/61025286)
+- Tutorial by FireshipIo: [Click here](https://www.youtube.com/watch?v=043h4ugAj4c)
+  - Learn svelte by fireshipio: [Click here](https://youtu.be/043h4ugAj4c)
+- **Article - COMPANIES USING SVELTE:** [Click here](https://www.okupter.com/blog/companies-using-svelte) (#apps made with svelte, #created with svetle, #made using svelte)
+  - (Done) - Why Stack Overflow is embracing Svelte: [Click here](https://the-stack-overflow-podcast.simplecast.com/episodes/why-stack-overflow-is-embracing-svelte/transcript) (Or check my annotated pdf - [click here](./Why_Stack_Overflow_is_embracing_Svelte.pdf))
+  - Apps made with svelte in "this week in svelte" blog - [Click here](https://svelte.dev/blog/whats-new-in-svelte-september-2024#Community-Showcase-Apps-Sites-built-with-Svelte)
+- Svelte Extension: https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode
+- **2024's New article on Svelte on Linkedin: [Click here](https://www.linkedin.com/pulse/from-react-svelte-frontend-future-work-damon-vestervand-3hjsf/)**
+- Article - Vercel welcomes [Rich Harris - Reddit](https://www.reddit.com/r/nextjs/comments/qrpzaw/vercel_welcomes_rich_harris_creator_of_svelte/).
+- TO READ (Blog date: 6 Dec 2021): [https://thenewstack.io/vercel-and-svelte-a-perfect-match-for-web-developers/](https://thenewstack.io/vercel-and-svelte-a-perfect-match-for-web-developers/)
+- threlte: https://threlte.xyz/
+- **Awesome talk by Rich Harris**: [Click here](https://youtu.be/AdNJ3fydeao)
 
-_Note to Sahil: Some content is only covered in this readme or `README.sveltekit.md` readme for the purpose of easy demonstration._
+## +ves and -ves of svelte
+
+- **+ves of Svelte:**
+  - Linkedin Post: [Click here](https://www.linkedin.com/pulse/from-react-svelte-frontend-future-work-damon-vestervand-3hjsf/)
+  - **HackMd - SvelteJS: My ecosystem is bigger than yours: [Click here](https://hackmd.io/@roguegpu) ([Article reading by Primegan](https://www.youtube.com/watch?v=bh-e700IlmQ))**
+  - Svelte is more popular than Solidjs - The Difference you didn’t know existed between Solid.js and Svelte: [Click here](https://medium.com/@shariq.ahmed525/the-difference-you-didnt-know-existed-between-solid-js-and-svelte-7ad6591abc10)
+  - Works with Capacitor
+  - Has good testing support: [Click here](https://svelte.dev/docs/faq#how-do-i-test-svelte-apps)
+- **-ves:**
+  - ~~No comments allowed inside jsx or html. [Check this issue](https://github.com/sveltejs/rfcs/pull/43)~~
+  - ❤️ [Check this comment](https://github.com/sveltejs/rfcs/pull/43#issuecomment-798933140) for an alternate answer I follow.
+    - TLDR: Use `{...{/* comment */}}` which works because {...{}} is valid to pass.
+  - Google Search: Why svelte is not popular: [Click here](https://www.google.com/search?q=why+svelte+is+not+popular)
+  - _TODO: Nov 16, 2020_ - Why people aren’t switching to Svelte yet: [Click here](https://blog.logrocket.com/why-people-arent-switching-to-svelte-yet/)
+
+## Svelte in Embedded web
+
+<img src="https://user-images.githubusercontent.com/31458531/176374263-d4db4ac8-8d9d-48e8-a0e5-69373c27d113.png" width="500">
+<img src="https://user-images.githubusercontent.com/31458531/176374324-813f4850-7958-4a69-887d-139e68196272.png" width="500">
+<img src="https://user-images.githubusercontent.com/31458531/176375755-fed2ddc9-4d1e-4cd1-8062-54ccde3f7ed8.png" width="500">
 
 ## Learn: On upgrading all deps of `ai-dk` I get this error when I use example code from official docs of ai-sdk
 
