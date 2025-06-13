@@ -132,23 +132,21 @@ export const POST = (async ({ request }: RequestEvent) => {
 
     // ! Learn: GROQ doesn't perform well because they offer quantized models - https://www.reddit.com/r/LocalLLaMA/comments/1d6egfk/lets_discuss_about_groq_which_model_you_use_and/
     // & Using MCP with ai-sdk - https://ai-sdk.dev/cookbook/node/mcp-tools
-    let clientOne;
+    // let clientOne;
     // Initialize an MCP client to connect to a `stdio` MCP server:
-    const transport = new Experimental_StdioMCPTransport({
-        // command: 'node',
-        // args: ['src/stdio/dist/server.js'],
-        command: "/Users/apple/.nvm/versions/node/v22.13.0/bin/npx",
-        args: [
-            "-y",
-            "@modelcontextprotocol/server-filesystem",
-            "/Users/apple/Documents/test/mcp-filesystem-test1/p1",
-            // "/Users/apple/Documents/test/mcp-filesystem-test1/p2"
-        ]
-    });
-    clientOne = await experimental_createMCPClient({
-        transport,
-    });
-    const toolSetOne = await clientOne.tools(); // * Please uncomment the `...toolSetOne` in the list of tools attached to chat-completion to enable tool calls.
+    // const transport = new Experimental_StdioMCPTransport({
+    //     command: "/Users/apple/.nvm/versions/node/v22.13.0/bin/npx",
+    //     args: [
+    //         "-y",
+    //         "@modelcontextprotocol/server-filesystem",
+    //         "/Users/apple/Documents/test/mcp-filesystem-test1/p1",
+    //         // "/Users/apple/Documents/test/mcp-filesystem-test1/p2"
+    //     ]
+    // });
+    // clientOne = await experimental_createMCPClient({
+    //     transport,
+    // });
+    // const toolSetOne = await clientOne.tools(); // * Please uncomment the `...toolSetOne` in the list of tools attached to chat-completion to enable tool calls.
     // console.log("🚀 toolSetOne:", toolSetOne)
     // 
     // 💡 MCP: Alternatively, you can connect to a Server-Sent Events (SSE) MCP server:
