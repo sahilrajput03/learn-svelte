@@ -130,6 +130,7 @@ export const POST = (async ({ request }: RequestEvent) => {
     const { messages } = await request.json();
 
 
+    // ! Learn: GROQ doesn't perform well because they offer quantized models - https://www.reddit.com/r/LocalLLaMA/comments/1d6egfk/lets_discuss_about_groq_which_model_you_use_and/
     // & Using MCP with ai-sdk - https://ai-sdk.dev/cookbook/node/mcp-tools
     let clientOne;
     // Initialize an MCP client to connect to a `stdio` MCP server:
