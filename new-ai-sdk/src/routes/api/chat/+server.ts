@@ -130,7 +130,7 @@ export const POST = (async ({ request }: RequestEvent) => {
     const { messages } = await request.json();
 
 
-    // & Using MCP - https://ai-sdk.dev/cookbook/node/mcp-tools
+    // & Using MCP with ai-sdk - https://ai-sdk.dev/cookbook/node/mcp-tools
     let clientOne;
     // Initialize an MCP client to connect to a `stdio` MCP server:
     const transport = new Experimental_StdioMCPTransport({
