@@ -17,6 +17,10 @@ import { createGroq } from '@ai-sdk/groq';
 import type { RequestEvent, RequestHandler } from './$types';
 import { humanReadableTodayDayAndDate } from '$lib/time-utils';
 
+// MCP (https://ai-sdk.dev/cookbook/node/mcp-tools)
+import { experimental_createMCPClient, generateText } from 'ai';
+import { Experimental_StdioMCPTransport } from 'ai/mcp-stdio';
+
 // OPENAI
 const openai = createOpenAI({
     apiKey: env.OPEN_AI_API_KEY ?? '',
@@ -125,12 +129,43 @@ export const POST = (async ({ request }: RequestEvent) => {
     // console.log('POST: /ai-sdk')
     const { messages } = await request.json();
 
-    console.log("🚀 ~ POST ~ messages:", messages)
-    console.log(messages?.[1]?.toolInvocations)
+
+    // & Using MCP - https://ai-sdk.dev/cookbook/node/mcp-tools
+    let clientOne;
+    // Initialize an MCP client to connect to a `stdio` MCP server:
+    const transport = new Experimental_StdioMCPTransport({
+        // command: 'node',
+        // args: ['src/stdio/dist/server.js'],
+        command: "/Users/apple/.nvm/versions/node/v22.13.0/bin/npx",
+        args: [
+            "-y",
+            "@modelcontextprotocol/server-filesystem",
+            "/Users/apple/Documents/test/mcp-filesystem-test1/p1",
+            // "/Users/apple/Documents/test/mcp-filesystem-test1/p2"
+        ]
+    });
+    clientOne = await experimental_createMCPClient({
+        transport,
+    });
+    const toolSetOne = await clientOne.tools(); // * Please uncomment the `...toolSetOne` in the list of tools attached to chat-completion to enable tool calls.
+    // console.log("🚀 toolSetOne:", toolSetOne)
+    // 
+    // 💡 MCP: Alternatively, you can connect to a Server-Sent Events (SSE) MCP server:
+    // clientTwo = await experimental_createMCPClient({
+    //     transport: {
+    //         type: 'sse',
+    //         url: 'http://localhost:3000/sse',
+    //     },
+    // });
+
+    // console.log("🚀 ~ POST ~ messages:", messages)
+    console.log('messages?.[1]?.toolInvocations?', messages?.[1]?.toolInvocations)
     // Tool calls work with openai and groq (tested for gemma-2-9b-it) both very well.
     const result = streamText({
         // model: openai('gpt-4o-mini'), // & Using OpenAI
-        model: _groq('gemma2-9b-it'), // & Using Groq, Models: "llama-3.1-8b-instant", "gemma2-9b-it", "mixtral-8x7b-32768", etc
+        model: _groq('gemma2-9b-it'), // & Using Groq, Models: "llama-3.1-8b-instant", "gemma2-9b-it" ✅, "mixtral-8x7b-32768", "llama3-70b-8192" (bad for tool call) etc
+        // model: _groq('llama3-groq-8b-8192-tool-use-preview'), // ❌ (didn't work at all)
+        // model: _groq('llama3-groq-70b-8192-tool-use-preview'), // ❌ (didn't work at all)
         // model: groq('deepseek-r1-distill-qwen-32b'),
         // model: groq('deepseek-r1-distill-llama-70b'),
         system: _systemPrompt, // System instruction/prompt/message (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
@@ -139,12 +174,17 @@ export const POST = (async ({ request }: RequestEvent) => {
         //         vscode's cmd+click feature to work.
         // & Learn: Confirmed from Groq's Admin Logs that input tokens usage decreased from 1400 upto(1700) tokens for prompt "Hi" to 127 tokens for (prompt: Hi) when I had all three tools below vs. having them commented.
         tools: {
+            // 
             // weatherTool: weatherTool,
             // convertFarenheitToCelsius: convertFarenheitToCelsius,
+            // 
             createReminderTool: createReminderTool,
             getCurrentTimeForCreatingReminderTool: getCurrentTimeForCreatingReminderTool,
             getHumanReadableTimeTool: getHumanReadableTimeTool
-            // sendSmsTool: sendSmsTool // dummy function to send sms to anybody, present in file `./tools.ts` file
+            //// sendSmsTool: sendSmsTool // dummy function to send sms to anybody, present in file `./tools.ts` file
+            // 
+            // & MCP
+            // ...toolSetOne
         },
     });
 
@@ -155,6 +195,26 @@ export const POST = (async ({ request }: RequestEvent) => {
     // }
 
     return result.toDataStreamResponse();
+
+    // * [Tested] Calling `client.close` when streaming finishes to close MCP server (ChatGPT):
+    // const originalResponse = result.toDataStreamResponse();
+    // const { body, headers } = originalResponse;
+    // const stream = new ReadableStream({
+    //     async start(controller) {
+    //         const reader = body?.getReader();
+    //         try {
+    //             while (true) {
+    //                 const { done, value } = await reader!.read();
+    //                 if (done) break;
+    //                 controller.enqueue(value);
+    //             }
+    //         } finally {
+    //             controller.close();
+    //             await clientOne.close();
+    //         }
+    //     }
+    // });
+    // return new Response(stream, { headers });
 });
 
 
