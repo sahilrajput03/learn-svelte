@@ -31,7 +31,7 @@ export default defineConfig({
 		]
 	},
 	server: {
-		allowedHosts: ['mypot.in']
+		allowedHosts: ['mypot.in', 'ai.mypot.in']
 	},
 	// Necessary otherwise we get below message on terminal:
 	// 		7:28:29 PM [vite-plugin-svelte] src/routes/+layout.svelte:17:1 No scopable elements found in template. If you're using global styles in the style tag, you should move it into an external stylesheet file and import it in JS. See https://github.com/sveltejs/vite-plugin-svelte/blob/main/docs/faq.md#where-should-i-put-my-global-styles.
