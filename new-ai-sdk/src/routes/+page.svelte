@@ -195,7 +195,8 @@
 									message.role === 'user' ? 'rgb(135, 117, 218)' : 'rgb(239, 243, 244)'
 								};`}
 							>
-								{part.text}
+								<!-- I am using replace(..) so that new line character is rendered otehrwise all content is joined by single space which makes it look absurd. -->
+								{@html part.text.replace(/\n/g, '<br>')}
 							</div>
 							<!-- {:else if part.type === 'tool-invocation'}
 							<pre>{JSON.stringify(part.toolInvocation, null, 2)}</pre> -->
