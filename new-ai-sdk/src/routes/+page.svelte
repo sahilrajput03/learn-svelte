@@ -43,6 +43,12 @@
 	let deviceHeight = $state<number>();
 	let voices: VoiceT[] = [];
 
+	// 🎉We do sanitaion because cause google-speech speaks backquote-backquote-backquote and backquote respectively for each of these which sound bad.
+	function sanitizeTextForGoogleSpeech(text) {
+		// Remove unwanted characters: *, `, ~, etc.
+		return text.replace(/[*`~]/g, ' ');
+	}
+
 	let isBotSpeaking = $state(false);
 	const speak = () => {
 		// return; // TEMPORARLY STOPPING FOR TESTING TO PREVENT ABUSE OF GOOGLE TTS LEADING TO BAN OF MY IP TEMPORARILY.
@@ -51,7 +57,7 @@
 		// return; // & For Debugging
 		const messages = $state.snapshot(chat.messages);
 		const lastMessage = messages[messages.length - 1];
-		const speech = new SpeechSynthesisUtterance(lastMessage.content); // * Docs: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance
+		const speech = new SpeechSynthesisUtterance(sanitizeTextForGoogleSpeech(lastMessage.content)); // * Docs: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance
 		speech.voice = voices[192] as any; // comment this line to use default `voices[0]`
 		// 		FEMALE: 191 (treble), 192 (warm),
 		// 		MALE: 193 (warm),
