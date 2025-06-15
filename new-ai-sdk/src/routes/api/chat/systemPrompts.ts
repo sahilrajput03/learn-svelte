@@ -1,4 +1,10 @@
 import { humanReadableTodayDayAndDate } from "$lib/time-utils"
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+// import fs from 'fs'
+import { readFile } from 'fs/promises';
+import { directoryForMcp, isAppleSystem } from "$lib/config";
+
 
 // ! Learn: Below prompt didn't work well in testing because it caused infinite looping while trying to create reminders) [Src: https://chatgpt.com/c/67f4b78c-29dc-8007-aace-fc81b8c46faf]
 export const _systemPromptTest1 = `
@@ -83,3 +89,11 @@ For any questions related to date, remember todays date is ${humanReadableTodayD
 For any questions related to time you can call getHumanReadableTimeTool to get current time.
 `
 
+export const readPromptFromFileAtxt = async () => {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = dirname(__filename);
+    const filePath = join(__dirname, 'mcpPrompt.txt');
+    const data = await readFile(filePath, 'utf8');
+    const updated = data.replace(/\/abc\//g, directoryForMcp)
+    return updated
+}

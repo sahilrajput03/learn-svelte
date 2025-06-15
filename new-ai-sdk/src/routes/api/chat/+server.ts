@@ -24,6 +24,8 @@ import { createGoogleGenerativeAI } from '@ai-sdk/google';
 // MCP (https://ai-sdk.dev/cookbook/node/mcp-tools)
 import { experimental_createMCPClient, generateText } from 'ai';
 import { Experimental_StdioMCPTransport } from 'ai/mcp-stdio';
+import { readPromptFromFileAtxt } from './systemPrompts';
+import { directoryForMcp, isAppleSystem, mcpDirectoryOnAppleSystem, mcpDirectoryOnLinodeSystem } from '$lib/config';
 
 // * Comment on models (via ChatGPT):
 // - llama-3.1-8b-instant: Good balance of performance and speed.
@@ -77,6 +79,9 @@ export const POST = (async ({ request }: RequestEvent) => {
 
     // & Using MCP with ai-sdk - https://ai-sdk.dev/cookbook/node/mcp-tools
     const toolSetOne = await getToolSetFromMcpServers()
+    const systemPromptForFileSystemMcpServer = await readPromptFromFileAtxt()
+    // console.log("🚀 ~ POST ~ systemPromptForFileSystemMcpServer:", systemPromptForFileSystemMcpServer)
+    // console.log("🚀 ~ POST ~ systemPromptForFileSystemMcpServer:", systemPromptForFileSystemMcpServer)
 
     // console.log("🚀 ~ POST ~ messages:", messages)
     console.log('messages?.[1]?.toolInvocations?', messages?.[1]?.toolInvocations)
@@ -86,6 +91,7 @@ export const POST = (async ({ request }: RequestEvent) => {
         // model: openai('gpt-4o-mini'), // & Using OpenAI
         // model: _groq('gemma2-9b-it'), // & ✅ Using Groq, Models: "llama-3.1-8b-instant", "gemma2-9b-it" ✅, "mixtral-8x7b-32768", "llama3-70b-8192" (bad for tool call), ✅ 'deepseek-r1-distill-llama-70b', ✅'deepseek-r1-distill-qwen-32b', ❌ "llama3-groq-8b-8192-tool-use-preview", ❌ "llama3-groq-70b-8192-tool-use-preview"
         // system: _systemPrompt, // System instruction/prompt/message (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
+        system: systemPromptForFileSystemMcpServer,
         messages,
         // Learn: Having explicit definition of below keys helps
         //         vscode's cmd+click feature to work.
@@ -150,14 +156,13 @@ async function getToolSetFromMcpServers() {
 // Below function run command the following command on its own: npx -y @modelcontextprotocol/server-filesystem /Users/apple/Documents/test/mcp-filesystem-test1/p1
 async function connectMcpServerViaStdio() {
     // Initialize an MCP client to connect to a `stdio` MCP server:
-    const isAppleSystem = env.USER === 'apple'
 
     const transport = new Experimental_StdioMCPTransport({
         command: isAppleSystem ? "/Users/apple/.nvm/versions/node/v22.13.0/bin/npx" : "/home/user1/.nvm/versions/node/v22.13.0/bin/npx",
         args: [
             "-y",
             "@modelcontextprotocol/server-filesystem",
-            isAppleSystem ? "/Users/apple/Documents/test/mcp-filesystem-test1/p1" : "/home/user1/Documents/github_repos/prod-qr-solution-backend/source/.ignored/test-notes",
+            directoryForMcp,
             // "/Users/apple/Documents/test/mcp-filesystem-test1/p2"
         ]
     });
