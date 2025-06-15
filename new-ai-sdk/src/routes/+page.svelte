@@ -26,7 +26,11 @@
 		// initialInput: 'Set a reminder at 12 am to buy Choco Latte Coffee', // For testing tool call
 		// initialInput: 'Set a reminder in 1 mins to buy Choco Latte Coffee at 1:23am.', // For testing tool call
 		// initialInput: 'Give me a 250 words story please.', // For testing tool call
-		maxSteps: 10
+		maxSteps: 10,
+		// Learn: Check the comment in +server.ts file to know `body` key below:
+		body: {
+			text: 'hello sahil'
+		}
 	});
 
 	let chatDiv: HTMLDivElement;
