@@ -89,7 +89,8 @@ For any questions related to date, remember todays date is ${humanReadableTodayD
 For any questions related to time you can call getHumanReadableTimeTool to get current time.
 `
 
-// Src - https://claude.ai/chat/97883e3e-2015-40a6-b312-de34eae64536
+// Note: My current system prompt from this file is custom modified version shown by claude in above link (added more suggestions from second version in below claude chat).
+//      Src - https://claude.ai/chat/97883e3e-2015-40a6-b312-de34eae64536
 export const readPromptFromFileAtxt = async () => {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = dirname(__filename);
