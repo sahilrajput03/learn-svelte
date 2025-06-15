@@ -1,7 +1,9 @@
 import { axiosInstance } from "./tools";
 import { dumbSimpleReadableTime } from "$lib/time-utils";
+import { env } from '$env/dynamic/private';
 
-export const isTestEnvironment = process.env.NODE_ENV === 'test'
+export const isTestEnvironment = env.NODE_ENV === 'test'
+console.log("🚀 ~ isTestEnvironment:", isTestEnvironment)
 
 // Mocking Pitfalls in Vitest Docs - https://vitest.dev/guide/mocking.html#mocking-pitfalls
 
