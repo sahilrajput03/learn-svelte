@@ -46,7 +46,9 @@
 	// 🎉We do sanitaion because cause google-speech speaks backquote-backquote-backquote and backquote respectively for each of these which sound bad.
 	function sanitizeTextForGoogleSpeech(text) {
 		// Remove unwanted characters: *, `, ~, etc.
-		return text.replace(/[*`~]/g, ' ');
+		// 	For ` and ~ I replace with ' ' (space)
+		// 	For * I replace with '-' (dash) because when list of files are printed it should take a pause and with - it takes a pause whereas with space it doesn't take a pause and thus it sounds bad like it speaks all list of files as if it is a single sentence line.
+		return text.replace(/[`~]/g, ' ').replace(/[*]/g, '-');
 	}
 
 	let isBotSpeaking = $state(false);
