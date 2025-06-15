@@ -308,6 +308,10 @@
 			<div class="bg-yellow-100 px-3 py-1 text-xs text-red-700">
 				TODO:
 				<ol class="ml-4 list-decimal">
+					<li>
+						❤️AI agent switching on page launch and cache the choice in local storage and also give
+						an floating button option to switch the agent.
+					</li>
 					<li class="font-bold">
 						Make the reminder a looping thing now (loops over 10 mins and not 1 min). URGENT.
 					</li>
