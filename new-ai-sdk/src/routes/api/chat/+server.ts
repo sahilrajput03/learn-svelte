@@ -1,7 +1,8 @@
 // 😇😇 Source (DONE): https://sdk.vercel.ai/docs/getting-started/svelte
 
-// TODO: https://sdk.vercel.ai/docs/foundations/prompts
-// TODO: Read ai-sdk 4.0: https://vercel.com/blog/ai-sdk-4-0#new-xai-grok-provider
+// Todo ❤️: Fix the terminal's warning - https://github.com/sveltejs/kit/issues/13743#issuecomment-2918248837
+// Todo: https://sdk.vercel.ai/docs/foundations/prompts
+// Todo: Read ai-sdk 4.0: https://vercel.com/blog/ai-sdk-4-0#new-xai-grok-provider
 
 // Frontend in file: src/routes/ai-sdk/+page.svelte
 // Visit chat assitant at: http://localhost:5173/ai-sdk
