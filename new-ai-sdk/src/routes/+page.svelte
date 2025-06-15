@@ -196,7 +196,8 @@
 								};`}
 							>
 								<!-- I am using replace(..) so that new line character is rendered otehrwise all content is joined by single space which makes it look absurd. -->
-								{@html part.text.replace(/\n/g, '<br>')}
+								<!-- In the second replace I remove ``` because it gets around the content of file when its content is printed in browser. -->
+								{@html part.text.replace(/\n/g, '<br>').replace(/```/g, '')}
 							</div>
 							<!-- {:else if part.type === 'tool-invocation'}
 							<pre>{JSON.stringify(part.toolInvocation, null, 2)}</pre> -->
