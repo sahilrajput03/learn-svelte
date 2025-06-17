@@ -309,6 +309,11 @@
 				TODO:
 				<ol class="ml-4 list-decimal">
 					<li>
+						Show three indicator when backend had for any error else show the jumping three dots
+						like WhatsApp does even the response is in wait.
+					</li>
+
+					<li>
 						❤️AI agent switching on page launch and cache the choice in local storage and also give
 						an floating button option to switch the agent.
 					</li>
