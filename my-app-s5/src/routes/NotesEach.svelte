@@ -7,13 +7,19 @@
 
 <hr class="my-3" />
 
-<h1 class="pb-3 text-4xl">Notes: Syntax of <code>each blocks</code></h1>
+<div class="mb-8 rounded-lg border border-yellow-500 bg-yellow-100 p-3">
+	<div class="pb-1 font-bold text-purple-500 underline">
+		<code>#each</code> Syntax
+	</div>
 
-<a class="text-blue-500 underline" target="_blank" href="https://svelte.dev/docs/svelte/each"
-	>❤️ Svelte Docs - each</a
->
-<div>
-	<p><span class="text-purple-600">key syntax: </span> {keySyntax}</p>
-	<p><span class="text-purple-600">index syntax: </span>{indexSyntax}</p>
-	<p><span class="text-purple-600">key with index syntax: </span>{keyWithIndexSyntax}</p>
+	<div class="ms-5">
+		<a class=" text-blue-500 underline" target="_blank" href="https://svelte.dev/docs/svelte/each"
+			>❤️ Docs - Svelte - #each</a
+		>
+		<ol class="ms-7 list-decimal">
+			<li><span class="text-purple-600">key syntax: </span> {keySyntax}</li>
+			<li><span class="text-purple-600">index syntax: </span>{indexSyntax}</li>
+			<li><span class="text-purple-600">key with index syntax: </span>{keyWithIndexSyntax}</li>
+		</ol>
+	</div>
 </div>
