@@ -4,10 +4,6 @@
 		offers: ['offer 1', 'offer 2'] as string[]
 	});
 	$inspect(form.offers);
-
-	function addOffer() {
-		form.offers.push('');
-	}
 </script>
 
 <pre>{JSON.stringify(form, null, 2)}</pre>
@@ -21,6 +17,6 @@
 		<button class="ms-[5px]" onclick={() => form.offers.splice(i, 1)}>❌</button>
 	</div>
 {/each}
-<button class="rounded-md border border-black px-3 py-1" onclick={addOffer}
+<button class="rounded-md border border-black px-3 py-1" onclick={() => form.offers.push('')}
 	>+ Add {form.offers.length === 0 ? '' : 'another'} offer</button
 >
