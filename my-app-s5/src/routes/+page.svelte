@@ -94,6 +94,7 @@
 	import Grid1 from './Grid1.svelte';
 	import Personal10 from './Personal10.svelte';
 	import Personal11 from './Personal11.svelte';
+	import Personal12 from './Personal12.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -572,6 +573,12 @@
 			id: '454bcfd5-56a1-4977-aca6-efc1fe71e07d',
 			name: 'Personal11 - YouTube embed player with auto-play',
 			component: Personal11,
+			svelteTutorialLink: ''
+		},
+		{
+			id: 'f444ef6e-de55-4899-bc6f-10ff0e563675',
+			name: 'Personal12 - ❤️ Dynamic <input> tags on button click',
+			component: Personal12,
 			svelteTutorialLink: ''
 		},
 		{
