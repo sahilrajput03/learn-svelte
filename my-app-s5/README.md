@@ -1,4 +1,4 @@
-# ❤️Learn Svelte (v5) 
+# ❤️Learn Svelte (v5)
 
 _Note: On, 11 June 2025 - I moved notes from separte `Readme.svletekit.md` file and `Readme.md` (of my svelte 4 project) to this file for easy reference of sources and easy organizing of learning material._
 
@@ -7,6 +7,7 @@ _Note: On, 11 June 2025 - I moved notes from separte `Readme.svletekit.md` file 
 - ❤️Deployment info
   - **[https://sveltev5.vercel.app](https://sveltev5.vercel.app)**
   - _(The deployment is done using Vercel with `SvelteKit (v1)` preset)_
+- 😇 Learn Svelte - Google Doc Notes: [Click here](https://docs.google.com/document/d/1-SJ9T92-cCDqM9SLnRg0U_R7NICabi2KXLYduUfvt4E/edit?tab=t.0)
 - **Todo:** Testing in Svelte: [Click here](https://svelte.dev/docs/svelte/testing)
 - `svelte` on npm - [Click here](https://www.npmjs.com/package/svelte)
 - Article on Svelte 5 on frontend masters: [Click here](https://frontendmasters.com/blog/introducing-svelte-5/)
