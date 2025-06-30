@@ -42,6 +42,17 @@ _Note: On, 11 June 2025 - I moved notes from separte `Readme.svletekit.md` file 
   - Google Search: Why svelte is not popular: [Click here](https://www.google.com/search?q=why+svelte+is+not+popular)
   - _TODO: Nov 16, 2020_ - Why people aren’t switching to Svelte yet: [Click here](https://blog.logrocket.com/why-people-arent-switching-to-svelte-yet/)
 
+## Go back to the previous page using SvelteKit
+
+Source:
+
+- [Github Issue](https://github.com/sveltejs/kit/discussions/10335)
+- [Why not use `goto` from `$app/navigation`? (ChatGPT)](https://chatgpt.com/c/6862c3c8-2454-8007-a482-7d5123c5462a)
+
+```js
+window.history.back();
+```
+
 ## Svelte in Embedded web
 
 <img src="https://user-images.githubusercontent.com/31458531/176374263-d4db4ac8-8d9d-48e8-a0e5-69373c27d113.png" width="500">
