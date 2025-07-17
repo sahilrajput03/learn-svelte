@@ -95,6 +95,7 @@
 	import Personal10 from './Personal10.svelte';
 	import Personal11 from './Personal11.svelte';
 	import Personal12 from './Personal12.svelte';
+	import Personal13 from './Personal13.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -579,6 +580,12 @@
 			id: 'f444ef6e-de55-4899-bc6f-10ff0e563675',
 			name: 'Personal12 - ❤️ Dynamic <input> tags on button click',
 			component: Personal12,
+			svelteTutorialLink: ''
+		},
+		{
+			id: 'Pc79ee606-0497-439e-bb8d-84be15428690',
+			name: 'Personal13 - ❤️ Grab Video (http://whatwebcando.today)',
+			component: Personal13,
 			svelteTutorialLink: ''
 		},
 		{
