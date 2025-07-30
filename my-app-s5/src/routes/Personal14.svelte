@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { getTime, speak } from '$lib/speak';
+
 	let audioInterval: NodeJS.Timeout | null = $state(null);
 	let audioIntervalLengthSeconds = $state(3);
 
