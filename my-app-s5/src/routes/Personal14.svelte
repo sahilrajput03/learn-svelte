@@ -52,6 +52,11 @@
 		3. Learn (Failed to install <code class="bg-black px-1 text-white">tts</code> package on linode on
 		30 July 2025) for the intention of making coqui API to produce speech via your mypot linode server.
 	</div>
+
+	<div class="mt-1 text-red-500">
+		4. Mic also closes if screen is locked in android or if Chrome is minimised or switched to some
+		other app. [Tested via ai.mypot.in]
+	</div>
 </div>
 
 <style>
