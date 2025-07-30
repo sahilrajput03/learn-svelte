@@ -31,7 +31,7 @@
 			return;
 		}
 		var constraints = {
-			// Opens front camera by default [Tested in PocoM4]
+			// * Opens front camera by default [Tested in PocoM4]
 			// video: true
 
 			// Prefers back camera, falls back to front [Tested in PocoM4]

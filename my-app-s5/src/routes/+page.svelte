@@ -96,6 +96,7 @@
 	import Personal11 from './Personal11.svelte';
 	import Personal12 from './Personal12.svelte';
 	import Personal13 from './Personal13.svelte';
+	import Personal14 from './Personal14.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -586,6 +587,12 @@
 			id: 'Pc79ee606-0497-439e-bb8d-84be15428690',
 			name: 'Personal13 - ❤️ Grab Video (http://whatwebcando.today)',
 			component: Personal13,
+			svelteTutorialLink: ''
+		},
+		{
+			id: '62dc8903-8e4c-406c-987b-43b55068a011',
+			name: 'Personal14 - 🚀Tinger',
+			component: Personal14,
 			svelteTutorialLink: ''
 		},
 		{
