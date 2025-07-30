@@ -27,11 +27,11 @@
 
 <h1 class="mb-2 text-2xl font-bold">Tinger</h1>
 
-<span>Seconds</span>
+<span>Seconds:</span>
 
 <input type="tel" class="input-primary" bind:value={audioIntervalLengthSeconds} />
 
-<button onclick={startAudioInterval}>Tinger</button>
+<button class=" border-none bg-pink-400 text-white" onclick={startAudioInterval}>Tinger</button>
 
 <hr class="my-10" />
 
@@ -55,14 +55,13 @@
 <style>
 	input {
 		width: 100px;
-		text-align: center;
+		text-align: left;
 		border-radius: 1rem;
-		border-color: grey;
+		border-color: gray;
 		font-size: 0.875rem;
 	}
 	button {
 		width: 100px;
-		border: 1px solid grey;
 		border-radius: 20px;
 	}
 </style>
