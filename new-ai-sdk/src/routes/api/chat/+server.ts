@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // 😇😇 Source (DONE): https://sdk.vercel.ai/docs/getting-started/svelte
 
 // Todo ❤️: Fix the terminal's warning - https://github.com/sveltejs/kit/issues/13743#issuecomment-2918248837
@@ -25,7 +26,7 @@ import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { experimental_createMCPClient, generateText } from 'ai';
 import { Experimental_StdioMCPTransport } from 'ai/mcp-stdio';
 import { readPromptFromFileAtxt } from './systemPrompts';
-import { directoryForMcp, isAppleSystem, mcpDirectoryOnAppleSystem, mcpDirectoryOnLinodeSystem } from '$lib/config';
+import { DIRECTORY_FOR_MCP, isAppleSystem, mcpDirectoryOnAppleSystem, mcpDirectoryOnLinodeSystem } from '$lib/config';
 
 // * Comment on models (via ChatGPT):
 // - llama-3.1-8b-instant: Good balance of performance and speed.
@@ -147,7 +148,7 @@ async function getToolSetFromMcpServers() {
     return toolsSet1
 
     // const client2 = await connectToMcpServerViaSseEvents()
-    // const toolsSet2 = client2.tools()
+    // const toolsSet2 = await client2.tools()
     // return toolsSet2
 
     // return [...(toolsSet1 as any), ...(toolsSet2 as any)]
@@ -162,8 +163,8 @@ async function connectMcpServerViaStdio() {
         args: [
             "-y",
             "@modelcontextprotocol/server-filesystem",
-            directoryForMcp,
-            // "/Users/apple/Documents/test/mcp-filesystem-test1/p2"
+            DIRECTORY_FOR_MCP,
+            // "/Users/apple/Documents/test/mcp-filesystem-test1/p2" // (Learn: You can pass additional directories here)
         ]
     });
     const client = await experimental_createMCPClient({
