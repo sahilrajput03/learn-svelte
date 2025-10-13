@@ -125,6 +125,7 @@
 	let isBotListening = $state(false);
 	let speechRecognition = null as any;
 	async function handleStartListening() {
+		stopSpeech();
 		// speech to text
 		let w = window as any;
 		speechRecognition = new w.webkitSpeechRecognition() || new w.SpeechRecognition(); // chatgpt
@@ -140,16 +141,20 @@
 		speechRecognition.start();
 		isBotListening = true;
 	}
-
-	function handleStopButton() {
-		const shouldStop = isBotListening || isBotSpeaking;
-		if (shouldStop) {
-			console.log('🚀 ~ recognition:', speechRecognition);
-			speechRecognition?.stop();
+	function stopSpeech() {
+		if (isBotSpeaking) {
 			window.speechSynthesis.cancel(); // Stop any ongoing speech
-			isBotListening = false;
 			isBotSpeaking = false;
 		}
+	}
+
+	function handleStopButton() {
+		if (isBotListening) {
+			console.log('🚀 ~ recognition:', speechRecognition);
+			speechRecognition?.stop();
+			isBotListening = false;
+		}
+		stopSpeech();
 	}
 
 	function resizeCallback() {
@@ -258,7 +263,7 @@
 
 	{#if chatDivHeight}
 		<div class="fixed top-[50vh] right-[10px] z-20 flex flex-col items-end">
-			{#if !(isBotListening || isBotSpeaking)}
+			{#if !isBotListening}
 				<button
 					in:fade={{ duration: 200 }}
 					class="aspect-[1] h-[80px] rounded-full px-1 py-2 text-6xl font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
@@ -272,7 +277,8 @@
 					}}
 					>🎙️
 				</button>
-			{:else}
+			{/if}
+			{#if isBotListening || isBotSpeaking}
 				<button
 					in:fade={{ duration: 200 }}
 					class="ease-in-ou aspect-[1] rounded-full bg-[lightslategrey] px-4 py-2 font-bold text-white transition duration-300"
