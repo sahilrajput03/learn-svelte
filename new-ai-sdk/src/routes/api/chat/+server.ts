@@ -58,6 +58,7 @@ export const _groq = createGroq({
 const google = createGoogleGenerativeAI({
     apiKey: env.GOOGLE_API_KEY,
 });
+// console.log('env.GOOGLE_API_KEY?', env.GOOGLE_API_KEY)
 
 
 const getCurrentDate = () => {
@@ -112,6 +113,7 @@ export const POST = (async ({ request }: RequestEvent) => {
             // 
             ...mcpToolSet
         },
+        // experimental_continueSteps: true, // ! TODO: Test this.
         onError: ({ error }) => { // src: https://github.com/vercel/ai/issues/4099#issuecomment-2745421906
             errorMessage = (error as any).message;
             console.log("🚀 ~ errorMessage:", errorMessage)
