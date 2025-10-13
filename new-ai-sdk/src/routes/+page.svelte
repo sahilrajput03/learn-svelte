@@ -173,6 +173,10 @@
 	}
 
 	function handleKeyDownInTextInput(e: any) {
+		// Don't do anything if Alt, Ctrl, or Cmd is pressed, this is to prevent stopping speech if I press `cmd` key on macbook.
+		if (e.altKey || e.ctrlKey || e.metaKey) {
+			return;
+		}
 		stopSpeech();
 		// When enter is pressed we are left with a new line character
 		//      which prevent showing the placeholder text. That's why we need `e.preventDefault()`
