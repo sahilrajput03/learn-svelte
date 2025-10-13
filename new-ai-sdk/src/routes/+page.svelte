@@ -21,7 +21,8 @@
 		// 	}
 		// ],
 		// initialInput: 'Hi',
-		initialInput: 'How many files?',
+		initialInput: 'Give me poem.',
+		// initialInput: 'How many files?',
 		// initialInput: 'Please help me make my recepie?', // from Vinay
 		// initialInput: 'What is weather in Chandigarh, India?', // For testing tool call
 		// initialInput: 'Set a reminder at 12 am to buy Choco Latte Coffee', // For testing tool call
@@ -93,6 +94,9 @@
 		// 		must click anywhere on the site so that speaking starts
 		// 		form the very first message. In future we can make it a
 		// 		button to start the conversation with the bot though.
+
+		// Necessary to stop any speech if already runnning before you referesh the page
+		window.speechSynthesis.cancel(); // Stop any ongoing speech
 	});
 
 	$effect(() => {
