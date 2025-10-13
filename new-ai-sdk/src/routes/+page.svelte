@@ -78,6 +78,7 @@
 	};
 
 	onMount(async () => {
+		// console.log('🚀 ~ browser:', browser);
 		// `chatDiv.offsetTop`  = Distance between top edge of body tag and top edge
 		// 		of the `chatdiv`. And since we have margin of "20px" on all edges the
 		// 		top margin is not included in `chatDiv.offsetTop`. Also we need to
@@ -108,9 +109,7 @@
 			const lastMessage = messages[messages.length - 1];
 			console.log('🚀Should trigger speak fn now with text:', lastMessage.content);
 			speak();
-			if (browser) {
-				scrollToBottomOfChat();
-			}
+			scrollToBottomOfChat();
 		}
 	});
 

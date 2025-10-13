@@ -1,3 +1,4 @@
+import { browser } from "$app/environment";
 
 // Src: mdn: https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView)
 export const isBrowser = () => typeof document !== 'undefined'
@@ -24,7 +25,7 @@ export function scrollToBottom() {
 }
 
 export function scrollToBottomOfElement(el) {
-    if (el) {
+    if (browser && el) {
         el.scrollTop = el.scrollHeight;
     }
 }
