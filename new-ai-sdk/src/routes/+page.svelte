@@ -21,8 +21,9 @@
 		// 	}
 		// ],
 		// initialInput: 'Hi',
-		initialInput: 'Give me poem.',
-		// initialInput: 'How many files?',
+		// initialInput: 'Give me poem.',
+		// initialInput: 'What files?',
+		initialInput: 'What todos do we have?',
 		// initialInput: 'Please help me make my recepie?', // from Vinay
 		// initialInput: 'What is weather in Chandigarh, India?', // For testing tool call
 		// initialInput: 'Set a reminder at 12 am to buy Choco Latte Coffee', // For testing tool call
