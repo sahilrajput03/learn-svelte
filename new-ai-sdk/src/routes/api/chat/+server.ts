@@ -112,7 +112,7 @@ export const POST = (async ({ request }: RequestEvent) => {
             // 
             ...mcpToolSet
         },
-        onError: ({ error }) => {
+        onError: ({ error }) => { // src: https://github.com/vercel/ai/issues/4099#issuecomment-2745421906
             errorMessage = (error as any).message;
             console.log("🚀 ~ errorMessage:", errorMessage)
         },
