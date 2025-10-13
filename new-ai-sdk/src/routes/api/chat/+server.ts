@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 // 😇😇 Source (DONE): https://sdk.vercel.ai/docs/getting-started/svelte
 
-// Todo ❤️: Fix the terminal's warning - https://github.com/sveltejs/kit/issues/13743#issuecomment-2918248837
+// ✅ Fix the terminal's warning of SvelteKitError: Not found: /.well-known/appspecific/com.chrome.devtools.json - https://github.com/sveltejs/kit/issues/13743#issuecomment-2918248837
 // Todo: https://sdk.vercel.ai/docs/foundations/prompts
 // Todo: Read ai-sdk 4.0: https://vercel.com/blog/ai-sdk-4-0#new-xai-grok-provider
 
@@ -25,7 +24,7 @@ import { createGoogleGenerativeAI } from '@ai-sdk/google';
 // MCP (https://ai-sdk.dev/cookbook/node/mcp-tools)
 import { experimental_createMCPClient, generateText } from 'ai';
 import { Experimental_StdioMCPTransport } from 'ai/mcp-stdio';
-import { readPromptFromFileAtxt } from './systemPrompts';
+import { getSystemPromptForFileSystemMcpServer } from './systemPrompts';
 import { DIRECTORY_FOR_MCP, isAppleSystem, mcpDirectoryOnAppleSystem, mcpDirectoryOnLinodeSystem } from '$lib/config';
 
 // * Comment on models (via ChatGPT):
@@ -73,32 +72,35 @@ export const POST = (async ({ request }: RequestEvent) => {
     // console.log('POST: /ai-sdk')
     const { messages, text } = await request.json();
 
-    // TODO: ❤️I can make use ️extra body object to be sent with the
-    //          API request to select tool calls as set by dynamically in
+    // Learn: ❤️I can make use ️extra body object to be sent with the
+    //          API request to select tool calls as set from
     //          +page.svelte file.
-    console.log("🚀 ~ POST ~ text:", text)
+    // console.log("POST: body.text (from frontend):", text)
 
-    // & Using MCP with ai-sdk - https://ai-sdk.dev/cookbook/node/mcp-tools
-    const toolSetOne = await getToolSetFromMcpServers()
-    const systemPromptForFileSystemMcpServer = await readPromptFromFileAtxt()
-    // console.log("🚀 ~ POST ~ systemPromptForFileSystemMcpServer:", systemPromptForFileSystemMcpServer)
-    // console.log("🚀 ~ POST ~ systemPromptForFileSystemMcpServer:", systemPromptForFileSystemMcpServer)
+    // Using MCP with ai-sdk - https://ai-sdk.dev/cookbook/node/mcp-tools
+    const mcpToolSet = {}
+    const client1 = await connectMcpServerViaStdio()
+    const tools1 = await client1.tools();
+    Object.assign(mcpToolSet, { ...tools1 })
+    // const client2 = await connectToMcpServerViaSseEvents()
+    // const tools2 = await client2.tools()
+    // Object.assign(mcpToolSet, { ...tools2 })
 
     // console.log("🚀 ~ POST ~ messages:", messages)
     console.log('messages?.[1]?.toolInvocations?', messages?.[1]?.toolInvocations)
-    // Tool calls work with openai and groq (tested for gemma-2-9b-it) both very well.
+    // 🚀 Docs: https://sdk.vercel.ai/docs/ai-sdk-core/generating-text#streamtext
     const result = streamText({
-        model: google('gemini-2.5-flash-preview-04-17'), // ✅❤️ (I got this model name from the link mentioned above in the ai-sdk-docs-link).
+        model: google('gemini-2.5-flash'), // ✅❤️ (I got this model name from the link mentioned above in the ai-sdk-docs-link).
         // model: openai('gpt-4o-mini'), // & Using OpenAI
         // model: _groq('gemma2-9b-it'), // & ✅ Using Groq, Models: "llama-3.1-8b-instant", "gemma2-9b-it" ✅, "mixtral-8x7b-32768", "llama3-70b-8192" (bad for tool call), ✅ 'deepseek-r1-distill-llama-70b', ✅'deepseek-r1-distill-qwen-32b', ❌ "llama3-groq-8b-8192-tool-use-preview", ❌ "llama3-groq-70b-8192-tool-use-preview"
         // system: _systemPrompt, // System instruction/prompt/message (src: https://sdk.vercel.ai/docs/foundations/prompts#system-messages)
-        system: systemPromptForFileSystemMcpServer,
+        system: getSystemPromptForFileSystemMcpServer(DIRECTORY_FOR_MCP),
         messages,
-        // Learn: Having explicit definition of below keys helps
-        //         vscode's cmd+click feature to work.
-        // & Learn: Confirmed from Groq's Admin Logs that input tokens usage decreased from 1400 upto(1700) tokens for prompt "Hi" to 127 tokens for (prompt: Hi) when I had all three tools below vs. having them commented.
         tools: {
-            // 
+            // LEARN:
+            //  1. Tool calls work with openai and groq (tested for gemma-2-9b-it) both very well.
+            //  2. Having explicit definition of below keys helps vscode's cmd+click feature to work.
+            //  3. Confirmed from Groq's Admin Logs that input tokens usage decreased from 1400 upto(1700) tokens for prompt "Hi" to 127 tokens for (prompt: Hi) when I had all three tools below vs. having them commented.
             // weatherTool: weatherTool,
             // convertFarenheitToCelsius: convertFarenheitToCelsius,
             // 
@@ -107,57 +109,30 @@ export const POST = (async ({ request }: RequestEvent) => {
             // getHumanReadableTimeTool: getHumanReadableTimeTool
             //// sendSmsTool: sendSmsTool // dummy function to send sms to anybody, present in file `./tools.ts` file
             // 
-            // & MCP
-            ...toolSetOne
+            ...mcpToolSet
         },
     });
 
-    // 🚀 Docs: https://sdk.vercel.ai/docs/ai-sdk-core/generating-text#streamtext
-    // example: use textStream as an async iterable
-    // for await (const textPart of result.textStream) {
-    //   console.log(textPart);
-    // }
 
+    // Note: Its necessary to await for compelte response before we
+    //      close mcp client via `client.close()` else mcp client closes
+    //      even before function calls happen causing bug.
+    for await (const textPart of result.textStream) {
+        // For debugging we can log text parts:
+        // console.log('1?', textPart);
+    }
+    // Close MCP clients
+    await Promise.all([
+        client1.close()
+        // clientTwo.close(),
+        // clientThree.close(),
+    ]);
     return result.toDataStreamResponse();
-
-    // * [Tested] Calling `client.close` when streaming finishes to close MCP server (ChatGPT):
-    // const originalResponse = result.toDataStreamResponse();
-    // const { body, headers } = originalResponse;
-    // const stream = new ReadableStream({
-    //     async start(controller) {
-    //         const reader = body?.getReader();
-    //         try {
-    //             while (true) {
-    //                 const { done, value } = await reader!.read();
-    //                 if (done) break;
-    //                 controller.enqueue(value);
-    //             }
-    //         } finally {
-    //             controller.close();
-    //             await clientOne.close();
-    //         }
-    //     }
-    // });
-    // return new Response(stream, { headers });
 });
-
-// * Note: Please uncomment the `...toolSetOne` in the list of tools attached to chat-completion to enable tool calls.
-async function getToolSetFromMcpServers() {
-    const client1 = await connectMcpServerViaStdio()
-    const toolsSet1 = await client1.tools();
-    return toolsSet1
-
-    // const client2 = await connectToMcpServerViaSseEvents()
-    // const toolsSet2 = await client2.tools()
-    // return toolsSet2
-
-    // return [...(toolsSet1 as any), ...(toolsSet2 as any)]
-}
 
 // Below function run command the following command on its own: npx -y @modelcontextprotocol/server-filesystem /Users/apple/Documents/test/mcp-filesystem-test1/p1
 async function connectMcpServerViaStdio() {
     // Initialize an MCP client to connect to a `stdio` MCP server:
-
     const transport = new Experimental_StdioMCPTransport({
         command: isAppleSystem ? "/Users/apple/.nvm/versions/node/v22.13.0/bin/npx" : "/home/user1/.nvm/versions/node/v22.13.0/bin/npx",
         args: [
@@ -167,9 +142,7 @@ async function connectMcpServerViaStdio() {
             // "/Users/apple/Documents/test/mcp-filesystem-test1/p2" // (Learn: You can pass additional directories here)
         ]
     });
-    const client = await experimental_createMCPClient({
-        transport,
-    });
+    const client = await experimental_createMCPClient({ transport });
     return client
 }
 

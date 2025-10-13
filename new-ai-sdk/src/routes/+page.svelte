@@ -20,17 +20,18 @@
 		// 		// content: veryLongMessageForUiTesting
 		// 	}
 		// ],
-		initialInput: 'Hi',
+		// initialInput: 'Hi',
+		initialInput: 'How many files?',
 		// initialInput: 'Please help me make my recepie?', // from Vinay
 		// initialInput: 'What is weather in Chandigarh, India?', // For testing tool call
 		// initialInput: 'Set a reminder at 12 am to buy Choco Latte Coffee', // For testing tool call
 		// initialInput: 'Set a reminder in 1 mins to buy Choco Latte Coffee at 1:23am.', // For testing tool call
 		// initialInput: 'Give me a 250 words story please.', // For testing tool call
-		maxSteps: 10,
+		maxSteps: 10
 		// Learn: Check the comment in +server.ts file to know `body` key below:
-		body: {
-			text: 'hello sahil'
-		}
+		// body: {
+		// 	text: 'hello sahil'
+		// }
 	});
 
 	let chatDiv: HTMLDivElement;
@@ -122,12 +123,12 @@
 	});
 
 	let isBotListening = $state(false);
-	let recognition = null as any;
+	let speechRecognition = null as any;
 	async function handleStartListening() {
 		// speech to text
 		let w = window as any;
-		recognition = new w.webkitSpeechRecognition() || new w.SpeechRecognition(); // chatgpt
-		recognition.onresult = (event) => {
+		speechRecognition = new w.webkitSpeechRecognition() || new w.SpeechRecognition(); // chatgpt
+		speechRecognition.onresult = (event) => {
 			isBotListening = false;
 			const transcript = event.results[0][0].transcript;
 			console.log('Transcript?', transcript);
@@ -136,14 +137,15 @@
 			// Necessary so that chat-input sticks to bottom of the screeen on android chrome.
 			tick().then(scrollToBottom);
 		};
-		recognition.start();
+		speechRecognition.start();
 		isBotListening = true;
 	}
 
 	function handleStopButton() {
 		const shouldStop = isBotListening || isBotSpeaking;
 		if (shouldStop) {
-			recognition.stop();
+			console.log('🚀 ~ recognition:', speechRecognition);
+			speechRecognition?.stop();
 			window.speechSynthesis.cancel(); // Stop any ongoing speech
 			isBotListening = false;
 			isBotSpeaking = false;

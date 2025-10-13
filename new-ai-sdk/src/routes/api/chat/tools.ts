@@ -46,7 +46,6 @@ export const convertFarenheitToCelsius = tool({
 
 
 const apiUrl = 'http://localhost:8080'
-let car = 20
 export const axiosInstance = axios.create({ baseURL: apiUrl })
 
 export const createReminderTool = tool({
@@ -75,6 +74,7 @@ export const getHumanReadableTimeTool = tool({
         return { time: dumbSimpleReadableTime(now) };
     },
 });
+
 // export const sendSmsTool = tool({
 //     description: 'this function send sms/message to people',
 //     parameters: z.object({
