@@ -22,3 +22,9 @@ export function scrollToBottom() {
         block: 'end', // block: 'end' ensures it scrolls to the bottom (equivalent to passing false as a legacy argument).
     });
 }
+
+export function scrollToBottomOfElement(el) {
+    if (el) {
+        el.scrollTop = el.scrollHeight;
+    }
+}

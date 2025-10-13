@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { scrollToBottom } from '$lib/scroll-utils';
+	import { scrollToBottomOfElement } from '$lib/scroll-utils';
 	import { getVoices } from '$lib/speechRecognitionUtil';
 	import type { VoiceT } from '$lib/types';
 	import { veryLongMessageForUiTesting } from '$lib/utils-sample-messages';
@@ -97,8 +97,7 @@
 	$effect(() => {
 		// Using messages as dependency so we scroll to bottom as soon as they are updated.
 		chat.messages;
-		// Necessary so that chat-input sticks to bottom of the screeen on android chrome.
-		scrollToBottom();
+		scrollToBottomOfChat();
 	});
 
 	$effect(() => {
@@ -109,17 +108,10 @@
 			const lastMessage = messages[messages.length - 1];
 			console.log('🚀Should trigger speak fn now with text:', lastMessage.content);
 			speak();
-			// Necessary so that chat-input sticks to bottom of the screeen on android chrome.
-			// scrollToBottom();
-			if (browser && innerContainerDiv) {
-				// Scroll the innerContainerDiv element to the bottom of its scrollable content.
-				innerContainerDiv.scrollTop = innerContainerDiv?.scrollHeight;
+			if (browser) {
+				scrollToBottomOfChat();
 			}
 		}
-
-		// tick().then(() => {
-		// 	scrollToBottom();
-		// });
 	});
 
 	let isBotListening = $state(false);
@@ -135,8 +127,7 @@
 			console.log('Transcript?', transcript);
 			chat.input = transcript;
 			chat.handleSubmit();
-			// Necessary so that chat-input sticks to bottom of the screeen on android chrome.
-			tick().then(scrollToBottom);
+			scrollToBottomOfChat();
 		};
 		speechRecognition.start();
 		isBotListening = true;
@@ -146,6 +137,12 @@
 			window.speechSynthesis.cancel(); // Stop any ongoing speech
 			isBotSpeaking = false;
 		}
+	}
+
+	// Necessary so that chat-input sticks to bottom of the screeen on android chrome.
+	function scrollToBottomOfChat() {
+		// Tested in `handleStartListening` and onclick on send button:
+		tick().then(() => scrollToBottomOfElement(innerContainerDiv));
 	}
 
 	function handleStopButton() {
@@ -166,15 +163,18 @@
 		window.addEventListener('resize', resizeCallback);
 		return () => window.removeEventListener('resize', resizeCallback);
 	});
+	function handleSendButton(e) {
+		chat.handleSubmit();
+		scrollToBottomOfChat();
+	}
 
-	function handleKeyDown(e: any) {
+	function handleKeyDownInTextInput(e: any) {
+		stopSpeech();
 		// When enter is pressed we are left with a new line character
 		//      which prevent showing the placeholder text. That's why we need `e.preventDefault()`
 		if (e.keyCode == 13) {
 			e.preventDefault();
-			chat.handleSubmit();
-			// Necessary so that chat-input sticks to bottom of the screeen on android chrome.
-			tick().then(scrollToBottom);
+			handleSendButton(e);
 		}
 	}
 
@@ -196,7 +196,9 @@
 			class="overflow-y-auto px-[20px]"
 			style={`${negativeHorizontalMargins}`}
 		>
-			<!-- I'm hiding the toolCalls messages because they have content as empty string. -->
+			<!-- * Learn: To test with really long text in screen use `lorem200` emmet so the chat windows fill
+			 and you can test for scroll to bottom behaviour.  -->
+			<!-- Learn: I'm hiding the toolCalls messages because they have content as empty string. -->
 			{#each chat.messages as message, messageIndex (messageIndex)}
 				<div transition:fade>
 					<!-- <span class="text-sm font-bold underline">{message.role.toUpperCase()}:</span> -->
@@ -239,7 +241,7 @@
 				rows="2"
 				class="input-primary w-full border-0 bg-transparent outline-none"
 				bind:value={chat.input}
-				onkeydown={handleKeyDown}
+				onkeydown={handleKeyDownInTextInput}
 				placeholder="Ask AI"
 			>
 			</textarea>
@@ -250,11 +252,7 @@
 					//      keyboard doesn't close on android (tested on poco m4)
 					e.preventDefault();
 				}}
-				onclick={(e) => {
-					chat.handleSubmit();
-					// Necessary so that chat-input sticks to bottom of the screeen on android chrome.
-					tick().then(scrollToBottom);
-				}}
+				onclick={handleSendButton}
 			>
 				<img class="mr-[5px]" width="25px" src="/send-button.svg" alt="send key" />
 			</button>
@@ -266,10 +264,11 @@
 			{#if !isBotListening}
 				<button
 					in:fade={{ duration: 200 }}
-					class="aspect-[1] h-[80px] rounded-full px-1 py-2 text-6xl font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
+					class="aspect-[1] h-[90px] rounded-full px-1 py-2 text-6xl font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
 					onclick={handleStartListening}
 					style="background: rgb(135, 117, 218); 
-						box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);"
+						box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+						border: 3px solid white;"
 					onpointerdown={(e) => {
 						// Note: This is to prevent keyboard closing on
 						// 		tapping this button on android. (ChatGPT)
@@ -281,14 +280,16 @@
 			{#if isBotListening || isBotSpeaking}
 				<button
 					in:fade={{ duration: 200 }}
-					class="ease-in-ou aspect-[1] rounded-full bg-[lightslategrey] px-4 py-2 font-bold text-white transition duration-300"
+					class="ease-in-ou aspect-[1] rounded-full px-4 py-2 text-2xl font-bold transition duration-300"
+					style="border: 3px solid lightcoral; color: lightcoral;
+							background: hsl(0deg 0% 100% / 85.88%);"
 					onclick={handleStopButton}
 					onpointerdown={(e) => {
 						// Note: This is to prevent keyboard closing on
 						// 		tapping this button on android. (ChatGPT)
 						e.preventDefault();
 					}}
-					>stop
+					>🛑
 				</button>
 			{/if}
 
