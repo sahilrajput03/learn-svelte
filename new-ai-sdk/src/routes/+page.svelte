@@ -259,23 +259,29 @@
 	{#if chatDivHeight}
 		<div class="fixed top-[50vh] right-[10px] z-20 flex flex-col items-end">
 			{#if !(isBotListening || isBotSpeaking)}
-				<!-- Note: I use onpointerdown to prevent keyboard closing on tapping button on android. (From ChatGPT) -->
 				<button
 					in:fade={{ duration: 200 }}
 					class="aspect-[1] h-[80px] rounded-full px-1 py-2 text-6xl font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
 					onclick={handleStartListening}
 					style="background: rgb(135, 117, 218); 
 						box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);"
-					onpointerdown={(e) => e.preventDefault()}
+					onpointerdown={(e) => {
+						// Note: This is to prevent keyboard closing on
+						// 		tapping this button on android. (ChatGPT)
+						e.preventDefault();
+					}}
 					>🎙️
 				</button>
 			{:else}
-				<!-- Note: I use onpointerdown to prevent keyboard closing on tapping button on android. (From ChatGPT) -->
 				<button
 					in:fade={{ duration: 200 }}
 					class="ease-in-ou aspect-[1] rounded-full bg-[lightslategrey] px-4 py-2 font-bold text-white transition duration-300"
 					onclick={handleStopButton}
-					onpointerdown={(e) => e.preventDefault()}
+					onpointerdown={(e) => {
+						// Note: This is to prevent keyboard closing on
+						// 		tapping this button on android. (ChatGPT)
+						e.preventDefault();
+					}}
 					>stop
 				</button>
 			{/if}
