@@ -189,6 +189,14 @@
 	let showPendingTodos = $state(false);
 
 	const negativeHorizontalMargins = `margin: 0px -20px;`;
+
+	$effect(() => {
+		if (chat.error?.message) {
+			// console.log('chat.error?.message', chat.error?.message);
+			alert(chat.error?.message);
+		}
+	});
+	// $inspect(chat.error?.message); // For debugging
 </script>
 
 <main>

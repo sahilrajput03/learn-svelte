@@ -88,6 +88,7 @@ export const POST = (async ({ request }: RequestEvent) => {
 
     // console.log("🚀 ~ POST ~ messages:", messages)
     console.log('messages?.[1]?.toolInvocations?', messages?.[1]?.toolInvocations)
+    let errorMessage = "";
     // 🚀 Docs: https://sdk.vercel.ai/docs/ai-sdk-core/generating-text#streamtext
     const result = streamText({
         model: google('gemini-2.5-flash'), // ✅❤️ (I got this model name from the link mentioned above in the ai-sdk-docs-link).
@@ -111,6 +112,10 @@ export const POST = (async ({ request }: RequestEvent) => {
             // 
             ...mcpToolSet
         },
+        onError: ({ error }) => {
+            errorMessage = (error as any).message;
+            console.log("🚀 ~ errorMessage:", errorMessage)
+        },
     });
 
 
@@ -119,7 +124,7 @@ export const POST = (async ({ request }: RequestEvent) => {
     //      even before function calls happen causing bug.
     for await (const textPart of result.textStream) {
         // For debugging we can log text parts:
-        // console.log('1?', textPart);
+        console.log('textPart?', textPart);
     }
     // Close MCP clients
     await Promise.all([
@@ -127,7 +132,15 @@ export const POST = (async ({ request }: RequestEvent) => {
         // clientTwo.close(),
         // clientThree.close(),
     ]);
-    return result.toDataStreamResponse();
+    return result.toDataStreamResponse({
+        getErrorMessage(error) {
+            console.log('🚀Sending error message as response.')
+            // Learn when daily quota finishes we received a generic error message in
+            //      frontend - "An error occurred." and by sending below `errorMessage` we are
+            //      sending correct error message.
+            return errorMessage;
+        },
+    });
 });
 
 // Below function run command the following command on its own: npx -y @modelcontextprotocol/server-filesystem /Users/apple/Documents/test/mcp-filesystem-test1/p1
