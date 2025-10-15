@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { scrollToBottomOfElement } from '$lib/scroll-utils';
+	import { scrollToBottom, scrollToBottomOfElement } from '$lib/scroll-utils';
 	import { getVoices } from '$lib/speechRecognitionUtil';
 	import type { VoiceT } from '$lib/types';
 	import { veryLongMessageForUiTesting } from '$lib/utils-sample-messages';
@@ -145,7 +145,8 @@
 
 	// Necessary so that chat-input sticks to bottom of the screeen on android chrome.
 	function scrollToBottomOfChat() {
-		scrollToBottomOfElement(innerContainerDiv); // ! on testing for now to fix issue as you see in your telegram saved messages.
+		// scrollToBottomOfElement(innerContainerDiv); // ! on testing for now to fix issue as you see in your telegram saved messages.
+		scrollToBottom();
 		// Tested in `handleStartListening` and onclick on send button:
 		tick().then(() => scrollToBottomOfElement(innerContainerDiv));
 	}
