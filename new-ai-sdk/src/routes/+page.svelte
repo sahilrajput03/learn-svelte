@@ -1,4 +1,5 @@
 <script lang="ts">
+	/* eslint-disable svelte/no-at-html-tags */
 	import { browser } from '$app/environment';
 	import { scrollToBottom, scrollToBottomOfElement } from '$lib/scroll-utils';
 	import { getVoices } from '$lib/speechRecognitionUtil';
@@ -102,6 +103,7 @@
 
 	$effect(() => {
 		// Using messages as dependency so we scroll to bottom as soon as they are updated.
+		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 		chat.messages;
 		scrollToBottomOfChat();
 	});
@@ -124,6 +126,7 @@
 		stopSpeech();
 		// speech to text
 		let w = window as any;
+		// eslint-disable-next-line no-constant-binary-expression
 		speechRecognition = new w.webkitSpeechRecognition() || new w.SpeechRecognition(); // chatgpt
 		speechRecognition.onresult = (event) => {
 			isBotListening = false;
