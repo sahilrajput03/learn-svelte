@@ -3,7 +3,18 @@
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- & Adapt height of page dynamically as per view port
+		  visibility for e.g., when keyboard is opened on chrome
+		  android platform - Added
+		  `interactive-widget=resizes-content` on suggestion from:
+		  https://claude.ai/chat/63e27ec5-30a0-4a00-a661-d3f64f1f40b3
+		  -->
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, interactive-widget=resizes-content"
+		/>
+		<!-- Originally from svelte: -->
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
