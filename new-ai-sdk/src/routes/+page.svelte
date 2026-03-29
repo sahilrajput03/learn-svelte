@@ -37,9 +37,6 @@
 		// }
 	});
 
-	let chatDiv: HTMLDivElement;
-	let chatDivHeight = $state<number>();
-
 	let innerContainerDiv: HTMLDivElement;
 	let chatInputContainer = $state<HTMLDivElement>();
 
@@ -47,7 +44,9 @@
 	let deviceHeight = $state<number>();
 	let voices: VoiceT[] = [];
 
-	// 🎉We do sanitaion because cause google-speech speaks backquote-backquote-backquote and backquote respectively for each of these which sound bad.
+	// Learn: 🎉We do sanitaion because cause google-speech speaks
+	// 		  backquote-backquote-backquote and backquote respectively for
+	// 		  each of these which sound bad.
 	function sanitizeTextForGoogleSpeech(text) {
 		// Remove unwanted characters: *, `, ~, etc.
 		// 	For ` and ~ I replace with ' ' (space)
@@ -57,13 +56,18 @@
 
 	let isBotSpeaking = $state(false);
 	const speak = () => {
-		// return; // TEMPORARLY STOPPING FOR TESTING TO PREVENT ABUSE OF GOOGLE TTS LEADING TO BAN OF MY IP TEMPORARILY.
+		// Learn: You can TEMPORARLY *STOP* this funciton call via
+		//        below `return` instruction sometimes to TO PREVENT
+		//        ABUSE OF GOOGLE TTS LEADING TO BAN OF MY IP
+		//        TEMPORARILY.
+		// return;
 		isBotSpeaking = true;
 		console.log('✅ Calling speak function..');
-		// return; // & For Debugging
+		// return; // For Debugging
 		const messages = $state.snapshot(chat.messages);
 		const lastMessage = messages[messages.length - 1];
-		const speech = new SpeechSynthesisUtterance(sanitizeTextForGoogleSpeech(lastMessage.content)); // * Docs: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance
+		const speech = new SpeechSynthesisUtterance(sanitizeTextForGoogleSpeech(lastMessage.content));
+		// Docs: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance
 		speech.voice = voices[192] as any; // comment this line to use default `voices[0]`
 		// 		FEMALE: 191 (treble), 192 (warm),
 		// 		MALE: 193 (warm),
@@ -82,27 +86,23 @@
 
 	onMount(async () => {
 		// console.log('🚀 ~ browser:', browser);
-		// `chatDiv.offsetTop`  = Distance between top edge of body tag and top edge
-		// 		of the `chatdiv`. And since we have margin of "20px" on all edges the
-		// 		top margin is not included in `chatDiv.offsetTop`. Also we need to
-		// 		take consideration of bottom margin ("20px") on body tag as well.
-		// console.log('chatInputContainer?.clientHeight?', chatInputContainer?.clientHeight);
-		chatDivHeight = window.innerHeight - chatDiv.offsetTop - chatInputContainer!.clientHeight;
 		voices = (await getVoices()) as VoiceT[];
 
-		// 🚀🚀🚀🚀🚀🚀 To auto start conversatsion (Bot is a thali, suggestion from Vinay)
+		// To auto start conversatsion (Bot is a `thali`, suggestion from Vinay).
 		// chat.handleSubmit();
-		// 🚀🚀🚀🚀🚀🚀 NOTE TO SAHIL: To start audio from website you
-		// 		must click anywhere on the site so that speaking starts
-		// 		form the very first message. In future we can make it a
-		// 		button to start the conversation with the bot though.
+		// Learn: To start audio from website you
+		// 		  must click anywhere on the site so that speaking starts
+		// 		  from the very first message. In future we can make it a
+		// 		  button to start the conversation with the bot though.
 
-		// Necessary to stop any speech if already runnning before you referesh the page
+		// Note: Necessary to stop any speech if already runnning before you
+		// 		 referesh the page
 		window.speechSynthesis.cancel(); // Stop any ongoing speech
 	});
 
 	$effect(() => {
-		// Using messages as dependency so we scroll to bottom as soon as they are updated.
+		// Learn: Using messages as dependency so we scroll to bottom as soon
+		// 		  as they are updated.
 		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 		chat.messages;
 		scrollToBottomOfChat();
@@ -146,10 +146,13 @@
 		}
 	}
 
-	// Necessary so that chat-input sticks to bottom of the screeen on android chrome.
+	// Note: Necessary so that chat-input sticks to bottom of the
+	//       screeen on android chrome.
 	function scrollToBottomOfChat() {
 		// scrollToBottomOfElement(innerContainerDiv); // (not necessary - TESTED)
-		// Below statement is necessary at the time when the message from ai is received otherwise the screen strucks at same point and the text box goes below the keyboard.
+		// Note: Below statement is necessary at the time when the message
+		// 		 from ai is received otherwise the screen strucks at same
+		// 		 point and the text box goes below the keyboard.
 		scrollToBottom();
 		// Tested in `handleStartListening` and onclick on send button:
 		tick().then(() => scrollToBottomOfElement(innerContainerDiv));
@@ -179,7 +182,9 @@
 	}
 
 	function handleKeyDownInTextInput(e: any) {
-		// Don't do anything if Alt, Ctrl, or Cmd is pressed, this is to prevent stopping speech if I press `cmd` key on macbook.
+		// Note: Don't do anything if Alt, Ctrl, or Cmd is pressed,
+		//       this is to prevent stopping speech if I press `cmd`
+		//       key on macbook.
 		if (e.altKey || e.ctrlKey || e.metaKey) {
 			return;
 		}
@@ -194,8 +199,6 @@
 
 	let showPendingTodos = $state(false);
 
-	const negativeHorizontalMargins = `margin: 0px -20px;`;
-
 	$effect(() => {
 		if (chat.error?.message) {
 			// console.log('chat.error?.message', chat.error?.message);
@@ -203,194 +206,207 @@
 		}
 	});
 	// $inspect(chat.error?.message); // For debugging
+
+	const REALLY_LONG_TEXT_FOR_UI_TESTING = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi,
+					saepe quae sint, distinctio provident ratione delectus alias blanditiis voluptatum aperiam enim eaque odit. Vel obcaecati in, assumenda cumque sint debitis voluptate sit quos earum veritatis
+					eligendi, aliquam sapiente reprehenderit officia, accusantium consequuntur consectetur eveniet pariatur harum fugit ea ratione illum. Enim sapiente reiciendis, impedit est laborum iure cumque facilis eius nobis et eos facere illum doloremque quidem recusandae in
+					exercitationem architecto soluta minus necessitatibus pariatur quia non. Autem harum soluta porro temporibus quaerat maiores quos consectetur enim voluptas, est exercitationem provident error fuga officiis rem sunt sit magnam a adipisci in repudiandae nisi
+					repellendus qui mollitia? Nobis blanditiis accusamus, similique reprehenderit, omnis culpa dignissimos tempora voluptatem autem facere ipsum ipsa quas cum mollitia. Fuga nesciunt repellat neque autem reprehenderit, dolore voluptates. Delectus id aut velit minima
+					repudiandae repellat in est quos dolore molestias, maxime illo ad ea eaque quidem maiores provident aspernatur. A, dolore dolorum sit accusamus eius rem. Ut rerum porro provident quo consequatur, accusantium molestiae sequi libero voluptates facilis exercitationem
+					labore vitae rem ipsum neque itaque tempore cum eveniet eius vero.  Harum voluptates, unde accusamus similique autem enim iure deserunt assumenda magni veniam optio ut rerum aspernatur nobis.`;
 </script>
 
-<main>
-	<!-- For test -->
-	<div class="text-center font-bold">New AI SDK</div>
-
-	<!-- <div class="h-[200vh]">i have height of 200px</div> -->
-
-	<div bind:this={chatDiv} class="flex flex-col justify-end" style={`height: ${chatDivHeight}px;`}>
-		<!-- Note: Setting `overflow-y-auto` on above div doesn't work so I'm setting this on below div instead. -->
-		<div
-			bind:this={innerContainerDiv}
-			class="overflow-y-auto px-[20px]"
-			style={`${negativeHorizontalMargins}`}
-		>
-			<!-- * Learn: To test with really long text in screen use `lorem200` emmet so the chat windows fill
+<!-- Inspiration of CSS: Style from `+layout.svelte` file,
+`#page-wrapper` from `qr-solution` project. -->
+<div class="min-h-[100dvh] p-3">
+	<div class="flex h-[calc(100dvh-24px)] flex-col bg-white">
+		<div class="text-center font-bold">New AI SDK</div>
+		<div class="flex h-full overflow-y-auto">
+			<div class="flex w-full flex-col justify-end">
+				<!-- Note: Setting `overflow-y-auto` on above div doesn't work
+						   so I'm setting this on below div instead.  -->
+				<div bind:this={innerContainerDiv} class="overflow-y-auto px-[20px]">
+					<!-- * Learn: To test with really long text in screen use `lorem200` emmet so the chat windows fill
 			 and you can test for scroll to bottom behaviour.  -->
-			<!-- Learn: I'm hiding the toolCalls messages because they have content as empty string. -->
-			{#each chat.messages as message, messageIndex (messageIndex)}
-				<div transition:fade>
-					<!-- <span class="text-sm font-bold underline">{message.role.toUpperCase()}:</span> -->
-					<!-- message -->
-					{#each message.parts as part, partIndex (partIndex)}
-						{#if part.type === 'text'}
-							<!-- Note: We give max-wdith 90% on mobiles and 70% on desktop view (md=768px). -->
-							<div
-								class={`mb-[7px] w-fit max-w-[90%] rounded-[15px] px-[8px] pt-[5px] pb-[6px] md:max-w-[70%] ${message.role === 'user' ? 'ml-auto rounded-br-xs text-white' : 'rounded-bl-xs text-black'}`}
-								style={`background: ${
-									message.role === 'user' ? 'rgb(135, 117, 218)' : 'rgb(239, 243, 244)'
-								};`}
-							>
-								<!-- I am using replace(..) so that new line character is rendered otehrwise all content is joined by single space which makes it look absurd. -->
-								<!-- In the second replace I remove ``` because it gets around the content of file when its content is printed in browser. -->
-								{@html part.text.replace(/\n/g, '<br>').replace(/```/g, '')}
-							</div>
-							<!-- {:else if part.type === 'tool-invocation'}
+					<!-- Learn: I'm hiding the toolCalls messages because they have content as empty string. -->
+
+					<!-- For testing scroll overflow issue when keyboard is opened on mobile. -->
+					<!-- {REALLY_LONG_TEXT_FOR_UI_TESTING} -->
+
+					{#each chat.messages as message, messageIndex (messageIndex)}
+						<div transition:fade>
+							<!-- <span class="text-sm font-bold underline">{message.role.toUpperCase()}:</span> -->
+							<!-- MESSAGE -->
+							{#each message.parts as part, partIndex (partIndex)}
+								{#if part.type === 'text'}
+									<!-- Note: We give max-wdith 90% on mobiles and 70% on desktop view (md=768px). -->
+									<div
+										class={`mb-[7px] w-fit max-w-[90%] rounded-[15px] px-[8px] pt-[5px] pb-[6px] md:max-w-[70%] ${message.role === 'user' ? 'ml-auto rounded-br-xs text-white' : 'rounded-bl-xs text-black'}`}
+										style={`background: ${
+											message.role === 'user' ? 'rgb(135, 117, 218)' : 'rgb(239, 243, 244)'
+										};`}
+									>
+										<!-- I am using replace(..) so that new line character is
+											 rendered otehrwise all content is joined by single
+											 space which makes it look absurd. -->
+										<!-- In the second replace I remove ``` because it gets
+											 around the content of file when its content is printed in
+											 browser. -->
+										{@html part.text.replace(/\n/g, '<br>').replace(/```/g, '')}
+									</div>
+									<!-- {:else if part.type === 'tool-invocation'}
 							<pre>{JSON.stringify(part.toolInvocation, null, 2)}</pre> -->
-						{/if}
+								{/if}
+							{/each}
+						</div>
 					{/each}
 				</div>
-			{/each}
-		</div>
-	</div>
 
-	<!-- I hide chat input text box till `chatDivHeight` is computed to prevent jerky-content-shift of the input text box. . -->
-	<!-- Note using variable in clas for `visibility: hidden` is not working properly with tailwind classes that's why I'm using simply style property to set visibility. -->
-	<div
-		bind:this={chatInputContainer}
-		class="px-[11px] pt-[10px] pb-[20px]"
-		transition:blur
-		style={`visibility: ${!chatDivHeight ? 'hidden' : 'visible'}; ${negativeHorizontalMargins}`}
-	>
-		<!-- / //& Note: Below <input/> tag shows an additional bar on top of google-keyboard whch has "passwrod", "card", "map" on right side of it which is content shift issues. That's why I'm using textarea tag now.  -->
-		<!-- <input class="input-primary" bind:value={$input} /> -->
+				<!-- Note using variable in class for `visibility: hidden` is
+					 not working properly with tailwind classes that's why I'm
+					 using simply style property to set visibility.
+				-->
+				<div bind:this={chatInputContainer} class="pt-[10px]" transition:blur>
+					<!-- / //& Note: Below <input/> tag shows an additional bar
+					on top of google-keyboard on mobile whch has "password",
+					"card", "map" on right side of it which is content shift
+					issues. That's why I'm using textarea tag now.  -->
+					<!-- <input class="input-primary" bind:value={$input} /> -->
 
-		<div class="flex rounded-2xl border-1">
-			<textarea
-				rows="2"
-				class="input-primary w-full border-0 bg-transparent outline-none"
-				bind:value={chat.input}
-				onkeydown={handleKeyDownInTextInput}
-				placeholder="Ask AI"
-			>
-			</textarea>
-			<button
-				class="btn-primary flex items-center px-2"
-				onmousedown={(e) => {
-					// Prevent focus shift so that when send button is pressed
-					//      keyboard doesn't close on android (tested on poco m4)
-					e.preventDefault();
-				}}
-				onclick={handleSendButton}
-			>
-				<img class="mr-[5px]" width="25px" src="/send-button.svg" alt="send key" />
-			</button>
-		</div>
-	</div>
+					<div class="flex rounded-2xl border-1">
+						<textarea
+							rows="2"
+							class="input-primary w-full border-0 bg-transparent outline-none"
+							bind:value={chat.input}
+							onkeydown={handleKeyDownInTextInput}
+							placeholder="Ask AI"
+						>
+						</textarea>
+						<button
+							class="btn-primary flex items-center px-2"
+							onmousedown={(e) => {
+								// Prevent focus shift so that when send button is pressed
+								//      keyboard doesn't close on android (tested on poco m4)
+								e.preventDefault();
+							}}
+							onclick={handleSendButton}
+						>
+							<img class="mr-[5px]" width="25px" src="/send-button.svg" alt="send key" />
+						</button>
+					</div>
+				</div>
 
-	{#if chatDivHeight}
-		<div class="fixed top-[50vh] right-[10px] z-20 flex flex-col items-end">
-			{#if !isBotListening}
-				<button
-					in:fade={{ duration: 200 }}
-					class="aspect-[1] h-[90px] rounded-full px-1 py-2 text-6xl font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
-					onclick={handleStartListening}
-					style="background: rgb(135, 117, 218); 
+				<div class="fixed top-[30vh] right-[10px] z-20 flex flex-col items-end">
+					{#if !isBotListening}
+						<button
+							in:fade={{ duration: 200 }}
+							class="aspect-[1] h-[90px] rounded-full px-1 py-2 text-6xl font-bold text-white transition duration-300 ease-in-out hover:bg-blue-600"
+							onclick={handleStartListening}
+							style="background: rgb(135, 117, 218); 
 						box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 						border: 3px solid white;"
-					onpointerdown={(e) => {
-						// Note: This is to prevent keyboard closing on
-						// 		tapping this button on android. (ChatGPT)
-						e.preventDefault();
-					}}
-					>🎙️
-				</button>
-			{/if}
-			{#if isBotListening || isBotSpeaking}
-				<button
-					in:fade={{ duration: 200 }}
-					class="ease-in-ou aspect-[1] rounded-full px-4 py-2 text-2xl font-bold transition duration-300"
-					style="border: 3px solid lightcoral; color: lightcoral;
+							onpointerdown={(e) => {
+								// Note: This is to prevent keyboard closing on
+								// 		tapping this button on android. (ChatGPT)
+								e.preventDefault();
+							}}
+							>🎙️
+						</button>
+					{/if}
+					{#if isBotListening || isBotSpeaking}
+						<button
+							in:fade={{ duration: 200 }}
+							class="ease-in-ou aspect-[1] rounded-full px-4 py-2 text-2xl font-bold transition duration-300"
+							style="border: 3px solid lightcoral; color: lightcoral;
 							background: hsl(0deg 0% 100% / 85.88%);"
-					onclick={handleStopButton}
-					onpointerdown={(e) => {
-						// Note: This is to prevent keyboard closing on
-						// 		tapping this button on android. (ChatGPT)
-						e.preventDefault();
-					}}
-					>🛑
-				</button>
-			{/if}
+							onclick={handleStopButton}
+							onpointerdown={(e) => {
+								// Note: This is to prevent keyboard closing on
+								// 		tapping this button on android. (ChatGPT)
+								e.preventDefault();
+							}}
+							>🛑
+						</button>
+					{/if}
 
-			{#if isBotListening}
-				<div in:fade class="mt-1 rounded-lg border border-gray-300 bg-white px-2 text-gray-400">
-					Listening 👂🏻
-				</div>
-			{/if}
-
-			{#if isBotSpeaking}
-				<div in:fade class="mt-1 rounded-lg border border-gray-300 bg-white px-2 text-gray-400">
-					Speaking 📢
-				</div>
-			{/if}
-		</div>
-	{/if}
-
-	<!-- / //& Container (position: fixed) -->
-	<div class="fixed top-[20px] right-0 mt-10 w-full text-xs">
-		<button
-			class="m-2 rounded-lg border bg-gray-100 px-2 py-1"
-			onclick={() => (showPendingTodos = !showPendingTodos)}
-			>{showPendingTodos ? 'Hide' : 'Show'} Todos</button
-		>
-
-		{#if showPendingTodos}
-			<div class="bg-pink-200 py-1 text-center text-gray-500 underline">
-				Tags: #Conversation Agent, #Voice Assistant, #Conversation Bot, #Realtime Bot, #Speech to
-				Speech
-			</div>
-			<div class="bg-yellow-100 px-3 py-1 text-xs text-red-700">
-				TODO:
-				<ol class="ml-4 list-decimal">
-					<li>
-						Show three indicator when backend had for any error else show the jumping three dots
-						like WhatsApp does even the response is in wait.
-					</li>
-
-					<li>
-						❤️AI agent switching on page launch and cache the choice in local storage and also give
-						an floating button option to switch the agent.
-					</li>
-					<li class="font-bold">
-						Make the reminder a looping thing now (loops over 10 mins and not 1 min). URGENT.
-					</li>
-					<li class="font-bold">
-						Make a popupable view where you can see your reminders to confirm their timings and also
-						delete them too.
-					</li>
-					<li class="font-bold">
-						Using media query --- make enter key to `chat.submitHandler` on desktop and enter key as
-						new line in mobile phones as it happens in TWITTER WEB UI & TELEGRAM APP. For now mobile
-						`Enter` key act as sending message.
-					</li>
-					<li><u>Reminder Tips:</u> Set a reminder in 5 mins to go meet Alice.</li>
-					<li>Fix the issue of quickly pressing stop and start listing...</li>
-				</ol>
-			</div>
-			<div class="bg-blue-100 px-3 py-1">
-				<div>
-					{#if deviceWidth}
-						<div transition:fade>
-							Device Resolution (width x height): {deviceWidth} x {deviceHeight}
+					{#if isBotListening}
+						<div in:fade class="mt-1 rounded-lg border border-gray-300 bg-white px-2 text-gray-400">
+							Listening 👂🏻
 						</div>
-					{:else}
-						<div>&nbsp;</div>
+					{/if}
+
+					{#if isBotSpeaking}
+						<div in:fade class="mt-1 rounded-lg border border-gray-300 bg-white px-2 text-gray-400">
+							Speaking 📢
+						</div>
 					{/if}
 				</div>
-				<div class="mt-3 text-green-500">
-					<div class="underline">Some questions:</div>
-					<li>What's the weather in New York?</li>
-					<li>What's the weather in New York in celsius?</li>
-				</div>
-			</div>
-		{/if}
-	</div>
 
-	<!-- <button onclick={() => input = "What's the weather in New York?"}>Set question -->
-</main>
+				<!-- / //& Container (position: fixed) -->
+				<div class="fixed top-[20px] right-0 mt-10 w-full text-xs">
+					<button
+						class="m-2 rounded-lg border bg-gray-100 px-2 py-1"
+						onclick={() => (showPendingTodos = !showPendingTodos)}
+						>{showPendingTodos ? 'Hide' : 'Show'} Todos</button
+					>
+
+					{#if showPendingTodos}
+						<div class="bg-pink-200 py-1 text-center text-gray-500 underline">
+							Tags: #Conversation Agent, #Voice Assistant, #Conversation Bot, #Realtime Bot, #Speech
+							to Speech
+						</div>
+						<div class="bg-yellow-100 px-3 py-1 text-xs text-red-700">
+							TODO:
+							<ol class="ml-4 list-decimal">
+								<li>
+									Show three indicator when backend had for any error else show the jumping three
+									dots like WhatsApp does even the response is in wait.
+								</li>
+
+								<li>
+									❤️AI agent switching on page launch and cache the choice in local storage and also
+									give an floating button option to switch the agent.
+								</li>
+								<li class="font-bold">
+									Make the reminder a looping thing now (loops over 10 mins and not 1 min). URGENT.
+								</li>
+								<li class="font-bold">
+									Make a popupable view where you can see your reminders to confirm their timings
+									and also delete them too.
+								</li>
+								<li class="font-bold">
+									Using media query --- make enter key to `chat.submitHandler` on desktop and enter
+									key as new line in mobile phones as it happens in TWITTER WEB UI & TELEGRAM APP.
+									For now mobile `Enter` key act as sending message.
+								</li>
+								<li><u>Reminder Tips:</u> Set a reminder in 5 mins to go meet Alice.</li>
+								<li>Fix the issue of quickly pressing stop and start listing...</li>
+							</ol>
+						</div>
+						<div class="bg-blue-100 px-3 py-1">
+							<div>
+								{#if deviceWidth}
+									<div transition:fade>
+										Device Resolution (width x height): {deviceWidth} x {deviceHeight}
+									</div>
+								{:else}
+									<div>&nbsp;</div>
+								{/if}
+							</div>
+							<div class="mt-3 text-green-500">
+								<div class="underline">Some questions:</div>
+								<li>What's the weather in New York?</li>
+								<li>What's the weather in New York in celsius?</li>
+							</div>
+						</div>
+					{/if}
+				</div>
+
+				<!-- <button onclick={() => (input = "What's the weather in New York?")}>Set question </button> -->
+			</div>
+		</div>
+	</div>
+</div>
 
 <style>
 	textarea {
