@@ -32,7 +32,6 @@ reference e.g. selected.id in the template.
 
 	let answer = $state('');
 
-	// @ts-ignore
 	function handleSubmit(e) {
 		e.preventDefault();
 
