@@ -102,6 +102,7 @@
 	async function handleStartListening() {
 		// speech to text
 		let w = window as any;
+		// eslint-disable-next-line no-constant-binary-expression
 		recognition = new w.webkitSpeechRecognition() || new w.SpeechRecognition(); // chatgpt
 		recognition.onresult = (event) => {
 			isBotListening = false;

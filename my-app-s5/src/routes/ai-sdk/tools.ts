@@ -47,7 +47,6 @@ export const convertFarenheitToCelsius = tool({
 
 
 const apiUrl = 'http://localhost:8080'
-let car = 20
 export const axiosInstance = axios.create({ baseURL: apiUrl })
 
 export const createReminderTool = tool({
