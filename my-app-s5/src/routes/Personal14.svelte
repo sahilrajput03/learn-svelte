@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getTime, speak } from '$lib/speak';
 
-	let audioInterval: NodeJS.Timeout | null = $state(null);
+	let audioInterval: number | null = $state(null);
 	let audioIntervalLengthSeconds = $state(3);
 
 	async function playDing() {
@@ -23,7 +23,7 @@
 			clearInterval(audioInterval);
 		}
 		playDing();
-		audioInterval = setInterval(playDing, audioIntervalLengthSeconds * 1_000);
+		audioInterval = setInterval(playDing, audioIntervalLengthSeconds * 1_000) as any;
 	}
 </script>
 
