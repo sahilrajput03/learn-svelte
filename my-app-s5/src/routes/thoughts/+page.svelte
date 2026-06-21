@@ -14,7 +14,7 @@
 		console.log('fn-load');
 
 		const response = await fetch(
-			'https://raw.githubusercontent.com/sahilrajput03/sahilrajput03/refs/heads/main/thoughts-principles-react/src/thoughts.md'
+			'https://raw.githubusercontent.com/sahilrajput03/sahilrajput03/refs/heads/main/thoughts/thoughts-frontend/src/thoughts.md'
 		);
 		const text = await response.text();
 		thoughts = text.split('\n');
