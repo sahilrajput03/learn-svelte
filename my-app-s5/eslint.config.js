@@ -23,11 +23,12 @@ export default ts.config(
 	{
 		files: ['**/*.svelte'],
 		rules: {
-			// Learn: Fix `svelte/no-at-html-tags` error in `.svelte` files. (20 June 2026)
-			'svelte/no-at-html-tags': 'off',
-			'@typescript-eslint/no-unused-vars': 'off',
-			'@typescript-eslint/no-explicit-any': 'off',
-			// Learn: I'm disabling this because it's useful in $effect to use as dependency in .svelte files. (20 June 2026)
+			'svelte/no-at-html-tags': 'off', // 20 June 2026
+			'@typescript-eslint/no-unused-vars': 'off', // 20 June 2026
+			'@typescript-eslint/no-explicit-any': 'off', // 20 June 2026
+			// Learn: I'm disabling this because unused-expressions
+			// 		  are useful in $effect to use as dependency in .svelte
+			// 		  files. (20 June 2026)
 			'@typescript-eslint/no-unused-expressions': 'off',
 		},
 		languageOptions: {
