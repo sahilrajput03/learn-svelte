@@ -59,6 +59,7 @@
 		   params.)
 	-->
 	<button class=" ml-2 text-xs text-blue-600" onclick={handleTutorialsClick}>tutorials</button>
+	<a class="ml-2 text-xs text-blue-600" href="/blog">/blog ❤️</a>
 	<a class="ml-2 text-xs text-blue-600" href="/chat">/chat</a>
 	<a class="ml-2 text-xs text-blue-600" href="/effect-root">/effect-root</a>
 	<a class="ml-2 text-xs text-blue-600" href="glass-slideshow">/glass-slideshow</a>
