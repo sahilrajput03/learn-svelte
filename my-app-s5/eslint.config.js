@@ -30,6 +30,8 @@ export default ts.config(
 			// 		  are useful in $effect to use as dependency in .svelte
 			// 		  files. (20 June 2026)
 			'@typescript-eslint/no-unused-expressions': 'off',
+			// Below rule it allow use of `Function` as type.
+			'@typescript-eslint/no-unsafe-function-type': 'off',
 		},
 		languageOptions: {
 			parserOptions: {
