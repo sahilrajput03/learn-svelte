@@ -26,9 +26,9 @@ export default ts.config(
 			// Learn: Fix `svelte/no-at-html-tags` error in `.svelte` files. (20 June 2026)
 			'svelte/no-at-html-tags': 'off',
 			'@typescript-eslint/no-unused-vars': 'off',
+			'@typescript-eslint/no-explicit-any': 'off',
 			// Learn: I'm disabling this because it's useful in $effect to use as dependency in .svelte files. (20 June 2026)
 			'@typescript-eslint/no-unused-expressions': 'off',
-			'@typescript-eslint/no-explicit-any': 'off',
 		},
 		languageOptions: {
 			parserOptions: {
@@ -39,7 +39,8 @@ export default ts.config(
 	{
 		files: ['**/*.ts'],
 		rules: {
-			'@typescript-eslint/no-explicit-any': 'off'
+			'@typescript-eslint/no-explicit-any': 'off',
+			'@typescript-eslint/no-unused-vars': 'off',
 		}
 	},
 	{
