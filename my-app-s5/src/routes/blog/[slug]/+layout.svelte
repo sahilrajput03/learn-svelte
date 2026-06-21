@@ -14,7 +14,7 @@
 	</main>
 
 	<aside>
-		<h2>More posts <code class="text-[0.6rem] italic">(/blog/[slug]/+layout.svelte)</code></h2>
+		<h2>More posts</h2>
 
 		<ul>
 			{#each data.summaries as { slug, title }}
@@ -23,6 +23,7 @@
 				</li>
 			{/each}
 		</ul>
+		<code class="text-[0.5rem] italic">(From: /blog/[slug]/+layout.svelte)</code>
 	</aside>
 </div>
 

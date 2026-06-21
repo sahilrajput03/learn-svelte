@@ -12,7 +12,7 @@
 	console.log('\n/blog/+page.svelte\ndata?', dataCopy);
 </script>
 
-<h1 class="text-3xl">blog</h1>
+<h1 class="text-3xl">Blog</h1>
 
 <ul>
 	{#each data.summaries as { slug, title }}

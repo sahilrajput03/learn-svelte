@@ -13,5 +13,9 @@
 	console.log('\n/blog/[slug]/+page.svelte,\ndata?', dataCopy);
 </script>
 
-<h1>{data.post.title}</h1>
+<h1 class="text-3xl">{data.post.title}</h1>
 <div>{@html data.post.content}</div>
+
+<hr class="mt-10" />
+
+<a class="mt-5 block text-blue-600 underline" href="/blog">👈 All blogs</a>
