@@ -3,7 +3,6 @@
 type TodoType = { id: string, description: string, done: boolean }
 
 const database = new Map<string, Map<string, TodoType>>();
-let kk = database.get('car')
 
 export function getTodos(userid: string) {
     if (!database.has(userid)) {
