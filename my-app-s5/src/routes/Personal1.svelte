@@ -43,7 +43,6 @@
 	let isRecording = $state(false);
 	let isTranscribing = $state(false);
 
-	// svelte-ignore non_reactive_update
 	let recordedAudioButton: HTMLAudioElement;
 
 	let rec: MediaRecorder;
@@ -159,7 +158,7 @@
 	</button>
 
 	<div
-		class={`ms-2 h-[10px] w-[10px] rounded ${!!OPEN_AI_API_KEY ? 'bg-green-500' : 'bg-red-400'}`}
+		class={`ms-2 h-[10px] w-[10px] rounded ${OPEN_AI_API_KEY ? 'bg-green-500' : 'bg-red-400'}`}
 	></div>
 </div>
 
