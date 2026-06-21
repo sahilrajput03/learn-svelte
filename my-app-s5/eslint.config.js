@@ -26,6 +26,7 @@ export default ts.config(
 			'svelte/no-at-html-tags': 'off', // 20 June 2026
 			'@typescript-eslint/no-unused-vars': 'off', // 20 June 2026
 			'@typescript-eslint/no-explicit-any': 'off', // 20 June 2026
+			// ### COMMENT:101 ###
 			// Learn: I'm disabling this because unused-expressions
 			// 		  are useful in $effect to use as dependency in .svelte
 			// 		  files. (20 June 2026)
@@ -44,6 +45,13 @@ export default ts.config(
 		rules: {
 			'@typescript-eslint/no-explicit-any': 'off',
 			'@typescript-eslint/no-unused-vars': 'off',
+		}
+	},
+	{
+		files: ['**/*.svelte.ts'],
+		rules: {
+			// Refer: COMMENT:101 in this file.
+			'@typescript-eslint/no-unused-expressions': 'off',
 		}
 	},
 	{

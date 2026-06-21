@@ -60,7 +60,7 @@ export function createSlideShow({ numberOfImages, interval }: ArgsType) {
     $effect(() => {
         console.log('fn-$effect');
         index; // I am using `index` as dependency so that when `next` and `previous` buttons are pressed we run the cleanup function so that we startover the slide duration.
-        let id = setInterval(() => {
+        const id = setInterval(() => {
             if (!playing) return;
 
             if (index === numberOfImages - 1) {
