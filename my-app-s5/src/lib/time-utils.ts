@@ -38,3 +38,7 @@ export const humanReadableTodayDayAndDate = () => {
     // console.log(humanReadableDate); // Saturday, April 5, 2025
     return humanReadableDate
 }
+
+export function sleep(ms = 100) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}

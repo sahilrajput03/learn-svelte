@@ -3,8 +3,6 @@
 <script lang="ts">
 	import Nested from './Nested.svelte';
 	import source from './Group1.svelte?raw';
-	console.log('🚀 ~ source?', source);
-	let showCode = $state(true);
 
 	let name = 'svelte';
 	let src = '/image.gif';
@@ -27,11 +25,7 @@
 <hr class="my-5" />
 
 {#if filePath}
-	<div>Filepath: {filePath}</div>
-{/if}
-
-{#if showCode}
-	<pre><code>{source}</code></pre>
+	<div>❤️Filepath: {filePath}</div>
 {/if}
 
 <style>

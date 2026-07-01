@@ -97,6 +97,7 @@
 	import Personal12 from './Personal12.svelte';
 	import Personal13 from './Personal13.svelte';
 	import Personal14 from './Personal14.svelte';
+	import Personal15 from './Personal15.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -593,6 +594,12 @@
 			id: '62dc8903-8e4c-406c-987b-43b55068a011',
 			name: 'Personal14 - 🚀Tinger',
 			component: Personal14,
+			svelteTutorialLink: ''
+		},
+		{
+			id: '55df1a39-1556-4cef-b67e-6cdd384e04ac',
+			name: 'Personal15 - 🚀Prismjs (code rendering with syntax highlight - No Svelte Syntax Highlight Support)',
+			component: Personal15,
 			svelteTutorialLink: ''
 		},
 		{
