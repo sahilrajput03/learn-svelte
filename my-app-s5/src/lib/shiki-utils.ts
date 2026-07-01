@@ -1,11 +1,10 @@
-// vitesse-dark
-// nord
 
+// Source: https://shiki.style/themes
 export const shikiThemes = [
     // ❤️ My favorites
-    // { name: "Dark Plus", id: "dark-plus" }, // ❤️ (It is like vscode dark theme)
-    // { name: "Catppuccin Mocha", id: "catppuccin-mocha" }, // ❤️ It's better than `Catppuccin Macchiato` because it has better darker background.
-    // { name: "Aurora X", id: "aurora-x" }, // ❤️ Extreme dark theme
+    { name: "Dark Plus", id: "dark-plus" }, // ❤️ (It is like vscode dark theme)
+    { name: "Catppuccin Mocha", id: "catppuccin-mocha" }, // ❤️ It's better than `Catppuccin Macchiato` because it has better darker background.
+    { name: "Aurora X", id: "aurora-x" }, // ❤️ Extreme dark theme
 
     // ❤️ Somewhat interesting
     // { name: "GitHub Dark", id: "github-dark" },
@@ -24,6 +23,19 @@ export const shikiThemes = [
     // { name: "Material Theme Darker", id: "material-theme-darker" },
     // { name: "Material Theme Ocean", id: "material-theme-ocean" },
     // { name: "Min Dark", id: "min-dark" },
+    // { name: "Night Owl", id: "night-owl" },
+    // { name: "One Light", id: "one-light" },
+    // { name: "Plastic", id: "plastic" },
+    // { name: "Poimandres", id: "poimandres" },
+    // { name: "Rosé Pine Dawn", id: "rose-pine-dawn" },
+    // { name: "Slack Dark", id: "slack-dark" },
+    // { name: "Slack Ochin", id: "slack-ochin" },
+    // { name: "Material Theme Palenight", id: "material-theme-palenight" },
+    // { name: "Rosé Pine Moon", id: "rose-pine-moon" },
+    // { name: "Synthwave '84", id: "synthwave-84" },
+
+
+
 
 
     // ❌ Not Interesting:
@@ -45,40 +57,22 @@ export const shikiThemes = [
     // { name: "Gruvbox Light Medium", id: "gruvbox-light-medium" },
     // { name: "Gruvbox Light Soft", id: "gruvbox-light-soft" },
     // { name: "Horizon", id: "horizon" },
-
-
-
-
-
-    // TODO: Continue ...
-
-    { name: "Kanagawa Dragon", id: "kanagawa-dragon" },
-    { name: "Kanagawa Lotus", id: "kanagawa-lotus" },
-
-    { name: "Material Theme Lighter", id: "material-theme-lighter" },
-    { name: "Material Theme Palenight", id: "material-theme-palenight" },
-    { name: "Min Light", id: "min-light" },
-    { name: "Monokai", id: "monokai" },
-    { name: "Night Owl", id: "night-owl" },
-    { name: "Night Owl Light", id: "night-owl-light" },
-    { name: "Nord", id: "nord" },
-    { name: "One Dark Pro", id: "one-dark-pro" },
-    { name: "One Light", id: "one-light" },
-    { name: "Plastic", id: "plastic" },
-    { name: "Poimandres", id: "poimandres" },
-    { name: "Red", id: "red" },
-    { name: "Rosé Pine", id: "rose-pine" },
-    { name: "Rosé Pine Dawn", id: "rose-pine-dawn" },
-    { name: "Rosé Pine Moon", id: "rose-pine-moon" },
-    { name: "Slack Dark", id: "slack-dark" },
-    { name: "Slack Ochin", id: "slack-ochin" },
-    { name: "Snazzy Light", id: "snazzy-light" },
-    { name: "Solarized Dark", id: "solarized-dark" },
-    { name: "Solarized Light", id: "solarized-light" },
-    { name: "Synthwave '84", id: "synthwave-84" },
-    { name: "Tokyo Night", id: "tokyo-night" },
-    { name: "Vesper", id: "vesper" },
-    { name: "Vitesse Black", id: "vitesse-black" },
-    { name: "Vitesse Dark", id: "vitesse-dark" },
-    { name: "Vitesse Light", id: "vitesse-light" }
+    // { name: "Kanagawa Dragon", id: "kanagawa-dragon" },
+    // { name: "Kanagawa Lotus", id: "kanagawa-lotus" },
+    // { name: "Material Theme Lighter", id: "material-theme-lighter" },
+    // { name: "Monokai", id: "monokai" },
+    // { name: "Night Owl Light", id: "night-owl-light" },
+    // { name: "Nord", id: "nord" },
+    // { name: "Red", id: "red" },
+    // { name: "Min Light", id: "min-light" },
+    // { name: "One Dark Pro", id: "one-dark-pro" },
+    // { name: "Rosé Pine", id: "rose-pine" },
+    // { name: "Snazzy Light", id: "snazzy-light" },
+    // { name: "Solarized Dark", id: "solarized-dark" },
+    // { name: "Solarized Light", id: "solarized-light" },
+    // { name: "Tokyo Night", id: "tokyo-night" },
+    // { name: "Vesper", id: "vesper" },
+    // { name: "Vitesse Black", id: "vitesse-black" },
+    // { name: "Vitesse Dark", id: "vitesse-dark" },
+    // { name: "Vitesse Light", id: "vitesse-light" }
 ];

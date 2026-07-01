@@ -2,6 +2,35 @@
 <!-- https://svelte.dev/tutorial/svelte/state -->
 
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import source from './Group2.svelte?raw';
+	import { codeToHtml } from 'shiki';
+	import { shikiThemes } from '$lib/shiki-utils';
+	import { sleep } from '$lib/time-utils';
+
+	let html = $state('');
+	let themeName = $state('');
+	let themeIndex = $state();
+
+	// ❤️ My Notes of Shiki: https://docs.google.com/document/d/1OgimIPsmCXVlR2B6HI3YSbkDGqyYGwhaCpqOToeKSJg/edit?tab=t.0#heading=h.12h3x1wtu3kw
+
+	onMount(async () => {
+		// Docs: Supported Langs: https://shiki.style/languages
+		const lang = 'svelte'; // Eg., 'js', 'svelte', etc.
+		// html = await codeToHtml(source, { lang: lang, theme: 'nord'  })
+
+		// Checking out different themes from shikiThemes array
+		while (true) {
+			for (let i = 0; i < shikiThemes.length; i++) {
+				themeIndex = i;
+				const element = shikiThemes[i];
+				html = await codeToHtml(source, { lang: lang, theme: element.id });
+				themeName = element.name;
+				await sleep(2_000);
+			}
+		}
+	});
+
 	// Rune
 	let count = $state(0);
 	function increment() {
@@ -29,8 +58,11 @@
 		//~ Note: `$state.snapshot()` requires exactly one argument but we can pass multiple states in a single object like that
 		// console.log('numbers,total,count?', $state.snapshot({ count, numbers, total }));
 
-		// console.log('numbers[0]?', numbers[0]); // primitive, thus it is is okay and svelte doesn't throw any warning in console
-		// console.log('users[0]?', users[0]); // proxy, thus svelte throws warning to either use `$inspect()` or `$state.snapshot(..)` inside console.log
+		// primitive, thus it is is okay and svelte doesn't throw any warning in console
+		// console.log('numbers[0]?', numbers[0]);
+
+		// proxy, thus svelte throws warning to either use `$inspect()` or `$state.snapshot(..)` inside console.log
+		// console.log('users[0]?', users[0]);
 		console.log('users[0]?', $state.snapshot(users[0])); // * pefectly fine
 	}
 
@@ -61,6 +93,11 @@
 <pre>
 {JSON.stringify(numbers, null, 2)}
 </pre>
+
+<div style="margin-top: 30px;"></div>
+
+<h1 style="font-weight: bold">{themeIndex} {themeName}</h1>
+{@html html}
 
 <style>
 	hr {
