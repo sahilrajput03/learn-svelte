@@ -32,7 +32,12 @@
 
 <div class="text-2xl font-bold">File: `Group2.svelte`</div>
 
-<h1 style="font-weight: bold">{themeIndex} {themeName}</h1>
+<div class="italic text-gray-500">
+	Note: In this file I have setup a slideshow to show different themes of Shiki syntax highlighter.
+	It will change the theme every few seconds as specified in the code of this file.
+</div>
+
+<h1 class="mt-3 font-bold">{themeIndex} {themeName}</h1>
 {@html html}
 
 <style>
