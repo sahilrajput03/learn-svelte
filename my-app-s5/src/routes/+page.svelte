@@ -280,6 +280,20 @@
 			name: 'Group11 - {#each iterable as item (key)} ... {/each}',
 			component: Group11,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/keyed-each-blocks',
+			sourceFiles: [
+				{
+					title: 'Group11.svelte',
+					path: './Group11.svelte',
+				},
+				{
+					title: 'Thing.svelte',
+					path: './Thing.svelte',
+				},
+				{
+					title: 'NotesEach.svelte',
+					path: './NotesEach.svelte',
+				},
+			],
 		},
 		{
 			id: 'cd15a183-ada6-4ae7-9e5f-dc17bb8a8dbc',
