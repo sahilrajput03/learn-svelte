@@ -2,9 +2,9 @@
 // Source: https://shiki.style/themes
 export const shikiThemes = [
     // ❤️ My favorites
-    { name: "Dark Plus", id: "dark-plus" }, // ❤️ (It is like vscode dark theme)
-    { name: "Catppuccin Mocha", id: "catppuccin-mocha" }, // ❤️ It's better than `Catppuccin Macchiato` because it has better darker background.
-    { name: "Aurora X", id: "aurora-x" }, // ❤️ Extreme dark theme
+    { name: "Dark Plus", id: "dark-plus" }, // ❤️ ❤️ ❤️ ❤️(It is vscode dark theme)
+    // { name: "Catppuccin Mocha", id: "catppuccin-mocha" }, // ❤️ It's better than `Catppuccin Macchiato` because it has better darker background.
+    // { name: "Aurora X", id: "aurora-x" }, // ❤️ Extreme dark theme
 
     // ❤️ Somewhat interesting
     // { name: "GitHub Dark", id: "github-dark" },

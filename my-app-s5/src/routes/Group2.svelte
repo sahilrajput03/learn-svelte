@@ -12,7 +12,8 @@
 	let themeName = $state('');
 	let themeIndex = $state();
 
-	// ❤️ My Notes of Shiki: https://docs.google.com/document/d/1OgimIPsmCXVlR2B6HI3YSbkDGqyYGwhaCpqOToeKSJg/edit?tab=t.0#heading=h.12h3x1wtu3kw
+	// ❤️ My Notes of Shiki:
+	// https://docs.google.com/document/d/1OgimIPsmCXVlR2B6HI3YSbkDGqyYGwhaCpqOToeKSJg
 
 	onMount(async () => {
 		// Docs: Supported Langs: https://shiki.style/languages
@@ -54,16 +55,25 @@
 
 		//* Docs - https://svelte.dev/docs/svelte/$state#$state.snapshot
 		// ^ Will log `[ ... ]` rather than `Proxy [ ... ]`
-		// console.log('numbers?', $state.snapshot(numbers)); //& snapshot is awesome but `$inspect` is love.
-		//~ Note: `$state.snapshot()` requires exactly one argument but we can pass multiple states in a single object like that
+
+		// & snapshot is awesome but `$inspect` is love.
+		// console.log('numbers?', $state.snapshot(numbers));
+		// ~ Note: `$state.snapshot()` requires exactly one argument
+		// but we can pass multiple states in a single object like
+		// that
 		// console.log('numbers,total,count?', $state.snapshot({ count, numbers, total }));
 
 		// primitive, thus it is is okay and svelte doesn't throw any warning in console
-		// console.log('numbers[0]?', numbers[0]);
+		console.log('numbers[0]?', numbers[0]);
 
-		// proxy, thus svelte throws warning to either use `$inspect()` or `$state.snapshot(..)` inside console.log
-		// console.log('users[0]?', users[0]);
-		console.log('users[0]?', $state.snapshot(users[0])); // * pefectly fine
+		// Note: Trying to print `users[0]` directly with console log
+		// 		throws warning and suggests to use either `$inspect()` or
+		// 		`$state.snapshot(..)` inside console.log because you are
+		// 		trying to print a proxy.
+		// console.log('users[0]?', users[0]); // ❌
+
+		// Learn: Correct way to print a state object (proxy).
+		console.log('users[0]?', $state.snapshot(users[0])); // ✅
 	}
 
 	//* Docs - https://svelte.dev/docs/svelte/$inspect
