@@ -832,7 +832,7 @@ Why?
 			class="flex items-center text-right text-blue-600"
 			href={componentToShow?.svelteTutorialLink}
 			>See this tutorial on svelte.dev
-			<img class="ms-1 w-[13px]" src="/svelte-logo.svg" alt="svelte" />
+			<img class="ms-[1px] w-[13px]" src="/svelte-logo.svg" alt="svelte" />
 		</a>
 
 		<!-- Show only in development mode. -->
@@ -841,11 +841,7 @@ Why?
 				<OpenFileInVscode
 					relativeFilePath={`/src/routes/${componentToShow.name.split(' ')[0]}.svelte`}
 				/>
-				<img
-					class="ms-1 w-[13px]"
-					src="https://code.visualstudio.com/assets/images/code-stable.png"
-					alt="vscode"
-				/>
+				<img class="ms-[1px] w-[13px]" src="/vscode-icon.png" alt="svelte" />
 			</div>
 		{/if}
 
