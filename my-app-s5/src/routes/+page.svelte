@@ -6,6 +6,21 @@
 	import { onMount, tick, type Component } from 'svelte';
 	import { v4 as uuidv4 } from 'uuid';
 
+	// ChatGPT: https://chatgpt.com/c/6a46754e-7488-83ee-b0ad-fcb922dc6cf4
+	// Note: This is necessary so that Vite can find the files and include them in the build.
+	const files = import.meta.glob(['./*.svelte', './*.svelte.ts'], {
+		query: '?raw',
+		import: 'default',
+	});
+	// Note: Keep below commented code as it as it is useful for debugging.
+	// console.log('🚀 ~ files?', typeof files, Array.isArray(files)); // 'object', false
+	// const loader = files['./Group2.svelte'];
+	// if (loader) {
+	// 	loader().then((source) => {
+	// 		console.log('🚀 ~ source?', source);
+	// 	});
+	// }
+
 	import OpenFileInVscode from './OpenFileInVscode.svelte';
 	import Group1 from './Group1.svelte';
 	import Group2 from './Group2.svelte';
@@ -855,10 +870,15 @@
 		async function main() {
 			codeHtml = '';
 			for (const sourceFile of componentToShow?.sourceFiles ?? []) {
-				const module = await import(`${sourceFile.path}?raw`);
+				// NOTE: Below statement works in development but not
+				// 		 in production build. Thus I am using `files` object
+				// 		 to get the source code of the component.
+				// const code = (await import(`${sourceFile.path}?raw`)).default;
+				// Using glob imported files via `files` variable works for both dev and production environment. [TESTED via `nr build; nr preview` command.]
+				const code = (await files[sourceFile.path]()) as string;
 				// Here `lang` would be `svelte` or `ts` or `js` and that would work as it is.
 				const lang = sourceFile.path.split('.').pop() as any;
-				const html = await codeToHtml(module.default, { lang, theme: 'dark-plus' });
+				const html = await codeToHtml(code, { lang, theme: 'dark-plus' });
 				codeHtml += `<b>${sourceFile.title}</b><br/>${html}<div class="mb-5"></div>`;
 			}
 		}
