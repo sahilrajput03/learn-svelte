@@ -2,6 +2,12 @@
 
 _Note: On, 11 June 2025 - I moved notes from separte `Readme.svletekit.md` file and `Readme.md` (of my svelte 4 project) to this file for easy reference of sources and easy organizing of learning material._
 
+## Why Svelte by Sahil Rajput
+
+1. Lovely built-in state management.
+	- States with runes can be defined outside the component in a file e.g, `shared.svelte.ts`.
+2. Lovely built-in folder based router.
+
 **Quick links:**
 
 - ❤️Deployment info
