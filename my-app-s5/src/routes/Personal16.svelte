@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import source from './Group2.svelte?raw';
+	// import source2 from './Shared.svelte?raw'; // works [TESTED✅]
 	import { codeToHtml } from 'shiki';
 	import { shikiThemes } from '$lib/shiki-utils';
 	import { sleep } from '$lib/time-utils';

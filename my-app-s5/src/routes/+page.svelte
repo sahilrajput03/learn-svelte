@@ -170,15 +170,9 @@
 					title: 'Counter.svelte',
 					path: './Counter.svelte',
 				},
-				// TODO: Fix this as code of below file is not showing in up editor.
-				// TODO: Fix this as code of below file is not showing in up editor.
-				// TODO: Fix this as code of below file is not showing in up editor.
-				// TODO: Fix this as code of below file is not showing in up editor.
-				// TODO: Fix this as code of below file is not showing in up editor.
-				// TODO: Fix this as code of below file is not showing in up editor.
 				{
 					title: 'Shared.svelte.ts',
-					path: './Shared.svelte.ts',
+					path: './shared.svelte.ts',
 				},
 			],
 		},
@@ -187,6 +181,16 @@
 			name: 'Group5 - Component Props and defautl prop values',
 			component: Group5,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/declaring-props',
+			sourceFiles: [
+				{
+					title: 'Group5.svelte',
+					path: './Group5.svelte',
+				},
+				{
+					title: 'Nested2.svelte',
+					path: './Nested2.svelte',
+				},
+			],
 		},
 		{
 			id: '3187d34b-83ac-412a-b50a-a347cc1c8c11',
@@ -808,14 +812,14 @@
 	let codeHtml = $state('');
 
 	// ❤️ Refer your notes in `Personal16.svelte` file for more information on `Shikhi`.
-	const lang = 'svelte';
-	// const lang = 'ts';
 	$effect(() => {
 		// console.log('effeted');
 		async function main() {
 			codeHtml = '';
 			for (const sourceFile of componentToShow?.sourceFiles ?? []) {
 				const module = await import(`${sourceFile.path}?raw`);
+				// Here `lang` would be `svelte` or `ts` or `js` and that would work as it is.
+				const lang = sourceFile.path.split('.').pop() as any;
 				const html = await codeToHtml(module.default, { lang, theme: 'dark-plus' });
 				codeHtml += `<b>${sourceFile.title}</b><br/>${html}<div class="mb-5"></div>`;
 			}
