@@ -197,30 +197,68 @@
 			name: 'Group6 - Passing all props in a single object via destructuring syntax',
 			component: Group6,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/spread-props',
+			sourceFiles: [
+				{
+					title: 'Group6.svelte',
+					path: './Group6.svelte',
+				},
+				{
+					title: 'PackageInfo.svelte',
+					path: './PackageInfo.svelte',
+				},
+			],
 		},
 		{
 			id: 'db337049-a1c4-4ff1-9d96-ecc34b4a809d',
 			name: 'Group7 - {#if exp} ... {/if}',
 			component: Group7,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/if-blocks',
+			sourceFiles: [
+				{
+					title: 'Group7.svelte',
+					path: './Group7.svelte',
+				},
+			],
 		},
 		{
 			id: 'd71a5a4d-284c-4168-964c-24fe656e4191',
 			name: 'Group8 - {#if exp} ... {:else} ...{/if}',
 			component: Group8,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/else-blocks',
+			sourceFiles: [
+				{
+					title: 'Group8.svelte',
+					path: './Group8.svelte',
+				},
+			],
 		},
 		{
 			id: '61035e17-6b4c-4f4b-ba10-08a8321cbb79',
 			name: 'Group9 - {#if exp} ... {:else if exp} ... {:else} ...{/if}',
 			component: Group9,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/else-if-blocks',
+			sourceFiles: [
+				{
+					title: 'Group9.svelte',
+					path: './Group9.svelte',
+				},
+			],
 		},
 		{
 			id: '146aa966-2786-4573-986f-ca15241b7382',
 			name: 'Group10 - {#each iterable as item, i} ... {/each} ',
 			component: Group10,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/each-blocks',
+			sourceFiles: [
+				{
+					title: 'Group10.svelte',
+					path: './Group10.svelte',
+				},
+				{
+					title: 'NotesEach.svelte',
+					path: './NotesEach.svelte',
+				},
+			],
 		},
 		{
 			id: '5c4ff3ff-e7ff-46e5-907c-e71acec1e99d',

@@ -14,8 +14,8 @@
 	{count === 1 ? 'time' : 'times'}
 </button>
 
-{#if count > 10}
-	<p>{count} is greater than 10</p>
+{#if count > 5}
+	<p>{count} is greater than 5</p>
 {:else}
-	<p>{count} is between 0 and 10</p>
+	<p>{count} is between 0 and 5</p>
 {/if}
