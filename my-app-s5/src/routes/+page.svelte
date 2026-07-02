@@ -98,6 +98,7 @@
 	import Personal13 from './Personal13.svelte';
 	import Personal14 from './Personal14.svelte';
 	import Personal15 from './Personal15.svelte';
+	import Personal16 from './Personal16.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -600,6 +601,12 @@
 			id: '55df1a39-1556-4cef-b67e-6cdd384e04ac',
 			name: 'Personal15 - 🚀Prismjs (code rendering with syntax highlight - No Svelte Syntax Highlight Support)',
 			component: Personal15,
+			svelteTutorialLink: ''
+		},
+		{
+			id: '8c83fd2b-7cff-4981-9121-797620a34f12',
+			name: 'Personal16 - 🚀❤️❤️Shikhi (code rendering with syntax highlight)',
+			component: Personal16,
 			svelteTutorialLink: ''
 		},
 		{

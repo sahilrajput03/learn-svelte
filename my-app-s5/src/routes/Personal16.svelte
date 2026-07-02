@@ -1,7 +1,36 @@
-<!-- 6-9/45 -->
-<!-- https://svelte.dev/tutorial/svelte/state -->
-
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import source from './Group2.svelte?raw';
+	import { codeToHtml } from 'shiki';
+	import { shikiThemes } from '$lib/shiki-utils';
+	import { sleep } from '$lib/time-utils';
+
+	// This file is a copy of Group2.svelte file.
+
+	let html = $state('');
+	let themeName = $state('');
+	let themeIndex = $state();
+
+	// ❤️ My Notes of Shiki:
+	// https://docs.google.com/document/d/1OgimIPsmCXVlR2B6HI3YSbkDGqyYGwhaCpqOToeKSJg
+
+	onMount(async () => {
+		// Docs: Supported Langs: https://shiki.style/languages
+		const lang = 'svelte'; // Eg., 'js', 'svelte', etc.
+		// html = await codeToHtml(source, { lang: lang, theme: 'nord'  })
+
+		// Checking out different themes from shikiThemes array
+		while (true) {
+			for (let i = 0; i < shikiThemes.length; i++) {
+				themeIndex = i;
+				const element = shikiThemes[i];
+				html = await codeToHtml(source, { lang: lang, theme: element.id });
+				themeName = element.name;
+				await sleep(2_000);
+			}
+		}
+	});
+
 	// Rune
 	let count = $state(0);
 	function increment() {
@@ -73,6 +102,11 @@
 <pre>
 {JSON.stringify(numbers, null, 2)}
 </pre>
+
+<div style="margin-top: 30px;"></div>
+
+<h1 style="font-weight: bold">{themeIndex} {themeName}</h1>
+{@html html}
 
 <style>
 	hr {
