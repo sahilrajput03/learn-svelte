@@ -8,7 +8,7 @@
 
 	// ChatGPT: https://chatgpt.com/c/6a46754e-7488-83ee-b0ad-fcb922dc6cf4
 	// Note: This is necessary so that Vite can find the files and include them in the build.
-	const files = import.meta.glob(['./*.svelte', './*.svelte.ts'], {
+	const files = import.meta.glob(['./*.svelte', './*.ts'], {
 		query: '?raw',
 		import: 'default',
 	});
@@ -300,6 +300,16 @@
 			name: 'Group12 - {#await promise then number} ... {/await} AND {#await promise} ... {:then number} ... {:catch error} ... {/await}',
 			component: Group12,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/await-blocks',
+			sourceFiles: [
+				{
+					title: 'Group12.svelte',
+					path: './Group12.svelte',
+				},
+				{
+					title: 'utils.ts',
+					path: './utils.ts',
+				},
+			],
 		},
 		{
 			id: '48134d23-1e26-40f7-aa29-f96620d0d74b',
