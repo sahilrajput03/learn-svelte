@@ -311,12 +311,6 @@
 				},
 			],
 		},
-		// !!!! started here at 6:27pm - 3 JULY
-		// !!!! started here at 6:27pm - 3 JULY
-		// !!!! started here at 6:27pm - 3 JULY
-		// !!!! started here at 6:27pm - 3 JULY
-		// !!!! started here at 6:27pm - 3 JULY
-		// !!!! started here at 6:27pm - 3 JULY
 		{
 			id: '48134d23-1e26-40f7-aa29-f96620d0d74b',
 			name: 'Group13 - onpointermove (DOM Event handler)',
@@ -617,14 +611,12 @@
 				},
 			],
 		},
-		// !! STOP HERE
-		// !! STOP HERE
-		// !! STOP HERE
-		// !! STOP HERE
-		// !! STOP HERE
-		// !! STOP HERE
-		// !! STOP HERE
-		// !! STOP HERE
+		// TODO start here...
+		// TODO start here...
+		// TODO start here...
+		// TODO start here...
+		// TODO start here...
+		// TODO start here...
 		{
 			id: '6becc251-e61c-4266-86e4-aa23df0e2f60',
 			name: 'Group36 - Using `|global` modifier the transition plays also when any non-direct element is added or removed',
@@ -715,6 +707,14 @@
 			component: Group50,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/media-elements',
 		},
+		// ! STOP HERE
+		// ! STOP HERE
+		// ! STOP HERE
+		// ! STOP HERE
+		// ! STOP HERE
+		// ! STOP HERE
+		// ! STOP HERE
+		// ! STOP HERE
 		{
 			id: '521f598a-586d-49a8-beae-21bc7b474d10',
 			name: 'Group51 - Dimensions (Advanced bindings-4)',
