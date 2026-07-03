@@ -7,6 +7,7 @@ _Note: On, 11 June 2025 - I moved notes from separte `Readme.svletekit.md` file 
 1. Lovely built-in state management.
 	- States with runes can be defined outside the component in a file e.g, `shared.svelte.ts` for shared reactive logic.
 2. Lovely built-in folder based router.
+3. Lovely built-in animation and transitions functions.
 
 **Quick links:**
 

@@ -28,7 +28,7 @@
 						${Math.min(100, 1000 * (1 - t))}%,
 						${Math.min(50, 500 * (1 - t))}%
 					);`;
-			}
+			},
 		};
 	}
 </script>
@@ -47,7 +47,8 @@
 <style>
 	.centered {
 		position: absolute;
-		left: 50%;
+		/* Note: Setting `left` to 25% instead of 50% so that I can view code in right half of the screen. */
+		left: 25%;
 		top: 50%;
 		transform: translate(-50%, -50%);
 	}

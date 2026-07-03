@@ -38,7 +38,7 @@
 	/>
 </div>
 
-<div class="from-chatgpt">
+<div class="title-for-screenshot">
 	<div>Bubbling and Capturing Phases Explanation by ChatGPT:</div>
 	<img class="bubble-capture-img" src="bubbling-capturing.jpeg" alt="bubbling-capturing" />
 </div>
@@ -51,7 +51,7 @@
 		margin: 40px 0px;
 	}
 
-	.from-chatgpt {
+	.title-for-screenshot {
 		margin-top: 50px;
 		font-weight: bold;
 	}

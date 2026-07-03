@@ -8,7 +8,7 @@
 
 	// ChatGPT: https://chatgpt.com/c/6a46754e-7488-83ee-b0ad-fcb922dc6cf4
 	// Note: This is necessary so that Vite can find the files and include them in the build.
-	const files = import.meta.glob(['./*.svelte', './*.ts'], {
+	const files = import.meta.glob(['./*.svelte', './*.ts', '../*.ts'], {
 		query: '?raw',
 		import: 'default',
 	});
@@ -311,144 +311,320 @@
 				},
 			],
 		},
+		// !!!! started here at 6:27pm - 3 JULY
+		// !!!! started here at 6:27pm - 3 JULY
+		// !!!! started here at 6:27pm - 3 JULY
+		// !!!! started here at 6:27pm - 3 JULY
+		// !!!! started here at 6:27pm - 3 JULY
+		// !!!! started here at 6:27pm - 3 JULY
 		{
 			id: '48134d23-1e26-40f7-aa29-f96620d0d74b',
 			name: 'Group13 - onpointermove (DOM Event handler)',
 			component: Group13,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/dom-events',
+			sourceFiles: [
+				{
+					title: 'Group13.svelte',
+					path: './Group13.svelte',
+				},
+			],
 		},
 		{
 			id: '6603b0fd-6f1d-4d86-8431-dfa3c11ae91d',
 			name: 'Group14 - onpointermove (Inline DOM Event handler)',
 			component: Group14,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/inline-handlers',
+			sourceFiles: [
+				{
+					title: 'Group14.svelte',
+					path: './Group14.svelte',
+				},
+			],
 		},
 		{
 			id: 'd63f7ba9-3997-4f26-98e6-e31905a8b87f',
 			name: 'Group15 - Event Bubbling and Event Capture ',
 			component: Group15,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/capturing',
+			sourceFiles: [
+				{
+					title: 'Group15.svelte',
+					path: './Group15.svelte',
+				},
+			],
 		},
 		{
 			id: '6e61a046-3a14-456c-a6da-d7efbdd5a68c',
 			name: 'Group16 - Passing event handler functions as props to components',
 			component: Group16,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-events',
+			sourceFiles: [
+				{
+					title: 'Group16.svelte',
+					path: './Group16.svelte',
+				},
+				{
+					title: 'Stepper.svelte',
+					path: './Stepper.svelte',
+				},
+				{
+					title: 'types.ts',
+					path: '../types.ts',
+				},
+			],
 		},
 		{
 			id: 'c6421585-e2fa-4471-98fc-833171ec2873',
 			name: 'Group17 - Spread event handlers directly onto elements using {...props}',
 			component: Group17,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/spreading-events',
+			sourceFiles: [
+				{
+					title: 'Group17.svelte',
+					path: './Group17.svelte',
+				},
+				{
+					title: 'BigRedButton.svelte',
+					path: './BigRedButton.svelte',
+				},
+			],
 		},
 		{
 			id: '2eb14b30-2aae-4cc8-aabd-44fe42562129',
 			name: 'Group18 - `bind:value={..} usage in <input />`',
 			component: Group18,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/text-inputs',
+			sourceFiles: [
+				{
+					title: 'Group18.svelte',
+					path: './Group18.svelte',
+				},
+			],
 		},
 		{
 			id: '99c809b5-0dd8-4ef4-8235-b4cac44779bb',
 			name: 'Group19 - Automatically coercion of `value` in <input type="number" bind:value />',
 			component: Group19,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/numeric-inputs',
+			sourceFiles: [
+				{
+					title: 'Group19.svelte',
+					path: './Group19.svelte',
+				},
+			],
 		},
 		{
 			id: 'ca0a9af5-4e39-4349-b76d-fe18242324d1',
 			name: 'Group20 - <input type="checkbox" bind:checked={yes} />',
 			component: Group20,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/checkbox-inputs',
+			sourceFiles: [
+				{
+					title: 'Group20.svelte',
+					path: './Group20.svelte',
+				},
+			],
 		},
 		{
 			id: '41b81e92-1528-4531-a285-b91b056e83dc',
 			name: 'Group21 - <select bind:value={selected}> <option value={...}> ... </option> </select>',
 			component: Group21,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/select-bindings',
+			sourceFiles: [
+				{
+					title: 'Group21.svelte',
+					path: './Group21.svelte',
+				},
+			],
 		},
 		{
 			id: 'ff05c34c-71bc-48f4-9771-fec5a262ac2f',
 			name: 'Group22 - Group inputs: checkbox and radio buttons',
 			component: Group22,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/group-inputs',
+			sourceFiles: [
+				{
+					title: 'Group22.svelte',
+					path: './Group22.svelte',
+				},
+			],
 		},
 		{
 			id: '347d6a45-4e91-4917-90cd-13cd6c993faf',
 			name: 'Group23 - Multiple-select-bindings',
 			component: Group23,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/multiple-select-bindings',
+			sourceFiles: [
+				{
+					title: 'Group23.svelte',
+					path: './Group23.svelte',
+				},
+			],
 		},
 		{
 			id: 'b1aa53b2-d6c8-42c8-8bd8-4e77322960c4',
 			name: 'Group24 - <textarea bind:value></textarea>',
 			component: Group24,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/textarea-inputs',
+			sourceFiles: [
+				{
+					title: 'Group24.svelte',
+					path: './Group24.svelte',
+				},
+			],
 		},
 		{
 			id: '12e02a97-95b6-45c9-9266-ec52ebb7ae91',
 			name: 'Group25 - Class-shorthand e.g, class:flipped',
 			component: Group25,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/classes',
+			sourceFiles: [
+				{
+					title: 'Group25.svelte',
+					path: './Group25.svelte',
+				},
+			],
 		},
 		{
 			id: 'eb7b4f1b-17b2-4320-b236-4e9166d27696',
 			name: 'Group26 - Inline style attributes. Example: style:top="200px" and style:--bg-1="palegoldenrod"',
 			component: Group26,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/styles',
+			sourceFiles: [
+				{
+					title: 'Group26.svelte',
+					path: './Group26.svelte',
+				},
+			],
 		},
 		{
 			id: 'fe70755f-a3f9-4bc9-a148-72dc4f7d5636',
 			name: 'Group27 - Influence the styles inside a child component via escape hatch — a last resort using `:global` CSS modifier',
 			component: Group27,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-styles',
+			sourceFiles: [
+				{
+					title: 'Group27.svelte',
+					path: './Group27.svelte',
+				},
+				{
+					title: 'Box1.svelte',
+					path: './Box1.svelte',
+				},
+			],
 		},
 		{
 			id: '81c97196-2f42-4e6d-81c8-84db422aea3e',
 			name: 'Group28 - Using action functions - Painting (<Canvas />)',
 			component: Group28,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/actions',
+			sourceFiles: [
+				{
+					title: 'Group28.svelte',
+					path: './Group28.svelte',
+				},
+				{
+					title: 'Canvas.svelte',
+					path: './Canvas.svelte',
+				},
+				{
+					title: 'actions.svelte.ts',
+					path: './actions.svelte.ts',
+				},
+			],
 		},
 		{
 			id: 'd8830d46-8687-4bc9-8669-68a44c6dab63',
 			name: 'Group29 - Passing arguments to action function',
 			component: Group29,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/adding-parameters-to-actions',
+			sourceFiles: [
+				{
+					title: 'Group29.svelte',
+					path: './Group29.svelte',
+				},
+			],
 		},
 		{
 			id: '8912382c-5128-4434-9317-a3237d3038cb',
 			name: 'Group30 - <p transition:fade> Fades in and out </p>',
 			component: Group30,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/transition',
+			sourceFiles: [
+				{
+					title: 'Group30.svelte',
+					path: './Group30.svelte',
+				},
+			],
 		},
 		{
 			id: '37c1949b-e444-4df6-87bc-2c9b69fb9187',
 			name: 'Group31 - <p transition:fly={{ y: 100, duration: 2000 }}> Fly in and out </p>',
 			component: Group31,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/adding-parameters-to-transitions',
+			sourceFiles: [
+				{
+					title: 'Group31.svelte',
+					path: './Group31.svelte',
+				},
+			],
 		},
 		{
 			id: '7f99ece2-fdf0-484d-9423-b5af73537d6d',
 			name: 'Group32 - <p in:fly={{ y: 200, duration: 2000 }} out:fade> Flies in, fades out </p>',
 			component: Group32,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/in-and-out',
+			sourceFiles: [
+				{
+					title: 'Group32.svelte',
+					path: './Group32.svelte',
+				},
+			],
 		},
 		{
 			id: '16d2c96a-36b0-4210-94c0-4e914b008821',
 			name: 'Group33 - custom-css-transitions - Spin effect',
 			component: Group33,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/custom-css-transitions',
+			sourceFiles: [
+				{
+					title: 'Group33.svelte',
+					path: './Group33.svelte',
+				},
+			],
 		},
 		{
 			id: 'd47c3877-bf7e-49bf-b22d-2d4f2b739026',
 			name: 'Group34 - custom-css-transitions - Typewriter effect',
 			component: Group34,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/custom-js-transitions',
+			sourceFiles: [
+				{
+					title: 'Group34.svelte',
+					path: './Group34.svelte',
+				},
+			],
 		},
 		{
 			id: '6bf0211c-d1bc-4c04-8288-6a20cc09a375',
 			name: 'Group35 - transition-events: onintrostart, onoutrostart, onintroend & onoutroend',
 			component: Group35,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/transition-events',
+			sourceFiles: [
+				{
+					title: 'Group35.svelte',
+					path: './Group35.svelte',
+				},
+			],
 		},
+		// !! STOP HERE
+		// !! STOP HERE
+		// !! STOP HERE
+		// !! STOP HERE
+		// !! STOP HERE
+		// !! STOP HERE
+		// !! STOP HERE
+		// !! STOP HERE
 		{
 			id: '6becc251-e61c-4266-86e4-aa23df0e2f60',
 			name: 'Group36 - Using `|global` modifier the transition plays also when any non-direct element is added or removed',
