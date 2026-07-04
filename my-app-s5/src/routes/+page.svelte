@@ -1013,7 +1013,7 @@
 		},
 		{
 			id: 'c042662d-e1db-4743-b2c1-77a81b4763d7',
-			name: '❤️Group65 - <svelte:body onmouseenter={..} onmouseleave={...} /> ',
+			name: 'Group65 - ❤️ <svelte:body onmouseenter={..} onmouseleave={...} /> ',
 			component: Group65,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-body',
 			sourceFiles: [
