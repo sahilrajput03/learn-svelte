@@ -77,7 +77,6 @@
 		left: 0;
 		/* Sahil */
 		top: offsetFromTop;
-		width: 100%;
 		height: 100%;
 		/* outline: 2px solid greenyellow; */
 	}
@@ -101,7 +100,8 @@
 		left: 0;
 		/* Sahil */
 		top: offsetFromTop;
-		width: 100%;
+		/* Setting `width: 50%` so that I can show code in the webpage in the right 50% of the screen. */
+		width: 50%;
 		height: 100%;
 		backdrop-filter: blur(20px);
 		/* outline: 2px solid blue; */

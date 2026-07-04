@@ -835,104 +835,264 @@
 				},
 			],
 		},
-		// TODO start here... 10:12pm, 4 July 2026 (18mins)
-		// ! STOP HERE .... 10:30pm.
 		{
 			id: '521f598a-586d-49a8-beae-21bc7b474d10',
 			name: 'Group51 - Dimensions (Advanced bindings-4)',
 			component: Group51,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/dimensions',
+			sourceFiles: [
+				{
+					title: 'Group51.svelte',
+					path: './Group51.svelte',
+				},
+			],
 		},
 		{
 			id: '32b2687c-0181-43a0-bcf0-2a6928ab07ba',
 			name: 'Group52 - This (Advanced bindings-5)',
 			component: Group52,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/bind-this',
+			sourceFiles: [
+				{
+					title: 'Group52.svelte',
+					path: './Group52.svelte',
+				},
+				{
+					title: 'gradient.ts',
+					path: './gradient.ts',
+				},
+			],
 		},
 		{
 			id: '15ac1920-5e41-4edd-8a91-ef46b93b095c',
 			name: 'Group53 - Component bindings (Advanced bindings-6)',
 			component: Group53,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-bindings',
+			sourceFiles: [
+				{
+					title: 'Group53.svelte',
+					path: './Group53.svelte',
+				},
+				{
+					title: 'Keypad.svelte',
+					path: './Keypad.svelte',
+				},
+			],
 		},
 		{
 			id: '535cd449-1477-4b0f-b97d-01486d979ca4',
 			name: 'Group54 - Binding to component instances (Advanced bindings-7)',
 			component: Group54,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-this',
+			sourceFiles: [
+				{
+					title: 'Group54.svelte',
+					path: './Group54.svelte',
+				},
+				{
+					title: 'Canvas2.svelte',
+					path: './Canvas2.svelte',
+				},
+				{
+					title: 'actions.svelte.ts',
+					path: './actions.svelte.ts',
+				},
+			],
 		},
 		{
 			id: 'c682dd16-4104-4592-897f-f7a3bd1f966f',
 			name: 'Group55 - Deferred transitions (Advanced TRANSITIONS)',
 			component: Group55,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/deferred-transitions',
+			sourceFiles: [
+				{
+					title: 'Group55.svelte',
+					path: './Group55.svelte',
+				},
+				{
+					title: 'TodoList.svelte',
+					path: './TodoList.svelte',
+				},
+				{
+					title: 'transition2.ts',
+					path: './transition2.ts',
+				},
+			],
 		},
 		{
 			id: '826b8bc2-fbfe-4d15-82b0-c321f242aa08',
 			name: 'Group56 - Animations (Advanced TRANSITIONS)',
 			component: Group56,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/animations',
+			sourceFiles: [
+				{
+					title: 'Group56.svelte',
+					path: './Group56.svelte',
+				},
+				{
+					title: 'TodoList2.svelte',
+					path: './TodoList2.svelte',
+				},
+				{
+					title: 'transition2.ts',
+					path: './transition2.ts',
+				},
+			],
 		},
 		{
 			id: '0d9b50a7-30b1-41eb-9fc4-c7ded7cf2a5c',
 			name: 'Group61 - setContext and getContext (Context API )',
 			component: Group61,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/context-api',
+			sourceFiles: [
+				{
+					title: 'Group61.svelte',
+					path: './Group61.svelte',
+				},
+				{
+					title: 'Canvas3.svelte',
+					path: './Canvas3.svelte',
+				},
+				{
+					title: 'Square.svelte',
+					path: './Square.svelte',
+				},
+			],
 		},
 		{
 			id: '594af2bf-3921-4127-91b5-ae14f2146e8e',
 			name: 'Group61b - setContext and getContext with reactive state (Context API)',
 			component: Group61b,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/context-api',
+			sourceFiles: [
+				{
+					title: 'Group61b.svelte',
+					path: './Group61b.svelte',
+				},
+				{
+					title: 'Child1.svelte',
+					path: './Child1.svelte',
+				},
+			],
 		},
 		{
 			id: 'a6c77714-d470-4805-8b56-fa5bded49491	',
 			name: 'Group62 - <svelte:window {onkeydown} />',
 			component: Group62,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-window',
+			sourceFiles: [
+				{
+					title: 'Group62.svelte',
+					path: './Group62.svelte',
+				},
+			],
 		},
 		{
 			id: 'ceca67cd-fbb5-47c5-9c81-180b240a4270',
 			name: 'Group63 - <svelte:window bind:scrollY={y} />',
 			component: Group63,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-window',
+			sourceFiles: [
+				{
+					title: 'Group63.svelte',
+					path: './Group63.svelte',
+				},
+			],
 		},
 		{
 			id: 'd9822452-a113-4879-8473-bf8119475978',
 			name: 'Group64 - <svelte:document {onselectionchange} /> ',
 			component: Group64,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-document',
+			sourceFiles: [
+				{
+					title: 'Group64.svelte',
+					path: './Group64.svelte',
+				},
+			],
 		},
 		{
 			id: 'c042662d-e1db-4743-b2c1-77a81b4763d7',
-			name: 'Group65 - <svelte:body onmouseenter={..} onmouseleave={...} /> ',
+			name: '❤️Group65 - <svelte:body onmouseenter={..} onmouseleave={...} /> ',
 			component: Group65,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-body',
+			sourceFiles: [
+				{
+					title: 'Group65.svelte',
+					path: './Group65.svelte',
+				},
+			],
 		},
 		{
 			id: 'a103ba54-7894-467b-ba62-e9feb927ea67',
 			name: 'Group66 - <svelte:head> <link rel="stylesheet" href="MyStyle.css" /> </svelte:head>',
 			component: Group66,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-head',
+			sourceFiles: [
+				{
+					title: 'Group66.svelte',
+					path: './Group66.svelte',
+				},
+			],
 		},
 		{
 			id: 'd241b918-caa5-4208-b0bf-27b6aee8acd9',
 			name: 'Group67 - <svelte:element this={"h1"}> ... </svelte:element>',
 			component: Group67,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-element',
+			sourceFiles: [
+				{
+					title: 'Group67.svelte',
+					path: './Group67.svelte',
+				},
+			],
 		},
 		{
 			id: 'bde71dd3-ca74-4b47-b9b6-f7633b86ca56',
 			name: 'Group68 - <script module> - Sharing code',
 			component: Group68,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/sharing-code',
+			sourceFiles: [
+				{
+					title: 'Group68.svelte',
+					path: './Group68.svelte',
+				},
+				{
+					title: 'AudioPlayer2.svelte',
+					path: './AudioPlayer2.svelte',
+				},
+				{
+					title: 'tracks.ts',
+					path: './tracks.ts',
+				},
+			],
 		},
 		{
 			id: '1732aaa7-18bf-4647-8b32-a4917f08725f',
 			name: 'Group69 - <script module> - Exports',
 			component: Group69,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/module-exports',
+			sourceFiles: [
+				{
+					title: 'Group69.svelte',
+					path: './Group69.svelte',
+				},
+				{
+					title: 'AudioPlayer2.svelte',
+					path: './AudioPlayer2.svelte',
+				},
+				{
+					title: 'tracks.ts',
+					path: './tracks.ts',
+				},
+			],
 		},
+		// TODO start here.
+		// TODO start here.
+		// TODO start here.
+		// TODO start here.
+		// TODO start here.
+		// TODO start here.
 		{
 			id: '15f7992e-886b-4bbb-af20-2ff0a3d41831',
 			name: 'Personal1 - Record and then transcribe with OpenAI / Groq',

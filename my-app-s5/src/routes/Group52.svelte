@@ -40,7 +40,8 @@
 		position: fixed;
 		left: 0;
 		top: 100px;
-		width: 100%;
+		/* Note: I'm setting width` to 50% instead of 100% so that I can show code of files in the right half screen. */
+		width: 50%;
 		height: 100%;
 		background-color: #666;
 		mask: url(./svelte-logo-mask.svg) 50% 50% no-repeat;

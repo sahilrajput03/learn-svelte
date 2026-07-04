@@ -12,12 +12,10 @@
 		const element = document.body;
 
 		// Set the properties
-		element.style.height = '50vh';
 		element.style.outline = '1px solid #f6bb4d';
 
 		return () => {
 			// Settign properties of body to their initial values i.e., before setting it in the first place, in Chrome (MacOS)
-			element.style.height = '';
 			element.style.outline = '';
 		};
 	});
@@ -25,7 +23,10 @@
 
 <svelte:body onmouseenter={() => (hereKitty = true)} onmouseleave={() => (hereKitty = false)} />
 
-<div class="m-5 font-bold">Kitty comes from window edge if you hover here</div>
+<div class="m-5 font-bold">
+	Kitty comes from window edge if you cursor is inside the inside the body tag i.e, orange colored
+	box.
+</div>
 
 <!-- creative commons BY-NC http://www.pngall.com/kitten-png/download/7247 -->
 <img class:curious={hereKitty} alt="Kitten wants to know what's going on" src={kitten} />

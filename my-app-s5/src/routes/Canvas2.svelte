@@ -18,7 +18,8 @@
 		context = canvas.getContext('2d');
 
 		function resize() {
-			canvas.width = window.innerWidth;
+			// Setting it to `window.innerWidth / 2` so that I can show code in the webpage in the right 50% of the screen.
+			canvas.width = window.innerWidth / 2;
 			canvas.height = window.innerHeight;
 		}
 
@@ -75,7 +76,6 @@
 		position: absolute;
 		left: 0;
 		top: 0;
-		width: 100%;
 		height: 100%;
 	}
 
