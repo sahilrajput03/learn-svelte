@@ -28,7 +28,7 @@
 	const y = $derived(scale([min, max], [h, 0]));
 
 	const ticks = $derived.by(() => {
-		const result = [];
+		const result: number[] = [];
 		let n = 10 * Math.ceil(min / 10);
 		while (n < max) {
 			result.push(n);

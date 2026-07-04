@@ -611,110 +611,232 @@
 				},
 			],
 		},
-		// TODO start here...
-		// TODO start here...
-		// TODO start here...
-		// TODO start here...
-		// TODO start here...
-		// TODO start here...
 		{
 			id: '6becc251-e61c-4266-86e4-aa23df0e2f60',
 			name: 'Group36 - Using `|global` modifier the transition plays also when any non-direct element is added or removed',
 			component: Group36,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/global-transitions',
+			sourceFiles: [
+				{
+					title: 'Group36.svelte',
+					path: './Group36.svelte',
+				},
+			],
 		},
 		{
 			id: '5d84afde-9c3c-442e-b185-f6f2035b7901',
 			name: 'Group37 - ❤️ {#key i} ... {/key} - Play transitions on expression change instead of only when the element enters or leaves the DOM',
 			component: Group37,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/key-blocks',
+			sourceFiles: [
+				{
+					title: 'Group37.svelte',
+					path: './Group37.svelte',
+				},
+				{
+					title: 'transition.ts',
+					path: './transition.ts',
+				},
+				{
+					title: 'loading-messages.ts',
+					path: './loading-messages.ts',
+				},
+			],
 		},
 		{
 			id: 'fbe541a0-9821-4569-bfc3-081b22f1702b',
 			name: 'Group38 - Use `$state.raw(..)` when there’s no need for state to be deeply reactive as it will be discarded a few milliseconds later - Stock Price Chart',
 			component: Group38,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/raw-state',
+			sourceFiles: [
+				{
+					title: 'Group38.svelte',
+					path: './Group38.svelte',
+				},
+				{
+					title: 'utils.ts',
+					path: './utils.ts',
+				},
+				{
+					title: 'data.ts',
+					path: './data.ts',
+				},
+			],
 		},
 		{
 			id: '1ddd0a16-1abf-4f1f-8d96-56e696c41b47',
 			name: 'Group39 - Make properties of classes reactive',
 			component: Group39,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/reactive-classes',
+			sourceFiles: [
+				{
+					title: 'Group39.svelte',
+					path: './Group39.svelte',
+				},
+			],
 		},
 		{
 			id: 'b3597b67-71ad-475a-804e-908d8d833038',
 			name: 'Group40 - Make private properties of class reactive; getters and setters',
 			component: Group40,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/getters-and-setters',
+			sourceFiles: [
+				{
+					title: 'Group40.svelte',
+					path: './Group40.svelte',
+				},
+			],
 		},
 		{
 			id: 'ea05dcd8-020b-4408-bef9-d9f0a4759a3c',
 			name: 'Group41 - `new SvelteDate()` - Reactive builtins',
 			component: Group41,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/reactive-builtins',
+			sourceFiles: [
+				{
+					title: 'Group41.svelte',
+					path: './Group41.svelte',
+				},
+			],
 		},
 		{
 			id: 'c0916f32-7569-431d-8cef-c8fd8160c564',
 			name: 'Group42 - SNIPPET: Encapsulate markup in a reusable block',
 			component: Group42,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/snippets-and-render-tags',
+			sourceFiles: [
+				{
+					title: 'Group42.svelte',
+					path: './Group42.svelte',
+				},
+			],
 		},
 		{
 			id: '7c8e8faf-9d2b-400c-98c0-bc06e4ea72cf',
 			name: 'Group43 - SNIPPET: Passing snippets to components',
 			component: Group43,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/passing-snippets',
+			sourceFiles: [
+				{
+					title: 'Group43.svelte',
+					path: './Group43.svelte',
+				},
+				{
+					title: 'FilteredList.svelte',
+					path: './FilteredList.svelte',
+				},
+				{
+					title: 'data2.ts',
+					path: './data2.ts',
+				},
+			],
 		},
 		{
 			id: 'f946f320-e5c0-4925-8633-d0593a9942bd',
 			name: 'Group44 - SNIPPET: Implicit snippet props',
 			component: Group44,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/implicit-snippet-props',
+			sourceFiles: [
+				{
+					title: 'Group44.svelte',
+					path: './Group44.svelte',
+				},
+				{
+					title: 'FilteredList2.svelte',
+					path: './FilteredList2.svelte',
+				},
+				{
+					title: 'data2.ts',
+					path: './data2.ts',
+				},
+			],
 		},
 		{
 			id: 'eb51009a-752d-4add-863e-acdd4b8a1a7a',
 			name: 'Group45 - STORE: `const countStore = writable(0)` AND `countStore.update((n) => n - 1)`',
 			component: Group45,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/introducing-stores',
+			sourceFiles: [
+				{
+					title: 'Group45.svelte',
+					path: './Group45.svelte',
+				},
+				{
+					title: 'Counter2.svelte',
+					path: './Counter2.svelte',
+				},
+			],
 		},
 		{
 			id: '60e223b4-be6e-401a-b9af-b0d5cd31414d',
 			name: 'Group46 - STORE: Tweened values',
 			component: Group46,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/tweens',
+			sourceFiles: [
+				{
+					title: 'Group46.svelte',
+					path: './Group46.svelte',
+				},
+			],
 		},
 		{
 			id: '7c80d947-8de0-479e-8f75-1ad46539c85b',
 			name: 'Group47 - STORE: Springs',
 			component: Group47,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/springs',
+			sourceFiles: [
+				{
+					title: 'Group47.svelte',
+					path: './Group47.svelte',
+				},
+			],
 		},
 		{
 			id: 'f596a478-a3d9-488f-8581-1c861f23885a',
 			name: 'Group48 - Contenteditable bindings (Advanced bindings-1)',
 			component: Group48,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/contenteditable-bindings',
+			sourceFiles: [
+				{
+					title: 'Group48.svelte',
+					path: './Group48.svelte',
+				},
+			],
 		},
 		{
 			id: '1a7fa115-e209-42ad-bafd-8290a0ed4712',
 			name: 'Group49 - ❤️ Each block bindings (Advanced bindings-2)',
 			component: Group49,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/each-block-bindings',
+			sourceFiles: [
+				{
+					title: 'Group49.svelte',
+					path: './Group49.svelte',
+				},
+			],
 		},
 		{
 			id: '26e9cb93-82c3-457d-8fb8-830812ba0085',
 			name: 'Group50 - Media elements (Advanced bindings-3)',
 			component: Group50,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/media-elements',
+			sourceFiles: [
+				{
+					title: 'Group50.svelte',
+					path: './Group50.svelte',
+				},
+				{
+					title: 'AudioPlayer.svelte',
+					path: './AudioPlayer.svelte',
+				},
+				{
+					title: 'tracks.ts',
+					path: './tracks.ts',
+				},
+			],
 		},
-		// ! STOP HERE
-		// ! STOP HERE
-		// ! STOP HERE
-		// ! STOP HERE
-		// ! STOP HERE
-		// ! STOP HERE
-		// ! STOP HERE
-		// ! STOP HERE
+		// TODO start here... 10:12pm, 4 July 2026 (18mins)
+		// ! STOP HERE .... 10:30pm.
 		{
 			id: '521f598a-586d-49a8-beae-21bc7b474d10',
 			name: 'Group51 - Dimensions (Advanced bindings-4)',
