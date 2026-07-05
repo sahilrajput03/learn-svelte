@@ -1,4 +1,6 @@
 {
+    // Fix tailwind error in css files in settings.json file (Check your Learn-tailwindcss Google Doc)
+    "css.lint.unknownAtRules": "ignore",
     "files.exclude": {
         "build": true
     }
