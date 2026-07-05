@@ -15,8 +15,11 @@
 		import: 'default',
 	});
 
-	// Learn: I tried to import files via `./lib/**/*.ts` and `./lib/*.ts` but both didn't work.
-	let libFilesWithSrcDirectoryPrefix = import.meta.glob(['$lib/**/*.ts'], {
+	//	Note: We get below error if we try to import `./lib/**/*.ts` instead of `./lib/*.ts`:
+	//			❌ Build failed in 17.56s		error during build:
+	//				Cannot import $lib/server/database.ts?raw into client-side code:
+	//				Cannot import $lib/server/database.ts?raw into client-side code:
+	let libFilesWithSrcDirectoryPrefix = import.meta.glob(['$lib/*.ts'], {
 		query: '?raw',
 		import: 'default',
 	});
