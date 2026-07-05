@@ -8,10 +8,27 @@
 
 	// ChatGPT: https://chatgpt.com/c/6a46754e-7488-83ee-b0ad-fcb922dc6cf4
 	// Note: This is necessary so that Vite can find the files and include them in the build.
-	const files = import.meta.glob(['./*.svelte', './*.ts', '../*.ts'], {
+	// 		Note: The pattern `'$lib/**/*.ts'` matches files like:
+	// 			`files['$lib/time-utils.ts'], files['$lib/components/Button.svelte']`.
+	const currentDirAndParentDirFiles = import.meta.glob(['./*.svelte', './*.ts', '../*.ts'], {
 		query: '?raw',
 		import: 'default',
 	});
+
+	// Learn: I tried to import files via `./lib/**/*.ts` and `./lib/*.ts` but both didn't work.
+	let libFilesWithSrcDirectoryPrefix = import.meta.glob(['$lib/**/*.ts'], {
+		query: '?raw',
+		import: 'default',
+	});
+	// Converting paths from `/src/lib` to `./lib`.
+	const libFiles = Object.fromEntries(
+		Object.entries(libFilesWithSrcDirectoryPrefix).map(([path, loader]) => [
+			path.replace('/src/lib', './lib'),
+			loader,
+		]),
+	);
+	const files = { ...currentDirAndParentDirFiles, ...libFiles };
+
 	// Note: Keep below commented code as it as it is useful for debugging.
 	// console.log('🚀 ~ files?', typeof files, Array.isArray(files)); // 'object', false
 	// const loader = files['./Group2.svelte'];
@@ -1087,12 +1104,6 @@
 				},
 			],
 		},
-		// TODO start here.
-		// TODO start here.
-		// TODO start here.
-		// TODO start here.
-		// TODO start here.
-		// TODO start here.
 		{
 			id: '15f7992e-886b-4bbb-af20-2ff0a3d41831',
 			name: 'Personal1 - Record and then transcribe with OpenAI / Groq',
@@ -1270,12 +1281,6 @@
 				},
 			],
 		},
-		// ! TODO: Add code of `$lib/speak` in the side code snippet to below file.
-		// ! TODO: Add code of `$lib/speak` in the side code snippet to below file.
-		// ! TODO: Add code of `$lib/speak` in the side code snippet to below file.
-		// ! TODO: Add code of `$lib/speak` in the side code snippet to below file.
-		// ! TODO: Add code of `$lib/speak` in the side code snippet to below file.
-		// ! TODO: Add code of `$lib/speak` in the side code snippet to below file.
 		{
 			id: '62dc8903-8e4c-406c-987b-43b55068a011',
 			name: 'Personal14 - 🚀Tinger',
@@ -1285,6 +1290,10 @@
 				{
 					title: 'Personal14.svelte',
 					path: './Personal14.svelte',
+				},
+				{
+					title: 'lib/speak.ts',
+					path: './lib/speak.ts',
 				},
 			],
 		},
@@ -1300,11 +1309,6 @@
 				},
 			],
 		},
-		// ! TODO: Add code of `$lib/shiki-utils` & `$lib/time-utils` in the side code snippet to below file.
-		// ! TODO: Add code of `$lib/shiki-utils` & `$lib/time-utils` in the side code snippet to below file.
-		// ! TODO: Add code of `$lib/shiki-utils` & `$lib/time-utils` in the side code snippet to below file.
-		// ! TODO: Add code of `$lib/shiki-utils` & `$lib/time-utils` in the side code snippet to below file.
-		// ! TODO: Add code of `$lib/shiki-utils` & `$lib/time-utils` in the side code snippet to below file.
 		{
 			id: '8c83fd2b-7cff-4981-9121-797620a34f12',
 			name: 'Personal16 - 🚀❤️❤️Shiki (code rendering with syntax highlight)',
@@ -1314,6 +1318,14 @@
 				{
 					title: 'Personal16.svelte',
 					path: './Personal16.svelte',
+				},
+				{
+					title: 'lib/shiki-utils.ts',
+					path: './lib/shiki-utils.ts',
+				},
+				{
+					title: 'lib/time-utils.ts',
+					path: './lib/time-utils.ts',
 				},
 			],
 		},
