@@ -206,7 +206,7 @@
 					path: './Counter.svelte',
 				},
 				{
-					title: 'Shared.svelte.ts',
+					title: 'shared.svelte.ts',
 					path: './shared.svelte.ts',
 				},
 			],
@@ -1678,5 +1678,7 @@ Why?
 	:global(pre.shiki) {
 		/* We do this otherwise overflowed code lines have white backgroudn color which looks absurd. */
 		overflow: scroll;
+		/* Learn: Use below `border-radius` if you want rounded corners in code snippets. */
+		/* border-radius: 5px; */
 	}
 </style>

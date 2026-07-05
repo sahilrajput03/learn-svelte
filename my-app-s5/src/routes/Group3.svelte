@@ -1,8 +1,6 @@
 <!-- 10/45 -->
 <!-- https://svelte.dev/tutorial/svelte/effects -->
 
-<!-- Sahil: This is goona be quite a useful example for my future things. -->
-<!-- Learning - We have to clear the interval id in cleanup function otherwise older intervals would keep on accumulating.. -->
 <script lang="ts">
 	let elapsed = $state(0);
 	let interval = $state(1000);
@@ -12,6 +10,8 @@
 			elapsed += 1;
 		}, interval);
 
+		// Learn: We have to clear the interval id in cleanup function
+		// 		  otherwise older intervals would keep on accumulating.
 		return () => {
 			clearInterval(id);
 		};

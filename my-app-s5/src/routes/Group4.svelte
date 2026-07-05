@@ -5,9 +5,8 @@
 	import Counter from './Counter.svelte';
 </script>
 
-<!-- State is shared among all of these since they all
- import same state `shared.svelte.ts` file.
-  -->
+<!-- State is shared among all of these since they all import same
+ 	 state `shared.svelte.ts` file.  -->
 
 <div class="mb-3 italic text-red-600">
 	Alert: Never reassign state (`counter` here) when its defined in a module (`shared.svelte.ts`
