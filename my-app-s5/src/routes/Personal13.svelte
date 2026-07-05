@@ -36,8 +36,8 @@
 
 			// Prefers back camera, falls back to front [Tested in PocoM4]
 			video: {
-				facingMode: { ideal: 'environment' }
-			}
+				facingMode: { ideal: 'environment' },
+			},
 		};
 
 		navigator.mediaDevices
@@ -59,7 +59,7 @@
 		switch (err.name) {
 			case 'NotReadableError':
 				alert(
-					'Camera is busy or unavailable. Please close other apps using the camera and try again.'
+					'Camera is busy or unavailable. Please close other apps using the camera and try again.',
 				);
 				break;
 			case 'NotAllowedError':

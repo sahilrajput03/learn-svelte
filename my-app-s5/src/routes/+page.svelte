@@ -1098,54 +1098,116 @@
 			name: 'Personal1 - Record and then transcribe with OpenAI / Groq',
 			component: Personal1,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal1.svelte',
+					path: './Personal1.svelte',
+				},
+				{
+					title: 'utils.ts',
+					path: './utils.ts',
+				},
+			],
 		},
 		{
 			id: '068d3ce6-7ab2-42d6-bbc1-d8b4c5ecafa7',
 			name: 'Personal2 - Touch and Hold for Mobile and Desktop',
 			component: Personal2,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal2.svelte',
+					path: './Personal2.svelte',
+				},
+			],
 		},
 		{
 			id: '934b6546-d1d6-4c04-b217-607bd598f3ad',
 			name: 'Personal3 - Text box with character position tracking',
 			component: Personal3,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal3.svelte',
+					path: './Personal3.svelte',
+				},
+			],
 		},
 		{
 			id: 'd7f24462-85af-402d-aa0b-81352a341a57',
 			name: 'Personal4 - Query Params',
 			component: Personal4,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal4.svelte',
+					path: './Personal4.svelte',
+				},
+			],
 		},
 		{
 			id: '1a26be0c-03ea-4c78-93e0-fdb779417104',
 			name: 'Personal5 - Device Width and Height Detection',
 			component: Personal5,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal5.svelte',
+					path: './Personal5.svelte',
+				},
+			],
 		},
 		{
 			id: '079324bb-e2ac-4ea2-a4cf-9d4c2259631d',
 			name: 'Personal6 - Vocab Collector for Books',
 			component: Personal6,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal6.svelte',
+					path: './Personal6.svelte',
+				},
+			],
 		},
 		{
 			id: 'b6db5b26-5ed6-4fd1-afa6-4d8ac7e46b93',
 			name: 'Personal6a - Vocab Collector for Books',
 			component: Personal6a,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal6a.svelte',
+					path: './Personal6a.svelte',
+				},
+				{
+					title: 'shared.svelte.ts',
+					path: './shared.svelte.ts',
+				},
+			],
 		},
 		{
 			id: 'd3608e5b-e42b-405f-967e-db14fd77a1f5',
-			name: 'Personal7 - UPI Links Testing (Result: Failue',
+			name: 'Personal7 - 💰 💰 UPI Links Testing (Result: Failure)',
 			component: Personal7,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal7.svelte',
+					path: './Personal7.svelte',
+				},
+			],
 		},
 		{
 			id: '25ce4623-f71d-41ae-a773-3012d50ad3d1',
 			name: 'Personal8 - HTML5 Video Player',
 			component: Personal8,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal8.svelte',
+					path: './Personal8.svelte',
+				},
+			],
 		},
 		// I failed to run this project on mobile (though desktop works quite fine)
 		{
@@ -1153,54 +1215,119 @@
 			name: 'Personal9 - Plyr.js Video Player',
 			component: Personal9,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal9.svelte',
+					path: './Personal9.svelte',
+				},
+			],
 		},
 		{
 			id: '8016167b-b219-4a8a-84b6-209a23aae7ca',
 			name: 'Personal10 - Plyr.js Video Player (youtube embed)',
 			component: Personal10,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal10.svelte',
+					path: './Personal10.svelte',
+				},
+			],
 		},
 		{
 			id: '454bcfd5-56a1-4977-aca6-efc1fe71e07d',
 			name: 'Personal11 - YouTube embed player with auto-play',
 			component: Personal11,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal11.svelte',
+					path: './Personal11.svelte',
+				},
+			],
 		},
 		{
 			id: 'f444ef6e-de55-4899-bc6f-10ff0e563675',
 			name: 'Personal12 - ❤️ Dynamic <input> tags on button click',
 			component: Personal12,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal12.svelte',
+					path: './Personal12.svelte',
+				},
+			],
 		},
 		{
 			id: 'Pc79ee606-0497-439e-bb8d-84be15428690',
 			name: 'Personal13 - ❤️ Grab Video (http://whatwebcando.today)',
 			component: Personal13,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal13.svelte',
+					path: './Personal13.svelte',
+				},
+			],
 		},
+		// ! TODO: Add code of `$lib/speak` in the side code snippet to below file.
+		// ! TODO: Add code of `$lib/speak` in the side code snippet to below file.
+		// ! TODO: Add code of `$lib/speak` in the side code snippet to below file.
+		// ! TODO: Add code of `$lib/speak` in the side code snippet to below file.
+		// ! TODO: Add code of `$lib/speak` in the side code snippet to below file.
+		// ! TODO: Add code of `$lib/speak` in the side code snippet to below file.
 		{
 			id: '62dc8903-8e4c-406c-987b-43b55068a011',
 			name: 'Personal14 - 🚀Tinger',
 			component: Personal14,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal14.svelte',
+					path: './Personal14.svelte',
+				},
+			],
 		},
 		{
 			id: '55df1a39-1556-4cef-b67e-6cdd384e04ac',
 			name: 'Personal15 - 🚀Prismjs (code rendering with syntax highlight - No Svelte Syntax Highlight Support)',
 			component: Personal15,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal15.svelte',
+					path: './Personal15.svelte',
+				},
+			],
 		},
+		// ! TODO: Add code of `$lib/shiki-utils` & `$lib/time-utils` in the side code snippet to below file.
+		// ! TODO: Add code of `$lib/shiki-utils` & `$lib/time-utils` in the side code snippet to below file.
+		// ! TODO: Add code of `$lib/shiki-utils` & `$lib/time-utils` in the side code snippet to below file.
+		// ! TODO: Add code of `$lib/shiki-utils` & `$lib/time-utils` in the side code snippet to below file.
+		// ! TODO: Add code of `$lib/shiki-utils` & `$lib/time-utils` in the side code snippet to below file.
 		{
 			id: '8c83fd2b-7cff-4981-9121-797620a34f12',
-			name: 'Personal16 - 🚀❤️❤️Shikhi (code rendering with syntax highlight)',
+			name: 'Personal16 - 🚀❤️❤️Shiki (code rendering with syntax highlight)',
 			component: Personal16,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal16.svelte',
+					path: './Personal16.svelte',
+				},
+			],
 		},
 		{
 			id: '0f07e431-0f37-49a2-8109-d86ac4d3b544',
 			name: 'Example1 - @debug tag',
 			component: Example1,
 			svelteTutorialLink: 'https://svelte.dev/playground/debug',
+			sourceFiles: [
+				{
+					title: 'Example1.svelte',
+					path: './Example1.svelte',
+				},
+			],
 		},
 		// TEMP NOTE: I added 4 itmes at once for easy of doing in batching
 		{
@@ -1208,12 +1335,24 @@
 			name: 'Flexbox1',
 			component: Flexbox1,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Flexbox1.svelte',
+					path: './Flexbox1.svelte',
+				},
+			],
 		},
 		{
 			id: 'bac43c67-18b1-4f2a-aed5-9e060bb2551f',
 			name: 'Flexbox2',
 			component: Flexbox2,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Flexbox2.svelte',
+					path: './Flexbox2.svelte',
+				},
+			],
 		},
 		// {
 		// 	id: '3ffdf39c-086f-43d8-a532-6c76155ef037',
@@ -1232,6 +1371,12 @@
 			name: 'Grid1',
 			component: Grid1,
 			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Grid1.svelte',
+					path: './Grid1.svelte',
+				},
+			],
 		},
 		// {
 		// 	id: '023ac469-234d-4522-b9a2-70cd1e24c621',
@@ -1480,9 +1625,9 @@ Why?
 
 	<hr class="divider" />
 
-	<div class="flex">
+	<div class="flex gap-1">
 		<!-- We use flex-1 so both items take equal width. -->
-		<div class="flex-1">
+		<div class="max-w-[50%] flex-1">
 			<componentToShow.component />
 		</div>
 		<div class="max-h-[78vh] flex-1 overflow-x-scroll overflow-y-scroll">
