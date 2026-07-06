@@ -885,7 +885,7 @@
 		},
 		{
 			id: '15ac1920-5e41-4edd-8a91-ef46b93b095c',
-			name: 'Group53 - Component bindings (Advanced bindings-6)',
+			name: 'Group53 - ❤️ Component bindings (Advanced bindings-6)',
 			component: Group53,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-bindings',
 			sourceFiles: [
