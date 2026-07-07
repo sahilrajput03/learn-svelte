@@ -87,6 +87,12 @@ Note: Do not move below tag above the <details> tag because that
 	Try searching any fruit using `ctrl/cmd+f` and it should automatically expand the content of
 	details tag.
 </div>
+<div class="my-8 block italic text-gray-500">
+	The best way to test this componet for the automatic opening of the details tag is by commenting
+	the debugger (state debuggign) and commenting the right half side of the screen so that search
+	doesn't search for the text in our codeblocks. Also, the browser serach (ctrl/cmd+f) only opens
+	the details tag if the first item in the page is from the contents of the details tag.
+</div>
 
 <pre> {JSON.stringify({ favoriteFruit, searchValue }, null, 2)} </pre>
 
