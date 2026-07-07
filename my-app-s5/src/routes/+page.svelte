@@ -135,6 +135,7 @@
 	import Personal15 from './Personal15.svelte';
 	import Personal16 from './Personal16.svelte';
 	import { codeToHtml } from 'shiki';
+	import Personal17 from './Personal17.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -1329,6 +1330,18 @@
 				{
 					title: 'lib/time-utils.ts',
 					path: './lib/time-utils.ts',
+				},
+			],
+		},
+		{
+			id: 'cc575ef8-74c1-400e-8909-861b88628b63',
+			name: 'Personal17 - bits-ui (select)',
+			component: Personal17,
+			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal17.svelte',
+					path: './Personal17.svelte',
 				},
 			],
 		},
