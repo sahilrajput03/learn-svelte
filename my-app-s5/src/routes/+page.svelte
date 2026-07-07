@@ -136,6 +136,8 @@
 	import Personal16 from './Personal16.svelte';
 	import { codeToHtml } from 'shiki';
 	import Personal17 from './Personal17.svelte';
+	import Personal18 from './Personal18.svelte';
+	import Personal19 from './Personal19.svelte';
 
 	type ComponentsItemType = {
 		id: string;
@@ -1342,6 +1344,30 @@
 				{
 					title: 'Personal17.svelte',
 					path: './Personal17.svelte',
+				},
+			],
+		},
+		{
+			id: 'fed14938-78eb-4b56-9006-47e5c34d140c',
+			name: 'Personal18 - ❤️ <details> tag with hidden="until-found" feature',
+			component: Personal18,
+			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal18.svelte',
+					path: './Personal18.svelte',
+				},
+			],
+		},
+		{
+			id: 'c6624cb2-3e7f-4b97-9b00-7193c3a82869',
+			name: 'Personal19 - ❤️ <details> tag with hidden="until-found" feature + ❤️ close on button click',
+			component: Personal19,
+			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal19.svelte',
+					path: './Personal19.svelte',
 				},
 			],
 		},
