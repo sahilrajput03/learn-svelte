@@ -1,30 +1,72 @@
 <script lang="ts">
+	import { Label } from 'bits-ui';
+
 	// From ChatGPT: (https://chatgpt.com/c/6a4cd1ec-25dc-83e8-946f-828051898ce5)
 	// 		 		 Learn: Modern Chromium browsers automatically expand closed
 	// 		  		 <details> when a search match is found, without any JavaScript.
 
+	let searchValue = $state('');
 	let open = $state(false);
-	let favoriteFruit = $state('');
-	const fruits = ['mango', 'apple', 'strawberry'];
+	let favoriteFruit: { value: string; label: string } | null = $state(null);
+
+	const fruits = [
+		{ value: 'mango', label: 'Mango' },
+		{ value: 'watermelon', label: 'Watermelon' },
+		{ value: 'apple', label: 'Apple' },
+		{ value: 'pineapple', label: 'Pineapple' },
+		{ value: 'orange', label: 'Orange' },
+		{ value: 'grape', label: 'Grape' },
+		{ value: 'strawberry', label: 'Strawberry' },
+		{ value: 'banana', label: 'Banana' },
+		{ value: 'kiwi', label: 'Kiwi' },
+		{ value: 'peach', label: 'Peach' },
+		{ value: 'cherry', label: 'Cherry' },
+		{ value: 'blueberry', label: 'Blueberry' },
+		{ value: 'raspberry', label: 'Raspberry' },
+		{ value: 'blackberry', label: 'Blackberry' },
+		{ value: 'plum', label: 'Plum' },
+		{ value: 'apricot', label: 'Apricot' },
+		{ value: 'pear', label: 'Pear' },
+		{ value: 'grapefruit', label: 'Grapefruit' },
+	];
+
+	const filteredFruits = $derived(
+		searchValue === ''
+			? fruits
+			: fruits.filter((fruit) => fruit.label.toLowerCase().includes(searchValue.toLowerCase())),
+	);
+
+	let placeholderValue = $state('Chooose a fruit');
 </script>
 
 <!-- TODO: Add a input search field inside the <summary> tag so I can search as well. -->
 
 <details bind:open class="outline outline-1">
-	<summary class="cursor-pointer outline outline-1"
-		>Choose your favorite fruit: {favoriteFruit ? favoriteFruit : 'Select a fruit'}</summary
-	>
+	<summary class="relative flex cursor-pointer outline outline-1">
+		<input
+			class="w-full"
+			bind:value={searchValue}
+			placeholder={placeholderValue}
+			onclick={() => {
+				searchValue = '';
+				open = !open;
+			}}
+		/>
+		<!-- Choose your favorite fruit: {favoriteFruit ? favoriteFruit.label : 'Select a fruit'} -->
+	</summary>
 	<ul>
-		{#each fruits as fruit (fruit)}
+		{#each filteredFruits as fruit (fruit)}
 			<li>
 				<button
 					class="w-full text-left hover:bg-yellow-100"
 					onclick={() => {
 						open = false;
 						favoriteFruit = fruit;
+						// searchValue = fruit.label;
+						placeholderValue = fruit.label;
 					}}
 				>
-					{fruit}
+					{fruit.label}
 				</button>
 			</li>
 		{/each}
@@ -44,6 +86,13 @@ Note: Do not move below tag above the <details> tag because that
 	  causes the issue to only open the <details> when we explicitly click
 	  for next search result in browser's search feature. -->
 <div class="my-8 block italic text-gray-500">
-	Try searching for texts like {fruits.join(', ')} using `ctrl/cmd+f` and it should automatically expand
-	the content of details tag.
+	Try searching any fruit using `ctrl/cmd+f` and it should automatically expand the content of
+	details tag.
 </div>
+
+<style>
+	summary {
+		/* Hide the triagle marker. */
+		list-style: none;
+	}
+</style>
