@@ -39,6 +39,7 @@
 		"@ai-sdk/svelte": "^1.0.3",
 		"ai": "^4.0.9",
 		"axios": "^1.8.4",
+		"bits-ui": "^2.18.1",
 		"groq-sdk": "^0.8.0",
 		"lodash.debounce": "^4.0.8",
 		"marked": "^14.1.3",
