@@ -18,7 +18,7 @@
 		{#each fruits as fruit (fruit)}
 			<li>
 				<button
-					class="w-full text-left"
+					class="w-full text-left hover:bg-yellow-100"
 					onclick={() => {
 						open = false;
 						favoriteFruit = fruit;
