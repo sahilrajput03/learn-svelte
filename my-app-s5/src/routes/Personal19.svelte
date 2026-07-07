@@ -36,17 +36,15 @@
 			: fruits.filter((fruit) => fruit.label.toLowerCase().includes(searchValue.toLowerCase())),
 	);
 
-	let placeholderValue = $state('Chooose a fruit');
+	let placeholderText = $state('Chooose a fruit');
 </script>
-
-<!-- TODO: Add a input search field inside the <summary> tag so I can search as well. -->
 
 <details bind:open class="outline outline-1">
 	<summary class="relative flex cursor-pointer outline outline-1">
 		<input
 			class="w-full"
 			bind:value={searchValue}
-			placeholder={placeholderValue}
+			placeholder={placeholderText}
 			onclick={() => {
 				searchValue = '';
 				open = !open;
@@ -58,12 +56,12 @@
 		{#each filteredFruits as fruit (fruit)}
 			<li>
 				<button
-					class="w-full text-left hover:bg-yellow-100"
+					class={`w-full text-left hover:bg-pink-100 ${favoriteFruit?.value === fruit.value ? 'bg-blue-300' : ''}`}
 					onclick={() => {
 						open = false;
 						favoriteFruit = fruit;
-						// searchValue = fruit.label;
-						placeholderValue = fruit.label;
+						searchValue = '';
+						placeholderText = fruit.label;
 					}}
 				>
 					{fruit.label}
@@ -89,6 +87,8 @@ Note: Do not move below tag above the <details> tag because that
 	Try searching any fruit using `ctrl/cmd+f` and it should automatically expand the content of
 	details tag.
 </div>
+
+<pre> {JSON.stringify({ favoriteFruit, searchValue }, null, 2)} </pre>
 
 <style>
 	summary {
