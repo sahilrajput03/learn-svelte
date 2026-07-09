@@ -7,7 +7,6 @@
 
 	let searchValue = $state('');
 	let open = $state(false);
-	let favoriteFruit = $state<FavoriteFruitType>(null);
 
 	const fruits = [
 		{ value: 'mango', label: 'Mango' },
@@ -30,6 +29,14 @@
 		{ value: 'grapefruit', label: 'Grapefruit' },
 	];
 
+	const favoriteFruitValueLS = localStorage.getItem('favoriteFruit');
+	const favoriteFruitLS = favoriteFruitValueLS
+		? fruits.find((f) => f.value === favoriteFruitValueLS)!
+		: null;
+
+	// Fetch from localstorage on page load
+	let favoriteFruit = $state<FavoriteFruitType>(favoriteFruitLS);
+
 	const filteredFruits = $derived(
 		searchValue === ''
 			? fruits
@@ -38,6 +45,13 @@
 
 	// let placeholderText = $state('Chooose a fruit');
 	let placeholderText = $derived(favoriteFruit?.label ?? 'Chooose a fruit');
+
+	function saveFavoriteFruitToLocalStorage() {
+		localStorage.setItem('favoriteFruit', favoriteFruit?.value || '');
+	}
+	function clearFavoriteFruitFromLocalStorage() {
+		localStorage.setItem('favoriteFruit', '');
+	}
 </script>
 
 <details bind:open class="outline outline-1">
@@ -83,16 +97,30 @@
 Note: Do not move below tag above the <details> tag because that
 	  causes the issue to only open the <details> when we explicitly click
 	  for next search result in browser's search feature. -->
-<div class="my-8 block italic text-gray-500">
+<div class="mt-8 block italic text-gray-500">
 	Try searching any fruit using `ctrl/cmd+f` and it should automatically expand the content of
 	details tag.
 </div>
-<div class="my-8 block italic text-gray-500">
+<div class="mt-8 block italic text-gray-500">
 	The best way to test this componet for the automatic opening of the details tag is by commenting
 	the debugger (state debuggign) and commenting the right half side of the screen so that search
 	doesn't search for the text in our codeblocks. Also, the browser search (ctrl/cmd+f) only opens
 	the details tag if the first item in the page is from the contents of the details tag.
 </div>
+
+<div class="mb-3 mt-8 block italic text-gray-500">
+	Use below buttons to test the behavior for loading the default value in the selector on page load
+	(refresh).
+</div>
+
+<button
+	class="mb-3 border-2 border-pink-500 px-2 py-1 text-pink-500 shadow-lg"
+	onclick={saveFavoriteFruitToLocalStorage}>Save favorite fruit to localstorage</button
+>
+<button
+	class="mb-3 border-2 border-pink-500 px-2 py-1 text-pink-500 shadow-lg"
+	onclick={clearFavoriteFruitFromLocalStorage}>❌</button
+>
 
 <pre>{JSON.stringify({ placeholderText, favoriteFruit, searchValue }, null, 2)} </pre>
 
