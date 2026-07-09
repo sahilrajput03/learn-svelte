@@ -239,13 +239,13 @@ $effect(async () => {}); // 👎 Async function works but we get typescript erro
 // that function.
 ```
 
-## Typescript for Svelte
+## ❤️ Typescript for Svelte
 
 ```jsx
-// state type
+// ❤️  state type
 let flavours = $state<string[]>(['orange', 'strawberry']);
 
-// component props type
+// ❤️  component props type
 type PropsType = { color: string; size: number };
 let { color, size }: PropsType = $props();
 ```
