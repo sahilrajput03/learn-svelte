@@ -9,6 +9,15 @@ _Note: On, 11 June 2025 - I moved notes from separte `Readme.svletekit.md` file 
 2. Lovely built-in folder based router.
 3. Lovely built-in animation and transitions functions.
 4. No multiple (sub) components per file is a feature not a limitation because this allows us to have the philosophy - "A file is a component by default ❤️.
+5. More:
+   -  Linkedin Post: [Click here](https://www.linkedin.com/pulse/from-react-svelte-frontend-future-work-damon-vestervand-3hjsf/)
+   - **HackMd - SvelteJS: My ecosystem is bigger than yours: [Click here](https://hackmd.io/@roguegpu) ([Article reading by Primegan](https://www.youtube.com/watch?v=bh-e700IlmQ))**
+   - Svelte is more popular than Solidjs - The Difference you didn’t know existed between Solid.js and Svelte: [Click here](https://medium.com/@shariq.ahmed525/the-difference-you-didnt-know-existed-between-solid-js-and-svelte-7ad6591abc10)
+   - Works with Capacitor
+   - Has good testing support: [Click here](https://svelte.dev/docs/faq#how-do-i-test-svelte-apps)
+6. Why not:
+   - **Use `{...{/* comment */}}` which works because `{...{}}` is valid way to pass.** ([source](https://github.com/sveltejs/rfcs/pull/43#issuecomment-798933140)).
+	 - Source: [Issue: No comments allowed inside jsx or html](https://github.com/sveltejs/rfcs/pull/43).
 
 **Quick links:**
 
@@ -34,21 +43,6 @@ _Note: On, 11 June 2025 - I moved notes from separte `Readme.svletekit.md` file 
 - TO READ (Blog date: 6 Dec 2021): [https://thenewstack.io/vercel-and-svelte-a-perfect-match-for-web-developers/](https://thenewstack.io/vercel-and-svelte-a-perfect-match-for-web-developers/)
 - threlte: https://threlte.xyz/
 - **Awesome talk by Rich Harris**: [Click here](https://youtu.be/AdNJ3fydeao)
-
-## +ves and -ves of svelte
-
-- **+ves of Svelte:**
-  - Linkedin Post: [Click here](https://www.linkedin.com/pulse/from-react-svelte-frontend-future-work-damon-vestervand-3hjsf/)
-  - **HackMd - SvelteJS: My ecosystem is bigger than yours: [Click here](https://hackmd.io/@roguegpu) ([Article reading by Primegan](https://www.youtube.com/watch?v=bh-e700IlmQ))**
-  - Svelte is more popular than Solidjs - The Difference you didn’t know existed between Solid.js and Svelte: [Click here](https://medium.com/@shariq.ahmed525/the-difference-you-didnt-know-existed-between-solid-js-and-svelte-7ad6591abc10)
-  - Works with Capacitor
-  - Has good testing support: [Click here](https://svelte.dev/docs/faq#how-do-i-test-svelte-apps)
-- **-ves:**
-  - ~~No comments allowed inside jsx or html. [Check this issue](https://github.com/sveltejs/rfcs/pull/43)~~
-  - ❤️ [Check this comment](https://github.com/sveltejs/rfcs/pull/43#issuecomment-798933140) for an alternate answer I follow.
-    - TLDR: Use `{...{/* comment */}}` which works because {...{}} is valid to pass.
-  - Google Search: Why svelte is not popular: [Click here](https://www.google.com/search?q=why+svelte+is+not+popular)
-  - _TODO: Nov 16, 2020_ - Why people aren’t switching to Svelte yet: [Click here](https://blog.logrocket.com/why-people-arent-switching-to-svelte-yet/)
 
 ## Go back to the previous page using SvelteKit
 
