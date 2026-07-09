@@ -52,7 +52,7 @@
 		/>
 		<!-- Choose your favorite fruit: {favoriteFruit ? favoriteFruit.label : 'Select a fruit'} -->
 	</summary>
-	<ul>
+	<ul class="max-h-[300px] overflow-y-scroll">
 		{#each filteredFruits as fruit (fruit)}
 			<li>
 				<button
