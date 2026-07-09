@@ -8,6 +8,7 @@ _Note: On, 11 June 2025 - I moved notes from separte `Readme.svletekit.md` file 
 	- States with runes can be defined outside the component in a file e.g, `shared.svelte.ts` for shared reactive logic.
 2. Lovely built-in folder based router.
 3. Lovely built-in animation and transitions functions.
+4. No multiple (sub) components per file is a feature not a limitation because this allows us to have the philosophy - "A file is a component by default ❤️.
 
 **Quick links:**
 

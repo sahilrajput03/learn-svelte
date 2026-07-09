@@ -94,7 +94,7 @@ Note: Do not move below tag above the <details> tag because that
 	the details tag if the first item in the page is from the contents of the details tag.
 </div>
 
-<pre> {JSON.stringify({ favoriteFruit, searchValue }, null, 2)} </pre>
+<pre>{JSON.stringify({ placeholderText, favoriteFruit, searchValue }, null, 2)} </pre>
 
 <style>
 	summary {
