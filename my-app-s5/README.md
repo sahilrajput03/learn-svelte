@@ -4,12 +4,13 @@ _Note: On, 11 June 2025 - I moved notes from separte `Readme.svletekit.md` file 
 
 ## Why Svelte by Sahil Rajput
 
-1. Lovely built-in state management.
+1. Lovely built-in global state management.
 	- States with runes can be defined outside the component in a file e.g, `shared.svelte.ts` for shared reactive logic.
-2. Lovely built-in folder based router.
-3. Lovely built-in animation and transitions functions.
-4. No multiple (sub) components per file is a feature not a limitation because this allows us to have the philosophy - "A file is a component by default ❤️.
-5. More:
+2. Lovely state declaration interface `let count = $state(0)`.
+3. Lovely built-in folder based router.
+4. Lovely built-in animation and transitions functions.
+5. No multiple (sub) components per file is a feature not a limitation because this allows us to have the philosophy - "A file is a component by default ❤️.
+6. More:
    -  Linkedin Post: [Click here](https://www.linkedin.com/pulse/from-react-svelte-frontend-future-work-damon-vestervand-3hjsf/)
    - **HackMd - SvelteJS: My ecosystem is bigger than yours: [Click here](https://hackmd.io/@roguegpu) ([Article reading by Primegan](https://www.youtube.com/watch?v=bh-e700IlmQ))**
    - Svelte is more popular than Solidjs - The Difference you didn’t know existed between Solid.js and Svelte: [Click here](https://medium.com/@shariq.ahmed525/the-difference-you-didnt-know-existed-between-solid-js-and-svelte-7ad6591abc10)
