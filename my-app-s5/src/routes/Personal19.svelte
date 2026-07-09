@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { Label } from 'bits-ui';
-
 	// From ChatGPT: (https://chatgpt.com/c/6a4cd1ec-25dc-83e8-946f-828051898ce5)
 	// 		 		 Learn: Modern Chromium browsers automatically expand closed
 	// 		  		 <details> when a search match is found, without any JavaScript.
 
+	type FavoriteFruitType = { value: string; label: string } | null;
+
 	let searchValue = $state('');
 	let open = $state(false);
-	let favoriteFruit: { value: string; label: string } | null = $state(null);
+	let favoriteFruit = $state<FavoriteFruitType>(null);
 
 	const fruits = [
 		{ value: 'mango', label: 'Mango' },
@@ -36,7 +36,8 @@
 			: fruits.filter((fruit) => fruit.label.toLowerCase().includes(searchValue.toLowerCase())),
 	);
 
-	let placeholderText = $state('Chooose a fruit');
+	// let placeholderText = $state('Chooose a fruit');
+	let placeholderText = $derived(favoriteFruit?.label ?? 'Chooose a fruit');
 </script>
 
 <details bind:open class="outline outline-1">
@@ -61,7 +62,6 @@
 						open = false;
 						favoriteFruit = fruit;
 						searchValue = '';
-						placeholderText = fruit.label;
 					}}
 				>
 					{fruit.label}
