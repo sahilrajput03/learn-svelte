@@ -141,7 +141,7 @@
 
 	type ComponentsItemType = {
 		id: string;
-		name: string;
+		label: string;
 		component: Component;
 		svelteTutorialLink?: string;
 		// This is used to show code in browser.
@@ -156,7 +156,7 @@
 	let componentItems = $state<Array<ComponentsItemType>>([
 		{
 			id: 'eba91667-1fba-485c-aa2e-2e9e1551b4ad',
-			name: 'Group1 - Using Component, Renderig strings and string as html via {@html ...} tag',
+			label: 'Group1 - Using Component, Renderig strings and string as html via {@html ...} tag',
 			component: Group1,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/your-first-component',
 			sourceFiles: [
@@ -172,7 +172,7 @@
 		},
 		{
 			id: '441ec256-772d-4358-b77e-6ed751e884c0',
-			name: 'Group2 - $state() and $derived()',
+			label: 'Group2 - $state() and $derived()',
 			component: Group2,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/state',
 			sourceFiles: [
@@ -184,7 +184,7 @@
 		},
 		{
 			id: '716f326e-60ae-40a2-b4a5-6c8f1bc928ea',
-			name: 'Group3 - $effect and its cleanup function',
+			label: 'Group3 - $effect and its cleanup function',
 			component: Group3,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/effects',
 			sourceFiles: [
@@ -196,7 +196,7 @@
 		},
 		{
 			id: '550384e7-fd76-49ea-80ae-86ce56332938',
-			name: 'Group4 - ❤️ Shared state (Global state) among components',
+			label: 'Group4 - ❤️ Shared state (Global state) among components',
 			component: Group4,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/universal-reactivity',
 			sourceFiles: [
@@ -216,7 +216,7 @@
 		},
 		{
 			id: 'a753be95-04ef-43dc-9a79-35523901e594',
-			name: 'Group5 - Component Props and defautl prop values',
+			label: 'Group5 - Component Props and defautl prop values',
 			component: Group5,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/declaring-props',
 			sourceFiles: [
@@ -232,7 +232,7 @@
 		},
 		{
 			id: '3187d34b-83ac-412a-b50a-a347cc1c8c11',
-			name: 'Group6 - Passing all props in a single object via destructuring syntax',
+			label: 'Group6 - Passing all props in a single object via destructuring syntax',
 			component: Group6,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/spread-props',
 			sourceFiles: [
@@ -248,7 +248,7 @@
 		},
 		{
 			id: 'db337049-a1c4-4ff1-9d96-ecc34b4a809d',
-			name: 'Group7 - {#if exp} ... {/if}',
+			label: 'Group7 - {#if exp} ... {/if}',
 			component: Group7,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/if-blocks',
 			sourceFiles: [
@@ -260,7 +260,7 @@
 		},
 		{
 			id: 'd71a5a4d-284c-4168-964c-24fe656e4191',
-			name: 'Group8 - {#if exp} ... {:else} ...{/if}',
+			label: 'Group8 - {#if exp} ... {:else} ...{/if}',
 			component: Group8,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/else-blocks',
 			sourceFiles: [
@@ -272,7 +272,7 @@
 		},
 		{
 			id: '61035e17-6b4c-4f4b-ba10-08a8321cbb79',
-			name: 'Group9 - {#if exp} ... {:else if exp} ... {:else} ...{/if}',
+			label: 'Group9 - {#if exp} ... {:else if exp} ... {:else} ...{/if}',
 			component: Group9,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/else-if-blocks',
 			sourceFiles: [
@@ -284,7 +284,7 @@
 		},
 		{
 			id: '146aa966-2786-4573-986f-ca15241b7382',
-			name: 'Group10 - {#each iterable as item, i} ... {/each} ',
+			label: 'Group10 - {#each iterable as item, i} ... {/each} ',
 			component: Group10,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/each-blocks',
 			sourceFiles: [
@@ -300,7 +300,7 @@
 		},
 		{
 			id: '5c4ff3ff-e7ff-46e5-907c-e71acec1e99d',
-			name: 'Group11 - {#each iterable as item (key)} ... {/each}',
+			label: 'Group11 - {#each iterable as item (key)} ... {/each}',
 			component: Group11,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/keyed-each-blocks',
 			sourceFiles: [
@@ -320,7 +320,8 @@
 		},
 		{
 			id: 'cd15a183-ada6-4ae7-9e5f-dc17bb8a8dbc',
-			name: 'Group12 - {#await promise then number} ... {/await} AND {#await promise} ... {:then number} ... {:catch error} ... {/await}',
+			label:
+				'Group12 - {#await promise then number} ... {/await} AND {#await promise} ... {:then number} ... {:catch error} ... {/await}',
 			component: Group12,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/await-blocks',
 			sourceFiles: [
@@ -336,7 +337,7 @@
 		},
 		{
 			id: '48134d23-1e26-40f7-aa29-f96620d0d74b',
-			name: 'Group13 - onpointermove (DOM Event handler)',
+			label: 'Group13 - onpointermove (DOM Event handler)',
 			component: Group13,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/dom-events',
 			sourceFiles: [
@@ -348,7 +349,7 @@
 		},
 		{
 			id: '6603b0fd-6f1d-4d86-8431-dfa3c11ae91d',
-			name: 'Group14 - onpointermove (Inline DOM Event handler)',
+			label: 'Group14 - onpointermove (Inline DOM Event handler)',
 			component: Group14,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/inline-handlers',
 			sourceFiles: [
@@ -360,7 +361,7 @@
 		},
 		{
 			id: 'd63f7ba9-3997-4f26-98e6-e31905a8b87f',
-			name: 'Group15 - Event Bubbling and Event Capture ',
+			label: 'Group15 - Event Bubbling and Event Capture ',
 			component: Group15,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/capturing',
 			sourceFiles: [
@@ -372,7 +373,7 @@
 		},
 		{
 			id: '6e61a046-3a14-456c-a6da-d7efbdd5a68c',
-			name: 'Group16 - Passing event handler functions as props to components',
+			label: 'Group16 - Passing event handler functions as props to components',
 			component: Group16,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-events',
 			sourceFiles: [
@@ -392,7 +393,7 @@
 		},
 		{
 			id: 'c6421585-e2fa-4471-98fc-833171ec2873',
-			name: 'Group17 - Spread event handlers directly onto elements using {...props}',
+			label: 'Group17 - Spread event handlers directly onto elements using {...props}',
 			component: Group17,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/spreading-events',
 			sourceFiles: [
@@ -408,7 +409,7 @@
 		},
 		{
 			id: '2eb14b30-2aae-4cc8-aabd-44fe42562129',
-			name: 'Group18 - `bind:value={..} usage in <input />`',
+			label: 'Group18 - `bind:value={..} usage in <input />`',
 			component: Group18,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/text-inputs',
 			sourceFiles: [
@@ -420,7 +421,7 @@
 		},
 		{
 			id: '99c809b5-0dd8-4ef4-8235-b4cac44779bb',
-			name: 'Group19 - Automatically coercion of `value` in <input type="number" bind:value />',
+			label: 'Group19 - Automatically coercion of `value` in <input type="number" bind:value />',
 			component: Group19,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/numeric-inputs',
 			sourceFiles: [
@@ -432,7 +433,7 @@
 		},
 		{
 			id: 'ca0a9af5-4e39-4349-b76d-fe18242324d1',
-			name: 'Group20 - <input type="checkbox" bind:checked={yes} />',
+			label: 'Group20 - <input type="checkbox" bind:checked={yes} />',
 			component: Group20,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/checkbox-inputs',
 			sourceFiles: [
@@ -444,7 +445,8 @@
 		},
 		{
 			id: '41b81e92-1528-4531-a285-b91b056e83dc',
-			name: 'Group21 - <select bind:value={selected}> <option value={...}> ... </option> </select>',
+			label:
+				'Group21 - <select bind:value={selected}> <option value={...}> ... </option> </select>',
 			component: Group21,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/select-bindings',
 			sourceFiles: [
@@ -456,7 +458,7 @@
 		},
 		{
 			id: 'ff05c34c-71bc-48f4-9771-fec5a262ac2f',
-			name: 'Group22 - Group inputs: checkbox and radio buttons',
+			label: 'Group22 - Group inputs: checkbox and radio buttons',
 			component: Group22,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/group-inputs',
 			sourceFiles: [
@@ -468,7 +470,7 @@
 		},
 		{
 			id: '347d6a45-4e91-4917-90cd-13cd6c993faf',
-			name: 'Group23 - Multiple-select-bindings',
+			label: 'Group23 - Multiple-select-bindings',
 			component: Group23,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/multiple-select-bindings',
 			sourceFiles: [
@@ -480,7 +482,7 @@
 		},
 		{
 			id: 'b1aa53b2-d6c8-42c8-8bd8-4e77322960c4',
-			name: 'Group24 - <textarea bind:value></textarea>',
+			label: 'Group24 - <textarea bind:value></textarea>',
 			component: Group24,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/textarea-inputs',
 			sourceFiles: [
@@ -492,7 +494,7 @@
 		},
 		{
 			id: '12e02a97-95b6-45c9-9266-ec52ebb7ae91',
-			name: 'Group25 - Class-shorthand e.g, class:flipped',
+			label: 'Group25 - Class-shorthand e.g, class:flipped',
 			component: Group25,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/classes',
 			sourceFiles: [
@@ -504,7 +506,8 @@
 		},
 		{
 			id: 'eb7b4f1b-17b2-4320-b236-4e9166d27696',
-			name: 'Group26 - Inline style attributes. Example: style:top="200px" and style:--bg-1="palegoldenrod"',
+			label:
+				'Group26 - Inline style attributes. Example: style:top="200px" and style:--bg-1="palegoldenrod"',
 			component: Group26,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/styles',
 			sourceFiles: [
@@ -516,7 +519,8 @@
 		},
 		{
 			id: 'fe70755f-a3f9-4bc9-a148-72dc4f7d5636',
-			name: 'Group27 - Influence the styles inside a child component via escape hatch — a last resort using `:global` CSS modifier',
+			label:
+				'Group27 - Influence the styles inside a child component via escape hatch — a last resort using `:global` CSS modifier',
 			component: Group27,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-styles',
 			sourceFiles: [
@@ -532,7 +536,7 @@
 		},
 		{
 			id: '81c97196-2f42-4e6d-81c8-84db422aea3e',
-			name: 'Group28 - Using action functions - Painting (<Canvas />)',
+			label: 'Group28 - Using action functions - Painting (<Canvas />)',
 			component: Group28,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/actions',
 			sourceFiles: [
@@ -552,7 +556,7 @@
 		},
 		{
 			id: 'd8830d46-8687-4bc9-8669-68a44c6dab63',
-			name: 'Group29 - Passing arguments to action function',
+			label: 'Group29 - Passing arguments to action function',
 			component: Group29,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/adding-parameters-to-actions',
 			sourceFiles: [
@@ -564,7 +568,7 @@
 		},
 		{
 			id: '8912382c-5128-4434-9317-a3237d3038cb',
-			name: 'Group30 - <p transition:fade> Fades in and out </p>',
+			label: 'Group30 - <p transition:fade> Fades in and out </p>',
 			component: Group30,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/transition',
 			sourceFiles: [
@@ -576,7 +580,7 @@
 		},
 		{
 			id: '37c1949b-e444-4df6-87bc-2c9b69fb9187',
-			name: 'Group31 - <p transition:fly={{ y: 100, duration: 2000 }}> Fly in and out </p>',
+			label: 'Group31 - <p transition:fly={{ y: 100, duration: 2000 }}> Fly in and out </p>',
 			component: Group31,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/adding-parameters-to-transitions',
 			sourceFiles: [
@@ -588,7 +592,7 @@
 		},
 		{
 			id: '7f99ece2-fdf0-484d-9423-b5af73537d6d',
-			name: 'Group32 - <p in:fly={{ y: 200, duration: 2000 }} out:fade> Flies in, fades out </p>',
+			label: 'Group32 - <p in:fly={{ y: 200, duration: 2000 }} out:fade> Flies in, fades out </p>',
 			component: Group32,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/in-and-out',
 			sourceFiles: [
@@ -600,7 +604,7 @@
 		},
 		{
 			id: '16d2c96a-36b0-4210-94c0-4e914b008821',
-			name: 'Group33 - custom-css-transitions - Spin effect',
+			label: 'Group33 - custom-css-transitions - Spin effect',
 			component: Group33,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/custom-css-transitions',
 			sourceFiles: [
@@ -612,7 +616,7 @@
 		},
 		{
 			id: 'd47c3877-bf7e-49bf-b22d-2d4f2b739026',
-			name: 'Group34 - custom-css-transitions - Typewriter effect',
+			label: 'Group34 - custom-css-transitions - Typewriter effect',
 			component: Group34,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/custom-js-transitions',
 			sourceFiles: [
@@ -624,7 +628,7 @@
 		},
 		{
 			id: '6bf0211c-d1bc-4c04-8288-6a20cc09a375',
-			name: 'Group35 - transition-events: onintrostart, onoutrostart, onintroend & onoutroend',
+			label: 'Group35 - transition-events: onintrostart, onoutrostart, onintroend & onoutroend',
 			component: Group35,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/transition-events',
 			sourceFiles: [
@@ -636,7 +640,8 @@
 		},
 		{
 			id: '6becc251-e61c-4266-86e4-aa23df0e2f60',
-			name: 'Group36 - Using `|global` modifier the transition plays also when any non-direct element is added or removed',
+			label:
+				'Group36 - Using `|global` modifier the transition plays also when any non-direct element is added or removed',
 			component: Group36,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/global-transitions',
 			sourceFiles: [
@@ -648,7 +653,8 @@
 		},
 		{
 			id: '5d84afde-9c3c-442e-b185-f6f2035b7901',
-			name: 'Group37 - ❤️ {#key i} ... {/key} - Play transitions on expression change instead of only when the element enters or leaves the DOM',
+			label:
+				'Group37 - ❤️ {#key i} ... {/key} - Play transitions on expression change instead of only when the element enters or leaves the DOM',
 			component: Group37,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/key-blocks',
 			sourceFiles: [
@@ -668,7 +674,8 @@
 		},
 		{
 			id: 'fbe541a0-9821-4569-bfc3-081b22f1702b',
-			name: 'Group38 - Use `$state.raw(..)` when there’s no need for state to be deeply reactive as it will be discarded a few milliseconds later - Stock Price Chart',
+			label:
+				'Group38 - Use `$state.raw(..)` when there’s no need for state to be deeply reactive as it will be discarded a few milliseconds later - Stock Price Chart',
 			component: Group38,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/raw-state',
 			sourceFiles: [
@@ -688,7 +695,7 @@
 		},
 		{
 			id: '1ddd0a16-1abf-4f1f-8d96-56e696c41b47',
-			name: 'Group39 - Make properties of classes reactive',
+			label: 'Group39 - Make properties of classes reactive',
 			component: Group39,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/reactive-classes',
 			sourceFiles: [
@@ -700,7 +707,7 @@
 		},
 		{
 			id: 'b3597b67-71ad-475a-804e-908d8d833038',
-			name: 'Group40 - Make private properties of class reactive; getters and setters',
+			label: 'Group40 - Make private properties of class reactive; getters and setters',
 			component: Group40,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/getters-and-setters',
 			sourceFiles: [
@@ -712,7 +719,7 @@
 		},
 		{
 			id: 'ea05dcd8-020b-4408-bef9-d9f0a4759a3c',
-			name: 'Group41 - `new SvelteDate()` - Reactive builtins',
+			label: 'Group41 - `new SvelteDate()` - Reactive builtins',
 			component: Group41,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/reactive-builtins',
 			sourceFiles: [
@@ -724,7 +731,7 @@
 		},
 		{
 			id: 'c0916f32-7569-431d-8cef-c8fd8160c564',
-			name: 'Group42 - SNIPPET: Encapsulate markup in a reusable block',
+			label: 'Group42 - SNIPPET: Encapsulate markup in a reusable block',
 			component: Group42,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/snippets-and-render-tags',
 			sourceFiles: [
@@ -736,7 +743,7 @@
 		},
 		{
 			id: '7c8e8faf-9d2b-400c-98c0-bc06e4ea72cf',
-			name: 'Group43 - SNIPPET: Passing snippets to components',
+			label: 'Group43 - SNIPPET: Passing snippets to components',
 			component: Group43,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/passing-snippets',
 			sourceFiles: [
@@ -756,7 +763,7 @@
 		},
 		{
 			id: 'f946f320-e5c0-4925-8633-d0593a9942bd',
-			name: 'Group44 - SNIPPET: Implicit snippet props',
+			label: 'Group44 - SNIPPET: Implicit snippet props',
 			component: Group44,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/implicit-snippet-props',
 			sourceFiles: [
@@ -776,7 +783,8 @@
 		},
 		{
 			id: 'eb51009a-752d-4add-863e-acdd4b8a1a7a',
-			name: 'Group45 - STORE: `const countStore = writable(0)` AND `countStore.update((n) => n - 1)`',
+			label:
+				'Group45 - STORE: `const countStore = writable(0)` AND `countStore.update((n) => n - 1)`',
 			component: Group45,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/introducing-stores',
 			sourceFiles: [
@@ -792,7 +800,7 @@
 		},
 		{
 			id: '60e223b4-be6e-401a-b9af-b0d5cd31414d',
-			name: 'Group46 - STORE: Tweened values',
+			label: 'Group46 - STORE: Tweened values',
 			component: Group46,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/tweens',
 			sourceFiles: [
@@ -804,7 +812,7 @@
 		},
 		{
 			id: '7c80d947-8de0-479e-8f75-1ad46539c85b',
-			name: 'Group47 - STORE: Springs',
+			label: 'Group47 - STORE: Springs',
 			component: Group47,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/springs',
 			sourceFiles: [
@@ -816,7 +824,7 @@
 		},
 		{
 			id: 'f596a478-a3d9-488f-8581-1c861f23885a',
-			name: 'Group48 - Contenteditable bindings (Advanced bindings-1)',
+			label: 'Group48 - Contenteditable bindings (Advanced bindings-1)',
 			component: Group48,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/contenteditable-bindings',
 			sourceFiles: [
@@ -828,7 +836,7 @@
 		},
 		{
 			id: '1a7fa115-e209-42ad-bafd-8290a0ed4712',
-			name: 'Group49 - ❤️ Each block bindings (Advanced bindings-2)',
+			label: 'Group49 - ❤️ Each block bindings (Advanced bindings-2)',
 			component: Group49,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/each-block-bindings',
 			sourceFiles: [
@@ -840,7 +848,7 @@
 		},
 		{
 			id: '26e9cb93-82c3-457d-8fb8-830812ba0085',
-			name: 'Group50 - Media elements (Advanced bindings-3)',
+			label: 'Group50 - Media elements (Advanced bindings-3)',
 			component: Group50,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/media-elements',
 			sourceFiles: [
@@ -860,7 +868,7 @@
 		},
 		{
 			id: '521f598a-586d-49a8-beae-21bc7b474d10',
-			name: 'Group51 - Dimensions (Advanced bindings-4)',
+			label: 'Group51 - Dimensions (Advanced bindings-4)',
 			component: Group51,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/dimensions',
 			sourceFiles: [
@@ -872,7 +880,7 @@
 		},
 		{
 			id: '32b2687c-0181-43a0-bcf0-2a6928ab07ba',
-			name: 'Group52 - This (Advanced bindings-5)',
+			label: 'Group52 - This (Advanced bindings-5)',
 			component: Group52,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/bind-this',
 			sourceFiles: [
@@ -888,7 +896,7 @@
 		},
 		{
 			id: '15ac1920-5e41-4edd-8a91-ef46b93b095c',
-			name: 'Group53 - ❤️ Component bindings (Advanced bindings-6)',
+			label: 'Group53 - ❤️ Component bindings (Advanced bindings-6)',
 			component: Group53,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-bindings',
 			sourceFiles: [
@@ -904,7 +912,7 @@
 		},
 		{
 			id: '535cd449-1477-4b0f-b97d-01486d979ca4',
-			name: 'Group54 - Binding to component instances (Advanced bindings-7)',
+			label: 'Group54 - Binding to component instances (Advanced bindings-7)',
 			component: Group54,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/component-this',
 			sourceFiles: [
@@ -924,7 +932,7 @@
 		},
 		{
 			id: 'c682dd16-4104-4592-897f-f7a3bd1f966f',
-			name: 'Group55 - Deferred transitions (Advanced TRANSITIONS)',
+			label: 'Group55 - Deferred transitions (Advanced TRANSITIONS)',
 			component: Group55,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/deferred-transitions',
 			sourceFiles: [
@@ -944,7 +952,7 @@
 		},
 		{
 			id: '826b8bc2-fbfe-4d15-82b0-c321f242aa08',
-			name: 'Group56 - Animations (Advanced TRANSITIONS)',
+			label: 'Group56 - Animations (Advanced TRANSITIONS)',
 			component: Group56,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/animations',
 			sourceFiles: [
@@ -964,7 +972,7 @@
 		},
 		{
 			id: '0d9b50a7-30b1-41eb-9fc4-c7ded7cf2a5c',
-			name: 'Group61 - setContext and getContext (Context API )',
+			label: 'Group61 - setContext and getContext (Context API )',
 			component: Group61,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/context-api',
 			sourceFiles: [
@@ -984,7 +992,7 @@
 		},
 		{
 			id: '594af2bf-3921-4127-91b5-ae14f2146e8e',
-			name: 'Group61b - setContext and getContext with reactive state (Context API)',
+			label: 'Group61b - setContext and getContext with reactive state (Context API)',
 			component: Group61b,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/context-api',
 			sourceFiles: [
@@ -1000,7 +1008,7 @@
 		},
 		{
 			id: 'a6c77714-d470-4805-8b56-fa5bded49491	',
-			name: 'Group62 - <svelte:window {onkeydown} />',
+			label: 'Group62 - <svelte:window {onkeydown} />',
 			component: Group62,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-window',
 			sourceFiles: [
@@ -1012,7 +1020,7 @@
 		},
 		{
 			id: 'ceca67cd-fbb5-47c5-9c81-180b240a4270',
-			name: 'Group63 - <svelte:window bind:scrollY={y} />',
+			label: 'Group63 - <svelte:window bind:scrollY={y} />',
 			component: Group63,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-window',
 			sourceFiles: [
@@ -1024,7 +1032,7 @@
 		},
 		{
 			id: 'd9822452-a113-4879-8473-bf8119475978',
-			name: 'Group64 - <svelte:document {onselectionchange} /> ',
+			label: 'Group64 - <svelte:document {onselectionchange} /> ',
 			component: Group64,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-document',
 			sourceFiles: [
@@ -1036,7 +1044,7 @@
 		},
 		{
 			id: 'c042662d-e1db-4743-b2c1-77a81b4763d7',
-			name: 'Group65 - ❤️ <svelte:body onmouseenter={..} onmouseleave={...} /> ',
+			label: 'Group65 - ❤️ <svelte:body onmouseenter={..} onmouseleave={...} /> ',
 			component: Group65,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-body',
 			sourceFiles: [
@@ -1048,7 +1056,7 @@
 		},
 		{
 			id: 'a103ba54-7894-467b-ba62-e9feb927ea67',
-			name: 'Group66 - <svelte:head> <link rel="stylesheet" href="MyStyle.css" /> </svelte:head>',
+			label: 'Group66 - <svelte:head> <link rel="stylesheet" href="MyStyle.css" /> </svelte:head>',
 			component: Group66,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-head',
 			sourceFiles: [
@@ -1060,7 +1068,7 @@
 		},
 		{
 			id: 'd241b918-caa5-4208-b0bf-27b6aee8acd9',
-			name: 'Group67 - <svelte:element this={"h1"}> ... </svelte:element>',
+			label: 'Group67 - <svelte:element this={"h1"}> ... </svelte:element>',
 			component: Group67,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/svelte-element',
 			sourceFiles: [
@@ -1072,7 +1080,7 @@
 		},
 		{
 			id: 'bde71dd3-ca74-4b47-b9b6-f7633b86ca56',
-			name: 'Group68 - <script module> - Sharing code',
+			label: 'Group68 - <script module> - Sharing code',
 			component: Group68,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/sharing-code',
 			sourceFiles: [
@@ -1092,7 +1100,7 @@
 		},
 		{
 			id: '1732aaa7-18bf-4647-8b32-a4917f08725f',
-			name: 'Group69 - <script module> - Exports',
+			label: 'Group69 - <script module> - Exports',
 			component: Group69,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/module-exports',
 			sourceFiles: [
@@ -1112,7 +1120,7 @@
 		},
 		{
 			id: '15f7992e-886b-4bbb-af20-2ff0a3d41831',
-			name: 'Personal1 - Record and then transcribe with OpenAI / Groq',
+			label: 'Personal1 - Record and then transcribe with OpenAI / Groq',
 			component: Personal1,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1128,7 +1136,7 @@
 		},
 		{
 			id: '068d3ce6-7ab2-42d6-bbc1-d8b4c5ecafa7',
-			name: 'Personal2 - Touch and Hold for Mobile and Desktop',
+			label: 'Personal2 - Touch and Hold for Mobile and Desktop',
 			component: Personal2,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1140,7 +1148,7 @@
 		},
 		{
 			id: '934b6546-d1d6-4c04-b217-607bd598f3ad',
-			name: 'Personal3 - Text box with character position tracking',
+			label: 'Personal3 - Text box with character position tracking',
 			component: Personal3,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1152,7 +1160,7 @@
 		},
 		{
 			id: 'd7f24462-85af-402d-aa0b-81352a341a57',
-			name: 'Personal4 - Query Params',
+			label: 'Personal4 - Query Params',
 			component: Personal4,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1164,7 +1172,7 @@
 		},
 		{
 			id: '1a26be0c-03ea-4c78-93e0-fdb779417104',
-			name: 'Personal5 - Device Width and Height Detection',
+			label: 'Personal5 - Device Width and Height Detection',
 			component: Personal5,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1176,7 +1184,7 @@
 		},
 		{
 			id: '079324bb-e2ac-4ea2-a4cf-9d4c2259631d',
-			name: 'Personal6 - Vocab Collector for Books',
+			label: 'Personal6 - Vocab Collector for Books',
 			component: Personal6,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1188,7 +1196,7 @@
 		},
 		{
 			id: 'b6db5b26-5ed6-4fd1-afa6-4d8ac7e46b93',
-			name: 'Personal6a - Vocab Collector for Books',
+			label: 'Personal6a - Vocab Collector for Books',
 			component: Personal6a,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1204,7 +1212,7 @@
 		},
 		{
 			id: 'd3608e5b-e42b-405f-967e-db14fd77a1f5',
-			name: 'Personal7 - 💰 💰 UPI Links Testing (Result: Failure)',
+			label: 'Personal7 - 💰 💰 UPI Links Testing (Result: Failure)',
 			component: Personal7,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1216,7 +1224,7 @@
 		},
 		{
 			id: '25ce4623-f71d-41ae-a773-3012d50ad3d1',
-			name: 'Personal8 - HTML5 Video Player',
+			label: 'Personal8 - HTML5 Video Player',
 			component: Personal8,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1229,7 +1237,7 @@
 		// I failed to run this project on mobile (though desktop works quite fine)
 		{
 			id: '6b59a349-1a3b-4348-9c7b-f845b936e4dc',
-			name: 'Personal9 - Plyr.js Video Player',
+			label: 'Personal9 - Plyr.js Video Player',
 			component: Personal9,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1241,7 +1249,7 @@
 		},
 		{
 			id: '8016167b-b219-4a8a-84b6-209a23aae7ca',
-			name: 'Personal10 - Plyr.js Video Player (youtube embed)',
+			label: 'Personal10 - Plyr.js Video Player (youtube embed)',
 			component: Personal10,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1253,7 +1261,7 @@
 		},
 		{
 			id: '454bcfd5-56a1-4977-aca6-efc1fe71e07d',
-			name: 'Personal11 - YouTube embed player with auto-play',
+			label: 'Personal11 - YouTube embed player with auto-play',
 			component: Personal11,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1265,7 +1273,7 @@
 		},
 		{
 			id: 'f444ef6e-de55-4899-bc6f-10ff0e563675',
-			name: 'Personal12 - ❤️ Dynamic <input> tags on button click',
+			label: 'Personal12 - ❤️ Dynamic <input> tags on button click',
 			component: Personal12,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1277,7 +1285,7 @@
 		},
 		{
 			id: 'Pc79ee606-0497-439e-bb8d-84be15428690',
-			name: 'Personal13 - ❤️ Grab Video (http://whatwebcando.today)',
+			label: 'Personal13 - ❤️ Grab Video (http://whatwebcando.today)',
 			component: Personal13,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1289,7 +1297,7 @@
 		},
 		{
 			id: '62dc8903-8e4c-406c-987b-43b55068a011',
-			name: 'Personal14 - 🚀Tinger',
+			label: 'Personal14 - 🚀Tinger',
 			component: Personal14,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1305,7 +1313,8 @@
 		},
 		{
 			id: '55df1a39-1556-4cef-b67e-6cdd384e04ac',
-			name: 'Personal15 - 🚀Prismjs (code rendering with syntax highlight - No Svelte Syntax Highlight Support)',
+			label:
+				'Personal15 - 🚀Prismjs (code rendering with syntax highlight - No Svelte Syntax Highlight Support)',
 			component: Personal15,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1317,7 +1326,7 @@
 		},
 		{
 			id: '8c83fd2b-7cff-4981-9121-797620a34f12',
-			name: 'Personal16 - 🚀❤️❤️Shiki (code rendering with syntax highlight)',
+			label: 'Personal16 - 🚀❤️❤️Shiki (code rendering with syntax highlight)',
 			component: Personal16,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1337,7 +1346,7 @@
 		},
 		{
 			id: 'cc575ef8-74c1-400e-8909-861b88628b63',
-			name: 'Personal17 - bits-ui (select)',
+			label: 'Personal17 - bits-ui (select)',
 			component: Personal17,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1349,7 +1358,7 @@
 		},
 		{
 			id: 'fed14938-78eb-4b56-9006-47e5c34d140c',
-			name: 'Personal18 - ❤️ <details> tag with hidden="until-found" feature',
+			label: 'Personal18 - ❤️ <details> tag with hidden="until-found" feature',
 			component: Personal18,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1361,7 +1370,8 @@
 		},
 		{
 			id: 'c6624cb2-3e7f-4b97-9b00-7193c3a82869',
-			name: 'Personal19 - ❤️ <details> tag with hidden="until-found" feature + ❤️ close on button click',
+			label:
+				'Personal19 - ❤️ <details> tag with hidden="until-found" feature + ❤️ close on button click',
 			component: Personal19,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1373,7 +1383,7 @@
 		},
 		{
 			id: '0f07e431-0f37-49a2-8109-d86ac4d3b544',
-			name: 'Example1 - @debug tag',
+			label: 'Example1 - @debug tag',
 			component: Example1,
 			svelteTutorialLink: 'https://svelte.dev/playground/debug',
 			sourceFiles: [
@@ -1386,7 +1396,7 @@
 		// TEMP NOTE: I added 4 itmes at once for easy of doing in batching
 		{
 			id: 'a96c896c-d8d6-4777-8ec3-6590e922ca59',
-			name: 'Flexbox1',
+			label: 'Flexbox1',
 			component: Flexbox1,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1398,7 +1408,7 @@
 		},
 		{
 			id: 'bac43c67-18b1-4f2a-aed5-9e060bb2551f',
-			name: 'Flexbox2',
+			label: 'Flexbox2',
 			component: Flexbox2,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1410,19 +1420,19 @@
 		},
 		// {
 		// 	id: '3ffdf39c-086f-43d8-a532-6c76155ef037',
-		// 	name: 'Flexbox3',
+		// 	label: 'Flexbox3',
 		// 	component: Flexbox1,
 		// 	svelteTutorialLink: ''
 		// },
 		// {
 		// 	id: 'a0deb145-b81c-4042-a379-24e613d83624',
-		// 	name: 'Flexbox4',
+		// 	label: 'Flexbox4',
 		// 	component: Flexbox1,
 		// 	svelteTutorialLink: ''
 		// },
 		{
 			id: 'a28ca0ee-427f-4f87-9d0c-d93d4f2b782a',
-			name: 'Grid1',
+			label: 'Grid1',
 			component: Grid1,
 			svelteTutorialLink: '',
 			sourceFiles: [
@@ -1434,7 +1444,7 @@
 		},
 		// {
 		// 	id: '023ac469-234d-4522-b9a2-70cd1e24c621',
-		// 	name: 'Grid2',
+		// 	label: 'Grid2',
 		// 	component: Grid1,
 		// 	svelteTutorialLink: ''
 		// }
@@ -1597,9 +1607,9 @@ Why?
 				updateQuerySearchParams(e.target?.value);
 			}}
 		>
-			{#each componentItems as { id, name }}
+			{#each componentItems as { id, label }}
 				<option value={id}>
-					{name}
+					{label}
 				</option>
 			{/each}
 		</select>
@@ -1629,11 +1639,11 @@ Why?
 		<a
 			class="flex items-center text-right text-blue-600"
 			target="_blank"
-			href="https://github.com/sahilrajput03/learn-svelte/blob/main/my-app-s5/src/routes/{componentToShow.name.split(
+			href="https://github.com/sahilrajput03/learn-svelte/blob/main/my-app-s5/src/routes/{componentToShow.label.split(
 				' ',
 			)[0]}.svelte"
 		>
-			See {componentToShow.name.split(' ')[0]}.svelte on Github
+			See {componentToShow.label.split(' ')[0]}.svelte on Github
 			<img
 				class="w-[20px]"
 				src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
@@ -1655,7 +1665,7 @@ Why?
 		{#if dev}
 			<div class="flex items-center">
 				<OpenFileInVscode
-					relativeFilePath={`/src/routes/${componentToShow.name.split(' ')[0]}.svelte`}
+					relativeFilePath={`/src/routes/${componentToShow.label.split(' ')[0]}.svelte`}
 				/>
 				<img class="ms-[1px] w-[13px]" src="/vscode-icon.png" alt="svelte" />
 			</div>
