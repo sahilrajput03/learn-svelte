@@ -1577,6 +1577,17 @@
 	});
 
 	// $inspect('selected?', componentToShow); // For debugging
+
+	let searchValue = $state('');
+	let open = $state(false);
+
+	let placeholderText = $derived(componentToShow?.label ?? 'Chooose a component');
+
+	const filteredComponentItems = $derived(
+		searchValue === ''
+			? componentItems
+			: componentItems.filter((ci) => ci.label.toLowerCase().includes(searchValue.toLowerCase())),
+	);
 </script>
 
 <!--  Why am I using `id` (uuid) to sync the selected value of <select> element with localStorage instead of using array indexes like 0,1,2.. values.
@@ -1600,7 +1611,7 @@ Why?
 
 {#if !isLoading}
 	<div>
-		<select
+		<!-- <select
 			class="max-w-full border border-solid border-[black]"
 			bind:value={idOfComponentToShow.value}
 			onchange={(e: any) => {
@@ -1612,7 +1623,45 @@ Why?
 					{label}
 				</option>
 			{/each}
-		</select>
+		</select> -->
+
+		<!-- ❤️ Source of this code - `Personal19.svelte` file. -->
+		<div class="relative">
+			<details bind:open class="outline outline-1">
+				<summary class="flex cursor-pointer outline outline-1">
+					<input
+						class="w-full ps-1 focus-visible:outline-none"
+						bind:value={searchValue}
+						placeholder={placeholderText}
+						onclick={() => {
+							searchValue = '';
+							open = !open;
+						}}
+					/>
+					<!-- Choose your favorite fruit: {favoriteFruit ? favoriteFruit.label : 'Select a fruit'} -->
+				</summary>
+				<div class="absolute h-[300px] w-full bg-white">
+					<ul class="max-h-[300px] overflow-y-scroll bg-white outline outline-1">
+						{#each filteredComponentItems as componentItem (componentItem)}
+							<li>
+								<button
+									class={`w-full ps-1 text-left hover:bg-pink-100 ${componentToShow?.id === componentItem.id ? 'bg-blue-300' : ''}`}
+									onclick={() => {
+										open = false;
+										searchValue = '';
+										idOfComponentToShow.value = componentItem.id;
+										updateQuerySearchParams(componentItem.id);
+									}}
+								>
+									{componentItem.label}
+								</button>
+							</li>
+						{/each}
+					</ul>
+				</div>
+			</details>
+		</div>
+
 		<button
 			class="btn-primary bg-white text-xs"
 			disabled={indexOfComponentToShow === 0}
