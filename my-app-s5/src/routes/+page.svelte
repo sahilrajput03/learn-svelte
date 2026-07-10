@@ -1,5 +1,5 @@
 <script module>
-	export const idOfComponentToShow = $state<{ value: string | null }>({ value: null });
+	export const activeComponentId = $state<{ value: string | null }>({ value: null });
 </script>
 
 <script lang="ts">
@@ -139,7 +139,7 @@
 	import Personal18 from './Personal18.svelte';
 	import Personal19 from './Personal19.svelte';
 
-	type ComponentsItemType = {
+	type ComponentType = {
 		id: string;
 		label: string;
 		component: Component;
@@ -153,7 +153,7 @@
 
 	let isLoading = $state(true);
 	// UUID Generator: https://www.uuidgenerator.net/
-	let componentItems = $state<Array<ComponentsItemType>>([
+	let components = $state<Array<ComponentType>>([
 		{
 			id: 'eba91667-1fba-485c-aa2e-2e9e1551b4ad',
 			label: 'Group1 - Using Component, Renderig strings and string as html via {@html ...} tag',
@@ -1453,12 +1453,12 @@
 	// console.log('here??', Math.random()); // This log (random number) is different on server log and client side log.
 
 	// Note: `currentIndex` and `componentToShow` are automatic derived when `idOfComponentToShow.value` changes
-	let componentToShow = $derived.by<ComponentsItemType>(() => {
-		const comp = componentItems.find((ci) => ci.id === idOfComponentToShow.value);
-		return comp ?? componentItems[0];
+	let activeComponent = $derived.by<ComponentType>(() => {
+		const comp = components.find((ci) => ci.id === activeComponentId.value);
+		return comp ?? components[0];
 	});
-	let indexOfComponentToShow = $derived.by(() => {
-		return componentItems.findIndex((ci) => ci.id === componentToShow.id);
+	let activeComponentIndex = $derived.by(() => {
+		return components.findIndex((ci) => ci.id === activeComponent.id);
 	});
 
 	// ❤️ Lifecycle Hooks in svelte `onMount`:
@@ -1476,13 +1476,13 @@
 		const { id } = Object.fromEntries(params.entries());
 
 		if (id) {
-			idOfComponentToShow.value = id;
+			activeComponentId.value = id;
 			// alert('got id, setting id = ' + idOfComponentToShow.value);
 		} else {
 			// alert('no id, setting id=0');
-			idOfComponentToShow.value = componentItems[0].id;
+			activeComponentId.value = components[0].id;
 			tick().then(() => {
-				replaceState(`?id=${idOfComponentToShow.value}`, $page.state);
+				replaceState(`?id=${activeComponentId.value}`, $page.state);
 			});
 		}
 
@@ -1491,7 +1491,7 @@
 			// console.log('popStateEvent');
 			const params = new URLSearchParams(window.location.search);
 			const { id } = Object.fromEntries(params.entries());
-			idOfComponentToShow.value = id;
+			activeComponentId.value = id;
 		};
 
 		// Whenever browser's back or forward button is clicked below event is triggered
@@ -1507,12 +1507,8 @@
 	});
 
 	const setActiveComponent = (id: string) => {
-		idOfComponentToShow.value = id;
+		activeComponentId.value = id;
 		pushState(`?id=${id}`, $page.state); // Update query search params
-	};
-
-	const next = () => {
-		setActiveComponent(componentItems[indexOfComponentToShow + 1].id);
 	};
 
 	let interval = $state(1000);
@@ -1521,7 +1517,7 @@
 		if (!enableSlideshow) return;
 
 		const id = setInterval(() => {
-			let isLastComponent = indexOfComponentToShow === componentItems.length - 1;
+			let isLastComponent = activeComponentIndex === components.length - 1;
 			if (isLastComponent) {
 				clearInterval(id);
 				enableSlideshow = false;
@@ -1547,7 +1543,7 @@
 		// console.log('effeted');
 		async function main() {
 			codeHtml = '';
-			for (const sourceFile of componentToShow?.sourceFiles ?? []) {
+			for (const sourceFile of activeComponent?.sourceFiles ?? []) {
 				// NOTE: Below statement works in development but not
 				// 		 in production build. Thus I am using `files` object
 				// 		 to get the source code of the component.
@@ -1568,13 +1564,26 @@
 	let searchValue = $state('');
 	let open = $state(false);
 
-	let placeholderText = $derived(componentToShow?.label ?? 'Chooose a component');
+	let keepSearchText = $state(false);
 
-	const filteredComponentItems = $derived(
+	let placeholderText = $state('');
+
+	const filteredComponents = $derived(
 		searchValue === ''
-			? componentItems
-			: componentItems.filter((ci) => ci.label.toLowerCase().includes(searchValue.toLowerCase())),
+			? components
+			: components.filter((ci) => ci.label.toLowerCase().includes(searchValue.toLowerCase())),
 	);
+	let activeFilteredComponentIndex = $derived.by(() => {
+		return filteredComponents.findIndex((ci) => ci.id === activeComponent.id);
+	});
+
+	function next() {
+		const id = filteredComponents[activeFilteredComponentIndex + 1]?.id;
+		if (id) {
+			setActiveComponent(id);
+			placeholderText = activeComponent.label;
+		}
+	}
 </script>
 
 <!--  Why am I using `id` (uuid) to sync the selected value of <select> element with localStorage instead of using array indexes like 0,1,2.. values.
@@ -1598,16 +1607,43 @@ Why?
 
 {#if !isLoading}
 	<div>
+		<!-- Learn: `select-none` tailwind class (`user-select: none;`) is to disable
+ 			 text selection on the label otherwise if you click on text it gets
+ 			 selected sometimes and it is bad UX. -->
+		<label class="select-none text-gray-600">
+			<input
+				type="checkbox"
+				bind:checked={keepSearchText}
+				onchange={(e) => {
+					const checked = e.currentTarget.checked;
+					if (!checked) {
+						placeholderText = '';
+					} else {
+						placeholderText = 'Search ...';
+					}
+				}}
+			/>
+			Keep search text
+		</label>
+
 		<!-- ❤️ Source of this code - `Personal19.svelte` file. -->
 		<div class="relative">
+			<!-- ⭕ DEBUGGER ⭕ -->
+			<!-- <div class="bg-pink-200 text-sm text-pink-900">
+				<pre>{JSON.stringify({ searchValue, placeholderText }, null, 2)}</pre>
+			</div> -->
 			<details bind:open class="outline outline-1">
-				<summary class="flex cursor-pointer outline outline-1">
+				<summary class="flex cursor-pointer flex-col outline outline-1">
+					{#if keepSearchText}
+						<div class="border-1 border ps-1">
+							{activeComponent.label}
+						</div>
+					{/if}
 					<input
-						class="w-full ps-1 focus-visible:outline-none"
+						class="block w-full ps-1 focus-visible:outline-none"
 						bind:value={searchValue}
-						placeholder={placeholderText}
+						placeholder={placeholderText || activeComponent?.label || 'Chooose a component'}
 						onclick={() => {
-							searchValue = '';
 							open = !open;
 						}}
 					/>
@@ -1615,13 +1651,23 @@ Why?
 				</summary>
 				<div class="absolute z-[1000000] h-[300px] w-full bg-white">
 					<ul class="max-h-[300px] overflow-y-scroll bg-white outline outline-1">
-						{#each filteredComponentItems as componentItem (componentItem)}
+						{#each filteredComponents as componentItem (componentItem.id)}
 							<li>
 								<button
-									class={`w-full ps-1 text-left hover:bg-pink-100 ${componentToShow?.id === componentItem.id ? 'bg-blue-300' : ''}`}
+									class={`w-full ps-1 text-left hover:bg-pink-100 ${activeComponent?.id === componentItem.id ? 'bg-blue-300' : ''}`}
 									onclick={() => {
 										open = false;
-										searchValue = '';
+										if (keepSearchText) {
+											// We keep `searchValue` as it is. ✅
+											if (searchValue) {
+												placeholderText = searchValue;
+											} else {
+												placeholderText = componentItem?.label;
+											}
+										} else {
+											searchValue = '';
+											placeholderText = componentItem?.label;
+										}
 										setActiveComponent(componentItem.id);
 									}}
 								>
@@ -1636,29 +1682,33 @@ Why?
 
 		<button
 			class="btn-primary bg-white text-xs"
-			disabled={indexOfComponentToShow === 0}
+			disabled={activeFilteredComponentIndex === 0}
 			onclick={() => {
-				setActiveComponent(componentItems[0].id);
+				setActiveComponent(filteredComponents[0].id);
 			}}>First</button
 		>
 		<button
 			class="btn-primary ms-5 bg-white text-xs"
-			disabled={indexOfComponentToShow === 0}
+			disabled={activeFilteredComponentIndex === 0}
 			onclick={() => {
-				setActiveComponent(componentItems[indexOfComponentToShow - 1].id);
+				const id = filteredComponents[activeFilteredComponentIndex - 1]?.id;
+				if (id) {
+					setActiveComponent(id);
+					placeholderText = activeComponent.label;
+				}
 			}}>prev</button
 		>
 
 		<button
 			class="btn-primary bg-white text-xs"
-			disabled={indexOfComponentToShow === componentItems.length - 1}
+			disabled={activeFilteredComponentIndex === filteredComponents.length - 1}
 			onclick={next}>next</button
 		>
 		<button
 			class="btn-primary ms-5 bg-white text-xs"
-			disabled={indexOfComponentToShow === componentItems.length - 1}
+			disabled={activeFilteredComponentIndex === filteredComponents.length - 1}
 			onclick={() => {
-				setActiveComponent(componentItems[indexOfComponentToShow + 1].id);
+				setActiveComponent(filteredComponents[filteredComponents.length - 1].id);
 			}}>Last</button
 		>
 	</div>
@@ -1666,11 +1716,11 @@ Why?
 		<a
 			class="flex items-center text-right text-blue-600"
 			target="_blank"
-			href="https://github.com/sahilrajput03/learn-svelte/blob/main/my-app-s5/src/routes/{componentToShow.label.split(
+			href="https://github.com/sahilrajput03/learn-svelte/blob/main/my-app-s5/src/routes/{activeComponent.label.split(
 				' ',
 			)[0]}.svelte"
 		>
-			See {componentToShow.label.split(' ')[0]}.svelte on Github
+			See {activeComponent.label.split(' ')[0]}.svelte on Github
 			<img
 				class="w-[20px]"
 				src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
@@ -1683,7 +1733,7 @@ Why?
 		<a
 			target="_blank"
 			class="flex items-center text-right text-blue-600"
-			href={componentToShow?.svelteTutorialLink}
+			href={activeComponent?.svelteTutorialLink}
 			>See this tutorial on svelte.dev
 			<img class="ms-[1px] w-[13px]" src="/svelte-logo.svg" alt="svelte" />
 		</a>
@@ -1692,7 +1742,7 @@ Why?
 		{#if dev}
 			<div class="flex items-center">
 				<OpenFileInVscode
-					relativeFilePath={`/src/routes/${componentToShow.label.split(' ')[0]}.svelte`}
+					relativeFilePath={`/src/routes/${activeComponent.label.split(' ')[0]}.svelte`}
 				/>
 				<img class="ms-[1px] w-[13px]" src="/vscode-icon.png" alt="svelte" />
 			</div>
@@ -1719,7 +1769,7 @@ Why?
 	<div class="flex gap-1">
 		<!-- We use flex-1 so both items take equal width. -->
 		<div class="max-w-[50%] flex-1">
-			<componentToShow.component />
+			<activeComponent.component />
 		</div>
 		<div class="max-h-[78vh] flex-1 overflow-x-scroll overflow-y-scroll">
 			{@html codeHtml}

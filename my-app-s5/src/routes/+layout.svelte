@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import '../app.css';
-	import { idOfComponentToShow } from './+page.svelte';
+	import { activeComponentId } from './+page.svelte';
 	import NewVersionAvailableToast from './NewVersionAvailableToast.svelte';
 
 	let { children } = $props();
@@ -41,7 +41,7 @@
 				.share({
 					title: 'Check this out!',
 					text: 'Interesting link for you:',
-					url: window.location.href
+					url: window.location.href,
 				})
 				.catch(console.error);
 		} else {
@@ -66,7 +66,7 @@
 	<a class="ml-2 text-xs text-blue-600" href="/thoughts">/thoughts</a>
 	<a class="ml-2 text-xs text-blue-600" href="/read-along">/read-along</a>
 	<a
-		onclick={() => (idOfComponentToShow.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}
+		onclick={() => (activeComponentId.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}
 		class="ml-2 text-xs text-blue-600"
 		href="/?id=15f7992e-886b-4bbb-af20-2ff0a3d41831">/Personal1</a
 	>
@@ -78,13 +78,13 @@
 	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/tts-and-stt">/tts-and-stt</a>
 	<a
 		target="_blank"
-		onclick={() => (idOfComponentToShow.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}
+		onclick={() => (activeComponentId.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}
 		class="ml-2 text-[0.625rem] text-blue-600"
 		href="https://browser-for-terminal.vercel.app">browser-for-terminal🔗</a
 	>
 	<a
 		target="_blank"
-		onclick={() => (idOfComponentToShow.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}
+		onclick={() => (activeComponentId.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}
 		class="ml-2 text-[0.625rem] text-blue-600"
 		href="https://tailwind-plugins-demo.vercel.app">tailwind-plugins🔗</a
 	>
