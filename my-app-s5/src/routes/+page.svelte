@@ -1371,7 +1371,7 @@
 		{
 			id: 'c6624cb2-3e7f-4b97-9b00-7193c3a82869',
 			label:
-				'Personal19 - ❤️ <details> tag with hidden="until-found" feature + ❤️ close on button click',
+				'Personal19 - ❤️ <details> tag with hidden="until-found" feature + ❤️ close on button click (Tags: <select>)',
 			component: Personal19,
 			svelteTutorialLink: '',
 			sourceFiles: [
