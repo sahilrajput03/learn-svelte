@@ -54,36 +54,45 @@
 	}
 </script>
 
-<details bind:open class="outline outline-1">
-	<summary class="relative flex cursor-pointer outline outline-1">
-		<input
-			class="w-full ps-1"
-			bind:value={searchValue}
-			placeholder={placeholderText}
-			onclick={() => {
-				searchValue = '';
-				open = !open;
-			}}
-		/>
-		<!-- Choose your favorite fruit: {favoriteFruit ? favoriteFruit.label : 'Select a fruit'} -->
-	</summary>
-	<ul class="max-h-[300px] overflow-y-scroll">
-		{#each filteredFruits as fruit (fruit)}
-			<li>
-				<button
-					class={`w-full ps-1 text-left hover:bg-pink-100 ${favoriteFruit?.value === fruit.value ? 'bg-blue-300' : ''}`}
-					onclick={() => {
-						open = false;
-						favoriteFruit = fruit;
-						searchValue = '';
-					}}
-				>
-					{fruit.label}
-				</button>
-			</li>
-		{/each}
-	</ul>
-</details>
+<div class="relative">
+	<details bind:open class="outline outline-1">
+		<summary class="flex cursor-pointer outline outline-1">
+			<input
+				class="w-full ps-1 focus-visible:outline-none"
+				bind:value={searchValue}
+				placeholder={placeholderText}
+				onclick={() => {
+					searchValue = '';
+					open = !open;
+				}}
+			/>
+			<!-- Choose your favorite fruit: {favoriteFruit ? favoriteFruit.label : 'Select a fruit'} -->
+		</summary>
+		<!-- We have added below wrapper div below to hide the below text when
+			 for split second we see the underlying content when scrolling towards
+			 top and the bottom and we see the backgroud content (text) of the page
+			 which looks brocken to me. So adding a parent wrapper we add additional
+			 background to hide the background text in that case. -->
+		<div class="absolute h-[300px] w-full bg-white">
+			<ul class="max-h-[300px] overflow-y-scroll bg-white outline outline-1">
+				{#each filteredFruits as fruit (fruit)}
+					<li>
+						<button
+							class={`w-full ps-1 text-left hover:bg-pink-100 ${favoriteFruit?.value === fruit.value ? 'bg-blue-300' : ''}`}
+							onclick={() => {
+								open = false;
+								favoriteFruit = fruit;
+								searchValue = '';
+							}}
+						>
+							{fruit.label}
+						</button>
+					</li>
+				{/each}
+			</ul>
+		</div>
+	</details>
+</div>
 
 <p class="mt-5 italic text-gray-500">
 	We set `open=false` when you click on any item. Inspiration from <a
