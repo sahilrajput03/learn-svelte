@@ -1506,26 +1506,13 @@
 		console.log('effect now....');
 	});
 
-	// This function is also called in onselect on <select/> that's why its encapsulated
-	const updateQuerySearchParams = (id: string) => {
-		pushState(`?id=${id}`, $page.state);
+	const setActiveComponent = (id: string) => {
+		idOfComponentToShow.value = id;
+		pushState(`?id=${id}`, $page.state); // Update query search params
 	};
 
-	const prev = () => {
-		idOfComponentToShow.value = componentItems[indexOfComponentToShow - 1].id;
-		updateQuerySearchParams(idOfComponentToShow.value);
-	};
 	const next = () => {
-		idOfComponentToShow.value = componentItems[indexOfComponentToShow + 1].id;
-		updateQuerySearchParams(idOfComponentToShow.value);
-	};
-	const goToFirst = () => {
-		idOfComponentToShow.value = componentItems[0].id;
-		updateQuerySearchParams(idOfComponentToShow.value);
-	};
-	const goToLast = () => {
-		idOfComponentToShow.value = componentItems[componentItems.length - 1].id;
-		updateQuerySearchParams(idOfComponentToShow.value);
+		setActiveComponent(componentItems[indexOfComponentToShow + 1].id);
 	};
 
 	let interval = $state(1000);
@@ -1611,20 +1598,6 @@ Why?
 
 {#if !isLoading}
 	<div>
-		<!-- <select
-			class="max-w-full border border-solid border-[black]"
-			bind:value={idOfComponentToShow.value}
-			onchange={(e: any) => {
-				updateQuerySearchParams(e.target?.value);
-			}}
-		>
-			{#each componentItems as { id, label }}
-				<option value={id}>
-					{label}
-				</option>
-			{/each}
-		</select> -->
-
 		<!-- ❤️ Source of this code - `Personal19.svelte` file. -->
 		<div class="relative">
 			<details bind:open class="outline outline-1">
@@ -1649,8 +1622,7 @@ Why?
 									onclick={() => {
 										open = false;
 										searchValue = '';
-										idOfComponentToShow.value = componentItem.id;
-										updateQuerySearchParams(componentItem.id);
+										setActiveComponent(componentItem.id);
 									}}
 								>
 									{componentItem.label}
@@ -1665,12 +1637,16 @@ Why?
 		<button
 			class="btn-primary bg-white text-xs"
 			disabled={indexOfComponentToShow === 0}
-			onclick={goToFirst}>First</button
+			onclick={() => {
+				setActiveComponent(componentItems[0].id);
+			}}>First</button
 		>
 		<button
 			class="btn-primary ms-5 bg-white text-xs"
 			disabled={indexOfComponentToShow === 0}
-			onclick={prev}>prev</button
+			onclick={() => {
+				setActiveComponent(componentItems[indexOfComponentToShow - 1].id);
+			}}>prev</button
 		>
 
 		<button
@@ -1681,7 +1657,9 @@ Why?
 		<button
 			class="btn-primary ms-5 bg-white text-xs"
 			disabled={indexOfComponentToShow === componentItems.length - 1}
-			onclick={goToLast}>Last</button
+			onclick={() => {
+				setActiveComponent(componentItems[indexOfComponentToShow + 1].id);
+			}}>Last</button
 		>
 	</div>
 	<div class="mt-3 flex flex-wrap justify-end gap-x-2 gap-y-1 text-[0.675rem]">
