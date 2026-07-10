@@ -57,7 +57,7 @@
 <details bind:open class="outline outline-1">
 	<summary class="relative flex cursor-pointer outline outline-1">
 		<input
-			class="w-full"
+			class="w-full ps-1"
 			bind:value={searchValue}
 			placeholder={placeholderText}
 			onclick={() => {
@@ -71,7 +71,7 @@
 		{#each filteredFruits as fruit (fruit)}
 			<li>
 				<button
-					class={`w-full text-left hover:bg-pink-100 ${favoriteFruit?.value === fruit.value ? 'bg-blue-300' : ''}`}
+					class={`w-full ps-1 text-left hover:bg-pink-100 ${favoriteFruit?.value === fruit.value ? 'bg-blue-300' : ''}`}
 					onclick={() => {
 						open = false;
 						favoriteFruit = fruit;
