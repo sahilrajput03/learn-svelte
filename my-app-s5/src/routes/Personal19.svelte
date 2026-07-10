@@ -80,8 +80,8 @@
 							class={`w-full ps-1 text-left hover:bg-pink-100 ${favoriteFruit?.value === fruit.value ? 'bg-blue-300' : ''}`}
 							onclick={() => {
 								open = false;
-								favoriteFruit = fruit;
 								searchValue = '';
+								favoriteFruit = fruit;
 							}}
 						>
 							{fruit.label}
