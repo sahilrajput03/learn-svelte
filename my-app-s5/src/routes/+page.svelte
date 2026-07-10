@@ -1640,7 +1640,7 @@ Why?
 					/>
 					<!-- Choose your favorite fruit: {favoriteFruit ? favoriteFruit.label : 'Select a fruit'} -->
 				</summary>
-				<div class="absolute h-[300px] w-full bg-white">
+				<div class="absolute z-[1000000] h-[300px] w-full bg-white">
 					<ul class="max-h-[300px] overflow-y-scroll bg-white outline outline-1">
 						{#each filteredComponentItems as componentItem (componentItem)}
 							<li>
