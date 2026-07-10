@@ -43,7 +43,6 @@
 			: fruits.filter((fruit) => fruit.label.toLowerCase().includes(searchValue.toLowerCase())),
 	);
 
-	// let placeholderText = $state('Chooose a fruit');
 	let placeholderText = $derived(favoriteFruit?.label ?? 'Chooose a fruit');
 
 	function saveFavoriteFruitToLocalStorage() {
