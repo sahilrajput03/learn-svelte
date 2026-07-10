@@ -6,7 +6,10 @@
 </script>
 
 <!-- //*Using checkbox input elements -->
-<label>
+<!-- Learn: `select-none` tailwind class (`user-select: none;`) is to disable
+ 			 text selection on the label otherwise if you click on text it gets
+ 			 selected sometimes and it is bad UX. -->
+<label class="select-none">
 	<input type="checkbox" bind:checked={yes} />
 	Yes! Send me regular email spam
 </label>
