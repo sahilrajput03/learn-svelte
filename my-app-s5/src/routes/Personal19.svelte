@@ -53,6 +53,14 @@
 	}
 </script>
 
+<div class="mb-3 text-red-500">
+	Refer notes for making this at <a
+		class="text-blue-400"
+		target="_blank"
+		href="https://github.com/sahilrajput03/learn-svelte/issues/1">here.</a
+	>
+</div>
+
 <div class="relative">
 	<details bind:open class="outline outline-1">
 		<summary class="flex cursor-pointer outline outline-1">
