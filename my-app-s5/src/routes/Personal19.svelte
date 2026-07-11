@@ -80,7 +80,7 @@
 			 top and the bottom and we see the backgroud content (text) of the page
 			 which looks brocken to me. So adding a parent wrapper we add additional
 			 background to hide the background text in that case. -->
-		<div class="absolute h-[300px] w-full bg-white">
+		<div class="absolute max-h-[300px] w-full bg-white">
 			<ul class="max-h-[300px] overflow-y-scroll bg-white outline outline-1">
 				{#each filteredFruits as fruit (fruit)}
 					<li>

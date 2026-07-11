@@ -675,7 +675,7 @@
 		{
 			id: 'fbe541a0-9821-4569-bfc3-081b22f1702b',
 			label:
-				'Group38 - Use `$state.raw(..)` when there’s no need for state to be deeply reactive as it will be discarded a few milliseconds later - Stock Price Chart',
+				'Group38 - Use `$state.raw(..)` when there’s no need for state to be deeply reactive as it will be discarded a few milliseconds later - Stock Price Chart. (Tags: derived.by())',
 			component: Group38,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/raw-state',
 			sourceFiles: [
@@ -743,7 +743,7 @@
 		},
 		{
 			id: '7c8e8faf-9d2b-400c-98c0-bc06e4ea72cf',
-			label: 'Group43 - SNIPPET: Passing snippets to components',
+			label: 'Group43 - SNIPPET: Passing snippets to components. (Tags: derived.by())',
 			component: Group43,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/passing-snippets',
 			sourceFiles: [
@@ -763,7 +763,7 @@
 		},
 		{
 			id: 'f946f320-e5c0-4925-8633-d0593a9942bd',
-			label: 'Group44 - SNIPPET: Implicit snippet props',
+			label: 'Group44 - SNIPPET: Implicit snippet props. (Tags: derived.by())',
 			component: Group44,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/implicit-snippet-props',
 			sourceFiles: [
@@ -1627,7 +1627,9 @@ Why?
 				Keep search text
 			</label>
 
-			<div class="text-xs italic text-gray-400">(❤️Favorite Searches: `props`, `snippets`.)</div>
+			<div class="text-xs italic text-gray-400">
+				❤️Favorite Searches: `props`, `snippets`, `derived(`, `derived.by(`
+			</div>
 		</div>
 
 		<!-- ❤️ Source of this code - `Personal19.svelte` file. -->
@@ -1653,7 +1655,7 @@ Why?
 					/>
 					<!-- Choose your favorite fruit: {favoriteFruit ? favoriteFruit.label : 'Select a fruit'} -->
 				</summary>
-				<div class="absolute z-[1000000] h-[300px] w-full bg-white">
+				<div class="absolute z-[1000000] max-h-[300px] w-full bg-white">
 					<ul class="max-h-[300px] overflow-y-scroll bg-white outline outline-1">
 						{#each filteredComponents as componentItem (componentItem.id)}
 							<li>
