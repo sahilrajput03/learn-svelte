@@ -1566,7 +1566,8 @@
 
 	let keepSearchText = $state(true);
 
-	let placeholderText = $state('');
+	const defaultPlaceholderText = 'Search ...';
+	let placeholderText = $state(defaultPlaceholderText);
 
 	const filteredComponents = $derived(
 		searchValue === ''
@@ -1620,7 +1621,7 @@ Why?
 						if (!checked) {
 							placeholderText = '';
 						} else {
-							placeholderText = 'Search ...';
+							placeholderText = defaultPlaceholderText;
 						}
 					}}
 				/>
