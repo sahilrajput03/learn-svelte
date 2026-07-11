@@ -149,7 +149,14 @@ const data = [
     { hex: '#9acd32', name: 'YellowGreen' }
 ];
 
-export const colors = data.map(({ hex, name }) => {
+export type ColorType = {
+    name: string;
+    hex: string;
+    rgb: string;
+    hsl: string;
+};
+
+export const colors: ColorType[] = data.map(({ hex, name }) => {
     // calculate rgb
     let r = parseInt(hex.slice(1, 3), 16);
     let g = parseInt(hex.slice(3, 5), 16);
@@ -191,5 +198,3 @@ export const colors = data.map(({ hex, name }) => {
         hsl
     };
 });
-
-export type ColorType = (typeof colors)[0];

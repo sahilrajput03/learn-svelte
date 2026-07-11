@@ -1564,7 +1564,7 @@
 	let searchValue = $state('');
 	let open = $state(false);
 
-	let keepSearchText = $state(false);
+	let keepSearchText = $state(true);
 
 	let placeholderText = $state('');
 
@@ -1607,24 +1607,28 @@ Why?
 
 {#if !isLoading}
 	<div>
-		<!-- Learn: `select-none` tailwind class (`user-select: none;`) is to disable
+		<div class="flex items-center gap-8">
+			<!-- Learn: `select-none` tailwind class (`user-select: none;`) is to disable
  			 text selection on the label otherwise if you click on text it gets
  			 selected sometimes and it is bad UX. -->
-		<label class="select-none text-gray-600">
-			<input
-				type="checkbox"
-				bind:checked={keepSearchText}
-				onchange={(e) => {
-					const checked = e.currentTarget.checked;
-					if (!checked) {
-						placeholderText = '';
-					} else {
-						placeholderText = 'Search ...';
-					}
-				}}
-			/>
-			Keep search text
-		</label>
+			<label class="select-none text-gray-600">
+				<input
+					type="checkbox"
+					bind:checked={keepSearchText}
+					onchange={(e) => {
+						const checked = e.currentTarget.checked;
+						if (!checked) {
+							placeholderText = '';
+						} else {
+							placeholderText = 'Search ...';
+						}
+					}}
+				/>
+				Keep search text
+			</label>
+
+			<div class="text-xs italic text-gray-400">(❤️Favorite Searches: `props`, `snippets`.)</div>
+		</div>
 
 		<!-- ❤️ Source of this code - `Personal19.svelte` file. -->
 		<div class="relative">

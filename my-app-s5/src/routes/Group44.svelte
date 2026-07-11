@@ -3,7 +3,7 @@
 
 <script lang="ts">
 	import FilteredList2 from './FilteredList2.svelte';
-	import { colors } from './data2';
+	import { colors, type ColorType } from './data2';
 </script>
 
 <FilteredList2 data={colors} field="name">
@@ -20,7 +20,7 @@
 		<span class="hsl">hsl</span>
 	</header>
 
-	{#snippet row(d)}
+	{#snippet row(d: ColorType)}
 		<div class="row">
 			<span class="color" style="background-color: {d.hex}"></span>
 			<span class="name">{d.name}</span>
