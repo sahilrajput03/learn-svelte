@@ -5,8 +5,6 @@
 	import { scale } from './utils';
 	import { poll } from './data';
 
-	// ! TODO: rename the component selector
-
 	// Please see code and comments of `poll()` function first
 
 	// Tutorial:: If you’re not changing individual properties, or if it’s important to main referential equality, then you can use raw state instead.
@@ -16,8 +14,11 @@
 	// have no direct effect. In general, mutating non-reactive state is strongly discouraged.
 	let data = $state.raw(poll());
 
-	// Tutorial: Mutating raw state will have no direct effect. In general, mutating non-reactive state is strongly discouraged.
-	// From Sahil: In above line it means that directly assigning is good/expected but mutating it i.e, pushing elements to array or updating any property of the state is an anti pattern.
+	// Learn: Mutating raw state will not trigger update UI and
+	//		  mutating raw (non-reactive) state is strongly discouraged. This
+	// 		  means that directly assigning is good (expected) but mutating
+	// 		  it i.e, pushing elements to array or updating any property of
+	// 		  the state is an anti pattern.
 
 	let w = $state(1);
 	let h = $state(1);
