@@ -11,7 +11,6 @@
 <h1 style="color: {selected}">Pick a colour</h1>
 
 <div>
-	<!-- Note: `i` is an index -->
 	{#each colors as color, index}
 		<button
 			style="background: {color}"
