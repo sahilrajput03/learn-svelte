@@ -321,7 +321,7 @@
 		{
 			id: 'cd15a183-ada6-4ae7-9e5f-dc17bb8a8dbc',
 			label:
-				'Group12 - {#await promise then number} ... {/await} AND {#await promise} ... {:then number} ... {:catch error} ... {/await}',
+				'Group12 - ❤️ {#await promise then number} ... {/await} AND {#await promise} ... {:then number} ... {:catch error} ... {/await}',
 			component: Group12,
 			svelteTutorialLink: 'https://svelte.dev/tutorial/svelte/await-blocks',
 			sourceFiles: [
