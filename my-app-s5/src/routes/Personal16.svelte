@@ -30,6 +30,7 @@
 		}
 	});
 
+	// Implementing copy feature via ChatGPT (https://chatgpt.com/c/6a54f43e-7850-83ee-98e7-dab2d6cd635a)
 	let copyButtonText = $state('Copy');
 
 	async function copy() {
@@ -59,8 +60,8 @@
 <style>
 	/* To show line numbers. (Note: If I don't use :global below css
 		doesn't work apply to the shiki code even though the css is
-		actually output the html file. ❤️ Read genuine explanation here:
-		https://chatgpt.com/c/6a542c9f-a6e4-83ee-a882-821954590238 )
+		actually output the html file.
+		ChatGPT: https://chatgpt.com/c/6a542c9f-a6e4-83ee-a882-821954590238 )
 		✅ Check :global in your Learn Svelte Doc for more svelte docs links and notes.
 	*/
 
