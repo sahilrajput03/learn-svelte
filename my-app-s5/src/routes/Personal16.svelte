@@ -29,6 +29,14 @@
 			}
 		}
 	});
+
+	let copyButtonText = $state('Copy');
+
+	async function copy() {
+		await navigator.clipboard.writeText(source);
+		copyButtonText = 'Copied ✅';
+		setTimeout(() => (copyButtonText = 'Copy'), 2_000);
+	}
 </script>
 
 <div class="text-2xl font-bold">File: `Group2.svelte`</div>
@@ -39,7 +47,36 @@
 </div>
 
 <h1 class="mt-3 font-bold">{themeIndex} {themeName}</h1>
-{@html html}
+<!-- {@html html} -->
+
+<div class="personal16 relative">
+	<button class="absolute right-1 top-1 z-[10] rounded-md bg-white/40 px-2 py-1" onclick={copy}>
+		{copyButtonText}
+	</button>
+	{@html html}
+</div>
 
 <style>
+	/* To show line numbers. (Note: If I don't use :global below css
+		doesn't work apply to the shiki code even though the css is
+		actually output the html file. ❤️ Read genuine explanation here:
+		https://chatgpt.com/c/6a542c9f-a6e4-83ee-a882-821954590238 )
+		✅ Check :global in your Learn Svelte Doc for more svelte docs links and notes.
+	*/
+
+	:global {
+		.personal16 {
+			.shiki .line {
+				counter-increment: line;
+			}
+			.shiki .line::before {
+				content: counter(line);
+				display: inline-block;
+				width: 3em;
+				margin-right: 1em;
+				color: #888;
+				text-align: right;
+			}
+		}
+	}
 </style>
