@@ -1,11 +1,14 @@
 <!-- https://svelte.dev/tutorial/kit/get-handlers -->
 <script>
+	import axios from 'axios';
+
 	let number = $state();
 
 	async function roll() {
-		const response = await fetch('/roll');
-		number = await response.json();
-		console.log('🚀 ~ number?', number);
+		// const data = await (await fetch('/roll')).json(); // Using fetch
+		const { data } = await axios.get('/roll'); // Using axios
+		// console.log("🚀 ~ data?", data)
+		number = data;
 	}
 </script>
 
