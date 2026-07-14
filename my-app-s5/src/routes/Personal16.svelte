@@ -64,7 +64,6 @@
 		ChatGPT: https://chatgpt.com/c/6a542c9f-a6e4-83ee-a882-821954590238 )
 		✅ Check :global in your Learn Svelte Doc for more svelte docs links and notes.
 	*/
-
 	:global {
 		.personal16 {
 			.shiki .line {
