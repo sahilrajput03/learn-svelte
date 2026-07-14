@@ -9,7 +9,7 @@
 	};
 </script>
 
-<button onclick={reset}>reset</button>
+<button class="border-1 rounded-md border px-3 py-1" onclick={reset}>reset</button>
 
 <div class="centered">
 	<h1 class="mb-3 text-5xl">todos</h1>
@@ -30,8 +30,8 @@
 					method: 'POST',
 					body: JSON.stringify({ description }),
 					headers: {
-						'Content-Type': 'application/json'
-					}
+						'Content-Type': 'application/json',
+					},
 				});
 
 				const { id } = await response.json();
@@ -41,8 +41,8 @@
 					{
 						id,
 						description,
-						done: false
-					}
+						done: false,
+					},
 				];
 
 				input.value = '';
@@ -64,8 +64,8 @@
 								method: 'PUT',
 								body: JSON.stringify({ done }),
 								headers: {
-									'Content-Type': 'application/json'
-								}
+									'Content-Type': 'application/json',
+								},
 							});
 						}}
 					/>
@@ -76,7 +76,7 @@
 						aria-label="Mark as complete"
 						onclick={async (e) => {
 							await fetch(`/todo/${todo.id}`, {
-								method: 'DELETE'
+								method: 'DELETE',
 							});
 
 							data.todos = data.todos.filter((t) => t !== todo);

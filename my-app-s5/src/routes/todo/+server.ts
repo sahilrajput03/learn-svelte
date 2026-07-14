@@ -1,6 +1,8 @@
 import { json } from '@sveltejs/kit';
 import * as database from '$lib/server/database.js';
 
+// This file is consumed in `group106-todo-app/+page.svelte`
+
 export async function POST({ request, cookies }): Promise<Response> {
 	const { description } = await request.json();
 

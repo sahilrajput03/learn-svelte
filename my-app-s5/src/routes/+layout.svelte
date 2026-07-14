@@ -76,6 +76,7 @@
 	>
 	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/ai-sdk">/ai-sdk</a>
 	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/tts-and-stt">/tts-and-stt</a>
+	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/links">/links</a>
 	<a
 		target="_blank"
 		onclick={() => (activeComponentId.value = '15f7992e-886b-4bbb-af20-2ff0a3d41831')}

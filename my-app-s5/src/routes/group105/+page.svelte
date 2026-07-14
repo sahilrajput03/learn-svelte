@@ -5,6 +5,7 @@
 	async function roll() {
 		const response = await fetch('/roll');
 		number = await response.json();
+		console.log('🚀 ~ number?', number);
 	}
 </script>
 
