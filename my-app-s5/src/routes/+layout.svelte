@@ -76,7 +76,7 @@
 	>
 	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/ai-sdk">/ai-sdk</a>
 	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/tts-and-stt">/tts-and-stt</a>
-	<a class="ml-2 rounded-sm bg-pink-600 p-1 text-xs text-white" href="/codexp">/codexp</a>
+	<a class="ml-2 rounded-sm bg-pink-600 p-1 text-xs text-white" href="/codexp">/codexp❤️</a>
 	<a class="ml-2 rounded-sm bg-pink-400 p-1 text-xs text-white" href="/links">/links</a>
 	<a
 		target="_blank"
