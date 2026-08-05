@@ -38,6 +38,8 @@
 		const strikeButton = new MenuItem({
 			title: 'Toggle strikethrough',
 			label: 'S',
+			// Below css applies to above label text only in the toolbar.
+			css: 'text-decoration: line-through; text-decoration-thickness: 2px; text-underline-offset: 0.15em;',
 			run: toggleMark(mySchema.marks.strike),
 		});
 		const menuItems = buildMenuItems(mySchema);
