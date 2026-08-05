@@ -138,6 +138,8 @@
 	import Personal17 from './Personal17.svelte';
 	import Personal18 from './Personal18.svelte';
 	import Personal19 from './Personal19.svelte';
+	import Personal20 from './Personal20.svelte';
+	import Personal21 from './Personal21.svelte';
 
 	type ComponentType = {
 		id: string;
@@ -1378,6 +1380,30 @@
 				{
 					title: 'Personal19.svelte',
 					path: './Personal19.svelte',
+				},
+			],
+		},
+		{
+			id: '0dabb02b-fe96-4d29-80ff-e8f7efbd463a',
+			label: 'Personal20 - ProseMirror',
+			component: Personal20,
+			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal20.svelte',
+					path: './Personal20.svelte',
+				},
+			],
+		},
+		{
+			id: '3364ea46-56cf-4fa4-b69f-7424adef6219',
+			label: 'Personal21 - Wordgard (❌not working because it requires node >= v22',
+			component: Personal21,
+			svelteTutorialLink: '',
+			sourceFiles: [
+				{
+					title: 'Personal21.svelte',
+					path: './Personal21.svelte',
 				},
 			],
 		},
