@@ -98,11 +98,15 @@
 	<div class="rounded-lg border border-slate-300 bg-slate-50 p-4 shadow-sm">
 		<div class="mb-2 flex items-center justify-between gap-3">
 			<div class="text-sm font-semibold text-slate-700">Live JSON</div>
-			<button class="rounded-md border border-slate-300 bg-white px-3 py-1 text-xs" onclick={clearSavedDoc}>
+			<button
+				class="rounded-md border border-slate-300 bg-white px-3 py-1 text-xs"
+				onclick={clearSavedDoc}
+			>
 				Clear saved doc
 			</button>
 		</div>
-		<pre class="max-h-[320px] overflow-auto rounded-md bg-slate-900 p-3 text-xs text-slate-100">{editorJson}</pre>
+		<pre
+			class="max-h-[320px] overflow-auto rounded-md bg-slate-900 p-3 text-xs text-slate-100">{editorJson}</pre>
 	</div>
 
 	<div bind:this={contentEl} id="content" hidden aria-hidden="true">
@@ -126,6 +130,41 @@
 		margin: 0 0 0.75rem;
 	}
 
+	/* For styles of Heading1 to Heading6. */
+	:global(.ProseMirror h1),
+	:global(.ProseMirror h2),
+	:global(.ProseMirror h3),
+	:global(.ProseMirror h4),
+	:global(.ProseMirror h5),
+	:global(.ProseMirror h6) {
+		font-weight: 700;
+		line-height: 1.2;
+		margin: 1rem 0 0.5rem;
+	}
+	:global(.ProseMirror h1) {
+		font-size: 2rem;
+	}
+	:global(.ProseMirror h2) {
+		font-size: 1.5rem;
+	}
+	:global(.ProseMirror h3) {
+		font-size: 1.25rem;
+	}
+	:global(.ProseMirror h4) {
+		font-size: 1.125rem;
+	}
+	:global(.ProseMirror h5) {
+		font-size: 1rem;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+	:global(.ProseMirror h6) {
+		font-size: 0.875rem;
+		color: rgb(100 116 139);
+	}
+	/* ENDS_HERE */
+
+	/* For strikethrough text*/
 	:global(.ProseMirror s) {
 		text-decoration: line-through;
 	}
