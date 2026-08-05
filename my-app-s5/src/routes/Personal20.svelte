@@ -182,6 +182,11 @@
 	}
 	:global(.ProseMirror li) {
 		display: list-item;
+		line-height: 1.4;
+	}
+
+	:global(.ProseMirror li > p) {
+		margin: 0;
 	}
 	/* ENDS_HERE */
 
