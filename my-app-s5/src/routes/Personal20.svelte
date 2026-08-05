@@ -27,21 +27,34 @@
 		},
 	};
 
+	const underlineMark: MarkSpec = {
+		parseDOM: [{ tag: 'u' }],
+		toDOM() {
+			return ['u', 0] as const;
+		},
+	};
+
 	onMount(() => {
 		if (!editorEl || !contentEl) return;
 
 		// Add list support to the basic schema, matching the ProseMirror example.
 		const mySchema = new Schema({
 			nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
-			marks: schema.spec.marks.update('strike', strikeMark),
+			marks: schema.spec.marks.update('strike', strikeMark).update('underline', underlineMark),
 		});
 
 		const strikeButton = new MenuItem({
 			title: 'Toggle strikethrough',
 			label: 'S',
 			// Below css applies to above label text only in the toolbar.
-			css: 'text-decoration: line-through; text-decoration-thickness: 2px; text-underline-offset: 0.15em;',
+			css: 'text-decoration: line-through; text-decoration-thickness: 2px; text-underline-offset: 0.15em; padding: 2px 8px;',
 			run: toggleMark(mySchema.marks.strike),
+		});
+		const underlineButton = new MenuItem({
+			title: 'Toggle underline',
+			label: 'U',
+			css: 'text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.15em; padding: 2px 8px;',
+			run: toggleMark(mySchema.marks.underline),
 		});
 		const menuItems = buildMenuItems(mySchema);
 		const [strongButton, emButton, ...otherInlineButtons] = menuItems.inlineMenu[0];
@@ -68,7 +81,7 @@
 				plugins: exampleSetup({
 					schema: mySchema,
 					menuContent: [
-						[strongButton, emButton, strikeButton, ...otherInlineButtons],
+						[strongButton, emButton, underlineButton, strikeButton, ...otherInlineButtons],
 						...menuItems.fullMenu.slice(1),
 					],
 				}),
@@ -187,6 +200,12 @@
 	/* For strikethrough text*/
 	:global(.ProseMirror s) {
 		text-decoration: line-through;
+	}
+
+	/* For underline text */
+	:global(.ProseMirror u) {
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
 	}
 
 	/* Add bullets and numbers to unordered and ordered lists. */
