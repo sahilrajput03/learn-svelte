@@ -36,6 +36,11 @@
 	});
 </script>
 
+<!-- TODO: Show this only if url doesn't contain 107 in url. -->
+<a class="text-blue-600 underline" href="/group107"
+	>Go to Group 107 for full screen experience of this component.
+</a>
+
 <div class="space-y-4">
 	<div class="pm-shell rounded-lg border border-slate-300 bg-white shadow-sm">
 		<div bind:this={editorEl} id="editor" class="pm-editor"></div>
@@ -43,9 +48,7 @@
 
 	<div bind:this={contentEl} id="content" hidden aria-hidden="true">
 		<h3>ProseMirror basic example</h3>
-		<p>
-			This is the initial document. You should see a toolbar, editable text, and list controls.
-		</p>
+		<p>This is the initial document. You should see a toolbar, editable text, and list controls.</p>
 		<p>Try typing, selecting text, and adding a list item.</p>
 		<ul>
 			<li>A list item</li>
@@ -63,6 +66,20 @@
 	:global(.ProseMirror p) {
 		margin: 0 0 0.75rem;
 	}
+
+	/* Add bullets and numbers to unordered and ordered lists. */
+	:global(.ProseMirror ul) {
+		list-style: disc;
+		padding-left: 30px;
+	}
+	:global(.ProseMirror ol) {
+		list-style: decimal;
+		padding-left: 30px;
+	}
+	:global(.ProseMirror li) {
+		display: list-item;
+	}
+	/* ENDS_HERE */
 
 	.pm-shell {
 		overflow: hidden;
