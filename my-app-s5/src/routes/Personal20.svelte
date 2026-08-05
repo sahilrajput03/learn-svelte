@@ -6,6 +6,10 @@
 	import { schema } from 'prosemirror-schema-basic';
 	import { addListNodes } from 'prosemirror-schema-list';
 	import { exampleSetup } from 'prosemirror-example-setup';
+	import 'prosemirror-view/style/prosemirror.css';
+	import 'prosemirror-menu/style/menu.css';
+	import 'prosemirror-gapcursor/style/gapcursor.css';
+	import 'prosemirror-example-setup/style/style.css';
 
 	let editorEl: HTMLDivElement | null = null;
 	let contentEl: HTMLDivElement | null = null;
@@ -33,8 +37,8 @@
 </script>
 
 <div class="space-y-4">
-	<div class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-		<div bind:this={editorEl} id="editor" class="min-h-[240px]"></div>
+	<div class="pm-shell rounded-lg border border-slate-300 bg-white shadow-sm">
+		<div bind:this={editorEl} id="editor" class="pm-editor"></div>
 	</div>
 
 	<div bind:this={contentEl} id="content" hidden aria-hidden="true">
@@ -58,5 +62,23 @@
 
 	:global(.ProseMirror p) {
 		margin: 0 0 0.75rem;
+	}
+
+	.pm-shell {
+		overflow: hidden;
+	}
+
+	:global(.ProseMirror-menubar) {
+		border-bottom: 1px solid rgb(226 232 240);
+		background: rgb(248 250 252);
+	}
+
+	:global(.ProseMirror-menubar-wrapper) {
+		margin-bottom: 0;
+	}
+
+	.pm-editor {
+		min-height: 240px;
+		padding: 0.75rem;
 	}
 </style>
