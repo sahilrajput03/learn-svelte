@@ -44,6 +44,7 @@
 			run: toggleMark(mySchema.marks.strike),
 		});
 		const menuItems = buildMenuItems(mySchema);
+		const [strongButton, emButton, ...otherInlineButtons] = menuItems.inlineMenu[0];
 		const initialDoc = DOMParser.fromSchema(mySchema).parse(contentEl);
 		const savedDocJson = localStorage.getItem(storageKey);
 
@@ -66,7 +67,10 @@
 				doc: startDoc,
 				plugins: exampleSetup({
 					schema: mySchema,
-					menuContent: [[strikeButton, ...menuItems.inlineMenu[0]], ...menuItems.fullMenu.slice(1)],
+					menuContent: [
+						[strongButton, emButton, strikeButton, ...otherInlineButtons],
+						...menuItems.fullMenu.slice(1),
+					],
 				}),
 			}),
 			dispatchTransaction(tr) {
