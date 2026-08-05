@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { EditorState } from 'prosemirror-state';
 	import { EditorView } from 'prosemirror-view';
-	import { Schema, DOMParser } from 'prosemirror-model';
+	import { Schema, DOMParser, Node as PMNode, type MarkSpec } from 'prosemirror-model';
 	import { schema } from 'prosemirror-schema-basic';
 	import { addListNodes } from 'prosemirror-schema-list';
 	import { buildMenuItems, exampleSetup } from 'prosemirror-example-setup';
@@ -15,11 +15,14 @@
 
 	let editorEl: HTMLDivElement | null = null;
 	let contentEl: HTMLDivElement | null = null;
+	let editorJson = $state('');
 
-	const strikeMark = {
+	const storageKey = 'personal20-prosemirror-doc';
+
+	const strikeMark: MarkSpec = {
 		parseDOM: [{ tag: 's' }, { tag: 'strike' }, { tag: 'del' }],
 		toDOM() {
-			return ['s', 0];
+			return ['s', 0] as const;
 		},
 	};
 
@@ -38,21 +41,48 @@
 			run: toggleMark(mySchema.marks.strike),
 		});
 		const menuItems = buildMenuItems(mySchema);
+		const initialDoc = DOMParser.fromSchema(mySchema).parse(contentEl);
+		const savedDocJson = localStorage.getItem(storageKey);
+
+		let startDoc = initialDoc;
+		if (savedDocJson) {
+			try {
+				startDoc = PMNode.fromJSON(mySchema, JSON.parse(savedDocJson));
+			} catch {
+				// Ignore invalid saved JSON and fall back to the HTML seed above.
+			}
+		}
+
+		const syncDocJson = (state: EditorState) => {
+			editorJson = JSON.stringify(state.doc.toJSON(), null, 2);
+			localStorage.setItem(storageKey, editorJson);
+		};
 
 		const view = new EditorView(editorEl, {
 			state: EditorState.create({
-				doc: DOMParser.fromSchema(mySchema).parse(contentEl),
+				doc: startDoc,
 				plugins: exampleSetup({
 					schema: mySchema,
 					menuContent: [[strikeButton, ...menuItems.inlineMenu[0]], ...menuItems.fullMenu.slice(1)],
 				}),
 			}),
+			dispatchTransaction(tr) {
+				const nextState = view.state.apply(tr);
+				view.updateState(nextState);
+				syncDocJson(nextState);
+			},
 		});
 
 		(window as typeof window & { view?: EditorView }).view = view;
+		syncDocJson(view.state);
 
 		return () => view.destroy();
 	});
+
+	const clearSavedDoc = () => {
+		localStorage.removeItem(storageKey);
+		location.reload();
+	};
 </script>
 
 <!-- TODO: Show this only if url doesn't contain 107 in url. -->
@@ -63,6 +93,16 @@
 <div class="space-y-4">
 	<div class="pm-shell rounded-lg border border-slate-300 bg-white shadow-sm">
 		<div bind:this={editorEl} id="editor" class="pm-editor"></div>
+	</div>
+
+	<div class="rounded-lg border border-slate-300 bg-slate-50 p-4 shadow-sm">
+		<div class="mb-2 flex items-center justify-between gap-3">
+			<div class="text-sm font-semibold text-slate-700">Live JSON</div>
+			<button class="rounded-md border border-slate-300 bg-white px-3 py-1 text-xs" onclick={clearSavedDoc}>
+				Clear saved doc
+			</button>
+		</div>
+		<pre class="max-h-[320px] overflow-auto rounded-md bg-slate-900 p-3 text-xs text-slate-100">{editorJson}</pre>
 	</div>
 
 	<div bind:this={contentEl} id="content" hidden aria-hidden="true">
