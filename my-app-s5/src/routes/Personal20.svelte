@@ -14,6 +14,9 @@
 	import 'prosemirror-gapcursor/style/gapcursor.css';
 	import 'prosemirror-example-setup/style/style.css';
 
+	// Inspiration: https://prosemirror.net/examples/basic/
+	// 	Code written by codex on top of above code.
+
 	let editorEl: HTMLDivElement | null = null;
 	let contentEl: HTMLDivElement | null = null;
 	let editorJson = $state('');
