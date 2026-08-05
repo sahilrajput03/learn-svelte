@@ -8,6 +8,7 @@
 	import { buildMenuItems, exampleSetup } from 'prosemirror-example-setup';
 	import { MenuItem } from 'prosemirror-menu';
 	import { toggleMark } from 'prosemirror-commands';
+	import { page } from '$app/state';
 	import 'prosemirror-view/style/prosemirror.css';
 	import 'prosemirror-menu/style/menu.css';
 	import 'prosemirror-gapcursor/style/gapcursor.css';
@@ -87,10 +88,15 @@
 	};
 </script>
 
-<!-- TODO: Show this only if url doesn't contain 107 in url. -->
-<a class="text-blue-600 underline" href="/group107"
-	>Go to Group 107 for full screen experience of this component.
-</a>
+{#if !page.url.pathname.includes('107')}
+	<a class="text-blue-600 underline" href="/group107"
+		>🔴🔴🔴 Go to Group 107 for full screen experience of this component.
+	</a>
+{/if}
+
+<div class="my-3 bg-yellow-100 px-3 text-pink-700">
+	As you type in below text editor it is synced to localstorage.
+</div>
 
 <div class="space-y-4">
 	<div class="pm-shell rounded-lg border border-slate-300 bg-white shadow-sm">
@@ -112,13 +118,21 @@
 	</div>
 
 	<div bind:this={contentEl} id="content" hidden aria-hidden="true">
-		<h3>ProseMirror basic example</h3>
+		<h1>ProseMirror basic example</h1>
+		<p>This is paragraph</p>
+		<h2>This is heading 2</h2>
 		<p>This is the initial document. You should see a toolbar, editable text, and list controls.</p>
-		<p>Try typing, selecting text, and adding a list item.</p>
+		<h3>Unordered List (heading 3)</h3>
 		<ul>
 			<li>A list item</li>
 			<li>Another list item</li>
 		</ul>
+
+		<h3>Ordered List (heading 3)</h3>
+		<ol>
+			<li>A list item</li>
+			<li>Another list item</li>
+		</ol>
 	</div>
 </div>
 
