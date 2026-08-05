@@ -5,7 +5,9 @@
 	import { Schema, DOMParser } from 'prosemirror-model';
 	import { schema } from 'prosemirror-schema-basic';
 	import { addListNodes } from 'prosemirror-schema-list';
-	import { exampleSetup } from 'prosemirror-example-setup';
+	import { buildMenuItems, exampleSetup } from 'prosemirror-example-setup';
+	import { MenuItem } from 'prosemirror-menu';
+	import { toggleMark } from 'prosemirror-commands';
 	import 'prosemirror-view/style/prosemirror.css';
 	import 'prosemirror-menu/style/menu.css';
 	import 'prosemirror-gapcursor/style/gapcursor.css';
@@ -14,19 +16,36 @@
 	let editorEl: HTMLDivElement | null = null;
 	let contentEl: HTMLDivElement | null = null;
 
+	const strikeMark = {
+		parseDOM: [{ tag: 's' }, { tag: 'strike' }, { tag: 'del' }],
+		toDOM() {
+			return ['s', 0];
+		},
+	};
+
 	onMount(() => {
 		if (!editorEl || !contentEl) return;
 
 		// Add list support to the basic schema, matching the ProseMirror example.
 		const mySchema = new Schema({
 			nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
-			marks: schema.spec.marks,
+			marks: schema.spec.marks.update('strike', strikeMark),
 		});
+
+		const strikeButton = new MenuItem({
+			title: 'Toggle strikethrough',
+			label: 'S',
+			run: toggleMark(mySchema.marks.strike),
+		});
+		const menuItems = buildMenuItems(mySchema);
 
 		const view = new EditorView(editorEl, {
 			state: EditorState.create({
 				doc: DOMParser.fromSchema(mySchema).parse(contentEl),
-				plugins: exampleSetup({ schema: mySchema }),
+				plugins: exampleSetup({
+					schema: mySchema,
+					menuContent: [[strikeButton, ...menuItems.inlineMenu[0]], ...menuItems.fullMenu.slice(1)],
+				}),
 			}),
 		});
 
@@ -65,6 +84,10 @@
 
 	:global(.ProseMirror p) {
 		margin: 0 0 0.75rem;
+	}
+
+	:global(.ProseMirror s) {
+		text-decoration: line-through;
 	}
 
 	/* Add bullets and numbers to unordered and ordered lists. */
