@@ -13,7 +13,7 @@
 		>Go to Group 105 - Make API Call - GET /roll (Code in `/routes/roll/+server.ts`)</a
 	>
 	<a class="text-blue-600 underline" href="/group106-todo-app">Go to Group 106 - Todo app</a>
-	<a class="text-blue-600 underline" href="/group107">Go to Group 107 - Todo app</a>
+	<a class="text-blue-600 underline" href="/group107">Go to Group 107 - Prosemirror</a>
 </div>
 
 <style>
