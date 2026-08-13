@@ -110,6 +110,8 @@
 	};
 </script>
 
+<div class="border p-3 font-bold">ver. 0.1</div>
+
 {#if !page.url.pathname.includes('107')}
 	<a class="text-blue-600 underline" href="/group107"
 		>🔴🔴🔴 Go to Group 107 for full screen experience of this component.
