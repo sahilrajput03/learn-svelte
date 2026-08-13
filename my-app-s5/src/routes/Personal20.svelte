@@ -2,7 +2,13 @@
 	import { onMount } from 'svelte';
 	import { EditorState } from 'prosemirror-state';
 	import { EditorView } from 'prosemirror-view';
-	import { Schema, DOMParser, Node as PMNode, type MarkSpec } from 'prosemirror-model';
+	import {
+		Schema,
+		DOMParser,
+		DOMSerializer,
+		Node as PMNode,
+		type MarkSpec,
+	} from 'prosemirror-model';
 	import { schema } from 'prosemirror-schema-basic';
 	import { addListNodes } from 'prosemirror-schema-list';
 	import { buildMenuItems, exampleSetup } from 'prosemirror-example-setup';
@@ -22,6 +28,8 @@
 	let editorEl: HTMLDivElement | null = null;
 	let contentEl: HTMLDivElement | null = null;
 	let editorJson = $state('');
+	let editorHtml = $state('');
+	let showRenderedHtml = $state(false);
 
 	const storageKey = 'personal20-prosemirror-doc';
 
@@ -76,7 +84,13 @@
 		}
 
 		const syncDocJson = (state: EditorState) => {
+			console.log('syncDocJson?', syncDocJson);
 			editorJson = JSON.stringify(state.doc.toJSON(), null, 2);
+			const htmlWrapper = document.createElement('div');
+			htmlWrapper.appendChild(
+				DOMSerializer.fromSchema(mySchema).serializeFragment(state.doc.content),
+			);
+			editorHtml = htmlWrapper.innerHTML;
 			localStorage.setItem(storageKey, editorJson);
 		};
 
@@ -123,6 +137,25 @@
 </div>
 
 <div class="space-y-4">
+	<div class="flex items-center justify-end gap-3">
+		<button
+			class="rounded-md border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm transition hover:bg-slate-50"
+			onclick={() => (showRenderedHtml = !showRenderedHtml)}
+			aria-pressed={showRenderedHtml}
+		>
+			{showRenderedHtml ? 'Hide rendered HTML' : 'Show rendered HTML'}
+		</button>
+	</div>
+
+		{#if showRenderedHtml}
+			<div class="rounded-lg border border-slate-300 bg-slate-50 p-4 shadow-sm">
+				<div class="mb-2 text-sm font-semibold text-slate-700">Rendered HTML</div>
+				<div class="ProseMirror prose-preview rounded-md border border-slate-200 bg-white p-4">
+					{@html editorHtml}
+				</div>
+			</div>
+		{/if}
+
 	<div class="pm-shell rounded-lg border border-slate-300 bg-white shadow-sm">
 		<div bind:this={editorEl} id="editor" class="pm-editor"></div>
 	</div>
