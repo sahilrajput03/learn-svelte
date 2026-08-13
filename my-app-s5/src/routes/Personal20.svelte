@@ -248,6 +248,13 @@
 		text-underline-offset: 0.15em;
 	}
 
+	:global(.ProseMirror a) {
+		color: rgb(37 99 235);
+		text-decoration: underline;
+		cursor: pointer;
+		text-underline-offset: 0.15em;
+	}
+
 	/* Add bullets and numbers to unordered and ordered lists. */
 	:global(.ProseMirror ul) {
 		list-style: disc;
