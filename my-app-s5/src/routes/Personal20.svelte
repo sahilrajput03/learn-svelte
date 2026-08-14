@@ -147,14 +147,14 @@
 		</button>
 	</div>
 
-		{#if showRenderedHtml}
-			<div class="rounded-lg border border-slate-300 bg-slate-50 p-4 shadow-sm">
-				<div class="mb-2 text-sm font-semibold text-slate-700">Rendered HTML</div>
-				<div class="ProseMirror prose-preview rounded-md border border-slate-200 bg-white p-4">
-					{@html editorHtml}
-				</div>
+	{#if showRenderedHtml}
+		<div class="rounded-lg border border-slate-300 bg-slate-50 p-4 shadow-sm">
+			<div class="mb-2 text-sm font-semibold text-slate-700">Rendered HTML</div>
+			<div class="ProseMirror prose-preview rounded-md border border-slate-200 bg-white p-4">
+				{@html editorHtml}
 			</div>
-		{/if}
+		</div>
+	{/if}
 
 	<div class="pm-shell rounded-lg border border-slate-300 bg-white shadow-sm">
 		<div bind:this={editorEl} id="editor" class="pm-editor"></div>
@@ -194,6 +194,8 @@
 </div>
 
 <style>
+	/* Learn: The class "ProseMirror" class applies styles to different items like h1-h6, links, etc for *both* editor and rendered html. Please use this class as part any selector for which you want to apply any styles for both of them. */
+
 	:global(.ProseMirror) {
 		min-height: 240px;
 		outline: none;
