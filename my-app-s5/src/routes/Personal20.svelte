@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import { EditorState } from 'prosemirror-state';
 	import { EditorView } from 'prosemirror-view';
 	import {
@@ -7,12 +7,13 @@
 		DOMParser,
 		DOMSerializer,
 		Node as PMNode,
+		type MarkType,
 		type MarkSpec,
 	} from 'prosemirror-model';
 	import { schema } from 'prosemirror-schema-basic';
 	import { addListNodes } from 'prosemirror-schema-list';
 	import { buildMenuItems, exampleSetup } from 'prosemirror-example-setup';
-	import { MenuItem } from 'prosemirror-menu';
+	import { MenuItem, icons } from 'prosemirror-menu';
 	import { toggleMark } from 'prosemirror-commands';
 	import { page } from '$app/state';
 	import 'prosemirror-view/style/prosemirror.css';
@@ -30,6 +31,13 @@
 	let editorJson = $state('');
 	let editorHtml = $state('');
 	let showRenderedHtml = $state(false);
+	let linkPromptOpen = $state(false);
+	let linkPromptHref = $state('');
+	let linkPromptTitle = $state('');
+	let linkPromptOpenInNewTab = $state(false);
+	let linkPromptView: EditorView | null = null;
+	let linkPromptHrefInput = $state<HTMLInputElement | null>(null);
+	let linkMarkType: MarkType | null = null;
 
 	const storageKey = 'personal20-prosemirror-doc';
 	const absoluteHrefPattern = /^[a-zA-Z][a-zA-Z\d+\-.]*:|^\/\//;
@@ -53,12 +61,51 @@
 		return href;
 	}
 
+	async function openLinkPrompt(view: EditorView) {
+		linkPromptView = view;
+		linkPromptHref = '';
+		linkPromptTitle = '';
+		linkPromptOpenInNewTab = true;
+		linkPromptOpen = true;
+		await tick();
+		linkPromptHrefInput?.focus();
+		linkPromptHrefInput?.select();
+	}
+
+	function closeLinkPrompt() {
+		linkPromptOpen = false;
+		linkPromptView = null;
+	}
+
+	function submitLinkPrompt() {
+		if (!linkPromptView || !linkMarkType) return;
+
+		const href = linkPromptHref.trim();
+		if (!href) return;
+
+		const attrs = {
+			href,
+			title: linkPromptTitle.trim() || null,
+			openInNewTab: linkPromptOpenInNewTab,
+		};
+
+		toggleMark(linkMarkType, attrs)(linkPromptView.state, linkPromptView.dispatch);
+		linkPromptView.focus();
+		closeLinkPrompt();
+	}
+
 	function blockRelativeLinkNavigation(event: MouseEvent) {
 		const href = getAnchorHrefFromTarget(event.target);
 		if (href) {
 			event.preventDefault();
 			event.stopPropagation();
 		}
+	}
+
+	function markActive(state: EditorState, type: MarkType) {
+		const { from, to, empty, $from: anchor } = state.selection;
+		if (empty) return !!type.isInSet(state.storedMarks || anchor.marks());
+		return state.doc.rangeHasMark(from, to, type);
 	}
 
 	const strikeMark: MarkSpec = {
@@ -75,14 +122,52 @@
 		},
 	};
 
+	// We override the default ProseMirror link mark so we can store and render
+	// the optional "open in new tab" setting from the custom prompt below, and
+	// actually make links open in a new tab when requested.
+	const linkMark: MarkSpec = {
+		attrs: {
+			href: { validate: 'string' },
+			title: { default: null, validate: 'string|null' },
+			openInNewTab: { default: false, validate: 'boolean' },
+		},
+		inclusive: false,
+		parseDOM: [
+			{
+				tag: 'a[href]',
+				getAttrs(dom: HTMLElement) {
+					return {
+						href: dom.getAttribute('href'),
+						title: dom.getAttribute('title'),
+						openInNewTab: dom.getAttribute('target') === '_blank',
+					};
+				},
+			},
+		],
+		toDOM(node) {
+			const { href, title, openInNewTab } = node.attrs;
+			return [
+				'a',
+				openInNewTab
+					? { href, title, target: '_blank', rel: 'noopener noreferrer' }
+					: { href, title },
+				0,
+			] as const;
+		},
+	};
+
 	onMount(() => {
 		if (!editorEl || !contentEl) return;
 
 		// Add list support to the basic schema, matching the ProseMirror example.
 		const mySchema = new Schema({
 			nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
-			marks: schema.spec.marks.update('strike', strikeMark).update('underline', underlineMark),
+			marks: schema.spec.marks
+				.update('strike', strikeMark)
+				.update('underline', underlineMark)
+				.update('link', linkMark),
 		});
+		linkMarkType = mySchema.marks.link;
 
 		const strikeButton = new MenuItem({
 			title: 'Toggle strikethrough',
@@ -97,8 +182,28 @@
 			css: 'text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.15em; padding: 2px 8px;',
 			run: toggleMark(mySchema.marks.underline),
 		});
+		const linkButton = new MenuItem({
+			title: 'Add or remove link',
+			icon: icons.link,
+			active(state) {
+				return markActive(state, mySchema.marks.link);
+			},
+			enable(state) {
+				return !state.selection.empty;
+			},
+			run(state, dispatch, view) {
+				if (markActive(state, mySchema.marks.link)) {
+					toggleMark(mySchema.marks.link)(state, dispatch);
+					return true;
+				}
+
+				if (!view) return false;
+				openLinkPrompt(view);
+				return true;
+			},
+		});
 		const menuItems = buildMenuItems(mySchema);
-		const [strongButton, emButton, ...otherInlineButtons] = menuItems.inlineMenu[0];
+		const [strongButton, emButton, codeButton] = menuItems.inlineMenu[0];
 		const initialDoc = DOMParser.fromSchema(mySchema).parse(contentEl);
 		const savedDocJson = localStorage.getItem(storageKey);
 
@@ -128,7 +233,7 @@
 				plugins: exampleSetup({
 					schema: mySchema,
 					menuContent: [
-						[strongButton, emButton, underlineButton, strikeButton, ...otherInlineButtons],
+						[strongButton, emButton, codeButton, underlineButton, strikeButton, linkButton],
 						...menuItems.fullMenu.slice(1),
 					],
 				}),
@@ -172,6 +277,60 @@
 </div>
 
 <div class="space-y-4">
+	{#if linkPromptOpen}
+		<div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/35 px-4 py-6">
+			<div class="w-full max-w-md rounded-xl border border-slate-200 bg-white p-5 shadow-2xl">
+				<div class="space-y-4">
+					<label class="block">
+						<input
+							bind:this={linkPromptHrefInput}
+							bind:value={linkPromptHref}
+							class="w-full rounded-md border border-slate-300 px-3 py-2 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+							placeholder="https://example.com"
+							required
+						/>
+					</label>
+
+					<label class="block">
+						<input
+							bind:value={linkPromptTitle}
+							class="w-full rounded-md border border-slate-300 px-3 py-2 text-sm shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+							placeholder="Optional title"
+						/>
+					</label>
+
+					<label
+						class="flex items-center gap-3 rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700"
+					>
+						<input
+							bind:checked={linkPromptOpenInNewTab}
+							type="checkbox"
+							class="size-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+						/>
+						<span>Open link in a new tab</span>
+					</label>
+				</div>
+
+				<div class="mt-5 flex justify-end gap-2">
+					<button
+						type="button"
+						class="rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+						onclick={closeLinkPrompt}
+					>
+						Cancel
+					</button>
+					<button
+						type="button"
+						class="rounded-md border border-blue-600 bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
+						onclick={submitLinkPrompt}
+					>
+						Add link
+					</button>
+				</div>
+			</div>
+		</div>
+	{/if}
+
 	<div class="flex items-center justify-end gap-3">
 		<button
 			class="rounded-md border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm transition hover:bg-slate-50"
