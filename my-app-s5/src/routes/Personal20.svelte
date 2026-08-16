@@ -84,7 +84,7 @@
 		}
 
 		const syncDocJson = (state: EditorState) => {
-			console.log('syncDocJson?', syncDocJson);
+			// console.log('syncDocJson?', syncDocJson);
 			editorJson = JSON.stringify(state.doc.toJSON(), null, 2);
 			const htmlWrapper = document.createElement('div');
 			htmlWrapper.appendChild(
