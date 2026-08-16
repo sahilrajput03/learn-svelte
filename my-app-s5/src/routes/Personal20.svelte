@@ -32,6 +32,34 @@
 	let showRenderedHtml = $state(false);
 
 	const storageKey = 'personal20-prosemirror-doc';
+	const absoluteHrefPattern = /^[a-zA-Z][a-zA-Z\d+\-.]*:|^\/\//;
+
+	function getAnchorHrefFromTarget(target: EventTarget | null) {
+		if (!(target instanceof Node)) return null;
+
+		let node: Node | null = target;
+		while (node && node.nodeType !== Node.ELEMENT_NODE) {
+			node = node.parentNode;
+		}
+
+		if (!(node instanceof Element)) return null;
+
+		const anchor = node.closest('a[href]');
+		if (!(anchor instanceof HTMLAnchorElement)) return null;
+
+		const href = anchor.getAttribute('href');
+		if (!href || absoluteHrefPattern.test(href)) return null;
+
+		return href;
+	}
+
+	function blockRelativeLinkNavigation(event: MouseEvent) {
+		const href = getAnchorHrefFromTarget(event.target);
+		if (href) {
+			event.preventDefault();
+			event.stopPropagation();
+		}
+	}
 
 	const strikeMark: MarkSpec = {
 		parseDOM: [{ tag: 's' }, { tag: 'strike' }, { tag: 'del' }],
@@ -111,6 +139,13 @@
 				syncDocJson(nextState);
 			},
 		});
+
+		// This is to fix issue of relative links in the editor opening in links as
+		// 		we do not want it to be openeable. Also, links with absolute urls i.e,
+		// 		starign with http[s]:// by default do not open when clickin on them.
+		if (editorEl) {
+			editorEl.addEventListener('click', blockRelativeLinkNavigation, true);
+		}
 
 		(window as typeof window & { view?: EditorView }).view = view;
 		syncDocJson(view.state);
