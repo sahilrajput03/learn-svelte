@@ -7,14 +7,23 @@
 		DOMParser,
 		DOMSerializer,
 		Node as PMNode,
+		type NodeSpec,
+		type NodeType,
 		type MarkType,
 		type MarkSpec,
 	} from 'prosemirror-model';
 	import { schema } from 'prosemirror-schema-basic';
-	import { addListNodes } from 'prosemirror-schema-list';
+	import {
+		addListNodes,
+		wrapInList,
+		splitListItemKeepMarks,
+		liftListItem,
+		sinkListItem,
+	} from 'prosemirror-schema-list';
 	import { buildMenuItems, exampleSetup } from 'prosemirror-example-setup';
 	import { MenuItem, icons } from 'prosemirror-menu';
 	import { toggleMark } from 'prosemirror-commands';
+	import { keymap } from 'prosemirror-keymap';
 	import { page } from '$app/state';
 	import 'prosemirror-view/style/prosemirror.css';
 	import 'prosemirror-menu/style/menu.css';
@@ -115,6 +124,51 @@
 		},
 	};
 
+	const taskListSpec: NodeSpec = {
+		content: 'task_item+',
+		group: 'block',
+		parseDOM: [{ tag: 'ul[data-task-list]' }],
+		toDOM() {
+			return ['ul', { 'data-task-list': 'true', class: 'task-list' }, 0] as const;
+		},
+	};
+
+	const taskItemSpec: NodeSpec = {
+		attrs: {
+			checked: { default: false, validate: 'boolean' },
+		},
+		content: 'paragraph block*',
+		defining: true,
+		parseDOM: [
+			{
+				tag: 'li[data-task-item]',
+				getAttrs(dom: HTMLElement) {
+					const checkbox = dom.querySelector('input[type="checkbox"]');
+					return {
+						checked:
+							checkbox?.hasAttribute('checked') ?? dom.getAttribute('data-checked') === 'true',
+					};
+				},
+			},
+		],
+		toDOM(node) {
+			return [
+				'li',
+				{
+					'data-task-item': 'true',
+					'data-checked': String(node.attrs.checked),
+					class: 'task-item',
+				},
+				[
+					'span',
+					{ contenteditable: 'false', class: 'task-item__checkbox' },
+					['input', { type: 'checkbox', checked: node.attrs.checked ? 'checked' : null }],
+				],
+				['div', { class: 'task-item__content' }, 0],
+			] as const;
+		},
+	};
+
 	const underlineMark: MarkSpec = {
 		parseDOM: [{ tag: 'u' }],
 		toDOM() {
@@ -161,13 +215,21 @@
 
 		// Add list support to the basic schema, matching the ProseMirror example.
 		const mySchema = new Schema({
-			nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
+			nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block')
+				// `task_list` is the outer checklist container, and `task_item` is
+				// the individual checklist row with its checked state.
+				.append({
+					task_list: taskListSpec,
+					task_item: taskItemSpec,
+				}),
 			marks: schema.spec.marks
 				.update('strike', strikeMark)
 				.update('underline', underlineMark)
 				.update('link', linkMark),
 		});
 		linkMarkType = mySchema.marks.link;
+		const taskListType = mySchema.nodes.task_list;
+		const taskItemType = mySchema.nodes.task_item;
 
 		const strikeButton = new MenuItem({
 			title: 'Toggle strikethrough',
@@ -181,6 +243,13 @@
 			label: 'U',
 			css: 'text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.15em; padding: 2px 8px;',
 			run: toggleMark(mySchema.marks.underline),
+		});
+		// This toolbar button wraps the selection in the custom checklist nodes.
+		const taskListButton = new MenuItem({
+			title: 'Toggle checklist',
+			label: '☑',
+			css: 'padding: 2px 8px; font-size: 0.95rem;',
+			run: wrapInList(taskListType),
 		});
 		const linkButton = new MenuItem({
 			title: 'Add or remove link',
@@ -207,6 +276,15 @@
 		const initialDoc = DOMParser.fromSchema(mySchema).parse(contentEl);
 		const savedDocJson = localStorage.getItem(storageKey);
 
+		// Checklist items need their own key bindings so Enter/Tab keep working
+		// with the custom task_item node instead of the default list item type.
+		const taskListKeymap = keymap({
+			Enter: splitListItemKeepMarks(taskItemType),
+			'Mod-[': liftListItem(taskItemType),
+			Tab: sinkListItem(taskItemType),
+			'Shift-Tab': liftListItem(taskItemType),
+		});
+
 		let startDoc = initialDoc;
 		if (savedDocJson) {
 			try {
@@ -230,14 +308,39 @@
 		const view = new EditorView(editorEl, {
 			state: EditorState.create({
 				doc: startDoc,
-				plugins: exampleSetup({
-					schema: mySchema,
-					menuContent: [
-						[strongButton, emButton, codeButton, underlineButton, strikeButton, linkButton],
-						...menuItems.fullMenu.slice(1),
-					],
-				}),
+				plugins: [
+					taskListKeymap,
+					...exampleSetup({
+						schema: mySchema,
+						menuContent: [
+							[
+								strongButton,
+								emButton,
+								codeButton,
+								underlineButton,
+								strikeButton,
+								linkButton,
+								taskListButton,
+							],
+							...menuItems.fullMenu.slice(1),
+						],
+					}),
+				],
 			}),
+			// Keep the checkbox UI and the ProseMirror node state in sync.
+			handleClickOn(view, pos, node, nodePos, event) {
+				if (!(event.target instanceof HTMLInputElement)) return false;
+				if (event.target.type !== 'checkbox') return false;
+				if (node.type !== taskItemType) return false;
+
+				view.dispatch(
+					view.state.tr.setNodeMarkup(nodePos, undefined, {
+						...node.attrs,
+						checked: !node.attrs.checked,
+					}),
+				);
+				return true;
+			},
 			dispatchTransaction(tr) {
 				const nextState = view.state.apply(tr);
 				view.updateState(nextState);
@@ -467,6 +570,29 @@
 
 	:global(.ProseMirror li > p) {
 		margin: 0;
+	}
+
+	:global(.ProseMirror .task-list) {
+		list-style: none;
+		padding-left: 0;
+	}
+
+	:global(.ProseMirror .task-item) {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.5rem;
+		list-style: none;
+	}
+
+	:global(.ProseMirror .task-item__checkbox) {
+		display: inline-flex;
+		flex: 0 0 auto;
+		margin-top: 0.15rem;
+	}
+
+	:global(.ProseMirror .task-item__content) {
+		flex: 1 1 auto;
+		min-width: 0;
 	}
 	/* ENDS_HERE */
 
