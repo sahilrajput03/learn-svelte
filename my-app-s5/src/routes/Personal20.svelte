@@ -132,8 +132,10 @@
 		group: 'block',
 		parseDOM: [
 			{
-				tag: 'ul[data-task-list]',
+				tag: 'ul',
+				priority: 100,
 				getAttrs(dom: HTMLElement) {
+					if (!dom.querySelector('li input[type="checkbox"]')) return false;
 					return {
 						strikeWhenChecked:
 							dom.getAttribute('data-strike-when-checked') === 'true' ||
@@ -163,9 +165,11 @@
 		defining: true,
 		parseDOM: [
 			{
-				tag: 'li[data-task-item]',
+				tag: 'li',
+				priority: 100,
 				getAttrs(dom: HTMLElement) {
 					const checkbox = dom.querySelector('input[type="checkbox"]');
+					if (!checkbox) return false;
 					return {
 						checked:
 							checkbox?.hasAttribute('checked') ?? dom.getAttribute('data-checked') === 'true',
