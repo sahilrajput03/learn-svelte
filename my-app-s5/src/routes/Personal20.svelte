@@ -125,11 +125,33 @@
 	};
 
 	const taskListSpec: NodeSpec = {
+		attrs: {
+			strikeWhenChecked: { default: false, validate: 'boolean' },
+		},
 		content: 'task_item+',
 		group: 'block',
-		parseDOM: [{ tag: 'ul[data-task-list]' }],
-		toDOM() {
-			return ['ul', { 'data-task-list': 'true', class: 'task-list' }, 0] as const;
+		parseDOM: [
+			{
+				tag: 'ul[data-task-list]',
+				getAttrs(dom: HTMLElement) {
+					return {
+						strikeWhenChecked:
+							dom.getAttribute('data-strike-when-checked') === 'true' ||
+							dom.getAttribute('data-strike-when-checked') === '1',
+					};
+				},
+			},
+		],
+		toDOM(node) {
+			return [
+				'ul',
+				{
+					'data-task-list': 'true',
+					'data-strike-when-checked': String(node.attrs.strikeWhenChecked),
+					class: 'task-list',
+				},
+				0,
+			] as const;
 		},
 	};
 
@@ -251,6 +273,13 @@
 			css: 'padding: 2px 8px; font-size: 0.95rem;',
 			run: wrapInList(taskListType),
 		});
+		// This variant uses the same checklist nodes, but checked items render with strike-through.
+		const taskListStrikeButton = new MenuItem({
+			title: 'Toggle checklist with strikethrough',
+			label: '☒',
+			css: 'padding: 2px 8px; font-size: 0.95rem;',
+			run: wrapInList(taskListType, { strikeWhenChecked: true }),
+		});
 		const linkButton = new MenuItem({
 			title: 'Add or remove link',
 			icon: icons.link,
@@ -321,6 +350,7 @@
 								strikeButton,
 								linkButton,
 								taskListButton,
+								taskListStrikeButton,
 							],
 							...menuItems.fullMenu.slice(1),
 						],
@@ -593,6 +623,11 @@
 	:global(.ProseMirror .task-item__content) {
 		flex: 1 1 auto;
 		min-width: 0;
+	}
+
+	/* Only strike the checked item’s own paragraph, so nested task lists stay readable. */
+	:global(.ProseMirror .task-list[data-strike-when-checked='true'] .task-item[data-checked='true'] > .task-item__content > p) {
+		text-decoration: line-through;
 	}
 	/* ENDS_HERE */
 
