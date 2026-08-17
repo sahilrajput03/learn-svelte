@@ -25,6 +25,7 @@
 	import { toggleMark } from 'prosemirror-commands';
 	import { keymap } from 'prosemirror-keymap';
 	import { page } from '$app/state';
+	import { createIndentToolbarIcon, createOutdentToolbarIcon } from '$lib/prosemirror-toolbar-icons';
 	import 'prosemirror-view/style/prosemirror.css';
 	import 'prosemirror-menu/style/menu.css';
 	import 'prosemirror-gapcursor/style/gapcursor.css';
@@ -284,6 +285,23 @@
 			css: 'padding: 2px 8px; font-size: 0.95rem;',
 			run: wrapInList(taskListType, { strikeWhenChecked: true }),
 		});
+		// Mobile-friendly indentation controls for checklist items.
+		const taskIndentButton = new MenuItem({
+			title: 'Indent checklist item',
+			icon: { dom: createIndentToolbarIcon() },
+			enable(state) {
+				return sinkListItem(taskItemType)(state);
+			},
+			run: sinkListItem(taskItemType),
+		});
+		const taskOutdentButton = new MenuItem({
+			title: 'Outdent checklist item',
+			icon: { dom: createOutdentToolbarIcon() },
+			enable(state) {
+				return liftListItem(taskItemType)(state);
+			},
+			run: liftListItem(taskItemType),
+		});
 		const linkButton = new MenuItem({
 			title: 'Add or remove link',
 			icon: icons.link,
@@ -355,6 +373,8 @@
 								linkButton,
 								taskListButton,
 								taskListStrikeButton,
+								taskOutdentButton,
+								taskIndentButton,
 							],
 							...menuItems.fullMenu.slice(1),
 						],
