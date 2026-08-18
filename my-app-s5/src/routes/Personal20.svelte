@@ -25,7 +25,10 @@
 	import { toggleMark } from 'prosemirror-commands';
 	import { keymap } from 'prosemirror-keymap';
 	import { page } from '$app/state';
-	import { createIndentToolbarIcon, createOutdentToolbarIcon } from '$lib/prosemirror-toolbar-icons';
+	import {
+		createIndentToolbarIcon,
+		createOutdentToolbarIcon,
+	} from '$lib/prosemirror-toolbar-icons';
 	import 'prosemirror-view/style/prosemirror.css';
 	import 'prosemirror-menu/style/menu.css';
 	import 'prosemirror-gapcursor/style/gapcursor.css';
@@ -421,8 +424,6 @@
 	};
 </script>
 
-<div class="border p-3 font-bold">ver. 0.1</div>
-
 {#if !page.url.pathname.includes('107')}
 	<a class="text-blue-600 underline" href="/group107"
 		>🔴🔴🔴 Go to Group 107 for full screen experience of this component.
@@ -650,7 +651,13 @@
 	}
 
 	/* Only strike the checked item’s own paragraph, so nested task lists stay readable. */
-	:global(.ProseMirror .task-list[data-strike-when-checked='true'] .task-item[data-checked='true'] > .task-item__content > p) {
+	:global(
+			.ProseMirror
+				.task-list[data-strike-when-checked='true']
+				.task-item[data-checked='true']
+				> .task-item__content
+				> p
+		) {
 		text-decoration: line-through;
 	}
 	/* ENDS_HERE */
